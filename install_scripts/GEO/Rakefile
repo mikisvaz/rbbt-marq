@@ -4,7 +4,6 @@ require 'MARQ/ID'
 require 'yaml'
 require 'progress-monitor'
 require 'MARQ/MADB'
-require 'MARQ/annotations'
 
 $platform       ||= ENV['platform']
 $org            ||= [$organism, ENV['organism'], nil].reject{|e| e.nil?}.first 
@@ -156,6 +155,7 @@ task 'data' do
 end
 
 task 'annotate_Words' do
+  require 'MARQ/annotations'
   annotations('Words'){|dataset|
     terms = {}
     description = Open.read(GEO.dataset_path(dataset) + '.description')
@@ -170,6 +170,7 @@ end
 
 
 task 'annotate_UMLS' do
+  require 'MARQ/annotations'
   annotations('UMLS'){|dataset|
     terms = {}
     description = Open.read(GEO.dataset_path(dataset) + '.description')
@@ -184,6 +185,7 @@ end
 
 
 task 'annotate_Polysearch' do
+  require 'MARQ/annotations'
   require 'rbbt/sources/polysearch'
   annotations('Polysearch'){|dataset|
     terms = {}
@@ -199,6 +201,7 @@ task 'annotate_Polysearch' do
 end
 
 task 'annotate_GO' do
+  require 'MARQ/annotations'
   require 'rbbt/sources/go'
   options = { :cut_off => $expr_threshold, :fdr => $fdr, :folds => $folds, :do_folds => $do_folds, :nth_genes => $nth_genes}
   annotations('GO_up', true){|dataset|

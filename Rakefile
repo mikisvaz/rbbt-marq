@@ -6,11 +6,33 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "rbbt-marq"
     gem.summary = %Q{MicroArray Rank Query}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{Find microarray experiments with similar or opposite signature to a given query. This gem contains the library, SOAP web server and web portal for the system.}
     gem.email = "miguel.vazquez@fdi.ucm.es"
     gem.homepage = "http://github.com/mikisvaz/rbbt-marq"
     gem.authors = ["Miguel Vazquez"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+
+      
+
+    gem.files = Dir['lib/**/*.rb','bin/marq_config','tasks/install.rake', 'install_scripts/**/*','R/*']
+    gem.test_files = Dir['lib/**/test_*.rb']
+
+    gem.add_dependency('rbbt')
+    gem.add_dependency('rake')
+    gem.add_dependency('simpleconsole')
+    gem.add_dependency('DBcache')
+    gem.add_dependency('DRbServe')
+
+
+    # FIXME: This wont work with ruby 1.9
+    #
+    # gem.add_dependency('RubyInline')
+     
+
+    # FIXME: Rubygems install does not work right away
+    #
+    # gem.add_dependency('rsruby')
+
+
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

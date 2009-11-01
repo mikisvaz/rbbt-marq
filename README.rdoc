@@ -1,6 +1,47 @@
-= rbbt-marq
+= MARQ
 
-Description goes here.
+MicroArray Rank Query (MARQ) is an application used to retrieve microarray
+experiments that are similar to a given query based on a rank statistic. This
+package includes the tools to build the microarray database, a SOAP web server 
+to perform the queries and a merb application that offers a complete visual
+interface to the system with several additional features.
+
+== Installation
+
+Install the gem and all the dependencies. This gem depends on several others,
+including Rbbt. Rbbt offers an API with the gene identifier translation used in
+MARQ. To install MARQ follow this recipie:
+
+* Install Rbbt
+
+    rbbt_config configure
+    rbbt_config install identifiers
+    rbbt_config organisms
+    # Choose the organisms you are interested in, and take the keyword. Like sgd for yeast
+    rbbt_config update organisms -o sgd
+
+* Install R
+  * Install bioconductor and GEOquery
+      source("http://bioconductor.org/biocLite.R")
+      biocLite()
+      biocLite('GEOquery')
+
+* Install mysql
+  * Create database
+      CREATE DATABASE madb;
+      CREATE USER 'marq'@'localhost' IDENTIFIED BY 'marq_password';
+      GRANT ALL PRIVILEGES ON madb.* TO 'marq'@'localhost';
+
+* Install MARQ
+    marq_config config
+    marq_config install identifiers
+    marq_config update GEO
+
+* MARQ depends on many gems. Some may be problematic to install, in particular
+  rsruby. You may need to get the source and build it yourself instead 
+  of using the gem command. http://github.com/alexgutteridge/rsruby. Also RubyInline
+  does not work in ruby1.9 so its require has been delayed to just when its about
+  to be used.
 
 == Note on Patches/Pull Requests
  
@@ -9,8 +50,7 @@ Description goes here.
 * Add tests for it. This is important so I don't break it in a
   future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
 == Copyright
