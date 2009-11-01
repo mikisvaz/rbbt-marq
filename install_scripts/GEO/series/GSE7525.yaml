@@ -1,0 +1,33 @@
+--- 
+:arrays: 
+  GSM182236: 
+    treatment: S.cerevisiae_mating_90min
+  GSM182225: 
+    treatment: S.cerevisiae_alpha_factor_60min
+  GSM182226: 
+    treatment: S.cerevisiae_alpha_factor_60min
+  GSM182227: 
+    treatment: S.paradoxus_alpha_factor_60min
+  GSM182228: 
+    treatment: S.paradoxus_alpha_factor_60min
+  GSM182229: 
+    treatment: S.paradoxus_alpha_factor_60min
+  GSM182230: 
+    treatment: S.mikatae_alpha_factor_60min
+  GSM182231: 
+    treatment: S.mikatae_alpha_factor_60min
+  GSM182232: 
+    treatment: S.mikatae_alpha_factor_60min
+  GSM182233: 
+    treatment: S.mikatae_alpha_factor_60min
+  GSM182234: 
+    treatment: S.cerevisiae_mating_90min
+  GSM182235: 
+    treatment: S.cerevisiae_mating_90min
+  GSM182224: 
+    treatment: S.cerevisiae_alpha_factor_60min
+:description: |-
+  We examined the mating response of three yeast species, by subjecting a-type cells from each of them to alpha-factor (6uM). The expression of cells before and after (60min) addition of alpha-factor were compared using S. cerevisiae cDNA microarrays. In addition, we verified our results with a true mating experiment: the expression of a-type and alpha-type cells from S. cerevisiae were compared before and after mixing them for 90 minutes (i.e. allowing them to mate).
+  Keywords: yeast mating response, comparison among species
+:title: Mating response of three yeast species (S. cerevisiae, S. paradoxus and S. mikatae)
+:platform: GPL4567

@@ -1,0 +1,107 @@
+--- 
+:description: |-
+  Transcription profiles across the cell cycle of yox1 deleted yeast cells. BY2399 cells (yox1 delete cells isogenic with W303a) were arrested with alpha factor in YEPD media. After release from arrest cells were sampled every 5 min for 2 hr.
+  Keywords: cell cycle time course
+:title: Cell cycle of yeast deleted for yox1
+:arrays: 
+  GSM120185: 
+    time: yox1 90
+  GSM120174: 
+    time: yox1 35
+  GSM120053: 
+    time: yox1 85
+  GSM120042: 
+    time: yox1 30
+  GSM120186: 
+    time: yox1 95
+  GSM120175: 
+    time: yox1 40
+  GSM120054: 
+    time: yox1 90
+  GSM120043: 
+    time: yox1 35
+  GSM120187: 
+    time: yox1 100
+  GSM120176: 
+    time: yox1 45
+  GSM120055: 
+    time: yox1 95
+  GSM120044: 
+    time: yox1 40
+  GSM120188: 
+    time: yox1 105
+  GSM120177: 
+    time: yox1 50
+  GSM120056: 
+    time: yox1 100
+  GSM120045: 
+    time: yox1 45
+  GSM120190: 
+    time: yox1 115
+  GSM120189: 
+    time: yox1 110
+  GSM120178: 
+    time: yox1 55
+  GSM120167: 
+    time: yox1 0
+  GSM120057: 
+    time: yox1 105
+  GSM120046: 
+    time: yox1 50
+  GSM120191: 
+    time: yox1 120
+  GSM120180: 
+    time: yox1 65
+  GSM120179: 
+    time: yox1 60
+  GSM120168: 
+    time: yox1 5
+  GSM120058: 
+    time: yox1 110
+  GSM120047: 
+    time: yox1 55
+  GSM120036: 
+    time: yox1 0
+  GSM120181: 
+    time: yox1 70
+  GSM120170: 
+    time: yox1 15
+  GSM120169: 
+    time: yox1 10
+  GSM120060: 
+    time: yox1 120
+  GSM120059: 
+    time: yox1 115
+  GSM120048: 
+    time: yox1 60
+  GSM120037: 
+    time: yox1 5
+  GSM120182: 
+    time: yox1 75
+  GSM120171: 
+    time: yox1 20
+  GSM120050: 
+    time: yox1 70
+  GSM120049: 
+    time: yox1 65
+  GSM120038: 
+    time: yox1 10
+  GSM120183: 
+    time: yox1 80
+  GSM120172: 
+    time: yox1 25
+  GSM120051: 
+    time: yox1 75
+  GSM120040: 
+    time: yox1 20
+  GSM120039: 
+    time: yox1 15
+  GSM120184: 
+    time: yox1 85
+  GSM120173: 
+    time: yox1 30
+  GSM120052: 
+    time: yox1 80
+  GSM120041: 
+    time: yox1 25
+:platform: GPL1914

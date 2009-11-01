@@ -1,0 +1,71 @@
+--- 
+:title: Sporulation_transfer_to_glucose
+:description: |-
+  We have used genome-wide expression profiling to investigate how budding yeast cells become committed to sporulation. Sporulating cells were transferred to growth medium at different stages of the process, and their transcription response was characterized. Most sporulation-induced genes were immediately down-regulated upon the transfer, even in committed cells that continued to sporulate. The metabolic-related transcription response of pre-committed cells or of mature spores transferred to growth medium was essentially the same as that of vegetative cells exposed to glucose. In contrast, committed cells elicited a unique, and dramatically different response. Our results suggest that cells ensure commitment to sporulation not by stabilizing the process, but by modulating their information processing in an active manner that may optimize sporulation in an environment-specific manner.
+  Keywords: Time course
+:arrays: 
+  GSM87543: 
+    condition: RTG_6R40
+  GSM87532: 
+    condition: RTG_3R0
+  GSM87521: 
+    condition: Sporulation_2h
+  GSM87544: 
+    condition: RTG_7R0
+  GSM87533: 
+    condition: RTG_3R20
+  GSM87522: 
+    condition: Sporulation_3h
+  GSM87545: 
+    condition: RTG_7R20
+  GSM87534: 
+    condition: RTG_3R40
+  GSM87523: 
+    condition: Sporulation_4h
+  GSM87546: 
+    condition: RTG_7R40
+  GSM87535: 
+    condition: RTG_4R0
+  GSM87524: 
+    condition: Sporulation_5h
+  GSM87547: 
+    condition: RTG_8R0
+  GSM87536: 
+    condition: RTG_4R20
+  GSM87525: 
+    condition: Sporulation_6h
+  GSM87548: 
+    condition: RTG_8R20
+  GSM87537: 
+    condition: RTG_4R40
+  GSM87526: 
+    condition: Sporulation_7h
+  GSM87549: 
+    condition: RTG_8R40
+  GSM87538: 
+    condition: RTG_5R0
+  GSM87527: 
+    condition: Sporulation_8h
+  GSM87550: 
+    condition: RTG_9R0
+  GSM87539: 
+    condition: RTG_5R20
+  GSM87528: 
+    condition: Sporulation_9h
+  GSM87551: 
+    condition: RTG_9R20
+  GSM87540: 
+    condition: RTG_5R40
+  GSM87529: 
+    condition: RTG_2R0
+  GSM87552: 
+    condition: RTG_9R40
+  GSM87541: 
+    condition: RTG_6R0
+  GSM87530: 
+    condition: RTG_2R20
+  GSM87542: 
+    condition: RTG_6R20
+  GSM87531: 
+    condition: RTG_2R40
+:platform: GPL3245

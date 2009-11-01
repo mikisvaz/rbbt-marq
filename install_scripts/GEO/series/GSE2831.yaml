@@ -1,0 +1,35 @@
+--- 
+:arrays: 
+  GSM61957: 
+    condition: rpb1-N488D
+  GSM61958: 
+    condition: rpb1-E1103G
+  GSM61960: 
+    condition: rpb1-E1230K
+  GSM61959: 
+    condition: rpb1-E1103G
+  GSM61961: 
+    condition: rpb1-E1230K
+  GSM61952: 
+    condition: rpb1-D261N
+  GSM61941: 
+    condition: RPB1
+  GSM61953: 
+    condition: rpb1-D261N
+  GSM61942: 
+    condition: RPB1
+  GSM61954: 
+    condition: rpb1-R320C
+  GSM61943: 
+    condition: rpb1-D260N
+  GSM61955: 
+    condition: rpb1-R320C
+  GSM61944: 
+    condition: rpb1-D260N
+  GSM61956: 
+    condition: rpb1-N488D
+:title: RPB1 mutants sensitive to 6-AU
+:description: |-
+  Gene expression profiling of RNA pol II mutants. In vivo effects of mutations in residues 260 (rudder), 261 (rudder), 320 (lid), 488 (close to catalytic center), 1230 (required for TFIIS stimulation) and 1103.
+  Keywords: Gene expression profiling of RNA pol II mutants
+:platform: GPL2547

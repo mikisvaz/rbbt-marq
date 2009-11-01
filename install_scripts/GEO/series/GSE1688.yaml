@@ -1,0 +1,36 @@
+--- 
+:title: Unfolded protein response in wildtype, ire1, gcn4, gcn2
+:description: |-
+  We measured steady-state mRNA levels by microarray hybridization, comparing WT, (delta)ire1, (delta)gcn4, and (delta)gcn2 cells treated with 2 mM DTT for 30 min (by which time the UPR is qualitatively complete) to untreated samples of the same genotype. WT cells were taken as a positive control for UPR induction, and (delta)ire1 cells as a negative control. Fold change in expression of a given gene was computed as the ratio of mRNA level in the treated sample to the level in an untreated sample of the same genotype. Values reported here are the log2 fold change.
+  Keywords = unfolded protein response
+  Keywords = UPR
+  Keywords = ire1
+  Keywords = gcn4
+  Keywords = gcn2
+  Keywords: parallel sample
+:arrays: 
+  GSM29047: 
+    tratment: gcn4 DTT vs. gcn4
+  GSM29048: 
+    tratment: gcn4 DTT vs. gcn4
+  GSM29049: 
+    tratment: gcn4 DTT vs. gcn4
+  GSM29050: 
+    tratment: gcn2 DTT vs. gcn2
+  GSM29051: 
+    tratment: gcn2 DTT vs. gcn2
+  GSM29052: 
+    tratment: gcn2 DTT vs. gcn2
+  GSM16985: 
+    tratment: wt DTT vs wt
+  GSM16986: 
+    tratment: wt DTT vs wt
+  GSM29045: 
+    tratment: ire1 DTT vs. ire1
+  GSM16987: 
+    tratment: wt DTT vs wt
+  GSM29046: 
+    tratment: ire1 DTT vs. ire1
+  GSM16988: 
+    tratment: ire1 DTT vs. ire1
+:platform: GPL1001

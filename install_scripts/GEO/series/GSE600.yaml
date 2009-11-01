@@ -1,0 +1,29 @@
+--- 
+:title: S. cerevisiae mutant with a constitutively activated Ras/cAMP pathway
+:description: |-
+  Comparison of the transcriptomes of Saccharomyces cerevisiae wild type FY23 and a PDE2 deletion mutant DJ28.
+  Keywords = PDE2
+  Keywords = Ras/cAMP pathway
+  Keywords: other
+:arrays: 
+  GSM9174: 
+    condition: DLJ
+  GSM9175: 
+    condition: DLJ
+  GSM9142: 
+    condition: DLJ
+  GSM9176: 
+    condition: DLJ
+  GSM9177: 
+    condition: DLJ
+  GSM9178: 
+    condition: DLJ
+  GSM9179: 
+    condition: DLJ
+  GSM9180: 
+    condition: DLJ
+  GSM9181: 
+    condition: DLJ
+  GSM9182: 
+    condition: DLJ
+:platform: GPL422

@@ -1,0 +1,79 @@
+--- 
+:description: |-
+  We studied the relation between growth rate and genomewide gene expression, cell cycle progression, and glucose metabolism in 36 steady state continuous cultures limited by one of six different nutrients (glucose, ammonium, sulfate, phosphate, uracil or leucine).  The expression of more than a quarter of all yeast genes is linearly correlated with growth rate, independently of the limiting nutrient.  The subset of negatively growth-correlated genes is most enriched for peroxisomal functions, whereas positively correlated genes mainly encode ribosomal functions.  Many (not all) genes associated with stress response are strongly correlated with growth rate, as are genes that are periodically expressed under conditions of metabolic cycling.  We confirmed a linear relationship between growth rate and the fraction of the cell population in the G0/G1 cell cycle phase, independent of limiting nutrient.  Cultures limited by auxotrophic requirements wasted excess glucose, whereas those limited on phosphate, sulfate or ammonia did not; this phenomenon (reminiscent of the "Warburg effect" in cancer cells) was confirmed in batch cultures.  Using an aggregate of gene expression values, we predict (in both continuous and batch cultures) an "instantaneous growth rate".  This concept is useful in interpreting the systemlevel connections among growth rate, metabolism, stress and the cell cycle.
+  Keywords: growth condition design
+:arrays: 
+  GSM219294: 
+    condition: LlimD.2
+  GSM219283: 
+    condition: PlimD.25
+  GSM219272: 
+    condition: ClimD.3
+  GSM219295: 
+    condition: LlimD.25
+  GSM219284: 
+    condition: PlimD.3
+  GSM219273: 
+    condition: NlimD.05
+  GSM219296: 
+    condition: LlimD.3
+  GSM219285: 
+    condition: SlimD.05
+  GSM219274: 
+    condition: NlimD.1
+  GSM219297: 
+    condition: UlimD.05
+  GSM219286: 
+    condition: SlimD.1
+  GSM219275: 
+    condition: NlimD.15
+  GSM219298: 
+    condition: UlimD.1
+  GSM219287: 
+    condition: SlimD.15
+  GSM219276: 
+    condition: NlimD.2
+  GSM219299: 
+    condition: UlimD.15
+  GSM219288: 
+    condition: SlimD.2
+  GSM219277: 
+    condition: NlimD.25
+  GSM219300: 
+    condition: UlimD.2
+  GSM219289: 
+    condition: SlimD.25
+  GSM219278: 
+    condition: NlimD.3
+  GSM219267: 
+    condition: ClimD.05
+  GSM219301: 
+    condition: UlimD.25
+  GSM219290: 
+    condition: SlimD.3
+  GSM219279: 
+    condition: PlimD.05
+  GSM219268: 
+    condition: ClimD.1
+  GSM219302: 
+    condition: UlimD.3
+  GSM219291: 
+    condition: LlimD.05
+  GSM219280: 
+    condition: PlimD.1
+  GSM219269: 
+    condition: ClimD.15
+  GSM219292: 
+    condition: LlimD.1
+  GSM219281: 
+    condition: PlimD.15
+  GSM219270: 
+    condition: ClimD.2
+  GSM219293: 
+    condition: LlimD.15
+  GSM219282: 
+    condition: PlimD.2
+  GSM219271: 
+    condition: ClimD.25
+:title: Coordination of Growth Rate, Cell Cycle, Stress Response and Metabolic Activity in Yeast
+:platform: GPL884

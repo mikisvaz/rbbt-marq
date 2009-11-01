@@ -1,0 +1,19 @@
+--- 
+:arrays: 
+  GSM284868: 
+    condition: Wild type for H4 R45H
+  GSM284869: 
+    condition: Wild type for H4 R45H
+  GSM284870: 
+    condition: Wild type for H4 R45H
+  GSM284871: 
+    condition: Mutant histone H4R45H
+  GSM284872: 
+    condition: Mutant histone H4R45H
+  GSM284873: 
+    condition: Mutant histone H4R45H
+:description: |-
+  Total RNA samples from three replicate cultures of wild type and mutant yeast strains was isolated and expression profile done using Affymetrix arrays. Comparsion between the samples indicate how mutation in a single amino acid residue in histone H4 (H4R45H) affects gene expression in yeast. Such a mutation in histone H4 is known to generate a specific class of mutants called SWI/SNF independent (SIN) mutants, and the mutants were identified by their ability to carry out transcription in the absence of yeast chromatin remodeling complex SWI/SNF. SIN mutations are known to affect higher order chromatin structure and the comparative expression profile would help identification  of genes which get affected by such altered chromatin landscape.
+  Keywords: mutant analysis
+:title: Comparison of yeast (Saccharomyces cerevisiae) strain with histone H4 R45 mutated to H with wild type yeast strain WY139
+:platform: GPL2529

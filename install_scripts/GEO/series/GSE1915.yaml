@@ -1,0 +1,39 @@
+--- 
+:arrays: 
+  GSM34358: 
+    time: HU2h
+  GSM34347: 
+    time: HU4h
+  GSM34348: 
+    time: HU6h
+  GSM34349: 
+    time: HU4h
+  GSM34350: 
+    time: HU2h
+  GSM34351: 
+    time: HU4h
+  GSM34352: 
+    time: HU6h
+  GSM34353: 
+    time: HU1h
+  GSM34354: 
+    time: HU6h
+  GSM34343: 
+    time: HU6h
+  GSM34355: 
+    time: HU2h
+  GSM34344: 
+    time: HU1h
+  GSM34356: 
+    time: HU1h
+  GSM34345: 
+    time: HU2h
+  GSM34357: 
+    time: HU4h
+  GSM34346: 
+    time: HU1h
+:title: CEA_SGF:E00014#HU_response_long-term
+:description: |-
+  Analysis of long-term response to hydroxyurea in a yeast wild-type strain (CDY59). Cells were grown in YPD rich medium containong 200 mM hydroxyurea (HU) during the indicated time (1, 2, 4 or 6 hours). Gene expression changes were analysed compared to the same strain grown in the same medium without HU.
+  Keywords: time-course
+:platform: GPL1531

@@ -1,0 +1,31 @@
+--- 
+:description: |-
+  This experiment compares transcriptomic response of yeast cells to the deletion of Gcr1 to isogenic wild type strains, grown in YEP(3%)R at 23C.  The goal was to identify misregulated target genes and analyze the functional classifications of those targets.
+  Keywords: cell type comparison
+:title: Transcriptome response to gcr1 deletion in raffinose, galactose, and glucose
+:arrays: 
+  GSM113605: 
+    mutant: gcr1 glu
+  GSM113606: 
+    mutant: gcr1 glu
+  GSM113597: 
+    mutant: gcr1 raff
+  GSM113465: 
+    mutant: gcr1 raff
+  GSM113598: 
+    mutant: gcr1 raff
+  GSM113466: 
+    mutant: gcr1 raff
+  GSM113599: 
+    mutant: gcr1 gal
+  GSM113600: 
+    mutant: gcr1 gal
+  GSM113601: 
+    mutant: gcr1 gal
+  GSM113602: 
+    mutant: gcr1 gal
+  GSM113603: 
+    mutant: gcr1 glu
+  GSM113604: 
+    mutant: gcr1 glu
+:platform: GPL2883

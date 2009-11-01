@@ -1,0 +1,55 @@
+--- 
+:description: |-
+  Wt S. cerevisiae cells from a W303 background were exposed to multiple doses of MMS and Gamma Radiation and their global transcriptional response was measured
+  Keywords: dose response
+:title: Analyzing the dose-dependence of the Saccharomyces cerevisiae global transcriptional response to MMS and IR
+:arrays: 
+  GSM139754: 
+    condition: IR 1
+  GSM139743: 
+    condition: MMS 0.01
+  GSM139755: 
+    condition: IR 10
+  GSM139744: 
+    condition: MMS 0.1
+  GSM139733: 
+    condition: MMS 0
+  GSM139756: 
+    condition: IR 100
+  GSM139745: 
+    condition: IR 0
+  GSM139734: 
+    condition: MMS 0.001
+  GSM139746: 
+    condition: IR 1
+  GSM139735: 
+    condition: MMS 0.01
+  GSM139747: 
+    condition: IR 10
+  GSM139736: 
+    condition: MMS 0.1
+  GSM139748: 
+    condition: IR 100
+  GSM139737: 
+    condition: MMS 0
+  GSM139750: 
+    condition: IR 1
+  GSM139749: 
+    condition: IR 0
+  GSM139738: 
+    condition: MMS 0.001
+  GSM139751: 
+    condition: IR 10
+  GSM139740: 
+    condition: MMS 0.1
+  GSM139739: 
+    condition: MMS 0.01
+  GSM139752: 
+    condition: IR 100
+  GSM139741: 
+    condition: MMS 0
+  GSM139753: 
+    condition: IR 0
+  GSM139742: 
+    condition: MMS 0.001
+:platform: GPL4416

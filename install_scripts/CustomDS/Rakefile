@@ -1,0 +1,223 @@
+require 'MARQ'
+require 'MARQ/CustomDS'
+require 'MARQ/MADB'
+require 'MARQ/annotations'
+require 'progress-monitor'
+
+$org            ||= ENV['organism']
+
+$expr_threshold ||= (ENV['threshold'] || 0.05).to_f
+$folds          ||= (ENV['folds'] || 2.5).to_f
+$nth_genes      ||= (ENV['nth_genes'] || 100).to_i
+
+$force       = [$force, ENV['force'], false].         reject{|e| e.nil?}.first 
+$update_db   = [$update_db, ENV['update_db'], true].  reject{|e| e.nil?}.first 
+$fdr         = [$fdr, ENV['fdr'], true].              reject{|e| e.nil?}.first 
+$do_folds    = [$do_folds, ENV['do_folds'], true].    reject{|e| e.nil?}.first 
+
+
+
+
+task 'data' do
+  organisms = Dir.glob(CustomDS::customdir + '/*').select{|f| File.directory? f}.collect{|f| File.basename(f)} - ["annotations"]
+  
+  organisms.each{|org|
+    datasets = Dir.glob(File.join(CustomDS::customdir, org) + '/*').select{|f| File.directory? f}.collect{|f| File.basename(f)}
+    if $force
+      missing = datasets
+    else
+      missing = datasets - CustomDS::datasets(org)
+    end
+    missing.each{|d|
+      CustomDS::process(d)
+      MADB::CustomDS::save(d)
+    }
+  }
+end
+
+
+def annotations(name, cross_platform = false, &block)
+  FileUtils.mkdir_p File.join("annotations", name) unless File.exist? File.join("annotations", name)
+  organisms = Dir.glob(CustomDS::customdir + '/*').select{|f| File.directory? f}.collect{|f| File.basename(f)} - ["annotations"]
+
+  Progress.monitor("Annotating with #{ name }")
+  organisms.each{|org|
+    Progress.monitor("Annotating organism #{ org }")
+    CustomDS::datasets(org).each{|dataset|
+      begin
+        next if File.exist? File.join("annotations", name, dataset)
+        filename = File.join("annotations", name, dataset)
+        dataset += '_cross_platform' if cross_platform && GEO.has_cross_platform?(dataset)
+        next if File.exist? CustomDS.path(dataset) + '.skip'
+        terms = block.call(dataset)
+        Open.write(filename, terms.to_yaml)
+      rescue Exception
+        puts $!.message
+      end
+    }
+  }
+end
+
+def goterms(org, list, slim, threshold)
+  return [] if list.empty?
+  results = Annotations::GO::Genecodis::Local.analysis(org, list, slim)
+  results.
+    select{|info| info[:s].to_i  > 2 }.
+    select{|info| info[:hyp_c].to_f < threshold }.
+    collect{|info| info[:items]}.collect{|id| GO::id2name(id)}
+end
+
+
+task 'annotate_Words' do
+  FileUtils.mkdir_p "annotations/Words"
+  require 'rbbt/bow/bow'
+  organisms = Dir.glob(CustomDS::customdir + '/*').select{|f| File.directory? f}.collect{|f| File.basename(f)} - ["annotations"]
+  organisms.each{|org|
+    CustomDS::datasets(org).each{|dataset|
+      begin
+        next if File.exist? "annotations/Words/#{ dataset }"
+        next if File.exist? CustomDS.path(dataset) + '.skip'
+
+        terms = {}
+        description = Open.read(CustomDS.path(dataset) + '.description')
+        terms[:dataset] = [dataset] +  description.words
+        Open.read(CustomDS.path(dataset) + '.experiments').collect{|name|
+          name = name.strip
+          terms[name] = name.sub(/\[ratio\]/,'').words
+        }
+        
+        Open.write("annotations/Words/#{ dataset }", terms.to_yaml)
+
+      rescue Exception
+        puts $!.message
+      end
+    }
+ }
+end
+
+task 'annotate_UMLS' do
+  FileUtils.mkdir_p "annotations/UMLS"
+  organisms = Dir.glob(CustomDS::customdir + '/*').select{|f| File.directory? f}.collect{|f| File.basename(f)} - ["annotations"]
+  organisms.each{|org|
+    CustomDS::datasets(org).each{|dataset|
+      begin
+        next if File.exist? "annotations/UMLS/#{ dataset }"
+        next if File.exist? CustomDS.path(dataset) + '.skip'
+        terms = {}
+        description = Open.read(CustomDS.path(dataset) + '.description')
+        terms[:dataset] = Annotations::UMLS::OBA(description)
+        Open.read(CustomDS.path(dataset) + '.experiments').collect{|name|
+          name = name.strip
+          terms[name] = Annotations::UMLS::OBA(name)
+        }
+        Open.write("annotations/UMLS/#{ dataset }", terms.to_yaml)
+      rescue Exception
+        puts $!.message
+      end
+    }
+  }
+
+end
+
+
+
+
+task 'annotate_Words' do
+  annotations('Words'){|dataset|
+    description = Open.read(CustomDS.path(dataset) + '.description')
+    terms[:dataset] = [dataset] +  description.words
+    Open.read(CustomDS.path(dataset) + '.experiments').collect{|name|
+      name = name.strip
+      terms[name] = name.sub(/\[ratio\]/,'').words
+    }
+    terms
+  }
+end
+
+task 'annotate_UMLS' do
+  annotations('Words'){|dataset|
+    description = Open.read(CustomDS.path(dataset) + '.description')
+    terms[:dataset] = Annotations::UMLS::OBA(description).uniq
+    Open.read(CustomDS.path(dataset) + '.experiments').collect{|name|
+      name = name.strip
+      terms[name] = Annotations::UMLS::OBA(name.sub(/.*?: /,'').sub(/\[ratio\]/,'')).uniq
+    }
+    terms
+  }
+end
+
+
+
+task 'annotate_Polysearch' do
+  require 'rbbt/sources/polysearch'
+  annotations('Polysearch'){|dataset|
+    terms = {}
+    description = Open.read(CustomDS.path(dataset) + '.description')
+    terms[:dataset] = Polysearch::match(description).values.flatten.sort.collect{|n| n.gsub(/\s+/,' ').downcase}.uniq
+    Open.read(CustomDS.path(dataset) + '.experiments').collect{|name|
+      name = name.strip
+      terms[name] = Polysearch::match(name.sub(/.*?: /,'').sub(/\[ratio\]/,'')).values.flatten.sort.collect{|n| n.gsub(/\s+/,' ').downcase}.uniq
+    }
+    terms
+  }
+
+end
+
+task 'annotate_GO' do
+  require 'rbbt/sources/go'
+  options = { :cut_off => $expr_threshold, :fdr => $fdr, :folds => $folds, :do_folds => $do_folds, :nth_genes => $nth_genes}
+  annotations('GO_up', true){|dataset|
+    org = MARQ.platform_organism(dataset)
+    genes = Annotations::GO.get_genes(dataset, options)
+
+    up = {}
+    genes[:up] ||= []
+    genes[:up].collect{|experiment,list|
+      up[experiment] =  goterms(org, list, false, $expr_threshold)
+    }
+    up
+  }
+
+  annotations('GO_down', true){|dataset|
+    org = MARQ.platform_organism(dataset)
+    genes = Annotations::GO.get_genes(dataset, options)
+
+    down = {}
+    genes[:down] ||= []
+    genes[:down].collect{|experiment,list|
+      down[experiment] = goterms(org, list, false, $expr_threshold)
+    }
+    down
+  } 
+  annotations('GOSlim_up', true){|dataset|
+    org = MARQ.platform_organism(dataset)
+    genes = Annotations::GO.get_genes(dataset, options)
+
+    up = {}
+    genes[:up] ||= []
+    genes[:up].collect{|experiment,list|
+      up[experiment] = goterms(org, list, true, $expr_threshold)
+    }
+    up
+  }
+
+  annotations('GOSlim_down', true){|dataset|
+    org = MARQ.platform_organism(dataset)
+    genes = Annotations::GO.get_genes(dataset, options)
+
+    down = {}
+    genes[:down] ||= []
+    genes[:down].collect{|experiment,list|
+      down[experiment] =  goterms(org, list, true, $expr_threshold)
+    }
+    down
+  }
+end
+
+task 'default' do
+  Rake::Task['data'].invoke
+  Rake::Task['annotate_Words'].invoke
+  Rake::Task['annotate_UMLS'].invoke
+  Rake::Task['annotate_Polysearch'].invoke
+  Rake::Task['annotate_GO'].invoke
+end

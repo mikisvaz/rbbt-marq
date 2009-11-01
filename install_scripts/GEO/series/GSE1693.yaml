@@ -1,0 +1,60 @@
+--- 
+:title: A novel response to microtubule perturbation in meiosis
+:description: |-
+  Cells were grown to saturation in YPD (YEP + 2% glucose) for 24 hours, diluted into YPA (YEP + 2% potassium acetate) at OD600= 0.3 and grown over night at 30C. Cells were washed with sterilized water the next day and re-suspended in SPII medium (0.3% potassium acetate, pH = 7.0) at OD600= 1.9 to induce sporulation. Cells were sporulated at room temperature or 30C as indicated. Sporulation medium containing benomyl was always prepared freshly on the day of the experiment following the directions in {Shonn, 2000 #90}. Briefly, DMSO (dimethyl sulfoxide, Sigma-Aldrich) or benomyl [Methyl 1-(butylcarbamoyl)-2-benzimidazolecarbamate, Sigma-Aldrich; 30 mg/ml stock in DMSO] was dissolved in near-boiling SPII medium to avoid precipitation. The medium was then allowed to slowly cool to 30C or room temperature. At the time of drug treatment, cells were filtered and immediately re-suspended in the medium containing benomyl or DMSO.
+  Keywords = benomyl sporulation saccharomyces microtubule spindle checkpoint
+  Keywords: ordered
+:arrays: 
+  GSM35975: 
+    condition: SR5
+  GSM29080: 
+    condition: SD5
+  GSM35976: 
+    condition: SR8
+  GSM35977: 
+    condition: SR8
+  GSM29104: 
+    condition: SF5
+  GSM34889: 
+    condition: SC5
+  GSM29105: 
+    condition: SP4
+  GSM29094: 
+    condition: SB5
+  GSM29083: 
+    condition: SD5
+  GSM34890: 
+    condition: SC5
+  GSM29106: 
+    condition: SP4
+  GSM29073: 
+    condition: SD8
+  GSM34891: 
+    condition: SC8
+  GSM29107: 
+    condition: YPA
+  GSM34892: 
+    condition: SC8
+  GSM29108: 
+    condition: YPA
+  GSM29086: 
+    condition: SB8
+  GSM29109: 
+    condition: YPD
+  GSM29098: 
+    condition: SB5
+  GSM35972: 
+    condition: SR4
+  GSM29110: 
+    condition: YPD
+  GSM29077: 
+    condition: SD8
+  GSM35973: 
+    condition: SR4
+  GSM29089: 
+    condition: SB8
+  GSM35974: 
+    condition: SR5
+  GSM29101: 
+    condition: SF5
+:platform: GPL90

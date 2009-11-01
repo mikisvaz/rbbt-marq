@@ -1,0 +1,55 @@
+--- 
+:arrays: 
+  GSM87675: 
+    time: "120"
+    treatment: glu3
+  GSM87664: 
+    time: "300"
+    treatment: glu1
+  GSM87676: 
+    time: "300"
+    treatment: glu3
+  GSM87665: 
+    time: "330"
+    treatment: glu1
+  GSM87666: 
+    time: "0"
+    treatment: glu2
+  GSM87667: 
+    time: "30"
+    treatment: glu2
+  GSM87668: 
+    time: "60"
+    treatment: glu2
+  GSM87669: 
+    time: "120"
+    treatment: glu2
+  GSM87670: 
+    time: "300"
+    treatment: glu2
+  GSM87671: 
+    time: "330"
+    treatment: glu2
+  GSM87672: 
+    time: "0"
+    treatment: glu3
+  GSM87661: 
+    time: "0"
+    treatment: glu1
+  GSM87673: 
+    time: "30"
+    treatment: glu3
+  GSM87662: 
+    time: "120"
+    treatment: glu1
+  GSM87674: 
+    time: "60"
+    treatment: glu3
+  GSM87663: 
+    time: "210"
+    treatment: glu1
+:description: |-
+  Study of the short term (within the first 330 seconds)  transcriptional response of S.cerevisiae  upon a sudden addition of glucose.
+  Keywords: glucose pulse, chemostat culture, glucose catabolite repression
+:platform: GPL90
+:title: Short term perturbation

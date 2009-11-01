@@ -1,0 +1,15 @@
+--- 
+:description: |-
+  We transcriptional profiled four transcription factor knockout strains in S288C background growing in YNB media + 2% glucose to understand the link between mRNA levels and our measured C13 fluxes of amino acid biosynthesis.  We conducted this analysis as a follow up to our work on the Gcn4p transcription factor.
+  Keywords: genetic modification
+:arrays: 
+  GSM177371: 
+    condition: Met28 knockout expression
+  GSM177372: 
+    condition: Met31 knockout expression
+  GSM177373: 
+    condition: Met32 knockout expression
+  GSM177374: 
+    condition: Cbf1 knockout expression
+:title: Transcriptional control of amino acid biosynthesis
+:platform: GPL5043

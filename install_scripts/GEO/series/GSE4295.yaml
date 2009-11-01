@@ -1,0 +1,63 @@
+--- 
+:arrays: 
+  GSM98279: 
+    condition: 20sugarHS
+  GSM98268: 
+    condition: 30sugarLS
+  GSM98280: 
+    condition: 20sugarHS
+  GSM98269: 
+    condition: 40sugarLS
+  GSM98281: 
+    condition: 30sugarHS
+  GSM98270: 
+    condition: 40sugarLS
+  GSM98259: 
+    condition: 0sugarLS
+  GSM98282: 
+    condition: 30sugarHS
+  GSM98271: 
+    condition: 50sugarLS
+  GSM98260: 
+    condition: 0sugarLS
+  GSM98283: 
+    condition: 40sugarHS
+  GSM98272: 
+    condition: 50sugarLS
+  GSM98261: 
+    condition: 5sugarLS
+  GSM98284: 
+    condition: 40sugarHS
+  GSM98273: 
+    condition: 0sugarHS
+  GSM98262: 
+    condition: 5sugarLS
+  GSM98285: 
+    condition: 50sugarHS
+  GSM98274: 
+    condition: 0sugarHS
+  GSM98263: 
+    condition: 10sugarLS
+  GSM98286: 
+    condition: 50sugarHS
+  GSM98275: 
+    condition: 5sugarHS
+  GSM98264: 
+    condition: 10sugarLS
+  GSM98276: 
+    condition: 5sugarHS
+  GSM98265: 
+    condition: 20sugarLS
+  GSM98277: 
+    condition: 10sugarHS
+  GSM98266: 
+    condition: 20sugarLS
+  GSM98278: 
+    condition: 10sugarHS
+  GSM98267: 
+    condition: 30sugarLS
+:description: |-
+  Functional genomic analysis using different types of baker's yeast.
+  Keywords: fermentation
+:platform: GPL2529
+:title: Sugar stress during fermentation (baker's yeast)

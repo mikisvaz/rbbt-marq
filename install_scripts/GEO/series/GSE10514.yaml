@@ -1,0 +1,27 @@
+--- 
+:arrays: 
+  GSM265792: 
+    treatment: TAP_TAG
+  GSM265781: 
+    treatment: Streptavidin_Aptamer
+  GSM265793: 
+    treatment: Rpr1_ts
+  GSM265782: 
+    treatment: TAP_TAG
+  GSM265794: 
+    treatment: Pop1_ts1
+  GSM265783: 
+    treatment: Rpr1_ts
+  GSM265795: 
+    treatment: Pop1_ts2
+  GSM265784: 
+    treatment: Pop1_ts1
+  GSM265796: 
+    treatment: Streptavidin_Aptamer
+  GSM265785: 
+    treatment: Pop1_ts2
+:description: |-
+  Numerous RNAs copurify with RNase P and are affected by temperture sensitive mutations in conserved residues with the essential RNA and protein subunits.  Specifically, RNase P physically interacts with ribosomal protein mRNAS and the intron-encoded box C/D snoRNAs.
+  Keywords: RNA copurification, temperature sensitive mutants
+:title: Identification of RNAs that are physically and functionally associated with RNase P
+:platform: GPL6424

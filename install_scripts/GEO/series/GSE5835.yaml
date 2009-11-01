@@ -1,0 +1,25 @@
+--- 
+:description: |-
+  Gene expression analysis of a time course experiment of a synthetic must (nitrogen-rich) fermentation by a natural wine yeast.
+  Keywords: Time course
+:title: Normal Fermentation
+:arrays: 
+  GSM113332: 
+    condition: NF t2
+  GSM113333: 
+    condition: NF t2
+  GSM113334: 
+    condition: NF t3
+  GSM113335: 
+    condition: NF t3
+  GSM113336: 
+    condition: NF t3
+  GSM113325: 
+    condition: NF t1
+  GSM113326: 
+    condition: NF t1
+  GSM113327: 
+    condition: NF t1
+  GSM113329: 
+    condition: NF t2
+:platform: GPL3763

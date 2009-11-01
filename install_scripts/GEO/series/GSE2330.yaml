@@ -1,0 +1,55 @@
+--- 
+:arrays: 
+  GSM43085: 
+    condition: wt vs wt dot4-1
+  GSM43074: 
+    condition: dot4-5 vs wt
+  GSM43086: 
+    condition: wt vs wt dot4-5
+  GSM43075: 
+    condition: dot4-5 vs wt
+  GSM43087: 
+    condition: wt vs wt dot4-5
+  GSM43076: 
+    condition: dot4-5 vs wt
+  GSM43088: 
+    condition: wt vs wt dot4-5
+  GSM43077: 
+    condition: dot4 vs wt Myc
+  GSM43089: 
+    condition: wt Myc-tagged vs wt dot4
+  GSM43078: 
+    condition: dot4 vs wt Myc
+  GSM43067: 
+    condition: dot4-1 vs wt
+  GSM43090: 
+    condition: wt Myc-tagged vs wt dot4
+  GSM43079: 
+    condition: dot4 vs wt Myc
+  GSM43068: 
+    condition: dot4-1 vs wt
+  GSM43091: 
+    condition: wt Myc-tagged vs wt dot4
+  GSM43080: 
+    condition: wt DOT4 vs wt DOT4-6Myc
+  GSM43069: 
+    condition: dot4-1 vs wt
+  GSM43092: 
+    condition: wt DOT4 Myc-tagged vs wt DOT4
+  GSM43081: 
+    condition: wt DOT4 vs wt DOT4-6Myc
+  GSM43093: 
+    condition: wt DOT4 Myc-tagged vs wt DOT4
+  GSM43082: 
+    condition: wt DOT4 vs wt DOT4-6Myc
+  GSM43094: 
+    condition: wt DOT4 Myc-tagged vs wt DOT4
+  GSM43083: 
+    condition: wt vs wt dot4-1
+  GSM43084: 
+    condition: wt vs wt dot4-1
+:title: DOT4/dot4-1 and DOT4/dot4-5 transcript arrays
+:description: |-
+  Comparison of DOT4-6Myc/dot4-1-6Myc cells, DOT4-6Myc/dot4-5-6Myc cells, DOT4-6Myc/dot4 null cells, DOT4-6Myc/DOT4 cells in YEPD
+  Keywords: other
+:platform: GPL1879

@@ -1,0 +1,118 @@
+--- 
+:arrays: 
+  GSM70645: 
+    knockdown: RAS
+  GSM70634: 
+    knockdown: E2F3
+  GSM70623: 
+    knockdown: Src
+  GSM70612: 
+    knockdown: Myc
+  GSM70601: 
+    knockdown: GFP
+  GSM70646: 
+    knockdown: RAS
+  GSM70635: 
+    knockdown: E2F3
+  GSM70624: 
+    knockdown: Bcat
+  GSM70613: 
+    knockdown: Myc
+  GSM70602: 
+    knockdown: GFP
+  GSM70647: 
+    knockdown: RAS
+  GSM70636: 
+    knockdown: E2F3
+  GSM70625: 
+    knockdown: Bcat
+  GSM70614: 
+    knockdown: Myc
+  GSM70603: 
+    knockdown: GFP
+  GSM70648: 
+    knockdown: RAS
+  GSM70637: 
+    knockdown: E2F3
+  GSM70626: 
+    knockdown: Bcat
+  GSM70615: 
+    knockdown: Myc
+  GSM70604: 
+    knockdown: GFP
+  GSM70650: 
+    knockdown: RAS
+  GSM70649: 
+    knockdown: RAS
+  GSM70638: 
+    knockdown: E2F3
+  GSM70627: 
+    knockdown: Bcat
+  GSM70616: 
+    knockdown: Myc
+  GSM70605: 
+    knockdown: GFP
+  GSM70651: 
+    knockdown: RAS
+  GSM70640: 
+    knockdown: E2F3
+  GSM70639: 
+    knockdown: E2F3
+  GSM70628: 
+    knockdown: Bcat
+  GSM70617: 
+    knockdown: Src
+  GSM70606: 
+    knockdown: GFP
+  GSM70641: 
+    knockdown: E2F3
+  GSM70630: 
+    knockdown: Bcat
+  GSM70629: 
+    knockdown: Bcat
+  GSM70618: 
+    knockdown: Src
+  GSM70607: 
+    knockdown: Myc
+  GSM70597: 
+    knockdown: GFP
+  GSM70642: 
+    knockdown: RAS
+  GSM70631: 
+    knockdown: Bcat
+  GSM70620: 
+    knockdown: Src
+  GSM70619: 
+    knockdown: Src
+  GSM70608: 
+    knockdown: Myc
+  GSM70598: 
+    knockdown: GFP
+  GSM70643: 
+    knockdown: RAS
+  GSM70632: 
+    knockdown: Bcat
+  GSM70621: 
+    knockdown: Src
+  GSM70610: 
+    knockdown: Myc
+  GSM70609: 
+    knockdown: Myc
+  GSM70599: 
+    knockdown: GFP
+  GSM70644: 
+    knockdown: RAS
+  GSM70633: 
+    knockdown: E2F3
+  GSM70622: 
+    knockdown: Src
+  GSM70611: 
+    knockdown: Myc
+  GSM70600: 
+    knockdown: GFP
+:description: |-
+  Signatures of Oncogenic Pathway Deregulation in Human Cancers
+  The ability to define cancer subtypes, recurrence of disease, and response to specific therapies using DNA microarray-based gene expression signatures has been demonstrated in multiple studies. Such data is also of substantial importance to the analysis of cellular signaling pathways central to the oncogenic process. With this focus, we have developed a series of gene expression signatures that reliably reflect the activation status of several oncogenic pathways. When evaluated in several large collections of human cancers, these gene expression signatures identify patterns of pathway deregulation in tumors, and clinically relevant associations with disease outcomes. Combining signature-based predictions across several pathways identifies coordinated patterns of pathway deregulation that distinguish between specific cancers and tumor sub-types. Clustering tumors based on pathway signatures further defines prognosis in respective patient subsets, demonstrating that patterns of oncogenic pathway deregulation underlie the development of the oncogenic phenotype and reflect the biology and outcome of specific cancers. Furthermore, predictions of pathway deregulation in cancer cell lines are shown to coincide with sensitivity to therapeutic agents that target components of the pathway, underscoring the potential for such pathway prediction to guide the use of targeted therapeutics.
+  Keywords: other
+:title: Oncogene Signature Dataset
+:platform: GPL570

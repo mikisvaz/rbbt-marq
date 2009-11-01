@@ -1,0 +1,32 @@
+--- 
+:description: |-
+  Transription profile of Saccharomyces cerevisiae SK1 cultures undergoing synchronous sporulation.
+  We have measured mRNA levels in synchronized SK1 cells immediately upon transfer to the sporulation medium and every 30 minutes after that for 6 hours.  mRNA extracted from these cultures were converted to cDNA and hybridized to microarrays and log2 ratios of hybridization signal of each time point was compared to that of time zero (immediately prior to transfer to the sporulation medium).
+  Keywords: Time course
+:arrays: 
+  GSM211001: 
+    condition: sporulation_3.5hr
+  GSM211002: 
+    condition: sporulation_4.0hr
+  GSM211003: 
+    condition: sporulation_4.5hr
+  GSM211004: 
+    condition: sporulation_5.0hr
+  GSM211005: 
+    condition: sporulation_5.5hr
+  GSM211006: 
+    condition: sporulation_6.0hr
+  GSM210995: 
+    condition: sporulation_0.0hr
+  GSM210996: 
+    condition: sporulation_0.5hr
+  GSM210997: 
+    condition: sporulation_1.0hr
+  GSM210998: 
+    condition: sporulation_1.5hr
+  GSM211000: 
+    condition: sporulation_2.5hr
+  GSM210999: 
+    condition: sporulation_2.0hr
+:title: Yeast (S. cerevisiae SK1) Sporulation/Meiosis
+:platform: GPL4625

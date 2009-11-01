@@ -1,0 +1,37 @@
+--- 
+:arrays: 
+  GSM259268: 
+    condition: Y10 vs DBY8268
+  GSM259270: 
+    condition: YJM789 vs DBY8268
+  GSM259269: 
+    condition: YJM789 vs DBY8268
+  GSM259258: 
+    condition: DBY8268 vs DBY8268
+  GSM259271: 
+    condition: YPS1009 vs DBY8268
+  GSM259260: 
+    condition: DBY8268 vs DBY8268
+  GSM259259: 
+    condition: DBY8268 vs DBY8268
+  GSM259272: 
+    condition: YPS1009 vs DBY8268
+  GSM259261: 
+    condition: K9 vs DBY8268
+  GSM259262: 
+    condition: K9 vs DBY8268
+  GSM259263: 
+    condition: M22 vs DBY8268
+  GSM259264: 
+    condition: M22 vs DBY8268
+  GSM259265: 
+    condition: RM11-1a vs DBY8268
+  GSM259266: 
+    condition: RM11-1a vs DBY8268
+  GSM259267: 
+    condition: Y10 vs DBY8268
+:description: |-
+  Gene expression variation was measured in 17 non-laboratory strains compared to the sequenced S288c lab strain
+  Keywords: comparative genomic hybridizations (CGH) comparing different yeast strains
+:title: Variations in stress sensitivity and genomic expression in diverse S. cerevisiae strains (gene expression)
+:platform: GPL5915

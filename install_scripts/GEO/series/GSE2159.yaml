@@ -1,0 +1,31 @@
+--- 
+:arrays: 
+  GSM38947: 
+    condition: SAN1 YC
+  GSM38938: 
+    condition: SAN1 YEPD
+  GSM38939: 
+    condition: SAN1 YEPD
+  GSM38940: 
+    condition: SAN1 YEPD
+  GSM38941: 
+    condition: SAN1 YEPD
+  GSM38942: 
+    condition: SAN1 YC
+  GSM38943: 
+    condition: SAN1 YC
+  GSM38932: 
+    condition: SAN1 YEPD
+  GSM38944: 
+    condition: SAN1 YC
+  GSM38933: 
+    condition: SAN1 YEPD
+  GSM38945: 
+    condition: SAN1 YC
+  GSM38946: 
+    condition: SAN1 YC
+:title: SAN1/san1 YEPD/YC transcript arrays
+:description: |-
+  comparison of SAN1/san1 cells in YEPD and YC
+  Keywords: other
+:platform: GPL1797

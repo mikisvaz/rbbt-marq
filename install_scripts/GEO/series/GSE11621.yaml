@@ -1,0 +1,31 @@
+--- 
+:description: |-
+  Comparison of WT, xrn1 delta and upf1 delta strains were used in a tiling array to yield genomic regions regulated by these proteins
+  The supplementary CHP files record either the signal in log2 space or the p-values in linear space, per TAS output.  The CHP files are further divided between UPF1 delta vs. WT and XRN1 delta vs. WT.
+:arrays: 
+  GSM294850: 
+    condition: dUPF1
+  GSM294851: 
+    condition: dXRN1
+  GSM294852: 
+    condition: dXRN1
+  GSM294853: 
+    condition: dXRN1
+  GSM294854: 
+    condition: dXRN1
+  GSM294843: 
+    condition: wt
+  GSM294844: 
+    condition: wt
+  GSM294845: 
+    condition: wt
+  GSM294846: 
+    condition: wt
+  GSM294847: 
+    condition: dUPF1
+  GSM294848: 
+    condition: dUPF1
+  GSM294849: 
+    condition: dUPF1
+:title: Identification of genomic regions regulated by the Xrn1 and Upf1 proteins
+:platform: GPL7250

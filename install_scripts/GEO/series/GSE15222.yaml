@@ -1,0 +1,731 @@
+--- 
+:arrays: 
+  GSM388299: 
+    disease: Alzheimer
+  GSM225685: 
+    disease: control
+  GSM226158: 
+    disease: control
+  GSM225739: 
+    disease: control
+  GSM225927: 
+    disease: control
+  GSM225953: 
+    disease: control
+  GSM225928: 
+    disease: control
+  GSM225954: 
+    disease: control
+  GSM225686: 
+    disease: control
+  GSM226159: 
+    disease: control
+  GSM225929: 
+    disease: control
+  GSM225955: 
+    disease: control
+  GSM388300: 
+    disease: Alzheimer
+  GSM225687: 
+    disease: control
+  GSM225956: 
+    disease: control
+  GSM388220: 
+    disease: Alzheimer
+  GSM388301: 
+    disease: Alzheimer
+  GSM225688: 
+    disease: control
+  GSM225957: 
+    disease: control
+  GSM388221: 
+    disease: Alzheimer
+  GSM388302: 
+    disease: Alzheimer
+  GSM225689: 
+    disease: control
+  GSM225958: 
+    disease: control
+  GSM388330: 
+    disease: Alzheimer
+  GSM388303: 
+    disease: Alzheimer
+  GSM225959: 
+    disease: control
+  GSM388222: 
+    disease: Alzheimer
+  GSM388331: 
+    disease: Alzheimer
+  GSM388304: 
+    disease: Alzheimer
+  GSM388223: 
+    disease: Alzheimer
+  GSM388250: 
+    disease: Alzheimer
+  GSM388305: 
+    disease: Alzheimer
+  GSM388224: 
+    disease: Alzheimer
+  GSM388251: 
+    disease: Alzheimer
+  GSM388332: 
+    disease: Alzheimer
+  GSM388306: 
+    disease: Alzheimer
+  GSM388225: 
+    disease: Alzheimer
+  GSM388252: 
+    disease: Alzheimer
+  GSM388360: 
+    disease: Alzheimer
+  GSM388333: 
+    disease: Alzheimer
+  GSM388307: 
+    disease: Alzheimer
+  GSM388253: 
+    disease: Alzheimer
+  GSM388226: 
+    disease: Alzheimer
+  GSM388361: 
+    disease: Alzheimer
+  GSM388334: 
+    disease: Alzheimer
+  GSM388308: 
+    disease: Alzheimer
+  GSM388254: 
+    disease: Alzheimer
+  GSM388362: 
+    disease: Alzheimer
+  GSM388335: 
+    disease: Alzheimer
+  GSM388309: 
+    disease: Alzheimer
+  GSM388281: 
+    disease: Alzheimer
+  GSM225720: 
+    disease: control
+  GSM388228: 
+    disease: Alzheimer
+  GSM388363: 
+    disease: Alzheimer
+  GSM388336: 
+    disease: Alzheimer
+  GSM388282: 
+    disease: Alzheimer
+  GSM388255: 
+    disease: Alzheimer
+  GSM225721: 
+    disease: control
+  GSM388229: 
+    disease: Alzheimer
+  GSM388390: 
+    disease: Alzheimer
+  GSM388364: 
+    disease: Alzheimer
+  GSM388337: 
+    disease: Alzheimer
+  GSM388256: 
+    disease: Alzheimer
+  GSM226034: 
+    disease: control
+  GSM225722: 
+    disease: control
+  GSM388391: 
+    disease: Alzheimer
+  GSM388338: 
+    disease: Alzheimer
+  GSM388284: 
+    disease: Alzheimer
+  GSM388257: 
+    disease: Alzheimer
+  GSM226035: 
+    disease: control
+  GSM225723: 
+    disease: control
+  GSM388392: 
+    disease: Alzheimer
+  GSM388365: 
+    disease: Alzheimer
+  GSM388339: 
+    disease: Alzheimer
+  GSM388285: 
+    disease: Alzheimer
+  GSM388258: 
+    disease: Alzheimer
+  GSM225670: 
+    disease: control
+  GSM225724: 
+    disease: control
+  GSM225751: 
+    disease: control
+  GSM388393: 
+    disease: Alzheimer
+  GSM388366: 
+    disease: Alzheimer
+  GSM388286: 
+    disease: Alzheimer
+  GSM388259: 
+    disease: Alzheimer
+  GSM226037: 
+    disease: control
+  GSM225671: 
+    disease: control
+  GSM225725: 
+    disease: control
+  GSM388394: 
+    disease: Alzheimer
+  GSM388367: 
+    disease: Alzheimer
+  GSM388287: 
+    disease: Alzheimer
+  GSM225940: 
+    disease: control
+  GSM225672: 
+    disease: control
+  GSM226145: 
+    disease: control
+  GSM225726: 
+    disease: control
+  GSM225752: 
+    disease: control
+  GSM388395: 
+    disease: Alzheimer
+  GSM388368: 
+    disease: Alzheimer
+  GSM225915: 
+    disease: control
+  GSM225941: 
+    disease: control
+  GSM226038: 
+    disease: control
+  GSM225673: 
+    disease: control
+  GSM226146: 
+    disease: control
+  GSM225727: 
+    disease: control
+  GSM225753: 
+    disease: control
+  GSM388396: 
+    disease: Alzheimer
+  GSM388369: 
+    disease: Alzheimer
+  GSM388288: 
+    disease: Alzheimer
+  GSM225916: 
+    disease: control
+  GSM225942: 
+    disease: control
+  GSM226039: 
+    disease: control
+  GSM225674: 
+    disease: control
+  GSM226147: 
+    disease: control
+  GSM225728: 
+    disease: control
+  GSM225754: 
+    disease: control
+  GSM388397: 
+    disease: Alzheimer
+  GSM388289: 
+    disease: Alzheimer
+  GSM225917: 
+    disease: control
+  GSM225943: 
+    disease: control
+  GSM225729: 
+    disease: control
+  GSM225755: 
+    disease: control
+  GSM225918: 
+    disease: control
+  GSM225944: 
+    disease: control
+  GSM225675: 
+    disease: control
+  GSM226148: 
+    disease: control
+  GSM225756: 
+    disease: control
+  GSM225919: 
+    disease: control
+  GSM225945: 
+    disease: control
+  GSM225676: 
+    disease: control
+  GSM226149: 
+    disease: control
+  GSM225757: 
+    disease: control
+  GSM225946: 
+    disease: control
+  GSM225677: 
+    disease: control
+  GSM225758: 
+    disease: control
+  GSM225947: 
+    disease: control
+  GSM225678: 
+    disease: control
+  GSM225759: 
+    disease: control
+  GSM225948: 
+    disease: control
+  GSM225679: 
+    disease: control
+  GSM388320: 
+    disease: Alzheimer
+  GSM225949: 
+    disease: control
+  GSM388240: 
+    disease: Alzheimer
+  GSM388321: 
+    disease: Alzheimer
+  GSM388241: 
+    disease: Alzheimer
+  GSM388322: 
+    disease: Alzheimer
+  GSM388242: 
+    disease: Alzheimer
+  GSM388350: 
+    disease: Alzheimer
+  GSM388323: 
+    disease: Alzheimer
+  GSM388243: 
+    disease: Alzheimer
+  GSM388351: 
+    disease: Alzheimer
+  GSM388324: 
+    disease: Alzheimer
+  GSM388270: 
+    disease: Alzheimer
+  GSM388217: 
+    disease: Alzheimer
+  GSM388352: 
+    disease: Alzheimer
+  GSM388325: 
+    disease: Alzheimer
+  GSM388271: 
+    disease: Alzheimer
+  GSM388244: 
+    disease: Alzheimer
+  GSM388218: 
+    disease: Alzheimer
+  GSM388353: 
+    disease: Alzheimer
+  GSM388326: 
+    disease: Alzheimer
+  GSM388272: 
+    disease: Alzheimer
+  GSM388245: 
+    disease: Alzheimer
+  GSM225711: 
+    disease: control
+  GSM388219: 
+    disease: Alzheimer
+  GSM388380: 
+    disease: Alzheimer
+  GSM388327: 
+    disease: Alzheimer
+  GSM388273: 
+    disease: Alzheimer
+  GSM226050: 
+    disease: control
+  GSM388246: 
+    disease: Alzheimer
+  GSM388381: 
+    disease: Alzheimer
+  GSM388354: 
+    disease: Alzheimer
+  GSM388328: 
+    disease: Alzheimer
+  GSM388274: 
+    disease: Alzheimer
+  GSM226051: 
+    disease: control
+  GSM225713: 
+    disease: control
+  GSM388247: 
+    disease: Alzheimer
+  GSM388382: 
+    disease: Alzheimer
+  GSM388355: 
+    disease: Alzheimer
+  GSM388329: 
+    disease: Alzheimer
+  GSM388275: 
+    disease: Alzheimer
+  GSM226052: 
+    disease: control
+  GSM225714: 
+    disease: control
+  GSM388248: 
+    disease: Alzheimer
+  GSM388383: 
+    disease: Alzheimer
+  GSM388356: 
+    disease: Alzheimer
+  GSM388276: 
+    disease: Alzheimer
+  GSM226053: 
+    disease: control
+  GSM225715: 
+    disease: control
+  GSM226160: 
+    disease: control
+  GSM225741: 
+    disease: control
+  GSM388249: 
+    disease: Alzheimer
+  GSM388384: 
+    disease: Alzheimer
+  GSM388357: 
+    disease: Alzheimer
+  GSM225662: 
+    disease: control
+  GSM225742: 
+    disease: control
+  GSM225930: 
+    disease: control
+  GSM388385: 
+    disease: Alzheimer
+  GSM388358: 
+    disease: Alzheimer
+  GSM388277: 
+    disease: Alzheimer
+  GSM226055: 
+    disease: control
+  GSM225717: 
+    disease: control
+  GSM226162: 
+    disease: control
+  GSM225743: 
+    disease: control
+  GSM225931: 
+    disease: control
+  GSM388386: 
+    disease: Alzheimer
+  GSM388359: 
+    disease: Alzheimer
+  GSM388278: 
+    disease: Alzheimer
+  GSM226082: 
+    disease: control
+  GSM225690: 
+    disease: control
+  GSM225718: 
+    disease: control
+  GSM226163: 
+    disease: control
+  GSM225744: 
+    disease: control
+  GSM225932: 
+    disease: control
+  GSM226056: 
+    disease: control
+  GSM388279: 
+    disease: Alzheimer
+  GSM225664: 
+    disease: control
+  GSM225691: 
+    disease: control
+  GSM225719: 
+    disease: control
+  GSM226164: 
+    disease: control
+  GSM225745: 
+    disease: control
+  GSM225933: 
+    disease: control
+  GSM388387: 
+    disease: Alzheimer
+  GSM225665: 
+    disease: control
+  GSM225692: 
+    disease: control
+  GSM226165: 
+    disease: control
+  GSM225746: 
+    disease: control
+  GSM225934: 
+    disease: control
+  GSM388388: 
+    disease: Alzheimer
+  GSM225666: 
+    disease: control
+  GSM225693: 
+    disease: control
+  GSM225747: 
+    disease: control
+  GSM225935: 
+    disease: control
+  GSM225961: 
+    disease: control
+  GSM388389: 
+    disease: Alzheimer
+  GSM226167: 
+    disease: control
+  GSM225748: 
+    disease: control
+  GSM225936: 
+    disease: control
+  GSM225962: 
+    disease: control
+  GSM225667: 
+    disease: control
+  GSM225695: 
+    disease: control
+  GSM226168: 
+    disease: control
+  GSM225749: 
+    disease: control
+  GSM225937: 
+    disease: control
+  GSM225963: 
+    disease: control
+  GSM225668: 
+    disease: control
+  GSM225938: 
+    disease: control
+  GSM225964: 
+    disease: control
+  GSM225669: 
+    disease: control
+  GSM225696: 
+    disease: control
+  GSM225939: 
+    disease: control
+  GSM225965: 
+    disease: control
+  GSM388310: 
+    disease: Alzheimer
+  GSM388230: 
+    disease: Alzheimer
+  GSM225697: 
+    disease: control
+  GSM388311: 
+    disease: Alzheimer
+  GSM388231: 
+    disease: Alzheimer
+  GSM225698: 
+    disease: control
+  GSM388312: 
+    disease: Alzheimer
+  GSM388232: 
+    disease: Alzheimer
+  GSM225699: 
+    disease: control
+  GSM388340: 
+    disease: Alzheimer
+  GSM388313: 
+    disease: Alzheimer
+  GSM388341: 
+    disease: Alzheimer
+  GSM388314: 
+    disease: Alzheimer
+  GSM388260: 
+    disease: Alzheimer
+  GSM388233: 
+    disease: Alzheimer
+  GSM388342: 
+    disease: Alzheimer
+  GSM388315: 
+    disease: Alzheimer
+  GSM388261: 
+    disease: Alzheimer
+  GSM388234: 
+    disease: Alzheimer
+  GSM225700: 
+    disease: control
+  GSM388316: 
+    disease: Alzheimer
+  GSM388262: 
+    disease: Alzheimer
+  GSM388235: 
+    disease: Alzheimer
+  GSM225701: 
+    disease: control
+  GSM388370: 
+    disease: Alzheimer
+  GSM388343: 
+    disease: Alzheimer
+  GSM388317: 
+    disease: Alzheimer
+  GSM388263: 
+    disease: Alzheimer
+  GSM388236: 
+    disease: Alzheimer
+  GSM226040: 
+    disease: control
+  GSM225702: 
+    disease: control
+  GSM388371: 
+    disease: Alzheimer
+  GSM388318: 
+    disease: Alzheimer
+  GSM388290: 
+    disease: Alzheimer
+  GSM388264: 
+    disease: Alzheimer
+  GSM388237: 
+    disease: Alzheimer
+  GSM226041: 
+    disease: control
+  GSM225703: 
+    disease: control
+  GSM388372: 
+    disease: Alzheimer
+  GSM388345: 
+    disease: Alzheimer
+  GSM388319: 
+    disease: Alzheimer
+  GSM388291: 
+    disease: Alzheimer
+  GSM388265: 
+    disease: Alzheimer
+  GSM388238: 
+    disease: Alzheimer
+  GSM226042: 
+    disease: control
+  GSM225704: 
+    disease: control
+  GSM225730: 
+    disease: control
+  GSM388373: 
+    disease: Alzheimer
+  GSM388346: 
+    disease: Alzheimer
+  GSM388292: 
+    disease: Alzheimer
+  GSM388239: 
+    disease: Alzheimer
+  GSM225705: 
+    disease: control
+  GSM226150: 
+    disease: control
+  GSM225731: 
+    disease: control
+  GSM388374: 
+    disease: Alzheimer
+  GSM388347: 
+    disease: Alzheimer
+  GSM388266: 
+    disease: Alzheimer
+  GSM226044: 
+    disease: control
+  GSM225652: 
+    disease: control
+  GSM225706: 
+    disease: control
+  GSM226151: 
+    disease: control
+  GSM225732: 
+    disease: control
+  GSM225920: 
+    disease: control
+  GSM388375: 
+    disease: Alzheimer
+  GSM388348: 
+    disease: Alzheimer
+  GSM388294: 
+    disease: Alzheimer
+  GSM388267: 
+    disease: Alzheimer
+  GSM226045: 
+    disease: control
+  GSM225707: 
+    disease: control
+  GSM225733: 
+    disease: control
+  GSM225760: 
+    disease: control
+  GSM225921: 
+    disease: control
+  GSM388349: 
+    disease: Alzheimer
+  GSM388295: 
+    disease: Alzheimer
+  GSM388268: 
+    disease: Alzheimer
+  GSM226046: 
+    disease: control
+  GSM225680: 
+    disease: control
+  GSM225708: 
+    disease: control
+  GSM225734: 
+    disease: control
+  GSM225761: 
+    disease: control
+  GSM225922: 
+    disease: control
+  GSM388376: 
+    disease: Alzheimer
+  GSM388296: 
+    disease: Alzheimer
+  GSM388269: 
+    disease: Alzheimer
+  GSM226047: 
+    disease: control
+  GSM225681: 
+    disease: control
+  GSM225709: 
+    disease: control
+  GSM226154: 
+    disease: control
+  GSM225735: 
+    disease: control
+  GSM225762: 
+    disease: control
+  GSM225923: 
+    disease: control
+  GSM388377: 
+    disease: Alzheimer
+  GSM388297: 
+    disease: Alzheimer
+  GSM226048: 
+    disease: control
+  GSM225682: 
+    disease: control
+  GSM226155: 
+    disease: control
+  GSM225736: 
+    disease: control
+  GSM225924: 
+    disease: control
+  GSM225950: 
+    disease: control
+  GSM388378: 
+    disease: Alzheimer
+  GSM388298: 
+    disease: Alzheimer
+  GSM225683: 
+    disease: control
+  GSM226156: 
+    disease: control
+  GSM225737: 
+    disease: control
+  GSM225763: 
+    disease: control
+  GSM225925: 
+    disease: control
+  GSM225951: 
+    disease: control
+  GSM388379: 
+    disease: Alzheimer
+  GSM226049: 
+    disease: control
+  GSM225684: 
+    disease: control
+  GSM226157: 
+    disease: control
+  GSM225764: 
+    disease: control
+  GSM225926: 
+    disease: control
+  GSM225952: 
+    disease: control
+:description: "We recently surveyed the relationship between the human brain transcriptome and genome in a series of neuropathologically normal postmortem samples. We now have analyzed additional samples with a confirmed pathologic diagnosis of late onset Alzheimer\xE2\x80\x99s disease (LOAD, final n=187 controls, 176 cases). Nine percent of the cortical transcripts we analyzed had expression profiles correlated with their genotypes in the combined cohort and approximately 5% of transcripts had SNP-transcript relationships that could distinguish LOAD samples. Two of these transcripts have been previously implicated in LOAD candidate gene SNP-expression screens. This study shows how the relationship between common inherited genetic variants and brain transcript expression can be used in the study of human brain disorders. We suggest that studying the transcriptome as a quantitative endo-phenotype has greater power to find risk SNPs influencing expression than the use of discrete diagnostic categories such as presence or absence of disease. see DOI:10.1016/j.ajhg.2009.03.011 for further details and complete author list."
+:title: "Genetic control of human brain transcript expression in Alzheimer\xE2\x80\x99s disease."
+:platform: GPL2700

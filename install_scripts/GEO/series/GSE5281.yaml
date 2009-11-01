@@ -1,0 +1,492 @@
+--- 
+:arrays: 
+  GSM238874: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238817: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119639: 
+    tissue: hippocampus
+    disease: control
+  GSM238845: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238846: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119668: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM238818: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238847: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238790: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119669: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM238819: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238875: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238791: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238848: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238763: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119640: 
+    tissue: hippocampus
+    disease: control
+  GSM238877: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238792: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119641: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM119670: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM238793: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119642: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM238820: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238794: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119671: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM119643: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM238963: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119672: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM238821: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119644: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM238795: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119615: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM119616: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM238851: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119673: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM238822: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119645: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM238796: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238797: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119674: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM238823: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119617: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM119675: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM238824: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119646: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM119618: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM119619: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM119676: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM119647: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM238825: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238798: 
+    tissue: entorhinal cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238854: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238799: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119677: 
+    tissue: primary visual cortex
+    disease: control
+  GSM238826: 
+    tissue: posterior cingulate
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119648: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM119678: 
+    tissue: primary visual cortex
+    disease: control
+  GSM238827: 
+    tissue: posterior cingulate
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119649: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM238855: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238856: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119620: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM119679: 
+    tissue: primary visual cortex
+    disease: control
+  GSM238857: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119621: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM119650: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM238941: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238858: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119622: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM238800: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119651: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM238942: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119623: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM238943: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119652: 
+    tissue: medial temporal gyrus
+    disease: control
+  GSM238801: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119680: 
+    tissue: primary visual cortex
+    disease: control
+  GSM119653: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238944: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238802: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119624: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM119681: 
+    tissue: primary visual cortex
+    disease: control
+  GSM238860: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119654: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238945: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238803: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119625: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM119682: 
+    tissue: primary visual cortex
+    disease: control
+  GSM238946: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119655: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238804: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119626: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM238861: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119683: 
+    tissue: primary visual cortex
+    disease: control
+  GSM119627: 
+    tissue: entorhinal cortex
+    disease: control
+  GSM119656: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238947: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238805: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238862: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119684: 
+    tissue: primary visual cortex
+    disease: control
+  GSM238863: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238834: 
+    tissue: posterior cingulate
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238948: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238806: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119628: 
+    tissue: hippocampus
+    disease: control
+  GSM119685: 
+    tissue: primary visual cortex
+    disease: control
+  GSM238807: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119629: 
+    tissue: hippocampus
+    disease: control
+  GSM119686: 
+    tissue: primary visual cortex
+    disease: control
+  GSM238835: 
+    tissue: posterior cingulate
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238949: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119657: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238808: 
+    tissue: hippocampus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238864: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119687: 
+    tissue: primary visual cortex
+    disease: control
+  GSM119658: 
+    tissue: posterior cingulate
+    disease: control
+  GSM119659: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238837: 
+    tissue: posterior cingulate
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238865: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119688: 
+    tissue: primary visual cortex
+    disease: control
+  GSM238809: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119630: 
+    tissue: hippocampus
+    disease: control
+  GSM238838: 
+    tissue: posterior cingulate
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238867: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119631: 
+    tissue: hippocampus
+    disease: control
+  GSM238839: 
+    tissue: posterior cingulate
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238951: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119632: 
+    tissue: hippocampus
+    disease: control
+  GSM238868: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119660: 
+    tissue: posterior cingulate
+    disease: control
+  GSM119633: 
+    tissue: hippocampus
+    disease: control
+  GSM119661: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238952: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238810: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238840: 
+    tissue: posterior cingulate
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238811: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119634: 
+    tissue: hippocampus
+    disease: control
+  GSM238953: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119662: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238841: 
+    tissue: posterior cingulate
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119663: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238812: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119635: 
+    tissue: hippocampus
+    disease: control
+  GSM238870: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238955: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119664: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238813: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238871: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119636: 
+    tissue: hippocampus
+    disease: control
+  GSM238842: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119665: 
+    tissue: posterior cingulate
+    disease: control
+  GSM238843: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238872: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119666: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM238815: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119637: 
+    tissue: hippocampus
+    disease: control
+  GSM119667: 
+    tissue: superior frontal gyrus
+    disease: control
+  GSM238844: 
+    tissue: superior frontal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM238816: 
+    tissue: medial temporal gyrus
+    disease: "Alzheimer\xE2\x80\x99s disease"
+  GSM119638: 
+    tissue: hippocampus
+    disease: control
+  GSM238873: 
+    tissue: primary visual cortex
+    disease: "Alzheimer\xE2\x80\x99s disease"
+:description: "Information about the genes that are preferentially expressed during the course of Alzheimer\xE2\x80\x99s disease (AD) could improve our understanding of the molecular mechanisms involved in the pathogenesis of this common cause of cognitive impairment in older persons, provide new opportunities in the diagnosis, early detection, and tracking of this disorder, and provide novel targets for the discovery of interventions to treat and prevent this disorder. Information about the genes that are preferentially expressed in relationship to normal neurological aging could provide new information about the molecular mechanisms that are involved in normal age-related cognitive decline and a host of age-related neurological disorders, and they could provide novel targets for the discovery of interventions to mitigate some of these deleterious effects.\n\
+  Aim 1. Collect brain samples from three Alzheimer\xE2\x80\x99s Disease Centers (ADCs) for subsequent gene expression profiling. Individuals will be stratified with respect to diagnostic groups (using both clinical and neuropathological criteria), age groups, and APOE genotype. 150 individual brains will be sampled from the Arizona ADC, the Duke University ADC, and the Washington University ADC. Miniscule sample sizes (200 um of sectioned tissue) from six brain regions that are histopathologically or metabolically relevant to AD and aging will be collected, ensuring that this proposal does not deplete the national resource. Frozen and fixed samples will be sent to Phoenix, sectioned in a standardized fashion, and then returned. Aim 2. Tissue heterogeneity will be eliminated prior to expression profiling by performing laser capture microscopy on all brain regions. Aim 3. Expression profile LCM-captured cells on the Affymetrix U133 Plus 2.0 array (~55,000 transcripts), and quickly provide these data to the community at large. Aim 4. Identify pathogenic cascades related to each of the clinico-pathologic correlates using unsupervised and supervised analyses coupled with a hypothesis-driven approach. Aim 5. Validation of the expression correlates at the protein and functional levels.\n\
+  Scientific progress in the last few years has improved our understanding of AD and raised the hope of identifying treatments to halt the progression and prevent the onset of this disorder. For instance, researchers have begun to characterize the cascade of molecular events which lead to the major histopathological features of the disorder: neuritic plaques, which contain extra-cellular deposits of amyloid beta-peptides (Abeta); neurofibrillary tangles, which contain the hyperphosphorylated form of the intracellular, microtubule-associated protein, tau; and a loss of neurons and synapses. These molecular events provide targets for the development of promising new treatments. For example, A-beta has been postulated to trigger a cascade of events that are involved in the pathogenesis of AD. This proposal hopes to provide new information about the genes that are preferentially expressed in the development of AD histopathology, including the over-expression of APP, amyloid-induced neurotoxicity, and hyperphosphorylation of tau, as well as bring clarity to the metabolic abnormalities that seem to play a role in dementia and AD development and pathology.\n\
+  We will perform LCM on 6 brain regions with about 14 biological replicates per brain region.  The brain regions are as follows: 1) entorhinal cortex 2) hippocampus 3) medial temporal gyrus 4) posterior cingulate 5) superior frontal gyrus and 6) primary visual cortex.  We will collect layer III pyramidal cells from the white matter in each region, isolate total RNA from LCMed cell lysates, and perform double round amplification of each sample for array analysis.\n\
+  Keywords: other"
+:title: Alzheimer's disease and the normal aged brain (steph-affy-human-433773)
+:platform: GPL570

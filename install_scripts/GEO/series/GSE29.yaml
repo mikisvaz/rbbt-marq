@@ -1,0 +1,16 @@
+--- 
+:title: Adaptive evolution in yeast
+:description: |-
+  A Saccharomyces cerevisiae population was cultured for many generations under conditions to which it is not optimally adapted. These experiments were designed to investigate adaptive evolution under natural selection.
+  This study is described in more detail in Ferea TL, et al. 1999. Proc Natl Acad Sci USA 96:9721-6
+  Keywords: other
+:arrays: 
+  GSM1093: 
+    treatment: Control
+  GSM1094: 
+    treatment: Parent vs Evolved
+  GSM904: 
+    treatment: Parent vs Evolved
+  GSM905: 
+    treatment: Parent vs Evolved
+:platform: GPL58

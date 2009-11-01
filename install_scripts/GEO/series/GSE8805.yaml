@@ -1,0 +1,64 @@
+--- 
+:arrays: 
+  GSM218326: 
+    condition: Ras*tpkw gal 0min vs. 40min
+  GSM218315: 
+    condition: WT gal 0min vs. 20min
+  GSM218327: 
+    condition: Ras* gal 0min vs. 60min
+  GSM218316: 
+    condition: WT gal 0min vs. 40min
+  GSM218328: 
+    condition: Ras*tpkw gal 0min vs. 60min
+  GSM218317: 
+    condition: WT gal 0min vs. 20min
+  GSM218306: 
+    condition: tpk-w gal 0min vs. 60min
+  GSM218330: 
+    condition: Ras*tpkw gal 0min vs. 60min
+  GSM218329: 
+    condition: Ras* gal 0min vs. 60min
+  GSM218318: 
+    condition: WT gal 0min vs. 40min
+  GSM218307: 
+    condition: tpk-w gal 0min vs. tpk-w gal 40min
+  GSM218331: 
+    condition: WT glu 0min vs. 60min
+  GSM218320: 
+    condition: Ras* gal 0min vs. 40min
+  GSM218319: 
+    condition: Ras* gal 0min vs. 20min
+  GSM218308: 
+    condition: WT gal 0min vs. WT gal 20min
+  GSM218332: 
+    condition: WT gal 0min vs. 60min
+  GSM218321: 
+    condition: Ras* gal 0min vs. 20min
+  GSM218310: 
+    condition: tpk-w gal 0min vs. 40min
+  GSM218309: 
+    condition: tpk-w gal 0min vs. 20min
+  GSM218333: 
+    condition: WT glu 0min vs. 60min
+  GSM218322: 
+    condition: Ras* gal 0min vs. 40min
+  GSM218311: 
+    condition: WT glu 0min vs. 20min
+  GSM218334: 
+    condition: WT gal 0min vs. 60min
+  GSM218323: 
+    condition: Ras*tpkw gal 0min vs. 40min
+  GSM218312: 
+    condition: WT glu 0min vs. 40min
+  GSM218324: 
+    condition: Ras*tpkw gal 0min vs. 20min
+  GSM218313: 
+    condition: WT glu 0min vs. 20min
+  GSM218325: 
+    condition: Ras*tpkw gal 0min vs. 20min
+  GSM218314: 
+    condition: WT glu 0min vs. 40min
+:description: "To assess the relative contributions of the PKA and MAPK pathways in Ras stimulation of filamentation, we examined the change in transcriptional profile following activation of Ras in strains in which one of these two pathways has been severed. These arrays contain the experiments involving WT strain with glucose addition, Ras2G19V strain with galactose induction, tpk2-w strain as a control, and RasG19V activation in the tpk2-w background. Activation of Ras in the \xCE\xA31278b background \xE2\x80\x93 by galactose addition to a gal1 PGAL10-RAS2G19V strain - causes a massive restructuring of the transcription pattern of the cell, which closely resembles the changes induced by addition of glucose. To assess the extent to which these Ras-induced changes depended on signaling through PKA, we compared the expression profile following induction of activated Ras in a wild type background to that following induction of activated Ras in the bcy1 tpk1 tpk3 tpk2V218G.\n\
+  Keywords: time course"
+:title: Ras Affects Filamentous Growth in Saccharomyces cerevisiae Solely Through Regulation of Protein Kinase A
+:platform: GPL884

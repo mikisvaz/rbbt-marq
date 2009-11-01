@@ -1,0 +1,9 @@
+--- 
+:title: Comparision of Total RNA from WT and RRP6delta S. cerevisiae using ORF + Intergenic Array
+:description: |-
+  This data set represents the results of two reverse labeled experiments from wild-type and RRP6delta S. cerevisiae that has been hybed to arrays containing PCR products for ORFs and Intergenic Features
+  Keywords: genetic modification
+:arrays: 
+  GSM86408: 
+    condition: RRP6  vs RRP6-
+:platform: GPL3237

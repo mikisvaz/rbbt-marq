@@ -1,0 +1,20 @@
+--- 
+:title: SUS1
+:description: |-
+  Transcriptome analysis of sus1 mutant in reference to its parental wild type reference. Iterative global median method was used for between sample normalization.
+  z-test was performed to evaluate differential gene expression.
+  Keywords: repeat sample
+:arrays: 
+  GSM13799: 
+    condition: sus1
+  GSM13800: 
+    condition: sus1
+  GSM13801: 
+    condition: sus1
+  GSM13796: 
+    condition: wt
+  GSM13797: 
+    condition: wt
+  GSM13798: 
+    condition: wt
+:platform: GPL772

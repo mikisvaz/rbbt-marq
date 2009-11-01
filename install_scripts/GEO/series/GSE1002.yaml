@@ -1,0 +1,135 @@
+--- 
+:arrays: 
+  GSM15352: 
+    time: "0"
+    treatment: genomic F6
+  GSM15341: 
+    time: "0"
+    treatment: genomic F1
+  GSM15319: 
+    time: "1"
+    treatment: mRNA
+  GSM15308: 
+    time: "1"
+    treatment: mRNA
+  GSM15297: 
+    time: "2"
+    treatment: GRO
+  GSM15286: 
+    time: "3"
+    treatment: GRO
+  GSM15298: 
+    time: "3"
+    treatment: GRO
+  GSM15287: 
+    time: "4"
+    treatment: GRO
+  GSM15343: 
+    time: "0"
+    treatment: genomic F2
+  GSM15310: 
+    time: "2"
+    treatment: mRNA
+  GSM15299: 
+    time: "4"
+    treatment: GRO
+  GSM15288: 
+    time: "5"
+    treatment: GRO
+  GSM15322: 
+    time: "2"
+    treatment: mRNA
+  GSM15311: 
+    time: "3"
+    treatment: mRNA
+  GSM15300: 
+    time: "5"
+    treatment: GRO
+  GSM15289: 
+    time: "0"
+    treatment: GRO
+  GSM15345: 
+    time: "0"
+    treatment: genomic F3
+  GSM15301: 
+    time: "0"
+    treatment: mRNA
+  GSM15290: 
+    time: "1"
+    treatment: GRO
+  GSM15324: 
+    time: "3"
+    treatment: mRNA
+  GSM15313: 
+    time: "4"
+    treatment: mRNA
+  GSM15302: 
+    time: "1"
+    treatment: mRNA
+  GSM15291: 
+    time: "2"
+    treatment: GRO
+  GSM15347: 
+    time: "0"
+    treatment: genomic F4
+  GSM15303: 
+    time: "2"
+    treatment: mRNA
+  GSM15292: 
+    time: "3"
+    treatment: GRO
+  GSM15326: 
+    time: "4"
+    treatment: mRNA
+  GSM15315: 
+    time: "5"
+    treatment: mRNA
+  GSM15304: 
+    time: "3"
+    treatment: mRNA
+  GSM15293: 
+    time: "4"
+    treatment: GRO
+  GSM15282: 
+    time: "0"
+    treatment: GRO
+  GSM15305: 
+    time: "4"
+    treatment: mRNA
+  GSM15294: 
+    time: "5"
+    treatment: GRO
+  GSM15328: 
+    time: "5"
+    treatment: mRNA
+  GSM15317: 
+    time: "0"
+    treatment: mRNA
+  GSM15306: 
+    time: "5"
+    treatment: mRNA
+  GSM15295: 
+    time: "0"
+    treatment: GRO
+  GSM15284: 
+    time: "1"
+    treatment: GRO
+  GSM15351: 
+    time: "0"
+    treatment: genomic F5
+  GSM15307: 
+    time: "0"
+    treatment: mRNA
+  GSM15296: 
+    time: "1"
+    treatment: GRO
+  GSM15285: 
+    time: "2"
+    treatment: GRO
+:description: |-
+  Timecourse analyses (0 to 850 min) of exponentially growing BQS252 yeast after shift from YPD to YPGal galactose medium.
+  Total RNA in vivo labeled by run-on, or cDNA labelling using random decamers included.
+  Genomic DNA also examined.
+  Keywords: other
+:title: YPD to YPGal timecourse
+:platform: GPL772

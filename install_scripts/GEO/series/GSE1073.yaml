@@ -1,0 +1,127 @@
+--- 
+:arrays: 
+  GSM17187: 
+    condition: M8Rich
+  GSM17176: 
+    condition: S288CRich
+  GSM17165: 
+    condition: M13Rich
+  GSM17154: 
+    condition: M5Cusulf
+  GSM17143: 
+    condition: M34Cusulf
+  GSM17188: 
+    condition: M34Rich
+  GSM17177: 
+    condition: YPS163Rich
+  GSM17166: 
+    condition: M22Rich
+  GSM17155: 
+    condition: M14Cusulf
+  GSM17144: 
+    condition: M32CuSulf
+  GSM17189: 
+    condition: Ref
+  GSM17178: 
+    condition: M8Rich
+  GSM17167: 
+    condition: S288CRich
+  GSM17156: 
+    condition: M13Cusulf
+  GSM17145: 
+    condition: M5Cusulf
+  GSM17190: 
+    condition: Ref
+  GSM17179: 
+    condition: M34Rich
+  GSM17168: 
+    condition: YPS163Rich
+  GSM17157: 
+    condition: M22Cusulf
+  GSM17146: 
+    condition: M14Cusulf
+  GSM17135: 
+    condition: M32CuSulf
+  GSM17191: 
+    condition: Ref
+  GSM17180: 
+    condition: M32Rich
+  GSM17169: 
+    condition: M8Rich
+  GSM17158: 
+    condition: S288CCusulf
+  GSM17147: 
+    condition: M13Cusulf
+  GSM17136: 
+    condition: M5Cusulf
+  GSM17192: 
+    condition: Ref
+  GSM17181: 
+    condition: M5Rich
+  GSM17170: 
+    condition: M34Rich
+  GSM17159: 
+    condition: YPS163Cusulf
+  GSM17148: 
+    condition: M22Cusulf
+  GSM17137: 
+    condition: M14Cusulf
+  GSM17193: 
+    condition: Ref
+  GSM17182: 
+    condition: M14Rich
+  GSM17171: 
+    condition: M32Rich
+  GSM17160: 
+    condition: M8Cusulf
+  GSM17149: 
+    condition: S288CCusulf
+  GSM17138: 
+    condition: M13Cusulf
+  GSM17194: 
+    condition: Ref
+  GSM17183: 
+    condition: M13Rich
+  GSM17172: 
+    condition: M5Rich
+  GSM17161: 
+    condition: M34Cusulf
+  GSM17150: 
+    condition: YPS163Cusulf
+  GSM17139: 
+    condition: M22Cusulf
+  GSM17184: 
+    condition: M22Rich
+  GSM17173: 
+    condition: M14Rich
+  GSM17162: 
+    condition: M32Rich
+  GSM17151: 
+    condition: M8Cusulf
+  GSM17140: 
+    condition: S288CCusulf
+  GSM17185: 
+    condition: S288CRich
+  GSM17174: 
+    condition: M13Rich
+  GSM17163: 
+    condition: M5Rich
+  GSM17152: 
+    condition: M34Cusulf
+  GSM17141: 
+    condition: YPS163Cusulf
+  GSM17186: 
+    condition: YPS163Rich
+  GSM17175: 
+    condition: M22Rich
+  GSM17164: 
+    condition: M14Rich
+  GSM17153: 
+    condition: M32Cusulf
+  GSM17142: 
+    condition: M8Cusulf
+:description: |-
+  Each strain was grown overnight then diluted in fresh rich media. After three hours strains were again rediluted into either rich media or rich media supplemented with copper sulfate. After another three hours cultures were sampled, cells lysed and flash frozen using liquid nitrogen. RNA was extrated using hot phenol-chloroform, reverse transcripbed using amino-allyle dUTP and labelled with either Cy3 or Cy5 flourescent dye. Each hybridization is of a single sample compared to a reference pool contructed from all the strains with the same treatment. Labelled probe were hybridized to DNA microarrays spotted with 6144 70 bp oligonucleotides obtained from Qiagen-Operon. After an overnight hybridization, microarrays were scanned using a GenePix 4000A scanner and spot intensities extracted using GenePix 4.0 software. Bad spots were flagged based on the image.
+  Keywords: other
+:title: Strain differences in copper sulfate
+:platform: GPL1007

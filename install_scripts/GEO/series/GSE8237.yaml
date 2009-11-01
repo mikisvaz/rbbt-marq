@@ -1,0 +1,35 @@
+--- 
+:description: |-
+  The cellular response to treatment with DNA-damaging substances at low concentrations which are genotoxic but do not have a strong cytotoxic effect are of special interest. In addition, environmental variations that influence growth conditions, e.g. different media, and individual fitness, e.g. different strains, are likely to influence and modulate the adverse effects of individual DNA damaging substances. At sub-cytotoxic levels, DNA damaging substances play an important role in the accumulation of genomic mutations. In longer living organisms, like humans and other mammals, exposure to DNA damaging substances over extended period of time is a critical factor that contributes to the development of various diseases and in particular of tumors. The aim of our work was to study how strain background and growth conditions influence respond to DNA damage caused by low doses of MMS and which part of these changes is responsible for their sensitivity to toxic conditions. We analyzed sensitivity of two yeast strains FF18984 and BY4742 to MMS in media with limited and full nutrient availability.
+  Keywords: Yeast, S.cerevisiae, MMS, stress response, DNA damage
+:arrays: 
+  GSM203849: 
+    condition: BY4742 strain, YPD medium, mock-treated, 1h
+  GSM202808: 
+    condition: YPD medium, mock-treated, 1h
+  GSM202797: 
+    condition: F1 medium, 0.0125 MMS, 30 min
+  GSM202764: 
+    condition: F1 medium, mock-treated, 30 min
+  GSM203852: 
+    condition: BY4742 strain, YPD medium, 0.0125 MMS, 1h
+  GSM202809: 
+    condition: YPD medium, 0.00125 MMS, 1h
+  GSM202765: 
+    condition: F1 medium, 0.00125 MMS, 30 min
+  GSM202810: 
+    condition: YPD medium, 0.0125 MMS, 1h
+  GSM202799: 
+    condition: F1 medium, mock-treated, 1h
+  GSM202801: 
+    condition: F1 medium, 0.00125 MMS, 1h
+  GSM202802: 
+    condition: F1 medium, 0.0125 MMS, 1h
+  GSM202803: 
+    condition: YPD medium, mock-treated, 30 min
+  GSM202804: 
+    condition: YPD medium, 0.00125 MMS, 30 min
+  GSM202805: 
+    condition: YPD medium, 0.0125 MMS, 30 min
+:title: Low-level MMS treatment of S.cerevisiae
+:platform: GPL5398

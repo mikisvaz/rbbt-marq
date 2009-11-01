@@ -1,0 +1,31 @@
+--- 
+:title: Prp4-1 temperature shift
+:description: "Prp4-1 and wt strains were grown at 26\xC2\xB0C to A600 of 1.0, then an equal volume of 48\xC2\xB0C media was added to bring the temperature to 37\xC2\xB0C.  Both strains were allowed to grow at 37\xC2\xB0C and samples were taken at 0 (before shift), 5, 15, 30, 60, and 120 mins after shift to restrictive temperature.\n\
+  Keywords = splicing\n\
+  Keywords: time-course"
+:arrays: 
+  GSM1506: 
+    condition: prp4-TempShift-30mins
+  GSM1507: 
+    condition: prp4-TempShift-30mins
+  GSM1508: 
+    condition: prp4-TempShift-60mins
+  GSM1509: 
+    condition: prp4-TempShift-60mins
+  GSM1510: 
+    condition: prp4-TempShift-120mins
+  GSM1511: 
+    condition: prp4-TempShift-120mins
+  GSM1500: 
+    condition: prp4-TempShift-0mins
+  GSM1501: 
+    condition: prp4-TempShift-0mins
+  GSM1502: 
+    condition: prp4-TempShift-5mins
+  GSM1503: 
+    condition: prp4-TempShift-5mins
+  GSM1504: 
+    condition: prp4-TempShift-15mins
+  GSM1505: 
+    condition: prp4-TempShift-15mins
+:platform: GPL108

@@ -1,0 +1,11 @@
+--- 
+:arrays: 
+  GSM88058: 
+    condition: yeast_nutrient variation
+  GSM88059: 
+    condition: yeast_nutrient variation
+:description: |-
+  This experiment compares the transcriptional profiles of a WT yeast strain grown in either 2% glucose or 3% pyruvate.  The goal was to identify genes whose expression is either induced or repressed by glucose (catabolite repression).
+  Keywords: nutrient response
+:platform: GPL884
+:title: Yeast carbon source comparison

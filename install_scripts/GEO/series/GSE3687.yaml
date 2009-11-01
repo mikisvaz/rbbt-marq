@@ -1,0 +1,83 @@
+--- 
+:title: Temperature Upshift
+:description: |-
+  Determine if cells in stationary-phase cultures respond to increased temperature.
+  Keywords: Time-course
+:arrays: 
+  GSM84485: 
+    time: "210"
+  GSM84474: 
+    time: "360"
+  GSM84463: 
+    time: "30"
+  GSM84419: 
+    time: "0"
+  GSM84486: 
+    time: "240"
+  GSM84475: 
+    time: "390"
+  GSM84464: 
+    time: "60"
+  GSM84420: 
+    time: "0"
+  GSM84487: 
+    time: "270"
+  GSM84476: 
+    time: "420"
+  GSM84465: 
+    time: "90"
+  GSM84488: 
+    time: "300"
+  GSM84477: 
+    time: "450"
+  GSM84466: 
+    time: "120"
+  GSM84489: 
+    time: "330"
+  GSM84478: 
+    time: "480"
+  GSM84467: 
+    time: "150"
+  GSM84490: 
+    time: "360"
+  GSM84479: 
+    time: "30"
+  GSM84468: 
+    time: "180"
+  GSM84491: 
+    time: "390"
+  GSM84480: 
+    time: "60"
+  GSM84469: 
+    time: "210"
+  GSM84492: 
+    time: "420"
+  GSM84481: 
+    time: "90"
+  GSM84470: 
+    time: "240"
+  GSM84415: 
+    time: "0"
+  GSM84493: 
+    time: "450"
+  GSM84482: 
+    time: "120"
+  GSM84471: 
+    time: "270"
+  GSM84416: 
+    time: "0"
+  GSM84494: 
+    time: "480"
+  GSM84483: 
+    time: "150"
+  GSM84472: 
+    time: "300"
+  GSM84417: 
+    time: "0"
+  GSM84484: 
+    time: "180"
+  GSM84473: 
+    time: "330"
+  GSM84418: 
+    time: "0"
+:platform: GPL3153

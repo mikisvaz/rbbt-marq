@@ -1,0 +1,19 @@
+--- 
+:arrays: 
+  GSM49659: 
+    condition: wt
+  GSM49660: 
+    condition: rrp6trf4
+  GSM49662: 
+    condition: wt
+  GSM49663: 
+    condition: wt
+  GSM49664: 
+    condition: rrp6
+  GSM49665: 
+    condition: rrp6
+:title: rrp6 delta and 	rrp6 delta, trf4 delta vs WT
+:description: "BMA64 rrp6 delta::HIS3 vs BMA64 WT (Mat a), grown at 30\xC2\xB0C to OD 0.6 in YPD.\n\
+  BMA64 rrp6 delta::URA3, trf4 delta::KAN vs BMA64 WT, grown at 30\xC2\xB0C to OD<0.6 in YPD.\n\
+  Keywords: other"
+:platform: GPL90

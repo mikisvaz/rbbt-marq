@@ -1,0 +1,9 @@
+--- 
+:arrays: 
+  GSM94607: 
+    condition: acs2-Ts8
+:description: |-
+  Obtain synthetic lethality/slow growth gene interactors of acs2-Ts8
+  Keywords: gene mutation
+:platform: GPL1444
+:title: Synthetic lethality/slow growth with acs2-Ts8

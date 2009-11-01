@@ -1,0 +1,28 @@
+--- 
+:arrays: 
+  GSM170868: 
+    treatment: Periprosthetic membrane wear
+  GSM170869: 
+    treatment: Periprosthetic membrane wear
+  GSM170870: 
+    treatment: Periprosthetic membrane wear
+  GSM170871: 
+    treatment: Periprosthetic membrane infectious
+  GSM170872: 
+    treatment: Periprosthetic membrane wear
+  GSM170873: 
+    treatment: Periprosthetic membrane infectious
+  GSM170874: 
+    treatment: Periprosthetic membrane infectious
+  GSM170875: 
+    treatment: Periprosthetic membrane infectious
+  GSM170876: 
+    treatment: Periprosthetic membrane infectious
+  GSM170877: 
+    treatment: Periprosthetic membrane wear
+:description: |-
+  The aim of the study was to identify markers for the early diagnosis of endoprosthesis loosening, for the differentiation between wear-particle induced and septic loosening, as well as to gather new insights into the pathogenesis.
+  824 genes were differentially expressed with a fold change greater than 2. Among these were Chitinase 1, CD52, Calpain 3, Apolipoprotein, CD18, Lysyl oxidase, Cathepsin D, E-Cadherin, VE-Cadherin, Nidogen, Angiopoietin 1 and Thrombospondin 2, and the differential expression levels were validated by RT-PCR. The chitinase activity was significantly higher in the blood from patients with wear-particle induced prosthesis loosening (p=0.001). However, using chitinase activity as a marker for early diagnosis, it has a specificity of 83% and a sensitivity of only 52%, due to a high variability both in the disease and in the control group.
+  Keywords: Tissue type comparison, disease state analysis, search for new biomarkers
+:title: Gene expression profiling in wear-particle induced and infectious endoprosthesis loosening
+:platform: GPL96

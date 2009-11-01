@@ -1,0 +1,15 @@
+--- 
+:title: Effect 14-3-3 mutation on mRNA levels in yeast.
+:description: |-
+  Studies on the effect of a bmh2 mutation on the genome-wide steady-state mRNA levels in Saccharomyces cerevisiae.
+  Keywords: other
+:arrays: 
+  GSM13009: 
+    condition: CEN-PK113-7DvsCEN-PK113-7D
+  GSM13010: 
+    condition: GG3096 vs CEN-PK113-7D
+  GSM13011: 
+    condition: GG3096 vs CEN-PK113-7D
+  GSM13012: 
+    condition: GG3096 vs CEN-PK113-7D
+:platform: GPL583

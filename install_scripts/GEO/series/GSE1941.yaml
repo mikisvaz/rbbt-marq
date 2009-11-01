@@ -1,0 +1,23 @@
+--- 
+:arrays: 
+  GSM34336: 
+    treatment: BY4742-yap1d 2h
+  GSM34337: 
+    treatment: BY4741-yap1 2h
+  GSM34338: 
+    treatment: BY4741-yap1 2h
+  GSM34339: 
+    treatment: BY4741-yap1 2h
+  GSM34340: 
+    treatment: BY4742-yap1d 2h
+  GSM34341: 
+    treatment: BY4742-yap1d 2h
+  GSM34342: 
+    treatment: BY4741-yap1 2hd
+  GSM34335: 
+    treatment: BY4742-yap1d 2h
+:title: CEA_SGF:E00013#yap1_HU_response
+:description: |-
+  Analysis of the response to hydroxyurea in a yeast yap1 mutant strain compared to wild-type strain (BY4741 or BY4742 backgrounds). Cells were grown in YPD rich medium containing 200 mM hydroxyurea (HU) for 2 hours.
+  Keywords: repeat sample
+:platform: GPL1531

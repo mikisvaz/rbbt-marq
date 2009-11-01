@@ -1,0 +1,187 @@
+--- 
+:arrays: 
+  GSM137882: 
+    treatment: yap6
+  GSM137859: 
+    treatment: tec1-sok2
+  GSM63865: 
+    treatment: wt
+  GSM137838: 
+    treatment: cup9
+  GSM137861: 
+    treatment: tec1-skn7
+  GSM137883: 
+    treatment: yap6
+  GSM63866: 
+    treatment: 0mM cAMP
+  GSM137840: 
+    treatment: cup9
+  GSM137839: 
+    treatment: cup9
+  GSM63867: 
+    treatment: 0mM cAMP
+  GSM137841: 
+    treatment: cup9
+  GSM137862: 
+    treatment: tec1-skn7
+  GSM137884: 
+    treatment: cup9-yap6
+  GSM63868: 
+    treatment: 0.5mM cAMP
+  GSM137842: 
+    treatment: sfl1
+  GSM137863: 
+    treatment: cup9-sfl1
+  GSM137885: 
+    treatment: cup9-yap6
+  GSM63870: 
+    treatment: 1mM cAMP
+  GSM137843: 
+    treatment: sfl1
+  GSM137864: 
+    treatment: cup9-sfl1
+  GSM137886: 
+    treatment: cup9-yap6
+  GSM63871: 
+    treatment: 2mM cAMP
+  GSM137823: 
+    treatment: Wild-type yeast form
+  GSM137844: 
+    treatment: sfl1
+  GSM137865: 
+    treatment: cup9-sfl1
+  GSM137887: 
+    treatment: sfl1-yap6
+  GSM63872: 
+    treatment: mM cAMP
+  GSM137824: 
+    treatment: Wild-type yeast form
+  GSM137845: 
+    treatment: sok2
+  GSM137866: 
+    treatment: cup9-sok2
+  GSM137890: 
+    treatment: sok2-yap6
+  GSM137888: 
+    treatment: sfl1-yap6
+  GSM137825: 
+    treatment: Wild-type yeast form
+  GSM137846: 
+    treatment: sok2
+  GSM137867: 
+    treatment: cup9-sok2
+  GSM63873: 
+    treatment: ira1
+  GSM137891: 
+    treatment: sok2-yap6
+  GSM137889: 
+    treatment: sfl1-yap6
+  GSM137870: 
+    treatment: cup9-skn7
+  GSM137826: 
+    treatment: Wild-type yeast form
+  GSM137847: 
+    treatment: sok2
+  GSM137868: 
+    treatment: cup9-sok2
+  GSM63874: 
+    treatment: ira1
+  GSM137892: 
+    treatment: sok2-yap6
+  GSM137871: 
+    treatment: cup9-skn7
+  GSM137869: 
+    treatment: cup9-skn7
+  GSM137848: 
+    treatment: skn7
+  GSM63875: 
+    treatment: ira1RA
+  GSM137827: 
+    treatment: Wild-type yeast form
+  GSM137850: 
+    treatment: skn7
+  GSM137872: 
+    treatment: sfl1-sok2
+  GSM63876: 
+    treatment: ira1RA
+  GSM137828: 
+    treatment: Wild-type yeast form
+  GSM137849: 
+    treatment: skn7
+  GSM63877: 
+    treatment: ira2
+  GSM137830: 
+    treatment: Wild-type filamentous form
+  GSM137829: 
+    treatment: Wild-type filamentous form
+  GSM137851: 
+    treatment: tec1-cup9
+  GSM137873: 
+    treatment: sfl1-sok2
+  GSM63878: 
+    treatment: ira2
+  GSM137831: 
+    treatment: Wild-type filamentous form
+  GSM137852: 
+    treatment: tec1-cup9
+  GSM137874: 
+    treatment: sfl1-sok2
+  GSM63880: 
+    treatment: ras2v19
+  GSM63879: 
+    treatment: ras2v19
+  GSM137832: 
+    treatment: tec1
+  GSM137853: 
+    treatment: tec1-cup9
+  GSM137875: 
+    treatment: sfl1-skn7
+  GSM63881: 
+    treatment: ras2a22
+  GSM137833: 
+    treatment: tec1
+  GSM137854: 
+    treatment: tec1-sfl1
+  GSM137876: 
+    treatment: sfl1-skn7
+  GSM63861: 
+    treatment: wt
+  GSM63882: 
+    treatment: ras2a22
+  GSM137834: 
+    treatment: tec1
+  GSM137855: 
+    treatment: tec1-sfl1
+  GSM137877: 
+    treatment: sfl1-skn7
+  GSM137835: 
+    treatment: tec1
+  GSM137856: 
+    treatment: tec1-sfl1
+  GSM63862: 
+    treatment: wt
+  GSM137880: 
+    treatment: sok2-skn7
+  GSM137878: 
+    treatment: sok2-skn7
+  GSM137836: 
+    treatment: tec1
+  GSM137857: 
+    treatment: tec1-sok2
+  GSM137881: 
+    treatment: yap6
+  GSM137879: 
+    treatment: sok2-skn7
+  GSM137837: 
+    treatment: cup9
+  GSM137860: 
+    treatment: tec1-skn7
+  GSM137858: 
+    treatment: tec1-sok2
+  GSM63864: 
+    treatment: wt
+:description: |-
+  We construced combinations of genetic deletions to infer genetic interactions in genomic expression data.
+  Keywords: combinatorial genetic perturbations
+:title: Expression data for filamentous-form yeast with genetic perturbations
+:platform: GPL90

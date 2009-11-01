@@ -1,0 +1,51 @@
+--- 
+:arrays: 
+  GSM158684: 
+    condition: no3AT2_Glu_328h
+  GSM148411: 
+    condition: 40mM_Gal_522h
+  GSM148412: 
+    condition: 40mM_Glu_552h
+  GSM158685: 
+    condition: no3AT2_GluSS
+  GSM148413: 
+    condition: 40mM_Glu_574h
+  GSM158686: 
+    condition: no3AT2_GluSS
+  GSM148414: 
+    condition: 40mM_Glu_592h
+  GSM148403: 
+    condition: no3AT_Gal_316h
+  GSM158687: 
+    condition: no3AT2_GluSS
+  GSM148415: 
+    condition: 40mM_Glu_850h
+  GSM148404: 
+    condition: no3AT_Glu_344h
+  GSM148217: 
+    condition: no3AT_Gal_305h
+  GSM148416: 
+    condition: 40mM_Glu_878h
+  GSM148405: 
+    condition: no3AT_Glu_353h
+  GSM148417: 
+    condition: 40mM_Glu_937h
+  GSM148406: 
+    condition: no3AT_Glu_385h
+  GSM148407: 
+    condition: no3AT_Glu_478h
+  GSM148408: 
+    condition: no3AT_Glu_507h
+  GSM158682: 
+    condition: no3AT2_GalSS
+  GSM148410: 
+    condition: 40mM_Gal_477h
+  GSM148409: 
+    condition: no3AT_Glu_526h
+  GSM158683: 
+    condition: no3AT2_Glu_315h
+:description: |-
+  Cells adjust their transcriptional state to accommodate environmental and genetic perturbations. An open question is to what extent transcriptional response to perturbations has been specifically selected along evolution. To test the possibility that transcriptional reprogramming does not need to be 'pre-designed' in order to lead to an adaptive metabolic state on physiological time scales, we confronted yeast cells with a novel challenge they had not previously encountered. We rewired the genome by recruiting an essential gene, HIS3 from the histidine biosynthesis pathway to a foreign regulatory system, the GAL network responsible for galactose utilization. Switching medium to glucose in a chemostat caused repression of the essential gene and presented the cells with a severe challenge. Using genome-wide expression arrays we show that a global transcriptional reprogramming (>1200 genes) is induced immediately following the switch into the challenging environment, allowing adaptation of the cell population. A larger environmental pressure applied directly on the recruited HIS3 gene by a competitive inhibitor, led to significantly larger expression correlations among hundreds of genes residing in different functional modules, showing that the global transcriptional response underlies the adaptation process. The correlated transcriptional pattern relaxed to the adaptive state over a long period (~10 generations). Our results show that transcriptional plasticity, involving an enhanced response of a sizeable fraction of the genome, is a natural property of the regulatory network allowing it to overcome unforeseen challenges.
+  Keywords: time course, chemostat
+:title: Genome-wide transcriptional plasticity underlies cellular adaptation to novel challenge
+:platform: GPL4625

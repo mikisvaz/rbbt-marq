@@ -1,0 +1,152 @@
+--- 
+:description: |-
+  Oxidative stress is a harmful condition in a cell, tissue, or organ, caused by an imbalnace between reactive oxygen species and other oxidants and the capacity of antioxidant defense systems to remove them. The budding yeast S. cerevisiae has been the major eukaryotic model for studies of response to oxidative stress.
+  We used microarrays to study the genome-wide temporal response of the yeast S. cerevisiae to oxidative stress induced by cumene hydroperoxide.
+  Keywords: time course
+:arrays: 
+  GSM184988: 
+    time: "20"
+    condition: CHP
+  GSM184977: 
+    time: "3"
+    condition: CHP
+  GSM184966: 
+    time: "70"
+    condition: control
+  GSM184955: 
+    time: "12"
+    condition: control
+  GSM184944: 
+    time: "0"
+    condition: control
+  GSM184989: 
+    time: "40"
+    condition: CHP
+  GSM184978: 
+    time: "6"
+    condition: CHP
+  GSM184967: 
+    time: "120"
+    condition: control
+  GSM184956: 
+    time: "20"
+    condition: control
+  GSM184945: 
+    time: "3"
+    condition: control
+  GSM184990: 
+    time: "70"
+    condition: CHP
+  GSM184979: 
+    time: "12"
+    condition: CHP
+  GSM184968: 
+    time: "0"
+    condition: CHP
+  GSM184957: 
+    time: "40"
+    condition: control
+  GSM184946: 
+    time: "6"
+    condition: control
+  GSM184991: 
+    time: "120"
+    condition: CHP
+  GSM184980: 
+    time: "20"
+    condition: CHP
+  GSM184969: 
+    time: "3"
+    condition: CHP
+  GSM184958: 
+    time: "70"
+    condition: control
+  GSM184947: 
+    time: "12"
+    condition: control
+  GSM184981: 
+    time: "40"
+    condition: CHP
+  GSM184970: 
+    time: "6"
+    condition: CHP
+  GSM184959: 
+    time: "120"
+    condition: control
+  GSM184948: 
+    time: "20"
+    condition: control
+  GSM184982: 
+    time: "70"
+    condition: CHP
+  GSM184971: 
+    time: "12"
+    condition: CHP
+  GSM184960: 
+    time: "0"
+    condition: control
+  GSM184949: 
+    time: "40"
+    condition: control
+  GSM184983: 
+    time: "120"
+    condition: CHP
+  GSM184972: 
+    time: "20"
+    condition: CHP
+  GSM184961: 
+    time: "3"
+    condition: control
+  GSM184950: 
+    time: "70"
+    condition: control
+  GSM184984: 
+    time: "0"
+    condition: CHP
+  GSM184973: 
+    time: "40"
+    condition: CHP
+  GSM184962: 
+    time: "6"
+    condition: control
+  GSM184951: 
+    time: "120"
+    condition: control
+  GSM184985: 
+    time: "3"
+    condition: CHP
+  GSM184974: 
+    time: "70"
+    condition: CHP
+  GSM184963: 
+    time: "12"
+    condition: control
+  GSM184952: 
+    time: "0"
+    condition: control
+  GSM184986: 
+    time: "6"
+    condition: CHP
+  GSM184975: 
+    time: "120"
+    condition: CHP
+  GSM184964: 
+    time: "20"
+    condition: control
+  GSM184953: 
+    time: "3"
+    condition: control
+  GSM184987: 
+    time: "12"
+    condition: CHP
+  GSM184976: 
+    time: "0"
+    condition: CHP
+  GSM184965: 
+    time: "40"
+    condition: control
+  GSM184954: 
+    time: "6"
+    condition: control
+:title: Expression data for Saccharomyces cerevisiae oxidative stress response
+:platform: GPL90

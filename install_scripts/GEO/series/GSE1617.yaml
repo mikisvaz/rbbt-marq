@@ -1,0 +1,39 @@
+--- 
+:title: Effects of antimitotic drug benomyl on wild-type strain and strains with Yap1 or Pdr1 deletions
+:description: |-
+  Time-course analyses of the modifications of the yeast gene expression program which immediately follows addition of the antimitotic drug benomyl. Parallel experiments were conducted in different genetic contexts using strains deleted in the Yap1 and Pdr1 genes.
+  Keywords: other
+:arrays: 
+  GSM27560: 
+    mutant: WT 40min
+  GSM27561: 
+    mutant: YAP1 0.5min
+  GSM27562: 
+    mutant: YAP1 2min
+  GSM27563: 
+    mutant: YAP1 4min
+  GSM27564: 
+    mutant: YAP1 10min
+  GSM27565: 
+    mutant: YAP1 20min
+  GSM27566: 
+    mutant: PDR1 0.5min
+  GSM27555: 
+    mutant: WT 0.5min
+  GSM27567: 
+    mutant: PDR1 2min
+  GSM27556: 
+    mutant: WT 2min
+  GSM27568: 
+    mutant: PDR1 4min
+  GSM27557: 
+    mutant: WT 4min
+  GSM27569: 
+    mutant: PDR1 10min
+  GSM27558: 
+    mutant: WT 10min
+  GSM27570: 
+    mutant: PDR1 20min
+  GSM27559: 
+    mutant: WT 20min
+:platform: GPL1383

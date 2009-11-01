@@ -1,0 +1,32 @@
+--- 
+:title: Benomyl dose-response
+:description: |-
+  Synthetic lethality of Yeast Deletion strain mutations in haploid cells with various concentrations of Benomyl
+  Keywords = Benomyl
+  Keywords = yeast
+  Keywords = deletion
+  Keywords = tag
+  Keywords = barcode
+  Keywords: dose response
+:arrays: 
+  GSM30552: 
+    condition: 10mg/ml benomyl/-benomyl
+  GSM30553: 
+    condition: 15mg/ml benomyl/-benomyl
+  GSM30554: 
+    condition: 20mg/ml benomyl/-benomyl
+  GSM30555: 
+    condition: 25mg/ml benomyl/-benomyl
+  GSM30556: 
+    condition: 30mg/ml benomyl/-benomyl
+  GSM30557: 
+    condition: 35mg/ml benomyl/-benomyl
+  GSM30558: 
+    condition: 40mg/ml benomyl/-benomyl
+  GSM30549: 
+    condition: -benomyl/-benomyl
+  GSM30550: 
+    condition: 1mg/ml benomyl/-benomyl
+  GSM30551: 
+    condition: 5mg/ml benomyl/-benomyl
+:platform: GPL1444

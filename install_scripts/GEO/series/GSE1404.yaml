@@ -1,0 +1,596 @@
+--- 
+:title: Exploration of essential gene functions via titratable promoter alleles
+:description: |-
+  Exploration of essential gene functions via titratable promoter alleles.
+  Collection of microarray experiments described in Mnaimneh et al. 2004.
+  Keywords = Yeast
+  Keywords = Saccharomyces cerevisiae
+  Keywords = oligonucleotide
+  Keywords = dual channel
+  Keywords: other
+:arrays: 
+  GSM23004: 
+    mutant: YOR110W TET_mutant
+  GSM23030: 
+    mutant: YGL047W TET_mutant
+  GSM22788: 
+    mutant: YBR243C TET_mutant
+  GSM22869: 
+    mutant: YLR060W TET_mutant
+  GSM22895: 
+    mutant: YLR106C TET_mutant
+  GSM22976: 
+    mutant: YIR022W TET_mutant
+  GSM23031: 
+    mutant: YGL047W TET_mutant
+  GSM23005: 
+    mutant: YPL063W TET_mutant
+  GSM22789: 
+    mutant: YPR180W TET_mutant
+  GSM22896: 
+    mutant: YLR106C TET_mutant
+  GSM22977: 
+    mutant: YMR079W TET_mutant
+  GSM23032: 
+    mutant: YGL245W TET_mutant
+  GSM23006: 
+    mutant: YNL131W TET_mutant
+  GSM22897: 
+    mutant: YBR193C TET_mutant
+  GSM22978: 
+    mutant: YNL272C TET_mutant
+  GSM23033: 
+    mutant: YGR094W TET_mutant
+  GSM23007: 
+    mutant: YHR070W TET_mutant
+  GSM22898: 
+    mutant: YOR232W TET_mutant
+  GSM22979: 
+    mutant: YFL005W TET_mutant
+  GSM23060: 
+    mutant: YLR076C TET_mutant
+  GSM23034: 
+    mutant: YGR173W TET_mutant
+  GSM22899: 
+    mutant: YIL106W TET_mutant
+  GSM23008: 
+    mutant: YCR042C TET_mutant
+  GSM23061: 
+    mutant: YLR101C TET_mutant
+  GSM23035: 
+    mutant: YGR198W TET_mutant
+  GSM23009: 
+    mutant: YDL060W TET_mutant
+  GSM23062: 
+    mutant: YLR145W TET_mutant
+  GSM23036: 
+    mutant: YGR198W TET_mutant
+  GSM23063: 
+    mutant: YLR243W TET_mutant
+  GSM23037: 
+    mutant: YGR198W TET_mutant
+  GSM22900: 
+    mutant: YJR002W TET_mutant
+  GSM23090: 
+    mutant: YOR145C TET_mutant
+  GSM23064: 
+    mutant: YLR310C TET_mutant
+  GSM23038: 
+    mutant: YGR251W TET_mutant
+  GSM22820: 
+    mutant: YDL031W TET_mutant
+  GSM22901: 
+    mutant: YAL034W-A TET_mutant
+  GSM23091: 
+    mutant: YOR146W TET_mutant
+  GSM23065: 
+    mutant: YLR359W TET_mutant
+  GSM23039: 
+    mutant: YGR251W TET_mutant
+  GSM22821: 
+    mutant: YDL031W TET_mutant
+  GSM22902: 
+    mutant: YNR043W TET_mutant
+  GSM23092: 
+    mutant: YOR169C TET_mutant
+  GSM23066: 
+    mutant: YLR424W TET_mutant
+  GSM22822: 
+    mutant: YOR204W TET_mutant
+  GSM22903: 
+    mutant: YHR023W TET_mutant
+  GSM23093: 
+    mutant: YOR206W TET_mutant
+  GSM23067: 
+    mutant: YLR440C TET_mutant
+  GSM22823: 
+    mutant: YOR236W TET_mutant
+  GSM22904: 
+    mutant: YGL122C TET_mutant
+  GSM22930: 
+    mutant: YAL033W TET_mutant
+  GSM23094: 
+    mutant: YOR259C TET_mutant
+  GSM23068: 
+    mutant: YLR440C TET_mutant
+  GSM22824: 
+    mutant: YDR141C TET_mutant
+  GSM22905: 
+    mutant: YGL122C TET_mutant
+  GSM22931: 
+    mutant: YER023W TET_mutant
+  GSM23095: 
+    mutant: YPR169W TET_mutant
+  GSM23069: 
+    mutant: YHR090C TET_mutant
+  GSM22825: 
+    mutant: YDR141C TET_mutant
+  GSM22906: 
+    mutant: YGL122C TET_mutant
+  GSM22932: 
+    mutant: YKR086W TET_mutant
+  GSM23096: 
+    mutant: YGR103W TET_mutant
+  GSM22826: 
+    mutant: YIL003W TET_mutant
+  GSM22907: 
+    mutant: YPL190C TET_mutant
+  GSM22933: 
+    mutant: YPR178W TET_mutant
+  GSM23097: 
+    mutant: YFR037C TET_mutant
+  GSM22827: 
+    mutant: YNL258C TET_mutant
+  GSM22934: 
+    mutant: YDL055C TET_mutant
+  GSM22960: 
+    mutant: YKL082C TET_mutant
+  GSM23098: 
+    mutant: YER006W TET_mutant
+  GSM22828: 
+    mutant: YNL258C TET_mutant
+  GSM22880: 
+    mutant: YOL133W TET_mutant
+  GSM22908: 
+    mutant: YNL124W TET_mutant
+  GSM22935: 
+    mutant: YJL072C TET_mutant
+  GSM22961: 
+    mutant: YGR095C TET_mutant
+  GSM23099: 
+    mutant: YGR198W TET_mutant
+  GSM22881: 
+    mutant: YGL073W TET_mutant
+  GSM22909: 
+    mutant: YPL126W TET_mutant
+  GSM22936: 
+    mutant: YAL043C TET_mutant
+  GSM22962: 
+    mutant: YOR294W TET_mutant
+  GSM22829: 
+    mutant: YMR128W TET_mutant
+  GSM22882: 
+    mutant: YGL073W TET_mutant
+  GSM22937: 
+    mutant: YLR196W TET_mutant
+  GSM22963: 
+    mutant: YFR037C TET_mutant
+  GSM22883: 
+    mutant: YGL073W TET_mutant
+  GSM22938: 
+    mutant: YPR186C TET_mutant
+  GSM22964: 
+    mutant: YBL020W TET_mutant
+  GSM22990: 
+    mutant: YLR147C TET_mutant
+  GSM22884: 
+    mutant: YPR033C TET_mutant
+  GSM22939: 
+    mutant: YBR049C TET_mutant
+  GSM22965: 
+    mutant: YFR037C TET_mutant
+  GSM22991: 
+    mutant: YDR201W TET_mutant
+  GSM22966: 
+    mutant: YOR077W TET_mutant
+  GSM22992: 
+    mutant: YDR201W TET_mutant
+  GSM23020: 
+    mutant: YBR190W TET_mutant
+  GSM22885: 
+    mutant: YHR085W TET_mutant
+  GSM22967: 
+    mutant: YOR077W TET_mutant
+  GSM22993: 
+    mutant: YKR037C TET_mutant
+  GSM23021: 
+    mutant: YCR013C TET_mutant
+  GSM22886: 
+    mutant: YHR085W TET_mutant
+  GSM22968: 
+    mutant: YOR077W TET_mutant
+  GSM22994: 
+    mutant: YDR464W TET_mutant
+  GSM23022: 
+    mutant: YDL196W TET_mutant
+  GSM22887: 
+    mutant: YHR197W TET_mutant
+  GSM23104: 
+    mutant: TAP-YGL245W
+  GSM22969: 
+    mutant: YOR077W TET_mutant
+  GSM22995: 
+    mutant: YIR012W TET_mutant
+  GSM23023: 
+    mutant: YDR327W TET_mutant
+  GSM22888: 
+    mutant: YDR062W TET_mutant
+  GSM23050: 
+    mutant: YKL033W TET_mutant
+  GSM22996: 
+    mutant: YPL243W TET_mutant
+  GSM23024: 
+    mutant: YDR365C TET_mutant
+  GSM22889: 
+    mutant: YER112W TET_mutant
+  GSM23051: 
+    mutant: YKL033W TET_mutant
+  GSM22997: 
+    mutant: YLR005W TET_mutant
+  GSM23025: 
+    mutant: YDR365C TET_mutant
+  GSM23052: 
+    mutant: YKL052C TET_mutant
+  GSM22998: 
+    mutant: YLR005W TET_mutant
+  GSM23026: 
+    mutant: YDR412W TET_mutant
+  GSM23053: 
+    mutant: YKL180W TET_mutant
+  GSM23027: 
+    mutant: YDR412W TET_mutant
+  GSM22999: 
+    mutant: YNL222W TET_mutant
+  GSM23080: 
+    mutant: YNL313C TET_mutant
+  GSM23054: 
+    mutant: YKR079C TET_mutant
+  GSM23028: 
+    mutant: YDR527W TET_mutant
+  GSM22810: 
+    mutant: YJL194W TET_mutant
+  GSM23081: 
+    mutant: YNL313C TET_mutant
+  GSM23055: 
+    mutant: YLJ097W TET_mutant
+  GSM23029: 
+    mutant: YDR527W TET_mutant
+  GSM22811: 
+    mutant: YLR459W TET_mutant
+  GSM23082: 
+    mutant: YNR054C TET_mutant
+  GSM23056: 
+    mutant: YLL034C TET_mutant
+  GSM22812: 
+    mutant: YBR029C TET_mutant
+  GSM23083: 
+    mutant: YNR054C TET_mutant
+  GSM23057: 
+    mutant: YLL034C TET_mutant
+  GSM22813: 
+    mutant: YBR029C TET_mutant
+  GSM22920: 
+    mutant: YER006W TET_mutant
+  GSM23084: 
+    mutant: YOL022C TET_mutant
+  GSM23058: 
+    mutant: YLR008C TET_mutant
+  GSM22814: 
+    mutant: YMR213W TET_mutant
+  GSM22921: 
+    mutant: YJL039C TET_mutant
+  GSM23085: 
+    mutant: YOL026C TET_mutant
+  GSM23059: 
+    mutant: YLR008C TET_mutant
+  GSM22815: 
+    mutant: YPL228W TET_mutant
+  GSM22922: 
+    mutant: YJL061W TET_mutant
+  GSM23086: 
+    mutant: YOL026C TET_mutant
+  GSM22816: 
+    mutant: YPR105C TET_mutant
+  GSM22923: 
+    mutant: YHR118C TET_mutant
+  GSM23087: 
+    mutant: YOR004W TET_mutant
+  GSM22762: 
+    mutant: YMR001C TET_mutant
+  GSM22817: 
+    mutant: YGR278W TET_mutant
+  GSM22924: 
+    mutant: YMR076C TET_mutant
+  GSM22950: 
+    mutant: YMR239C TET_mutant
+  GSM23088: 
+    mutant: YOR004W TET_mutant
+  GSM22818: 
+    mutant: YNL245C TET_mutant
+  GSM22870: 
+    mutant: YLR291C TET_mutant
+  GSM22925: 
+    mutant: YBR196C TET_mutant
+  GSM22951: 
+    mutant: YMR200W TET_mutant
+  GSM23089: 
+    mutant: YOR060C TET_mutant
+  GSM22790: 
+    mutant: YNR035C TET_mutant
+  GSM22819: 
+    mutant: YNL245C TET_mutant
+  GSM22871: 
+    mutant: YPL075W TET_mutant
+  GSM22926: 
+    mutant: YOR281C TET_mutant
+  GSM22952: 
+    mutant: YOL005C TET_mutant
+  GSM22791: 
+    mutant: YBR234C TET_mutant
+  GSM22872: 
+    mutant: YPL075W TET_mutant
+  GSM22927: 
+    mutant: YBR088C TET_mutant
+  GSM22953: 
+    mutant: YOL005C TET_mutant
+  GSM22792: 
+    mutant: YJL081C TET_mutant
+  GSM22873: 
+    mutant: YDL207W TET_mutant
+  GSM22928: 
+    mutant: YEL055C TET_mutant
+  GSM22954: 
+    mutant: YJL011C TET_mutant
+  GSM22980: 
+    mutant: YLR378C TET_mutant
+  GSM22793: 
+    mutant: YER172C TET_mutant
+  GSM22874: 
+    mutant: YOR168W TET_mutant
+  GSM22929: 
+    mutant: YNL221C TET_mutant
+  GSM22955: 
+    mutant: YOL038W TET_mutant
+  GSM22981: 
+    mutant: YLL003W TET_mutant
+  GSM22794: 
+    mutant: YHR040W TET_mutant
+  GSM22875: 
+    mutant: YHR188C TET_mutant
+  GSM22956: 
+    mutant: YOR261C TET_mutant
+  GSM22982: 
+    mutant: YLR336C TET_mutant
+  GSM23010: 
+    mutant: YKL210W TET_mutant
+  GSM22795: 
+    mutant: YER172C TET_mutant
+  GSM22876: 
+    mutant: YPL076W TET_mutant
+  GSM22957: 
+    mutant: YDL007W TET_mutant
+  GSM22983: 
+    mutant: YDL047W TET_mutant
+  GSM23011: 
+    mutant: YKL210W TET_mutant
+  GSM22796: 
+    mutant: YOL077C TET_mutant
+  GSM22877: 
+    mutant: YLL035W TET_mutant
+  GSM22958: 
+    mutant: YKL125W TET_mutant
+  GSM22984: 
+    mutant: YKL108W TET_mutant
+  GSM23012: 
+    mutant: YKL210W TET_mutant
+  GSM22797: 
+    mutant: YJR076C TET_mutant
+  GSM22878: 
+    mutant: YMR290C TET_mutant
+  GSM22959: 
+    mutant: YKL082C TET_mutant
+  GSM22985: 
+    mutant: YDR489W TET_mutant
+  GSM23013: 
+    mutant: YDL064W TET_mutant
+  GSM23040: 
+    mutant: YGR280C TET_mutant
+  GSM22798: 
+    mutant: YAL038W TET_mutant
+  GSM22879: 
+    mutant: YDR047W TET_mutant
+  GSM22986: 
+    mutant: YIL147C TET_mutant
+  GSM23014: 
+    mutant: YGR048W TET_mutant
+  GSM23041: 
+    mutant: YHR122W TET_mutant
+  GSM22799: 
+    mutant: YGL116W TET_mutant
+  GSM22987: 
+    mutant: YLR086W TET_mutant
+  GSM23015: 
+    mutant: YBL004W TET_mutant
+  GSM23042: 
+    mutant: YHR122W TET_mutant
+  GSM22988: 
+    mutant: YLR275W TET_mutant
+  GSM23016: 
+    mutant: YGR090W TET_mutant
+  GSM23043: 
+    mutant: YHR122W TET_mutant
+  GSM22989: 
+    mutant: YLR147C TET_mutant
+  GSM23017: 
+    mutant: YGR090W TET_mutant
+  GSM23070: 
+    mutant: YNL149C TET_mutant
+  GSM23044: 
+    mutant: YGR172C TET_mutant
+  GSM23018: 
+    mutant: YGR090W TET_mutant
+  GSM22800: 
+    mutant: YBL084C TET_mutant
+  GSM23071: 
+    mutant: YNL149C TET_mutant
+  GSM23045: 
+    mutant: YJL009W TET_mutant
+  GSM23019: 
+    mutant: YBR190W TET_mutant
+  GSM22801: 
+    mutant: YDR054C TET_mutant
+  GSM23072: 
+    mutant: YNL150W TET_mutant
+  GSM23046: 
+    mutant: YJL091C TET_mutant
+  GSM22802: 
+    mutant: YDR054C TET_mutant
+  GSM23073: 
+    mutant: YNL158W TET_mutant
+  GSM23047: 
+    mutant: YJL097W TET_mutant
+  GSM22910: 
+    mutant: YLR457C TET_mutant
+  GSM22803: 
+    mutant: YDR168W TET_mutant
+  GSM23074: 
+    mutant: YNL158W TET_mutant
+  GSM23048: 
+    mutant: YJR041C TET_mutant
+  GSM22911: 
+    mutant: YML031W TET_mutant
+  GSM22804: 
+    mutant: YLR229C TET_mutant
+  GSM22830: 
+    mutant: YAL003W TET_mutant
+  GSM23075: 
+    mutant: YNL182C TET_mutant
+  GSM23049: 
+    mutant: YJR041C TET_mutant
+  GSM22805: 
+    mutant: YLR229C TET_mutant
+  GSM22831: 
+    mutant: YGR060W TET_mutant
+  GSM22912: 
+    mutant: YOR372C TET_mutant
+  GSM23076: 
+    mutant: YNL247W TET_mutant
+  GSM22806: 
+    mutant: YGL155W TET_mutant
+  GSM22832: 
+    mutant: YFL024C TET_mutant
+  GSM22913: 
+    mutant: YCL017C TET_mutant
+  GSM23077: 
+    mutant: YNL310C TET_mutant
+  GSM22807: 
+    mutant: YGL155W TET_mutant
+  GSM22833: 
+    mutant: YBL040C TET_mutant
+  GSM22914: 
+    mutant: YPR144C TET_mutant
+  GSM22940: 
+    mutant: YBR002C TET_mutant
+  GSM23078: 
+    mutant: YNL313C TET_mutant
+  GSM22808: 
+    mutant: YPR019W TET_mutant
+  GSM22834: 
+    mutant: YGR175C TET_mutant
+  GSM22915: 
+    mutant: YPL093W TET_mutant
+  GSM22941: 
+    mutant: YPL010W TET_mutant
+  GSM23079: 
+    mutant: YNL313C TET_mutant
+  GSM22835: 
+    mutant: YGR060W TET_mutant
+  GSM22916: 
+    mutant: YNR053C TET_mutant
+  GSM22942: 
+    mutant: YBR192W TET_mutant
+  GSM22781: 
+    mutant: YDL132W TET_mutant
+  GSM22809: 
+    mutant: YPR019W TET_mutant
+  GSM22836: 
+    mutant: YML130C TET_mutant
+  GSM22917: 
+    mutant: YGR103W TET_mutant
+  GSM22943: 
+    mutant: YOR119C TET_mutant
+  GSM22782: 
+    mutant: YML046W TET_mutant
+  GSM22837: 
+    mutant: YPL231W TET_mutant
+  GSM22918: 
+    mutant: YLR007W TET_mutant
+  GSM22944: 
+    mutant: YOR095C TET_mutant
+  GSM22970: 
+    mutant: YOR077W TET_mutant
+  GSM22783: 
+    mutant: YGR198W TET_mutant
+  GSM22890: 
+    mutant: YER112W TET_mutant
+  GSM22945: 
+    mutant: YDR091C TET_mutant
+  GSM22971: 
+    mutant: YHR205W TET_mutant
+  GSM23000: 
+    mutant: YNL222W TET_mutant
+  GSM22784: 
+    mutant: YBL020W TET_mutant
+  GSM22891: 
+    mutant: YDL087C TET_mutant
+  GSM22919: 
+    mutant: YER006W TET_mutant
+  GSM22946: 
+    mutant: YMR235C TET_mutant
+  GSM22972: 
+    mutant: YHR205W TET_mutant
+  GSM23001: 
+    mutant: YJR007W TET_mutant
+  GSM22785: 
+    mutant: YGL048C TET_mutant
+  GSM22892: 
+    mutant: YBR142W TET_mutant
+  GSM22947: 
+    mutant: YMR235C TET_mutant
+  GSM22973: 
+    mutant: YHR205W TET_mutant
+  GSM23002: 
+    mutant: YBR143C TET_mutant
+  GSM22786: 
+    mutant: YOR262W TET_mutant
+  GSM22867: 
+    mutant: YDR373W TET_mutant
+  GSM22893: 
+    mutant: YLR163C TET_mutant
+  GSM22948: 
+    mutant: YMR239C TET_mutant
+  GSM22974: 
+    mutant: YGR245C TET_mutant
+  GSM23003: 
+    mutant: YKL018W TET_mutant
+  GSM22787: 
+    mutant: YOR335C TET_mutant
+  GSM22868: 
+    mutant: YDR373W TET_mutant
+  GSM22894: 
+    mutant: YMR043W TET_mutant
+  GSM22949: 
+    mutant: YMR239C TET_mutant
+  GSM22975: 
+    mutant: YGR245C TET_mutant
+:platform: GPL1229

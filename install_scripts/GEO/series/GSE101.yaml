@@ -1,0 +1,17 @@
+--- 
+:arrays: 
+  GSM3012: 
+    treatment: zzYra1IP_v_TotalRNA
+  GSM3008: 
+    treatment: zzYra1IP_v_TotalRNA
+  GSM3010: 
+    treatment: zzYra1IP_v_TotalRNA
+  GSM3009: 
+    treatment: zzYra1IP_v_TotalRNA
+  GSM3011: 
+    treatment: zzYra1IP_v_TotalRNA
+:description: |-
+  Comparison of cDNA from RNA IPed with zzYra1 to that from total RNA; resulting analysis gives Yra1 binding level relative to total abundance for each mRNA
+  Keywords: repeat sample
+:title: zzYra1 co-IPed RNA vs. Total RNA  (zzYra1IP_v_TotalRNA)
+:platform: GPL220

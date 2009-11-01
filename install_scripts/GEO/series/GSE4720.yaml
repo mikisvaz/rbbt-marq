@@ -1,0 +1,78 @@
+--- 
+:description: "The packaging of DNA into nucleosomes influences the accessibility of underlying regulatory information. Nucleosome occupancy and positioning are best characterized in the budding yeast Saccharomyces cerevisiae, albeit in asynchronous cell populations or on individual promoters such as PHO5 and GAL1\xE2\x80\x9310. Using FAIRE (formaldehyde-assisted isolation of regulatory elements) and whole-genome microarrays, we examined changes in nucleosome occupancy throughout the mitotic cell cycle in synchronized populations of S. cerevisiae. Perhaps surprisingly, nucleosome occupancy did not exhibit large, global variation between cell cycle phases. However, nucleosome occupancy at the promoters of cell cycle\xE2\x80\x93regulated genes was reduced specifically at the cell cycle phase in which that gene exhibited peak expression, with the notable exception of S-phase genes. We present data that establish FAIRE as a high-throughput method for assaying nucleosome occupancy. For the first time in any system, nucleosome occupancy was mapped genome-wide throughout the cell cycle. Fluctuation of nucleosome occupancy at promoters of most cell cycle\xE2\x80\x93regulated genes provides independent evidence that periodic expression of these genes is controlled mainly at the level of transcription. The promoters of G2/M genes are distinguished from other cell cycle promoters by an unusually low baseline nucleosome occupancy throughout the cell cycle. This observation, coupled with the maintenance throughout the cell cycle of the stereotypic nucleosome occupancy states between coding and non-coding loci, suggests that the largest component of variation in nucleosome occupancy is \xE2\x80\x9Chard wired,\xE2\x80\x9D perhaps at the level of DNA sequence.\n\
+  Keywords: FAIRE"
+:platform: GPL3700
+:title: Yeast FAIRE_testing wild-type and mutant strains
+:arrays: 
+  GSM106577: 
+    mutant: set1
+  GSM106566: 
+    mutant: h2b
+  GSM106555: 
+    mutant: W303
+  GSM106544: 
+    mutant: set2
+  GSM106578: 
+    mutant: set1
+  GSM106567: 
+    mutant: h3
+  GSM106556: 
+    mutant: BY4741
+  GSM106545: 
+    mutant: set2rad6
+  GSM106579: 
+    mutant: set2
+  GSM106568: 
+    mutant: h3
+  GSM106557: 
+    mutant: BY4741
+  GSM106546: 
+    mutant: set2rad6
+  GSM106570: 
+    mutant: h4
+  GSM106569: 
+    mutant: h4
+  GSM106558: 
+    mutant: BY4741
+  GSM106547: 
+    mutant: set3
+  GSM106571: 
+    mutant: hat1
+  GSM106560: 
+    mutant: BY4741
+  GSM106559: 
+    mutant: BY4741
+  GSM106548: 
+    mutant: set3
+  GSM106572: 
+    mutant: hat1
+  GSM106561: 
+    mutant: gcn5
+  GSM106550: 
+    mutant: set4
+  GSM106549: 
+    mutant: set4
+  GSM106573: 
+    mutant: hat2
+  GSM106562: 
+    mutant: gcn5
+  GSM106551: 
+    mutant: set5
+  GSM106574: 
+    mutant: hat2
+  GSM106563: 
+    mutant: h2a
+  GSM106552: 
+    mutant: set5
+  GSM106575: 
+    mutant: HDACs
+  GSM106564: 
+    mutant: h2a
+  GSM106553: 
+    mutant: set6
+  GSM106576: 
+    mutant: HDACs
+  GSM106565: 
+    mutant: h2b
+  GSM106554: 
+    mutant: set6

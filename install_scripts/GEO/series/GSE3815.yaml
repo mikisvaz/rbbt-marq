@@ -1,0 +1,75 @@
+--- 
+:arrays: 
+  GSM87587: 
+    condition: RTG_10R40
+  GSM87576: 
+    condition: RTG_6R40
+  GSM87565: 
+    condition: RTG_3R0
+  GSM87554: 
+    condition: Sporulation_2h
+  GSM87577: 
+    condition: RTG_7R0
+  GSM87566: 
+    condition: RTG_3R20
+  GSM87555: 
+    condition: Sporulation_3h
+  GSM87578: 
+    condition: RTG_7R20
+  GSM87567: 
+    condition: RTG_3R40
+  GSM87556: 
+    condition: Sporulation_4h
+  GSM87579: 
+    condition: RTG_7R40
+  GSM87568: 
+    condition: RTG_4R0
+  GSM87557: 
+    condition: Sporulation_5h
+  GSM87580: 
+    condition: RTG_8R0
+  GSM87569: 
+    condition: RTG_4R20
+  GSM87558: 
+    condition: Sporulation_6h
+  GSM87581: 
+    condition: RTG_8R20
+  GSM87570: 
+    condition: RTG_4R40
+  GSM87559: 
+    condition: Sporulation_7h
+  GSM87582: 
+    condition: RTG_8R40
+  GSM87571: 
+    condition: RTG_5R0
+  GSM87560: 
+    condition: Sporulation_8h
+  GSM87583: 
+    condition: RTG_9R0
+  GSM87572: 
+    condition: RTG_5R20
+  GSM87561: 
+    condition: Sporulation_9h
+  GSM87584: 
+    condition: RTG_9R40
+  GSM87573: 
+    condition: RTG_5R40
+  GSM87562: 
+    condition: RTG_2R0
+  GSM87585: 
+    condition: RTG_10R0
+  GSM87574: 
+    condition: RTG_6R0
+  GSM87563: 
+    condition: RTG_2R20
+  GSM87586: 
+    condition: RTG_10R20
+  GSM87575: 
+    condition: RTG_6R20
+  GSM87564: 
+    condition: RTG_2R40
+:description: |-
+  We have used genome-wide expression profiling to investigate how budding yeast cells become committed to sporulation. Sporulating cells were transferred to growth medium at different stages of the process, and their transcription response was characterized. Most sporulation-induced genes were immediately down-regulated upon the transfer, even in committed cells that continued to sporulate. The metabolic-related transcription response of pre-committed cells or of mature spores transferred to growth medium was essentially the same as that of vegetative cells exposed to glucose. In contrast, committed cells elicited a unique, and dramatically different response. Our results suggest that cells ensure commitment to sporulation not by stabilizing the process, but by modulating their information processing in an active manner that may optimize sporulation in an environment-specific manner.
+  Keywords: Time course
+:platform: GPL3246
+:title: Sporulation_transfer_to_YPA1

@@ -1,0 +1,209 @@
+#!/usr/bin/ruby 
+
+require 'simpleconsole'
+
+def configure
+  config = {}
+  require 'yaml'
+
+  directories = { 
+    'cachedir' => ['cache', "Cache Directory: This directory will hold downloads, from GEO, Arrayexpress, etc."],
+    'datadir' =>  ['data', "Data Directory: This directory will hold the data files produced when processing GEO, Arrayexpress, etc."],
+    'workdir' =>  ['work', "Work Directory: This directory will be used by the Web Server to hold job files."],
+  
+  }
+
+  defaultdir = File.join(ENV['HOME'],'MARQ')
+
+  puts "Please indicate where you wish to place the data directories: "
+  puts
+    
+  directories.each{|name, info|
+    puts info[1]
+    default = File.join(defaultdir, info[0])
+    print "[#{default}]? "
+    input = STDIN.gets
+    input = default unless input =~ /\w/
+    config[name] = input
+  }
+
+  options = {
+    'dbname' => ['madb',"Database Name"],
+    'dbuser' => ['marq',"Database User"],
+    'dbpass' => ['marq_password',"Database Password"],
+    'dbhost' => ['localhost',"Database Host"],
+  }
+
+
+  puts "Please indicate other configuration variables: "
+  puts
+    
+  options.each{|name, info|
+    puts info[1]
+    default = info[0]
+    print "[#{default}]? "
+    input = STDIN.gets
+    input = default unless input =~ /\w/
+    config[name] = input
+  }
+
+  fout = File.open(File.join(ENV['HOME'], '.MARQ'), 'w')
+  fout.write config.to_yaml
+  fout.close
+
+  require 'MARQ'
+
+end
+
+begin
+  require 'MARQ'
+rescue 
+  puts $!.message
+  configure
+  exit
+end
+
+
+$USAGE =<<EOT
+#{__FILE__} <action> [<subaction>] [--force (true|false)] [--update_db (true|false)] [--platform <gpl>] [--series <gse>] [--organism <org>] [--port <number>] [--host <name>]
+  actions:
+    * config:   Set paths for data, cache, and tmp directories
+
+    * install:
+      * GEO: Install management files to process GEO datasets and series
+      * CustomDS: Install management files to process data from other sources
+      * identifiers: Load the identifier equivalences in the database
+
+    * update:
+      * GEO: Process datasets and series from GEO
+      * CustomDS: Process datasets from other sources
+
+    * init:
+      * webservice: Start the SOAP Web Service
+      * www: Start the merb server
+                
+                   
+EOT
+
+class Controller < SimpleConsole::Controller
+  params :string => {:p => :platform, :s => :series,  :o => :organism}, :boolean => {:d => :update_db, :f => :force}, :integer => {:p => :port}
+
+
+  def install
+    $organism  = params[:organism] unless params[:organism].nil?
+    @actions = params[:id] || %w(GEO)
+  end
+
+  def update
+    $platform  = params[:platform] unless params[:platform].nil?
+    $series    = params[:series]   unless params[:series].nil?
+    $organism  = params[:organism] unless params[:organism].nil?
+    $update_db = params[:update_db] && params[:update_db] =~ /true|yes|y/i
+    $force     = params[:force]     && params[:force]     =~ /true|yes|y/i
+    @actions   = params[:id] || %w(GEO)
+  end
+
+  def config
+  end
+
+
+
+  def default
+    render :action => :usage
+  end
+
+  def init
+    $host   = [params[:host], `hostname`.chomp.strip + '.' +  `hostname -d`.chomp.strip].compact.first
+    $port   = params[:port]
+    @action = params[:id]
+  end
+
+
+end
+
+
+class View < SimpleConsole::View
+
+  def init
+    case @action
+    when 'webservice'
+      require 'MARQWS'
+      $port   = [$port, 8282].compact.first
+      FileUtils.cd File.join(MARQ.rootdir, 'webservice')
+
+      puts "Starting Server in #{ $host }:#{ $port }"
+      server = MARQWS.new("MARQ", "MARQ Web Server", $host, $port, File.join(MARQ.workdir,'webservice', 'jobs'))
+
+      FileUtils.mkdir_p File.join(MARQ.workdir, '/webservice', 'wsdl/') unless File.exist? File.join(MARQ.workdir, '/webservice', 'wsdl/')
+      File.open(File.join(MARQ.workdir, '/webservice', 'wsdl', 'MARQWS.wsdl'),'w'){|file| file.write server.wsdl}
+
+      trap('INT') { server.shutdown }
+      server.start
+    when 'www'
+      require 'merb-core'
+      $port   = [$port, 8281].compact.first
+      
+      FileUtils.rm Dir.glob(File.join(MARQ.workdir, 'merb','cache','*.lock'))
+
+      puts(File.join(MARQ.rootdir, 'merb'))
+      Dir.chdir(File.join(MARQ.rootdir, 'merb'))
+      puts Dir.pwd
+
+      Merb.start("-a mongrel -e production -p #{ $port } -h #{ $host }".split)
+    end
+  end
+
+  def usage
+    puts $USAGE
+  end
+
+  def config
+    configure
+  end
+
+  def install
+    require 'rbbt/sources/organism'
+    require 'MARQ/ID'
+    case
+    when @actions == 'identifiers'
+      if $organism
+        organisms = [$organism]
+      else
+        organisms = Organism.all
+      end
+      organisms.each{|org|
+        ID.DB_load(org)
+      }
+    else
+      require 'rake'
+      load File.join(MARQ.rootdir, 'tasks/install.rake')
+
+      @actions = [@actions] if @actions === String
+      @actions.each{|action|
+        puts "Installing #{ action }"
+        Rake::Task[action].invoke
+      }
+    end
+  end
+
+  def update
+    install
+
+    require 'rake'
+    @actions = [@actions] if @actions === String
+
+    @actions.each{|action|
+      Thread.new{
+        puts "Updating #{action}"
+        FileUtils.cd File.join(MARQ.datadir, action)
+        load File.join(MARQ.datadir, action, 'Rakefile')
+        Rake::Task['default'].invoke
+      }.join
+    }
+  end
+
+
+end
+
+SimpleConsole::Application.run(ARGV, Controller, View)
+

@@ -1,0 +1,123 @@
+--- 
+:description: |-
+  To study the signals and pathways underlying spore germination we examined the global changes in gene expression during this process.
+  We find that the germination process can be divided into two distinct stages. During the first stage, the induced spores respond only to glucose. The transcription program during this stage recapitulates the general transcription response of yeast cells to glucose. Only during the second phase are the cells able to sense and respond to other nutritional components in the environment. Components of the mitotic machinery are involved in spore germination but in a distinct pattern. In contrast to the mitotic cell cycle, growth related events during germination are not coordinated with nuclear events and are separately regulated.
+  Genome-wide expression profiling enables us to follow the progression of spore germination, thus dividing this process into two major stages and to identify germination-specific regulation of components of the mitotic cell cycle machinery.
+  Keywords: Time course
+:arrays: 
+  GSM177250: 
+    incubation: glu-pre.inc-germination2h
+    time: "3.5"
+  GSM177249: 
+    incubation: glu-pre.inc-germination2h
+    time: 3h
+  GSM177238: 
+    incubation: nit
+    time: 2h
+  GSM177227: 
+    incubation: glu
+    time: 2h
+  GSM177251: 
+    incubation: glu-pre.inc-germination2h
+    time: 4h
+  GSM177240: 
+    incubation: nit
+    time: 3h
+  GSM177239: 
+    incubation: nit
+    time: 2.5h
+  GSM177228: 
+    incubation: glu
+    time: 2.5h
+  GSM177252: 
+    incubation: nit-pre.inc-germination2h
+    time: 30min
+  GSM177241: 
+    incubation: nit
+    time: 3.5h
+  GSM177230: 
+    incubation: glu
+    time: 3.5h
+  GSM177229: 
+    incubation: glu
+    time: 3h
+  GSM177253: 
+    incubation: nit-pre.inc-germination2h
+    time: 1h
+  GSM177242: 
+    incubation: nit
+    time: 4.5h
+  GSM177231: 
+    incubation: glu
+    time: 4h
+  GSM177254: 
+    incubation: nit-pre.inc-germination2h
+    time: 1.5h
+  GSM177243: 
+    incubation: nit
+    time: 6h
+  GSM177232: 
+    incubation: glu
+    time: 6h
+  GSM177221: 
+    incubation: diff-nut
+    time: 0min
+  GSM177255: 
+    incubation: nit-pre.inc-germination2h
+    time: 2h
+  GSM177244: 
+    incubation: glu-pre.inc-germination2h
+    time: 30min
+  GSM177233: 
+    incubation: nit
+    time: 15min
+  GSM177222: 
+    incubation: glu
+    time: 15min
+  GSM177256: 
+    incubation: nit-pre.inc-germination2h
+    time: 2.5h
+  GSM177245: 
+    incubation: glu-pre.inc-germination2h
+    time: 1h
+  GSM177234: 
+    incubation: nit
+    time: 30min
+  GSM177223: 
+    incubation: glu
+    time: 30min
+  GSM177257: 
+    incubation: nit-pre.inc-germination2h
+    time: 3.5h
+  GSM177246: 
+    incubation: glu-pre.inc-germination2h
+    time: 1.5h
+  GSM177235: 
+    incubation: bit
+    time: 45min
+  GSM177224: 
+    incubation: glu
+    time: 45min
+  GSM177258: 
+    incubation: nit-pre.inc-germination2h
+    time: 4h
+  GSM177247: 
+    incubation: glu-pre.inc-germination2h
+    time: 2h
+  GSM177236: 
+    incubation: nit
+    time: 1h
+  GSM177225: 
+    incubation: glu
+    time: 1h
+  GSM177248: 
+    incubation: glu-pre.inc-germination2h
+    time: 2.5h
+  GSM177237: 
+    incubation: nit
+    time: 1.5h
+  GSM177226: 
+    incubation: glu
+    time: 1.5h
+:title: The contribution of different nutrients to spore germination in Saccharomyces cerevisiae
+:platform: GPL5031

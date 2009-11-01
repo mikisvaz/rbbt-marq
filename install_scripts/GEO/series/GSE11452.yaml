@@ -1,0 +1,354 @@
+--- 
+:arrays: 
+  GSM291448: 
+    condition: Iron limited chemostat cultures with ethanol as a carbon source
+  GSM290691: 
+    condition: Acetate limited chemostat culture D=0.1/h
+  GSM200686: 
+    condition: Carbon-limited Aerobic chemostat culture
+  GSM29946: 
+    condition: Anaerobic phosphorus limited
+  GSM296157: 
+    condition: Anaerobic nitrogen limited chemostat 0.03h-1
+  GSM291449: 
+    condition: Iron limited chemostat cultures with ethanol as a carbon source
+  GSM290692: 
+    condition: Ethanol limited chemostat culture D=0.1/h
+  GSM200687: 
+    condition: Carbon-limited Aerobic chemostat culture
+  GSM296158: 
+    condition: Anaerobic glucose limited chemostat
+  GSM200688: 
+    condition: Nitrogen-limited Aerobic chemostat culture
+  GSM29948: 
+    condition: Anaerobic sulfur limited
+  GSM296159: 
+    condition: Aerobic glucose limited chemostat with 25 mM formate
+  GSM291420: 
+    condition: Aerobic glucose limited chemostat with Phenylalanine as N-source
+  GSM200689: 
+    condition: Nitrogen-limited Aerobic chemostat culture
+  GSM29949: 
+    condition: Anaerobic sulfur limited
+  GSM317647: 
+    condition: C-lim aerobic chemostat with 25mM formate
+  GSM283692: 
+    condition: C-lim Anaerobic chemostat dilution rate 0.05h-1
+  GSM29920: 
+    condition: Aerobic nitrogen limited
+  GSM283693: 
+    condition: C-lim Anaerobic chemostat dilution rate 0.05h-1
+  GSM200690: 
+    condition: Nitrogen-limited Aerobic chemostat culture
+  GSM283694: 
+    condition: C-lim Anaerobic chemostat dilution rate 0.05h-1
+  GSM200691: 
+    condition: Nitrogen-limited Anaerobic chemostat culture
+  GSM137497: 
+    condition: C-lim Anaerobic reference (pH 5)
+  GSM283695: 
+    condition: erobic galactose C-lim chemostat culture
+  GSM29922: 
+    condition: Aerobic nitrogen limited
+  GSM137498: 
+    condition: C-lim Anaerobic reference (pH 5)
+  GSM29951: 
+    condition: Anaerobic sulfur limited
+  GSM283696: 
+    condition: erobic galactose C-lim chemostat culture
+  GSM200692: 
+    condition: Nitrogen-limited Anaerobic chemostat culture
+  GSM291340: 
+    condition: Aerobic phosphorus limited chemostat with anaerobic factors (tween and ergosterol)
+  GSM283697: 
+    condition: erobic galactose C-lim chemostat culture
+  GSM29924: 
+    condition: Aerobic phosphorus limited
+  GSM200693: 
+    condition: Nitrogen-limited Anaerobic chemostat culture
+  GSM291341: 
+    condition: Aerobic phosphorus limited chemostat with anaerobic factors (tween and ergosterol)
+  GSM283698: 
+    condition: erobic galactose C-lim chemostat culture
+  GSM291342: 
+    condition: Aerobic phosphorus limited chemostat with anaerobic factors (tween and ergosterol)
+  GSM283868: 
+    condition: Aerobic S-lim chemostat culture
+  GSM283699: 
+    condition: erobic galactose C-lim chemostat culture
+  GSM29926: 
+    condition: Aerobic phosphorus limited
+  GSM198364: 
+    condition: Zinc limited Aerobic chemostat culture
+  GSM108392: 
+    condition: Aerobic glucose limited
+  GSM291343: 
+    condition: Anaerobic glucose limited chemostat with methionine as sulfur source
+  GSM284058: 
+    condition: N-lim Anaerobic chemostat dilution rate 0.2h-1
+  GSM283897: 
+    condition: Aerobic pH3.5 C-lim chemostat culture
+  GSM283869: 
+    condition: Aerobic S-lim chemostat culture
+  GSM147746: 
+    condition: C-lim aerobic chemostat with ASN as N-source
+  GSM29927: 
+    condition: Aerobic phosphorus limited
+  GSM198365: 
+    condition: Zinc limited Aerobic chemostat culture
+  GSM108393: 
+    condition: Aerobic glucose limited
+  GSM291344: 
+    condition: Anaerobic glucose limited chemostat with methionine as sulfur source
+  GSM284059: 
+    condition: N-lim Anaerobic chemostat dilution rate 0.2h-1
+  GSM283898: 
+    condition: Aerobic pH3.5 C-lim chemostat culture
+  GSM147747: 
+    condition: C-lim aerobic chemostat with ASN as N-source
+  GSM198366: 
+    condition: Zinc limited Aerobic chemostat culture
+  GSM108394: 
+    condition: Aerobic glucose limited
+  GSM291345: 
+    condition: Anaerobic glucose limited chemostat with methionine as sulfur source
+  GSM283899: 
+    condition: Aerobic pH3.5 C-lim chemostat culture
+  GSM147748: 
+    condition: C-lim aerobic chemostat with ASN as N-source
+  GSM29929: 
+    condition: Aerobic sulfur limited
+  GSM198367: 
+    condition: Zinc-limited Anaerobic chemostat culture
+  GSM143071: 
+    condition: 12C Chemostat anaerobic C-lim 0.03h-1
+  GSM291346: 
+    condition: Anaerobic nitrogen limited chemostat with methionine as nitrogen source
+  GSM108368: 
+    condition: Anaerobic carbon limited
+  GSM147749: 
+    condition: C-lim aerobic chemostat with Proline as N-source
+  GSM198368: 
+    condition: Zinc-limited Anaerobic chemostat culture
+  GSM234643: 
+    condition: Carbon-limited anaerobic chemostat with benzoate
+  GSM291347: 
+    condition: Anaerobic nitrogen limited chemostat with methionine as nitrogen source
+  GSM284060: 
+    condition: C-lim Anaerobic chemostat dilution rate 0.03h-1
+  GSM283870: 
+    condition: C-lim Anaerobic chemostat dilution rate 0.03h-1
+  GSM283700: 
+    condition: erobic galactose C-lim chemostat culture
+  GSM108369: 
+    condition: Anaerobic carbon limited
+  GSM198369: 
+    condition: Zinc-limited Anaerobic chemostat culture
+  GSM234644: 
+    condition: Carbon-limited anaerobic chemostat with benzoate
+  GSM143073: 
+    condition: 12C Chemostat anaerobic C-lim 0.03h-1
+  GSM291431: 
+    condition: Aerobic glucose limited chemostat with Phenylalanine as N-source
+  GSM291348: 
+    condition: Anaerobic nitrogen limited chemostat with methionine as nitrogen source
+  GSM284061: 
+    condition: C-lim Anaerobic chemostat dilution rate 0.03h-1
+  GSM283871: 
+    condition: N-lim Anaerobic chemostat dilution rate 0.03h-1
+  GSM225399: 
+    condition: Ethanol limited chemostat D=0.1/h
+  GSM234645: 
+    condition: Carbon-limited anaerobic chemostat with benzoate
+  GSM225482: 
+    condition: Anaerobic glucose limited chemostat cultureCO2
+  GSM291432: 
+    condition: Aerobic glucose limited chemostat with leucine as nitrogen source
+  GSM291349: 
+    condition: Anaerobic nitrogen limited chemostat with methionine as nitrogen and sulfur source
+  GSM283872: 
+    condition: C-lim Anaerobic chemostat dilution rate 0.2h-1
+  GSM147750: 
+    condition: C-lim aerobic chemostat with Proline as N-source
+  GSM29930: 
+    condition: Aerobic sulfur limited
+  GSM209979: 
+    condition: CENPK113-7D glucose/ethanol limited chemostat
+  GSM283900: 
+    condition: Aerobic pH6.5 C-lim chemostat culture
+  GSM283873: 
+    condition: C-lim Anaerobic chemostat dilution rate 0.2h-1
+  GSM283901: 
+    condition: Aerobic pH6.5 C-lim chemostat culture
+  GSM108370: 
+    condition: Anaerobic carbon limited
+  GSM147751: 
+    condition: C-lim aerobic chemostat with Proline as N-source
+  GSM137675: 
+    condition: C-lim Anaerobic reference (pH 5)
+  GSM29932: 
+    condition: Aerobic sulfur limited
+  GSM143076: 
+    condition: 12C Chemostat anaerobic C-lim 0.03h-1
+  GSM137676: 
+    condition: C-lim Anaerobic Acetate
+  GSM143077: 
+    condition: 30C Anaerobic C-lim chemostat 0.03h-1
+  GSM209980: 
+    condition: CENPK113-7D glucose/ethanol limited chemostat
+  GSM291350: 
+    condition: Anaerobic nitrogen limited chemostat with methionine as nitrogen and sulfur source
+  GSM283903: 
+    condition: Aerobic pH6.5 C-lim chemostat culture
+  GSM137677: 
+    condition: C-lim Anaerobic Acetate
+  GSM29934: 
+    condition: Anaerobic carbon limited
+  GSM209981: 
+    condition: CENPK113-7D glucose/ethanol limited chemostat
+  GSM147753: 
+    condition: C-lim aerobic chemostat with leucine as N-source
+  GSM291351: 
+    condition: Anaerobic nitrogen limited chemostat with methionine as nitrogen and sulfur source
+  GSM225514: 
+    condition: Anaerobic glucose limited chemostat cultureCO2
+  GSM137678: 
+    condition: C-lim Anaerobic Acetate
+  GSM143079: 
+    condition: 30C Anaerobic C-lim chemostat 0.03h-1
+  GSM209982: 
+    condition: CENPK113-7D glucose/ethanol limited chemostat
+  GSM225400: 
+    condition: Ethanol limited chemostat D=0.1/h
+  GSM147754: 
+    condition: C-lim aerobic chemostat with leucine as N-source
+  GSM225515: 
+    condition: Aerobic glucose limited chemostat cultureCO2
+  GSM137679: 
+    condition: C-lim Anaerobic Benzoate
+  GSM225401: 
+    condition: Ethanol limited chemostat D=0.1/h
+  GSM147755: 
+    condition: C-lim aerobic chemostat with leucine as N-source
+  GSM225402: 
+    condition: Acetate limited chemostat culture D=0.1/h
+  GSM225516: 
+    condition: Aerobic glucose limited chemostat cultureCO2
+  GSM225403: 
+    condition: Acetate limited chemostat culture D=0.1/h
+  GSM147757: 
+    condition: C-lim aerobic chemostat with phenylalanine as N-source
+  GSM225517: 
+    condition: Aerobic glucose limited chemostat cultureCO2
+  GSM29939: 
+    condition: Anaerobic nitrogen limited
+  GSM137680: 
+    condition: C-lim Anaerobic Benzoate
+  GSM143081: 
+    condition: 30C Anaerobic C-lim chemostat 0.03h-1
+  GSM225404: 
+    condition: Acetate limited chemostat culture D=0.1/h
+  GSM147758: 
+    condition: C-lim aerobic chemostat with phenylalanine as N-source
+  GSM291100: 
+    condition: Anaerobic carbon limited with methionine as N-source
+  GSM137681: 
+    condition: C-lim Anaerobic Benzoate
+  GSM143082: 
+    condition: 12C anaerobic N-lim chemostat 0.03h-1
+  GSM147759: 
+    condition: C-lim aerobic chemostat with methionine as N-source
+  GSM225519: 
+    condition: Aerobic nitrogen limited chemostat cultureCO2
+  GSM137682: 
+    condition: C-lim Anaerobic Propionate
+  GSM143083: 
+    condition: 12C anaerobic N-lim chemostat 0.03h-1
+  GSM317639: 
+    condition: Aerobic sulfur limited culture (cDNA from total RNA)
+  GSM137683: 
+    condition: C-lim Anaerobic Propionate
+  GSM143084: 
+    condition: 12C anaerobic N-lim chemostat 0.03h-1
+  GSM225407: 
+    condition: Maltose limited chemostat culture D=0.1/h
+  GSM317837: 
+    condition: CENPK113-7D glucose/ethanol (19mM) limited chemostat
+  GSM291103: 
+    condition: Anaerobic carbon limited with methionine as N-source
+  GSM29940: 
+    condition: Anaerobic nitrogen limited
+  GSM143085: 
+    condition: 30C anaerobic N-lim chemostat 0.03h-1
+  GSM29912: 
+    condition: Aerobic glucose limited
+  GSM225520: 
+    condition: Aerobic nitrogen limited chemostat cultureCO2
+  GSM137684: 
+    condition: C-lim Anaerobic Propionate
+  GSM317838: 
+    condition: CENPK113-7D glucose/ethanol (19mM) limited chemostat
+  GSM291104: 
+    condition: Anaerobic carbon limited with methionine as N-source
+  GSM290744: 
+    condition: N-lim Anaerobic chemostat dilution rate 0.2h-1
+  GSM147761: 
+    condition: C-lim aerobic chemostat with methionine as N-source
+  GSM137685: 
+    condition: C-lim Anaerbic Sorbate
+  GSM317839: 
+    condition: CENPK113-7D glucose/ethanol (19mM) limited chemostat
+  GSM291105: 
+    condition: Aerobic glucose limited chemostat with anaerobic factors (tween and ergosterol)
+  GSM290745: 
+    condition: N-lim Anaerobic chemostat dilution rate 0.03h-1
+  GSM29914: 
+    condition: Aerobic glucose limited
+  GSM225521: 
+    condition: Aerobic nitrogen limited chemostat cultureCO2
+  GSM29942: 
+    condition: Anaerobic nitrogen limited
+  GSM291106: 
+    condition: Aerobic glucose limited chemostat with anaerobic factors (tween and ergosterol)
+  GSM290746: 
+    condition: N-lim Anaerobic chemostat dilution rate 0.2h-1
+  GSM147762: 
+    condition: C-lim aerobic chemostat with methionine as N-source
+  GSM137686: 
+    condition: C-lim Anaerbic Sorbate
+  GSM29943: 
+    condition: Anaerobic phosphorus limited
+  GSM291418: 
+    condition: Anaerobic sulfur limited chemostat
+  GSM291107: 
+    condition: Aerobic glucose limited chemostat with anaerobic factors (tween and ergosterol)
+  GSM137687: 
+    condition: C-lim Anaerbic Sorbate
+  GSM143088: 
+    condition: 30C anaerobic N-lim chemostat 0.03h-1
+  GSM317840: 
+    condition: C-lim Aerobic chemostat with maltose as C-source
+  GSM291419: 
+    condition: Aerobic glucose limited chemostat with Phenylalanine as N-source
+  GSM29917: 
+    condition: Aerobic glucose limited
+  GSM200685: 
+    condition: Carbon-limited Aerobic chemostat culture
+  GSM225469: 
+    condition: Anaerobic glucose limited chemostat cultureCO2
+  GSM29945: 
+    condition: Anaerobic phosphorus limited
+  GSM143089: 
+    condition: 30C anaerobic N-lim chemostat 0.03h-1
+:description: |-
+  Background
+  Microorganisms adapt their transcriptome by integrating multiple chemical and physical signals from their environment. Shake-flask cultivation does not allow precise manipulation of individual culture parameters and therefore precludes a quantitative analysis of the (combinatorial) influence of these parameters on transcriptional regulation. Steady-state chemostat cultures, which do enable accurate control, measurement and manipulation of individual cultivation parameters (e.g. specific growth rate, temperature, identity of the growth-limiting nutrient) appear to provide a promising experimental platform for such a combinatorial analysis.
+  Results
+  A microarray compendium of 170 steady-state chemostat cultures of the yeast Saccharomyces cerevisiae is presented and analyzed. The 170 microarrays encompass 55 unique conditions, which can be characterized by the combined settings of 10 different cultivation parameters.
+  By applying a regression model to assess the impact of (combinations of) cultivation parameters on the transcriptome, most S. cerevisiae genes were shown to be influenced by multiple cultivation parameters, and in many cases by combinatorial effects of cultivation parameters. The inclusion of these combinatorial effects in the regression model led to higher explained variance of the gene expression patterns and resulted in higher function enrichment in subsequent analysis.
+  We further demonstrate the usefulness of the compendium and regression analysis for interpretation of shake-flask-based transcriptome studies and for guiding functional analysis of (uncharacterized) genes and pathways.
+  Conclusions
+  Modeling the combinatorial effects of environmental parameters on the transcriptome is crucial for understanding transcriptional regulation. Chemostat cultivation offers a powerful tool for such an approach.
+  Keywords: chemostat steady state samples
+:title: Saccharomyces cerevisiae chemostat steady state microarray compendium
+:platform: GPL90

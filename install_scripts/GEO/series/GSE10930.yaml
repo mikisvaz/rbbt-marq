@@ -1,0 +1,15 @@
+--- 
+:arrays: 
+  GSM277242: 
+    condition: wt
+  GSM277243: 
+    condition: wt
+  GSM277244: 
+    condition: H3mut
+  GSM277245: 
+    condition: h3mut
+:description: |-
+  Total RNA from two replicate cultures of wild-type and mutant strains was isolated and the expression profiles were determined using Affymetrix arrays. Comparisons between the sample groups allow the identification of genes regulated by histone H3 K4,36,79G mutant.
+  Keywords: repeat
+:title: Histone H3 K4,36,79G
+:platform: GPL90

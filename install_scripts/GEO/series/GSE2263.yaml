@@ -1,0 +1,57 @@
+--- 
+:arrays: 
+  GSM41752: 
+    condition: SP 130seg
+  GSM41741: 
+    condition: SP 20seg
+  GSM41753: 
+    condition: SP 140seg
+  GSM41742: 
+    condition: SP 30seg
+  GSM41754: 
+    condition: SP 150seg
+  GSM41743: 
+    condition: SP 40seg
+  GSM41755: 
+    condition: SP 160seg
+  GSM41744: 
+    condition: SP 50seg
+  GSM42238: 
+    condition: SP 0seg
+  GSM41756: 
+    condition: SP 170seg
+  GSM41745: 
+    condition: SP 60seg
+  GSM42239: 
+    condition: SP 0seg
+  GSM41757: 
+    condition: SP 180seg
+  GSM41746: 
+    condition: SP 70seg
+  GSM42240: 
+    condition: SP 0seg
+  GSM41758: 
+    condition: SP 300seg
+  GSM41747: 
+    condition: SP 80seg
+  GSM42241: 
+    condition: SP 0seg
+  GSM41748: 
+    condition: SP 90seg
+  GSM42242: 
+    condition: SP 0seg
+  GSM41749: 
+    condition: SP 100seg
+  GSM41750: 
+    condition: SP 110seg
+  GSM41739: 
+    condition: SP 0seg
+  GSM41751: 
+    condition: SP 120seg
+  GSM41740: 
+    condition: SP 10seg
+:title: 10s oxidative stress
+:description: |-
+  This series represents the rapid response to oxidative stress
+  Keywords: time-course
+:platform: GPL1859

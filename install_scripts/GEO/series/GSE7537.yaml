@@ -1,0 +1,27 @@
+--- 
+:description: |-
+  Spontaneous mutations were accumulated in haploid strains of yeast. Expression profiling was performed on four MA lines and the ancestor in a complete loop design.
+  Keywords: Gene expression profiling
+:arrays: 
+  GSM182247: 
+    condition: MA-A1 MA-A4
+  GSM182248: 
+    condition: MA-A4 MA-A8
+  GSM182249: 
+    condition: MA-A8 MA-A3
+  GSM182250: 
+    condition: MA-A0 MA-A8
+  GSM182251: 
+    condition: MA-A8 MA-A1
+  GSM182252: 
+    condition: MA-A3 MA-A0
+  GSM182253: 
+    condition: MA-A3 MA-A1
+  GSM182244: 
+    condition: MA-A0 MA-A4
+  GSM182245: 
+    condition: MA-A4 MA-A3
+  GSM182246: 
+    condition: MA-A1 MA-A0
+:title: Mutation accumulation and the yeast transcriptome
+:platform: GPL5092

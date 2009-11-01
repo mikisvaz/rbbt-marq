@@ -1,0 +1,80 @@
+--- 
+:title: Non-essential mRNA processing factors
+:description: |-
+  Set of experiments done on yeast deletion strains of various non-essential mRNA processing factors.
+  Keywords = splicing
+  Keywords: repeat sample
+:arrays: 
+  GSM1495: 
+    condition: upf3
+  GSM1484: 
+    condition: nam8
+  GSM1473: 
+    condition: hsp104
+  GSM1462: 
+    condition: prp4
+  GSM1496: 
+    condition: upf3
+  GSM1485: 
+    condition: prp17
+  GSM1474: 
+    condition: hsp104
+  GSM1463: 
+    condition: brr1
+  GSM1486: 
+    condition: prp17
+  GSM1475: 
+    condition: msl1
+  GSM1464: 
+    condition: brr1
+  GSM1487: 
+    condition: prp18
+  GSM1476: 
+    condition: msl1
+  GSM1465: 
+    condition: cus2
+  GSM1488: 
+    condition: prp18
+  GSM1477: 
+    condition: mud1
+  GSM1466: 
+    condition: cus2
+  GSM1490: 
+    condition: snu17
+  GSM1489: 
+    condition: snu17
+  GSM1478: 
+    condition: mud1
+  GSM1467: 
+    condition: dbr1
+  GSM1491: 
+    condition: snu40
+  GSM1480: 
+    condition: mud13
+  GSM1479: 
+    condition: mud13
+  GSM1468: 
+    condition: dbr1
+  GSM1492: 
+    condition: snu40
+  GSM1481: 
+    condition: mud2
+  GSM1470: 
+    condition: ecm2
+  GSM1469: 
+    condition: ecm2
+  GSM1493: 
+    condition: snu66
+  GSM1482: 
+    condition: mud2
+  GSM1471: 
+    condition: gcr3
+  GSM1494: 
+    condition: snu66
+  GSM1483: 
+    condition: nam8
+  GSM1472: 
+    condition: gcr3
+  GSM1461: 
+    condition: prp4
+:platform: GPL105

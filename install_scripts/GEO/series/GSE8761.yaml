@@ -1,0 +1,55 @@
+--- 
+:description: |-
+  Duplicated genes escape gene loss by conferring a dosage benefit or evolving diverged functions.  The yeast Saccharomyces cerevisiae contains many duplicated genes encoding ribosomal proteins.  Prior studies have suggested that these duplicated proteins are functionally redundant and affect cellular processes in proportion to their expression.  In contrast, through studies of ASH1 mRNA in yeast, we demonstrate paralog-specific requirements for the translation of localized mRNAs.  Intriguingly, these paralog-specific effects are limited to a distinct subset of duplicated ribosomal proteins.  Moreover, transcriptional and phenotypic profiling of cells lacking specific ribosomal proteins reveals differences between the functional roles of ribosomal protein paralogs that extend beyond effects on mRNA localization.  Finally, we show that ribosomal protein paralogs exhibit differential requirements for assembly and localization. Together, our data indicate complex specialization of ribosomal proteins for specific cellular processes, and support the existence of a ribosomal code.
+  Keywords: genetic modification
+:arrays: 
+  GSM217633: 
+    condition: Rpl7b
+  GSM217634: 
+    condition: Rpl12a
+  GSM217745: 
+    condition: Rps0a
+  GSM217635: 
+    condition: Rpl12a
+  GSM217746: 
+    condition: Rps0a
+  GSM217636: 
+    condition: Rpl12b
+  GSM217395: 
+    condition: wt
+  GSM217747: 
+    condition: Rps0b
+  GSM217637: 
+    condition: Rpl12b
+  GSM217748: 
+    condition: Rps0b
+  GSM217638: 
+    condition: Rpl14a
+  GSM217616: 
+    condition: wt
+  GSM217750: 
+    condition: Rps18a
+  GSM217749: 
+    condition: Rps18a
+  GSM217640: 
+    condition: Rpl22a
+  GSM217639: 
+    condition: Rpl14a
+  GSM217617: 
+    condition: Rpl7a
+  GSM217751: 
+    condition: Rps18b
+  GSM217641: 
+    condition: Rpl22a
+  GSM217618: 
+    condition: Rpl7a
+  GSM217752: 
+    condition: Rps18b
+  GSM217642: 
+    condition: Rpl22b
+  GSM217643: 
+    condition: Rpl22b
+  GSM217621: 
+    condition: Rpl7b
+:title: Transcriptional profiling of ribosomal protein knockouts
+:platform: GPL90

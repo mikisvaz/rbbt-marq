@@ -1,0 +1,115 @@
+--- 
+:arrays: 
+  GSM259323: 
+    condition: YPS163 vs DBY8268
+  GSM259312: 
+    condition: YJM269 vs DBY8268
+  GSM259301: 
+    condition: Y1 vs DBY8268
+  GSM259290: 
+    condition: M8 vs DBY8268
+  GSM259279: 
+    condition: K1 vs DBY8268
+  GSM259291: 
+    condition: M8 vs DBY8268
+  GSM259280: 
+    condition: K1 vs DBY8268
+  GSM259324: 
+    condition: YPS163 vs DBY8268
+  GSM259313: 
+    condition: YJM269 vs DBY8268
+  GSM259302: 
+    condition: Y1 vs DBY8268
+  GSM259292: 
+    condition: PR vs DBY8268
+  GSM259281: 
+    condition: K1 vs DBY8268
+  GSM259325: 
+    condition: YPS163 vs DBY8268
+  GSM259314: 
+    condition: YJM308 vs DBY8268
+  GSM259303: 
+    condition: Y1 vs DBY8268
+  GSM259293: 
+    condition: PR vs DBY8268
+  GSM259282: 
+    condition: K9 vs DBY8268
+  GSM259326: 
+    condition: YPS163 vs DBY8268
+  GSM259315: 
+    condition: YJM308 vs DBY8268
+  GSM259304: 
+    condition: Y10 vs DBY8268
+  GSM259294: 
+    condition: PR vs DBY8268
+  GSM259283: 
+    condition: K9 vs DBY8268
+  GSM259316: 
+    condition: YJM308 vs DBY8268
+  GSM259305: 
+    condition: Y10 vs DBY8268
+  GSM259295: 
+    condition: RM11a vs DBY8268
+  GSM259284: 
+    condition: K9 vs DBY8268
+  GSM259273: 
+    condition: B1 vs DBY8268
+  GSM259317: 
+    condition: YJM789 vs DBY8268
+  GSM259306: 
+    condition: Y10 vs DBY8268
+  GSM259296: 
+    condition: RM11a vs DBY8268
+  GSM259285: 
+    condition: M22 vs DBY8268
+  GSM259274: 
+    condition: B1 vs DBY8268
+  GSM259318: 
+    condition: YJM789 vs DBY8268
+  GSM259307: 
+    condition: Y10 vs DBY8268
+  GSM259297: 
+    condition: RM11a vs DBY8268
+  GSM259286: 
+    condition: M22 vs DBY8268
+  GSM259275: 
+    condition: B1 vs DBY8268
+  GSM259320: 
+    condition: YPS1009 vs DBY8268
+  GSM259319: 
+    condition: YJM789 vs DBY8268
+  GSM259308: 
+    condition: Y12 vs DBY8268
+  GSM259298: 
+    condition: SB vs DBY8268
+  GSM259287: 
+    condition: M22 vs DBY8268
+  GSM259276: 
+    condition: I14 vs DBY8268
+  GSM259321: 
+    condition: YPS1009 vs DBY8268
+  GSM259310: 
+    condition: Y12 vs DBY8268
+  GSM259309: 
+    condition: Y12 vs DBY8268
+  GSM259299: 
+    condition: SB vs DBY8268
+  GSM259288: 
+    condition: M8 vs DBY8268
+  GSM259277: 
+    condition: I14 vs DBY8268
+  GSM259322: 
+    condition: YPS1009 vs DBY8268
+  GSM259311: 
+    condition: YJM269 vs DBY8268
+  GSM259300: 
+    condition: SB vs DBY8268
+  GSM259289: 
+    condition: M8 vs DBY8268
+  GSM259278: 
+    condition: I14 vs DBY8268
+:description: |-
+  Gene expression variation was measured in 17 non-laboratory strains compared to the sequenced S288c lab strain
+  Keywords: Gene expression comparisons in different yeast strains
+:title: Variations in stress sensitivity and genomic expression in diverse S. cerevisiae strains (CGH)
+:platform: GPL5915

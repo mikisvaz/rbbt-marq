@@ -1,0 +1,22 @@
+--- 
+:arrays: 
+  GSM146913: 
+    condition: Glucose 100mg_ml 7.5h vs 70mg_ml 6h
+  GSM146914: 
+    condition: Glucose 100mg_ml 7.5h vs 70mg_ml 6h
+  GSM146915: 
+    condition: Glucose 500mg_ml 6.3h vs 500mg_ml 10h
+  GSM146916: 
+    condition: Glucose 500mg_ml 6.3h vs 500mg_ml 10h
+  GSM146775: 
+    condition: Glucose 0mg_ml 0h
+  GSM146776: 
+    condition: Glucose 50mg_ml 7.5h
+  GSM146777: 
+    condition: Glucose 70mg_ml 3h
+:description: |-
+  The goal of this study is to analyse how the gene expression in Saccharomyces cerevisiae changes in dependency on the glucose concentration. Therefore, fed batch cultivations were carried out, during which the glucose concentration was maintained stable for several hours. Samples were taken at different times during the cultivations, the RNA was isolated and hybridised on whole genome yeast microarrays. Results from cultivations with the glucose concentrations 50, 70, 100 and 500 mg/L are presented. In addition, one sample from a starvation period (0 mg/L glucose) was analysed.
+  Keywords: Dependency on glucose concentration
+  !Series_overall_design = Results from seven microarray are summarised in this study. The samples originate from four different cultivations with the glucose set points mentioned above. Supplementary, one sample from a starvation period is shown and during the cultivations with glucose set points 70 mg/L and 500 mg/L, samples drawn at different cultivation times are presented.
+:title: Dependency of Gene Expression in Saccharomyces cerevisiae on extracellular Glucose Concentration
+:platform: GPL537

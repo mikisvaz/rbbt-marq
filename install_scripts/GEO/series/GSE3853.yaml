@@ -1,0 +1,31 @@
+--- 
+:arrays: 
+  GSM88170: 
+    condition: nup84-gcr1 vs wt
+  GSM88172: 
+    condition: nup84-gcr1 vs wt
+  GSM88162: 
+    condition: gcr1 vs wt
+  GSM88163: 
+    condition: gcr1 vs wt
+  GSM88164: 
+    condition: gcr1 vs wt
+  GSM88165: 
+    condition: nup84 vs wt
+  GSM88166: 
+    condition: nup84 vs wt
+  GSM88155: 
+    condition: gcr1 vs wt
+  GSM88189: 
+    condition: nup84-gcr1 vs wt
+  GSM88167: 
+    condition: nup84 vs wt
+  GSM88168: 
+    condition: nup84 vs wt
+  GSM88169: 
+    condition: nup84-gcr1 vs wt
+:description: |-
+  This experiment compares the transcriptional response of yeast cells to the deletion of Gcr1, Nup84, or both, to isogenic wild type strains grown in YPD at 23C.  The goal was to identify misregulated target genes and analyze the functional classifications of those targets.
+  Keywords: cell type comparison (knock-outs)
+:platform: GPL2883
+:title: Transcriptome response to the deletion of Gcr1, Nup84 or Nup84 & Gcr1 (double deletion)

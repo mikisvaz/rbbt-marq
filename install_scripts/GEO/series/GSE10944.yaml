@@ -1,0 +1,21 @@
+--- 
+:arrays: 
+  GSM277437: 
+    time: meiosis 8h
+  GSM277431: 
+    time: meiosis 1h
+  GSM277432: 
+    time: meiosis 2h
+  GSM277433: 
+    time: meiosis 3h
+  GSM277434: 
+    time: meiosis 4h
+  GSM277435: 
+    time: meiosis 5h
+  GSM277436: 
+    time: meiosis 6h
+:description: |-
+  We studied the meiotic regulation of transcription, by comparing the mRNA level at time t=1h to t=8h after meiosis induction, to the mRNA level at time t=0h.
+  Keywords: yeast meiotic time course, transcriptome
+:title: Transcriptomic regulation during meiosis
+:platform: GPL6649

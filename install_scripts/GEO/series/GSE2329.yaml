@@ -1,0 +1,43 @@
+--- 
+:arrays: 
+  GSM43063: 
+    condition: ubp8 vs wt
+  GSM43052: 
+    condition: dot4 vs wt
+  GSM43064: 
+    condition: dot4ubp8 vs wt
+  GSM43053: 
+    condition: ubp8 vs wt
+  GSM43065: 
+    condition: dot4ubp8 vs wt
+  GSM43054: 
+    condition: dot4ubp8 vs wt
+  GSM43066: 
+    condition: dot4ubp8 vs wt
+  GSM43055: 
+    condition: dot4 vs wt
+  GSM43056: 
+    condition: ubp8 vs wt
+  GSM43057: 
+    condition: wt vs dot4ubp8 vs wt
+  GSM43058: 
+    condition: dot4 vs wt
+  GSM43059: 
+    condition: dot4 vs wt
+  GSM43060: 
+    condition: dot4 vs wt
+  GSM43049: 
+    condition: dot4 vs wt
+  GSM43061: 
+    condition: ubp8 vs wt
+  GSM43050: 
+    condition: ubp8 vs wt
+  GSM43062: 
+    condition: ubp8 vs wt
+  GSM43051: 
+    condition: dot4ubp8 vs wt
+:title: DOT4/dot4 null, UBP8/ubp8 null transcript arrays
+:description: |-
+  Comparison of DOT4/dot4 null cells, UBP8/ubp8 null cells, and DOT4UBP8/dot4ubp8 null cells in YEPD.
+  Keywords: other
+:platform: GPL1879

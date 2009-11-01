@@ -1,0 +1,63 @@
+--- 
+:title: Protease Treatment
+:description: |-
+  Determine if transcripts are released by protease treatment
+  Keywords: Comparison of protease treatments
+:arrays: 
+  GSM84540: 
+    condition: Stationary Phase Qiagen Protease treated
+  GSM84529: 
+    condition: Exponential proteinase K treated
+  GSM84541: 
+    condition: Stationary Phase proteinase K treated
+  GSM84530: 
+    condition: Exponential proteinase K treated
+  GSM84542: 
+    condition: Stationary Phase proteinase K treated
+  GSM84531: 
+    condition: Exponential trypsin treated
+  GSM84543: 
+    condition: Stationary Phase trypsin treated
+  GSM84532: 
+    condition: Exponential trypsin treated
+  GSM84521: 
+    condition: Exponential Qiagen Protease Non-treated
+  GSM84544: 
+    condition: Stationary Phase trypsin treated
+  GSM84533: 
+    condition: Stationary Phase Qiagen Protease Non-treated
+  GSM84522: 
+    condition: Exponential Qiagen Protease Non-treated
+  GSM84545: 
+    condition: Stationary Phase trypsin Non-treated time 2 mins
+  GSM84534: 
+    condition: Stationary Phase Qiagen Protease Non-treated
+  GSM84523: 
+    condition: Exponential proteinase K Non-treated
+  GSM84546: 
+    condition: Stationary Phase trypsin Non-treated time 2 mins
+  GSM84535: 
+    condition: Stationary Phase proteinase K Non-treated
+  GSM84524: 
+    condition: Exponential proteinase K Non-treated
+  GSM84547: 
+    condition: Stationary Phase trypsin treated time 2 mins
+  GSM84536: 
+    condition: Stationary Phase proteinase K Non-treated
+  GSM84525: 
+    condition: Exponential trypsin Non-treated
+  GSM84548: 
+    condition: Stationary Phase trypsin treated time 2 mins
+  GSM84537: 
+    condition: Stationary Phase trypsin Non-treated
+  GSM84526: 
+    condition: Exponential trypsin Non-treated
+  GSM84538: 
+    condition: Stationary Phase trypsin Non-treated
+  GSM84527: 
+    condition: Exponential Qiagen Protease treated
+  GSM84539: 
+    condition: Stationary Phase Qiagen Protease treated
+  GSM84528: 
+    condition: Exponential Qiagen Protease treated
+:platform: GPL1859

@@ -1,0 +1,37 @@
+--- 
+:description: |-
+  Gene expression analysis of a time course experiment of a synthetic must (nitrogen-poor) fermentation by a natural wine yeast.
+  Keywords: Time course
+:title: Sluggish Fermentation
+:arrays: 
+  GSM113397: 
+    condition: SFt8
+  GSM113386: 
+    condition: SFt4
+  GSM113398: 
+    condition: SFt8
+  GSM113387: 
+    condition: SFt5
+  GSM113388: 
+    condition: SFt5
+  GSM113390: 
+    condition: SFt6
+  GSM113389: 
+    condition: SFt5
+  GSM113391: 
+    condition: SFt6
+  GSM113392: 
+    condition: SFt6
+  GSM113393: 
+    condition: SFt7
+  GSM113394: 
+    condition: SFt7
+  GSM113383: 
+    condition: SFt4
+  GSM113395: 
+    condition: SFt7
+  GSM113384: 
+    condition: SFt4
+  GSM113396: 
+    condition: SFt8
+:platform: GPL3763

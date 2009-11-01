@@ -1,0 +1,11 @@
+--- 
+:arrays: 
+  GSM287991: 
+    treatment: wt
+  GSM287992: 
+    treatment: alpha-factor
+:description: |-
+  We measured the response of S. cerevisiae to arrest in the presence of alpha factor.  These were collected in support of a related DNaseI-sequencing study.
+  Keywords: Alpha-factor arrest
+:title: Alpha-factor treatment of Saccharomyces cerevisiae
+:platform: GPL2529

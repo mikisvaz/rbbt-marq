@@ -1,0 +1,19 @@
+--- 
+:arrays: 
+  GSM3023: 
+    treatment: yra1-1 at 37C vs. Yra1 WT at 37C
+  GSM3024: 
+    treatment: yra1-1 at 37C vs. Yra1 WT at 37C
+  GSM3025: 
+    treatment: yra1-1 at 37C vs. Yra1 WT at 37C
+  GSM3026: 
+    treatment: yra1-1 at 37C vs. Yra1 WT at 37C
+  GSM3027: 
+    treatment: yra1-1 at 37C vs. Yra1 WT at 37C
+  GSM3028: 
+    treatment: yra1-1 at 37C vs. Yra1 WT at 37C
+:description: |-
+  Comparison of cDNA from RNA of yra1-1 temperature-sensitive mutant to RNA from Yra1 wildtype strain both at the non-permissive temperature of 37C
+  Keywords: repeat sample
+:title: total RNA from yra1-1 at 37C vs. Yra1 WT at 37C (yra1-1TS_v_Yra1WT)
+:platform: GPL220

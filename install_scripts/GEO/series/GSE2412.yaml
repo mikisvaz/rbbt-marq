@@ -1,0 +1,58 @@
+--- 
+:arrays: 
+  GSM45510: 
+    condition: imazalil
+  GSM45499: 
+    condition: fenarimol
+  GSM45477: 
+    condition: cyprodinil
+  GSM45511: 
+    condition: fenbuconazole
+  GSM45500: 
+    condition: fenarimol
+  GSM45478: 
+    condition: cyprodinil
+  GSM45512: 
+    condition: fenbuconazole
+  GSM45513: 
+    condition: prochloraz
+  GSM45514: 
+    condition: imazalil
+  GSM45492: 
+    condition: dodemorph
+  GSM45515: 
+    condition: imazalil
+  GSM45493: 
+    condition: dodemorph
+  GSM45505: 
+    condition: prochloraz
+  GSM45494: 
+    condition: fenpropimorph
+  GSM45506: 
+    condition: triadimefon
+  GSM45495: 
+    condition: fenpropimorph
+  GSM45507: 
+    condition: triadimefon
+  GSM45496: 
+    condition: fenhexamid
+  GSM45508: 
+    condition: triadimefon
+  GSM45497: 
+    condition: fenhexamid
+  GSM45509: 
+    condition: imazalil
+  GSM45498: 
+    condition: fenhexamid
+:title: Agricultural sterol biosynthesis inhibitor fungicides
+:description: |-
+  agricultural sterol biosynthesis inhibitor fungicides
+  Keywords = agriculture
+  Keywords = ergosterol
+  Keywords = methionine
+  Keywords = fungicide
+  Keywords = Saccharomyces cerevisiae S288C
+  Keywords = biosynthesis
+  SUBMITTER_CITATION: Kagan IA, Michel A, Prause A, Scheffler BE, Pace P, Duke SO.  2005. Gene transcription profiles of Saccharomyces cerevisiae after treatment with plant protection fungicides that inhibit ergosterol biosynthesis. Pesticide Biochemistry and Physiology 82:133-153.
+  Keywords: other
+:platform: GPL1877

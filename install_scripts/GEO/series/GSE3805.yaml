@@ -1,0 +1,19 @@
+--- 
+:title: Histone H2B^30-37
+:description: |-
+  Histone H2B was mutated to give H2B^30-37.  Total RNA from three replicate cultures of wild-type and mutant was isolated and the expression profiles were determined using Affymetrix arrays.  Comparisons between the sample groups allow the identification of genes regulated by H2B HBR domain.
+  Keywords: repeat
+:arrays: 
+  GSM86764: 
+    condition: Wild-type for H2B
+  GSM86767: 
+    condition: Mutant Histone H2B
+  GSM86768: 
+    condition: Mutant Histone H2B
+  GSM86769: 
+    condition: Mutant Histone H2B
+  GSM86759: 
+    condition: Wild-type for H2B
+  GSM86748: 
+    condition: Wild-type for H2B
+:platform: GPL90

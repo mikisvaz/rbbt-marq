@@ -1,0 +1,34 @@
+--- 
+:arrays: 
+  GSM318317: 
+    disease: incipient Alzheimer
+  GSM318320: 
+    disease: incipient Alzheimer
+  GSM318442: 
+    disease: incipient Alzheimer
+  GSM318321: 
+    disease: incipient Alzheimer
+  GSM318310: 
+    disease: control
+  GSM318211: 
+    disease: control
+  GSM318443: 
+    disease: incipient Alzheimer
+  GSM318311: 
+    disease: control
+  GSM318212: 
+    disease: control
+  GSM318312: 
+    disease: control
+  GSM318213: 
+    disease: control
+  GSM318445: 
+    disease: incipient Alzheimer
+  GSM318313: 
+    disease: control
+  GSM318314: 
+    disease: control
+:description: "In Alzheimer\xE2\x80\x99s disease (AD), early deficits in learning and memory are a consequence of synaptic modification which are likely induced by toxic beta-amyloid oligomers (oA\xCE\xB2).  To identify molecular targets downstream of oA\xCE\xB2 binding  we prepared synaptoneurosomes from frontal cortex of control and IAD patients, and isolated mRNAs for comparison of gene expression.  This approach elevated synaptic mRNAs above the threshold necessary for expression changes to be discriminated and also reduced other cellular mRNAs.  In patients with minimal cognitive impairment (MCI) termed incipient AD (IAD) global measures of cognition declined with increasing levels of dimeric A\xCE\xB2 (dA\xCE\xB2).  These patients also showed increased expression of neuroplasticity related genes, many encoding 3' UTR  consensus sequences that regulate local translation in the synapse.  One such gene, GluR2, displayed elevated mRNA and protein expression in IAD.  Other neurotransmitter-related genes were also upregulated.  Overexpressed genes may induce compensatory as well as negative effects on cognition and provide targets for intervention to moderate the response to dA\xCE\xB2.\n\
+  !Series_overall_design = Patient information"
+:title: Expression of mRNAs Regulating Synaptic Function and Neuroplasticity in Incipient AD
+:platform: GPL96

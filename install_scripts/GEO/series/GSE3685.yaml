@@ -1,0 +1,31 @@
+--- 
+:title: RNA polymerase II
+:description: |-
+  Determine if increase in transcript abundance was the result of de novo transcription
+  Keywords: Time-course
+:arrays: 
+  GSM84518: 
+    time: YSS288c0min
+  GSM84520: 
+    time: YSS288c30min
+  GSM84519: 
+    time: YSS288c2min
+  GSM84510: 
+    time: YSRNAPolIImut0min
+  GSM84509: 
+    time: YSRNAPolIImut0min
+  GSM84511: 
+    time: YSRNAPolIImut2min
+  GSM84512: 
+    time: YSRNAPolIImut30min
+  GSM84513: 
+    time: YSRNAPolIIpar0min
+  GSM84514: 
+    time: YSRNAPolIIpar0min
+  GSM84515: 
+    time: YSRNAPolIIpar2min
+  GSM84516: 
+    time: YSRNAPolIIpar30min
+  GSM84517: 
+    time: YSS288c0min
+:platform: GPL1859

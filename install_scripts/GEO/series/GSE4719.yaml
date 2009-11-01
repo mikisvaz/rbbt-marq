@@ -1,0 +1,76 @@
+--- 
+:description: "The packaging of DNA into nucleosomes influences the accessibility of underlying regulatory information. Nucleosome occupancy and positioning are best characterized in the budding yeast Saccharomyces cerevisiae, albeit in asynchronous cell populations or on individual promoters such as PHO5 and GAL1\xE2\x80\x9310. Using FAIRE (formaldehyde-assisted isolation of regulatory elements) and whole-genome microarrays, we examined changes in nucleosome occupancy throughout the mitotic cell cycle in synchronized populations of S. cerevisiae. Perhaps surprisingly, nucleosome occupancy did not exhibit large, global variation between cell cycle phases. However, nucleosome occupancy at the promoters of cell cycle\xE2\x80\x93regulated genes was reduced specifically at the cell cycle phase in which that gene exhibited peak expression, with the notable exception of S-phase genes. We present data that establish FAIRE as a high-throughput method for assaying nucleosome occupancy. For the first time in any system, nucleosome occupancy was mapped genome-wide throughout the cell cycle. Fluctuation of nucleosome occupancy at promoters of most cell cycle\xE2\x80\x93regulated genes provides independent evidence that periodic expression of these genes is controlled mainly at the level of transcription. The promoters of G2/M genes are distinguished from other cell cycle promoters by an unusually low baseline nucleosome occupancy throughout the cell cycle. This observation, coupled with the maintenance throughout the cell cycle of the stereotypic nucleosome occupancy states between coding and non-coding loci, suggests that the largest component of variation in nucleosome occupancy is \xE2\x80\x9Chard wired,\xE2\x80\x9D perhaps at the level of DNA sequence.\n\
+  Keywords: FAIRE"
+:platform: GPL3700
+:title: Yeast FAIRE_Cell Cycle Study
+:arrays: 
+  GSM106533: 
+    time: "54"
+  GSM106522: 
+    time: "18"
+  GSM106511: 
+    time: "90"
+  GSM106534: 
+    time: "63"
+  GSM106523: 
+    time: "18"
+  GSM106512: 
+    time: "90"
+  GSM106535: 
+    time: "63"
+  GSM106524: 
+    time: "18"
+  GSM106513: 
+    time: "90"
+  GSM106536: 
+    time: "63"
+  GSM106525: 
+    time: "36"
+  GSM106514: 
+    time: "90"
+  GSM106537: 
+    time: "63"
+  GSM106526: 
+    time: "36"
+  GSM106515: 
+    time: "90"
+  GSM106538: 
+    time: "72"
+  GSM106527: 
+    time: "36"
+  GSM106528: 
+    time: "36"
+  GSM106517: 
+    time: "90"
+  GSM106506: 
+    time: "72"
+  GSM106541: 
+    time: "54"
+  GSM106530: 
+    time: "36"
+  GSM106529: 
+    time: "36"
+  GSM106518: 
+    time: "0"
+  GSM106507: 
+    time: "72"
+  GSM106542: 
+    time: "54"
+  GSM106531: 
+    time: "54"
+  GSM106520: 
+    time: "0"
+  GSM106519: 
+    time: "0"
+  GSM106508: 
+    time: "72"
+  GSM106543: 
+    time: "0"
+  GSM106532: 
+    time: "54"
+  GSM106521: 
+    time: "18"
+  GSM106510: 
+    time: "72"
+  GSM106509: 
+    time: "72"

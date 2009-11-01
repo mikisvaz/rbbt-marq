@@ -1,0 +1,50 @@
+--- 
+:arrays: 
+  GSM72035: 
+    condition: 03II01 batch p12
+  GSM72036: 
+    condition: 03II01 batch p4
+  GSM72025: 
+    condition: Low-D chemostat vs. High-D chemostat
+  GSM72037: 
+    condition: 03II01 batch p5
+  GSM72026: 
+    condition: 03II01 batch p6
+  GSM72038: 
+    condition: batch 02X25 6
+  GSM72027: 
+    condition: 03II01 batch p7
+  GSM72039: 
+    condition: batch 02X25 1
+  GSM72028: 
+    condition: 03II01 batch p8
+  GSM72040: 
+    condition: batch 02X25 2
+  GSM72029: 
+    condition: 03II01 batch p9
+  GSM72041: 
+    condition: batch 02X25 3
+  GSM72030: 
+    condition: 03II01 batch p1
+  GSM72042: 
+    condition: batch 02X25 7
+  GSM72031: 
+    condition: 03II01 batch p10
+  GSM72043: 
+    condition: batch 02X25 4
+  GSM72032: 
+    condition: 03II01 batch p2
+  GSM72044: 
+    condition: batch 02X25 5
+  GSM72033: 
+    condition: 03II01 batch p11
+  GSM72034: 
+    condition: 03II01 batch p3
+:description: |-
+  This SuperSeries is composed of the following subset Series:
+  GSE3205: Homeostatic Adjustment and Metabolic Remodeling in Glucose-limited Yeast Cultures Time Course 1
+  GSE3206: Homeostatic Adjustment and Metabolic Remodeling in Glucose-limited Yeast Cultures Time Course 2
+  Abstract: We studied the physiological response to glucose limitation in batch and steady-state (chemostat) cultures of Saccharomyces cerevisiae by following global patterns of gene expression. Glucose-limited batch cultures of yeast go through two sequential exponential growth phases, beginning with a largely fermentative phase, followed by an essentially completely aerobic use of residual glucose and evolved ethanol. Judging from the patterns of gene expression, the state of the cells growing at steady state in glucose-limited chemostats corresponds most closely with the state of cells in batch cultures just before they undergo this "diauxic shift." Essentially the same pattern was found between chemostats having a fivefold difference in steady-state growth rate (the lower rate approximating that of the second phase respiratory growth rate in batch cultures). Although in both cases the cells in the chemostat consumed most of the glucose, in neither case did they seem to be metabolizing it primarily through respiration. Although there was some indication of a modest oxidative stress response, the chemostat cultures did not exhibit the massive environmental stress response associated with starvation that also is observed, at least in part, during the diauxic shift in batch cultures. We conclude that despite the theoretical possibility of a switch to fully aerobic metabolism of glucose in the chemostat under conditions of glucose scarcity, homeostatic mechanisms are able to carry out metabolic adjustment as if fermentation of the glucose is the preferred option until the glucose is entirely depleted. These results suggest that some aspect of actual starvation, possibly a component of the stress response, may be required for triggering the metabolic remodeling associated with the diauxic shift.
+  Keywords: SuperSeries
+:platform: GPL2638
+:title: Homeostatic adjustment and metabolic remodeling in glucose-limited yeast cultures

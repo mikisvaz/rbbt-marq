@@ -1,0 +1,94 @@
+--- 
+:description: |-
+  Our study involves a transcriptomic approach to the analysis of industrial yeast metabolism. Historically, among the hundreds of yeast species, Saccharomyces cerevisiae has played an important role in scientific investigations and industrial applications, and it is universally acknowledged as one of the model systems for eukaryotic organisms. Yeast is also an important component of the wine fermentation process and determines various attributes of the final product.
+  Our research takes a holistic approach to the improvement of industrial yeast strains by integrating large data sets from various yeast strains during fermentation. This means that analysis can be done in such a way as to co-evaluate several parameters simultaneously to identify points of interest and target genes for metabolic engineering.
+  Eventually we hope to construct an accurate information matrix and a more complete cellular map for the fermenting yeast. This will enable accurate model-building for industrial yeast and facilitated the design of intelligent yeast improvement strategies which can be applied via traditional avenues of molecular biology.
+:arrays: 
+  GSM296856: 
+    condition: Day5 BM45
+  GSM291002: 
+    condition: Day14 VIN13
+  GSM290993: 
+    condition: Day14 BM45
+  GSM296857: 
+    condition: Day5 BM45
+  GSM291003: 
+    condition: Day14 VIN13
+  GSM290994: 
+    condition: ay14 DV10
+  GSM296858: 
+    condition: Day5 EC1118
+  GSM291554: 
+    condition: Day5 EC1118
+  GSM290995: 
+    condition: ay14 DV10
+  GSM296859: 
+    condition: Day5 EC1118
+  GSM291555: 
+    condition: Day5 BM45
+  GSM291445: 
+    condition: Day2 EC1118
+  GSM291115: 
+    condition: Day2 285
+  GSM290996: 
+    condition: ay14 DV10
+  GSM296860: 
+    condition: Day5 VIN13
+  GSM291523: 
+    condition: Day2 BM45
+  GSM291435: 
+    condition: Day2 EC1118
+  GSM291116: 
+    condition: Day2 285
+  GSM290997: 
+    condition: Day14 EC1118
+  GSM296861: 
+    condition: Day5 VIN13
+  GSM291524: 
+    condition: Day2 BM45
+  GSM291117: 
+    condition: Day2 285
+  GSM290998: 
+    condition: Day14 EC1118
+  GSM291525: 
+    condition: Day5 VIN13
+  GSM291140: 
+    condition: Day5 285
+  GSM290999: 
+    condition: Day14 EC1118
+  GSM291141: 
+    condition: Day5 285
+  GSM290989: 
+    condition: Day2 DV1
+  GSM290901: 
+    condition: Day2 VIN13
+  GSM291538: 
+    condition: Day5 DV10
+  GSM291439: 
+    condition: Day2 EC1118
+  GSM291142: 
+    condition: Day5 285
+  GSM290990: 
+    condition: Day2 DV1
+  GSM290902: 
+    condition: Day2 VIN13
+  GSM292045: 
+    condition: Day14 VIN13
+  GSM291539: 
+    condition: Day5 DV10
+  GSM291462: 
+    condition: Day2 BM45
+  GSM291000: 
+    condition: Day14 285
+  GSM290991: 
+    condition: Day2 DV1
+  GSM290903: 
+    condition: Day2 VIN13
+  GSM291540: 
+    condition: Day5 DV10
+  GSM291001: 
+    condition: Day14 285
+  GSM290992: 
+    condition: Day14 BM45
+:title: Transcriptomic profiling of five industrial wine yeast strains at three time points during allcoholic fermentation
+:platform: GPL2529

@@ -1,0 +1,67 @@
+--- 
+:description: |-
+  Addition of 3 new arrays made from carbon limited chemostat of CENPK113-7D and 3 new arrays made from aerobic carbon limited chemostat of CENPK113-7D Complmentary data to the data of the serie GSE1723.
+  Keywords: Chemostat-based transcriptome response comparison
+:title: Carbon-limited anaerobic/aerobic growth of S.cerevisiae-New set
+:arrays: 
+  GSM108394: 
+    condition: Aerobic glucose limited
+  GSM29949: 
+    condition: Anaerobic sulfur limited
+  GSM29927: 
+    condition: Aerobic phosphorus limited
+  GSM29939: 
+    condition: Anaerobic nitrogen limited
+  GSM29917: 
+    condition: Aerobic glucose limited
+  GSM29951: 
+    condition: Anaerobic sulfur limited
+  GSM29940: 
+    condition: Anaerobic nitrogen limited
+  GSM29929: 
+    condition: Aerobic sulfur limited
+  GSM29930: 
+    condition: Aerobic sulfur limited
+  GSM29942: 
+    condition: Anaerobic nitrogen limited
+  GSM29920: 
+    condition: Aerobic nitrogen limited
+  GSM29943: 
+    condition: Anaerobic phosphorus limited
+  GSM29932: 
+    condition: Aerobic sulfur limited
+  GSM29921: 
+    condition: Aerobic nitrogen limited
+  GSM29922: 
+    condition: Aerobic nitrogen limited
+  GSM108368: 
+    condition: Anaerobic carbon limited
+  GSM29945: 
+    condition: Anaerobic phosphorus limited
+  GSM29934: 
+    condition: Anaerobic carbon limited
+  GSM29912: 
+    condition: Aerobic glucose limited
+  GSM108369: 
+    condition: Anaerobic carbon limited
+  GSM29946: 
+    condition: Anaerobic phosphorus limited
+  GSM29924: 
+    condition: Aerobic phosphorus limited
+  GSM108392: 
+    condition: Aerobic glucose limited
+  GSM108370: 
+    condition: Anaerobic carbon limited
+  GSM29936: 
+    condition: Anaerobic carbon limited
+  GSM29914: 
+    condition: Aerobic glucose limited
+  GSM108393: 
+    condition: Aerobic glucose limited
+  GSM29948: 
+    condition: Anaerobic sulfur limited
+  GSM29937: 
+    condition: Anaerobic carbon limited
+  GSM29926: 
+    condition: Aerobic phosphorus limited
+:platform: GPL90

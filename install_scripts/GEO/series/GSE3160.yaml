@@ -1,0 +1,31 @@
+--- 
+:title: Exploring the scope of TOR/PKA co-regulation in MDN
+:arrays: 
+  GSM70809: 
+    condition: TPK versus tpk1-3 deletion MDN
+  GSM70747: 
+    condition: BCY1   Rapamycin MDN versus bcy1 deletion   Rapamycin MDN
+  GSM70749: 
+    condition: TPK MDN -/  Rapamycin
+  GSM70752: 
+    condition: tpk1-3 deletion MDN -/  Rapamycin
+  GSM70753: 
+    condition: TPK versus tpk1-3 deletion MDN
+  GSM70742: 
+    condition: BCY1 MDN -/  Rapamycin
+  GSM70806: 
+    condition: BCY1 MDN -/  Rapamycin
+  GSM70807: 
+    condition: BCY1 versus bcy1 deletion MDN
+  GSM70755: 
+    condition: TPK verus tpk1-3 deletion MDN -/  Rapamycin
+  GSM70744: 
+    condition: bcy1 deletion MDN -/  Rapamycin
+  GSM70808: 
+    condition: TPK MDN -/  Rapamycin
+  GSM70745: 
+    condition: BCY1 versus bcy1 deletion MDN
+:description: |-
+  To identify genes co-regulated by TOR and PKA during growth in MDN
+  Keywords: Media, Wild type and mutant strains, and dose response
+:platform: GPL2763

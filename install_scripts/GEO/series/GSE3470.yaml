@@ -1,0 +1,15 @@
+--- 
+:title: Heme Deficient vs Wild Type in Low Iron
+:description: |-
+  Heme Deficient or Wild Type (normal heme) for 6 hrs with iron chelation by BPS.
+  Keywords: Cell Type Comparison
+:arrays: 
+  GSM78518: 
+    condition: heme deficient
+  GSM78519: 
+    condition: wt
+  GSM78520: 
+    condition: wt
+  GSM78521: 
+    condition: heme deficient
+:platform: GPL2983

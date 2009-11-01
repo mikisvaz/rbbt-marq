@@ -1,0 +1,155 @@
+--- 
+:arrays: 
+  GSM41817: 
+    condition: WT_Glu_N2_4
+  GSM41840: 
+    condition: WT_Glu_Air_6.13
+  GSM41820: 
+    condition: WT_Glu_N2_5
+  GSM41818: 
+    condition: WT_Glu_N2_4
+  GSM41841: 
+    condition: WT_Glu_Air_6.20
+  GSM41839: 
+    condition: WT_Glu_Air_6.13
+  GSM41800: 
+    condition: WT_Glu_N2_0.25
+  GSM41821: 
+    condition: WT_Glu_N2_5
+  GSM41819: 
+    condition: WT_Glu_N2_4
+  GSM41842: 
+    condition: WT_Glu_Air_6.20
+  GSM41785: 
+    condition: WT_Glu_N2_0
+  GSM41801: 
+    condition: WT_Glu_N2_0.25
+  GSM41822: 
+    condition: WT_Glu_N2_5
+  GSM41843: 
+    condition: WT_Glu_Air_6.20
+  GSM41786: 
+    condition: WT_Glu_N2_0
+  GSM41802: 
+    condition: WT_Glu_N2_0.25
+  GSM41823: 
+    condition: WT_Glu_N2_6
+  GSM41844: 
+    condition: WT_Glu_Air_6.30
+  GSM41787: 
+    condition: WT_Glu_N2_0
+  GSM41803: 
+    condition: WT_Glu_N2_0.38
+  GSM41824: 
+    condition: WT_Glu_N2_6
+  GSM41845: 
+    condition: WT_Glu_Air_6.30
+  GSM41788: 
+    condition: WT_Glu_N2_0.04
+  GSM41804: 
+    condition: WT_Glu_N2_0.38
+  GSM41825: 
+    condition: WT_Glu_N2_6
+  GSM41846: 
+    condition: WT_Glu_Air_6.30
+  GSM41790: 
+    condition: WT_Glu_N2_0.04
+  GSM41789: 
+    condition: WT_Glu_N2_0.04
+  GSM41805: 
+    condition: WT_Glu_N2_0.5
+  GSM41826: 
+    condition: WT_Glu_Air_6.0
+  GSM41847: 
+    condition: WT_Glu_Air_6.40
+  GSM41791: 
+    condition: WT_Glu_N2_0.08
+  GSM41827: 
+    condition: WT_Glu_Air_6.0
+  GSM41848: 
+    condition: WT_Glu_Air_6.40
+  GSM41792: 
+    condition: WT_Glu_N2_0.08
+  GSM41850: 
+    condition: WT_Glu_Air_6.60
+  GSM41849: 
+    condition: WT_Glu_Air_6.40
+  GSM41793: 
+    condition: WT_Glu_N2_0.08
+  GSM41806: 
+    condition: WT_Glu_N2_0.5
+  GSM41851: 
+    condition: WT_Glu_Air_6.60
+  GSM41794: 
+    condition: WT_Glu_N2_0.13
+  GSM41807: 
+    condition: WT_Glu_N2_0.5
+  GSM41830: 
+    condition: WT_Glu_Air_6.03
+  GSM41828: 
+    condition: WT_Glu_Air_6.0
+  GSM41852: 
+    condition: WT_Glu_Air_6.60
+  GSM41795: 
+    condition: WT_Glu_N2_0.13
+  GSM41810: 
+    condition: WT_Glu_N2_1
+  GSM41808: 
+    condition: WT_Glu_N2_1
+  GSM41831: 
+    condition: WT_Glu_Air_6.03
+  GSM41829: 
+    condition: WT_Glu_Air_6.03
+  GSM41853: 
+    condition: WT_Glu_Air_6.80
+  GSM41811: 
+    condition: WT_Glu_N2_2
+  GSM41809: 
+    condition: WT_Glu_N2_1
+  GSM41832: 
+    condition: WT_Glu_Air_6.06
+  GSM41796: 
+    condition: WT_Glu_N2_0.13
+  GSM41854: 
+    condition: WT_Glu_Air_6.80
+  GSM41812: 
+    condition: WT_Glu_N2_2
+  GSM41833: 
+    condition: WT_Glu_Air_6.06
+  GSM41797: 
+    condition: WT_Glu_N2_0.19
+  GSM41855: 
+    condition: WT_Glu_Air_6.80
+  GSM41813: 
+    condition: WT_Glu_N2_2
+  GSM41834: 
+    condition: WT_Glu_Air_6.06
+  GSM41798: 
+    condition: WT_Glu_N2_0.19
+  GSM41856: 
+    condition: WT_Glu_Air_7.60
+  GSM41814: 
+    condition: WT_Glu_N2_3
+  GSM41835: 
+    condition: WT_Glu_Air_6.10
+  GSM41799: 
+    condition: WT_Glu_N2_0.19
+  GSM41857: 
+    condition: WT_Glu_Air_7.60
+  GSM41815: 
+    condition: WT_Glu_N2_3
+  GSM41836: 
+    condition: WT_Glu_Air_6.10
+  GSM41858: 
+    condition: WT_Glu_Air_7.60
+  GSM41816: 
+    condition: WT_Glu_N2_3
+  GSM41837: 
+    condition: WT_Glu_Air_6.10
+  GSM41838: 
+    condition: WT_Glu_Air_6.13
+:title: JM43_Glucose_Air_N2_Air_Shift
+:description: |-
+  The yeast cells were grown aerobically on glucose medium. At time zero (generation 0) the saprge gas was switched from air to O2-free N2 and samples were harvested after 0 (aerobic control), 0.04, 0.08, 0.13, 0.19, 0.25, 0.38, 0.5, 1, 2, 3, 4, 5 and 6 generations of anaerobic growth. After six generations, the saprge gas was switched back to air and samples were harvested at 6 (anaerobic control), 6.03, 6.06, 6.1, 6.13, 6.2, 6.3, 6.4, 6.6, 6.8, and 7.6 generations.
+  Keywords: time-course
+:platform: GPL1535

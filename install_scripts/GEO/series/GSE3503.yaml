@@ -1,0 +1,19 @@
+--- 
+:title: Rapid tRNA decay can result from lack of non-essential modifications
+:description: |-
+  A microarray tiling approach was utilized to assay tRNA modifications by comparing hybridization affinity of tRNA-modification mutants to wild-type across all annotated yeast tRNAs.
+  Keywords: Assaying noncoding RNA modifications
+:arrays: 
+  GSM80015: 
+    mutant: pus7
+  GSM80016: 
+    mutant: trm8
+  GSM80017: 
+    mutant: dus3
+  GSM80018: 
+    mutant: trm8-pus7
+  GSM80019: 
+    mutant: trm8-dus3
+  GSM80020: 
+    mutant: trm8-trm4
+:platform: GPL3013

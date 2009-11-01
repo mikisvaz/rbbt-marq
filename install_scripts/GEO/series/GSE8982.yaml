@@ -1,0 +1,106 @@
+--- 
+:arrays: 
+  GSM227687: 
+    time: 90min
+    treatment: alpha factor 600nM
+  GSM227676: 
+    time: 30min
+    treatment: alpha factor 6nM
+  GSM227665: 
+    time: 30min
+    treatment: alpha factor 0.2nM
+  GSM227688: 
+    time: 120min
+    treatment: alpha factor 600nM
+  GSM227677: 
+    time: 60min
+    treatment: alpha factor 6nM
+  GSM227666: 
+    time: 60min
+    treatment: alpha factor 0.2nM
+  GSM227678: 
+    time: 90min
+    treatment: alpha factor 6nM
+  GSM227667: 
+    time: 90min
+    treatment: alpha factor 0.2nM
+  GSM227656: 
+    time: 5min
+    treatment: alpha factor 0.06nM
+  GSM227680: 
+    time: 15min
+    treatment: alpha factor 60nM
+  GSM227679: 
+    time: 5min
+    treatment: alpha factor 60nM
+  GSM227668: 
+    time: 120min
+    treatment: alpha factor 0.2nM
+  GSM227657: 
+    time: 15min
+    treatment: alpha factor 0.06nM
+  GSM227681: 
+    time: 30min
+    treatment: alpha factor 60nM
+  GSM227670: 
+    time: 15min
+    treatment: alpha factor 0.6nM
+  GSM227669: 
+    time: 5min
+    treatment: alpha factor 0.6nM
+  GSM227658: 
+    time: 30min
+    treatment: alpha factor 0.06nM
+  GSM227682: 
+    time: 60min
+    treatment: alpha factor 60nM
+  GSM227671: 
+    time: 30min
+    treatment: alpha factor 0.6nM
+  GSM227660: 
+    time: 90min
+    treatment: alpha factor 0.06nM
+  GSM227659: 
+    time: 60min
+    treatment: alpha factor 0.06nM
+  GSM227683: 
+    time: 90min
+    treatment: alpha factor 60nM
+  GSM227672: 
+    time: 60min
+    treatment: alpha factor 0.6nM
+  GSM227661: 
+    time: 120min
+    treatment: alpha factor 0.06nM
+  GSM227684: 
+    time: 5min
+    treatment: alpha factor 600nM
+  GSM227673: 
+    time: 90min
+    treatment: alpha factor 0.6nM
+  GSM227662: 
+    time: 150min
+    treatment: alpha factor 0.06nM
+  GSM227685: 
+    time: 30min
+    treatment: alpha factor 600nM
+  GSM227674: 
+    time: 5min
+    treatment: alpha factor 6nM
+  GSM227663: 
+    time: 5min
+    treatment: alpha factor 0.2nM
+  GSM227686: 
+    time: 60min
+    treatment: alpha factor 600nM
+  GSM227675: 
+    time: 15min
+    treatment: alpha factor 6nM
+  GSM227664: 
+    time: 15min
+    treatment: alpha factor 0.2nM
+:description: |-
+  We examined the mating response of W303 bar1delta a-type cells to six alpha-factor concentrations (0.06, 0.2, 0.6, 6, 60 and 600 nM). In each alpha factor concentration between five to seven time points were collected. The time points in all experiments (except for concentration 600 nM were time point 15 min was omitted) were 5, 15, 30, 60, and 90 min. In some of the concentrations also time points 120 and 150 min were considered. The expression of cells before and after addition of alpha-factor were compared using S. cerevisiae cDNA microarrays, in all experiments the same sample before adding alpha factor was used as a control.
+  Keywords: yeast mating response, comparison among alpha factor concentrations
+:title: Mating response - six alpha factor concentrations (0.06, 0.2, 0.6, 6, 60 and 600 nM)
+:platform: GPL5823

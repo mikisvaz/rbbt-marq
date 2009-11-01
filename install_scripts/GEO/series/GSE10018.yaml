@@ -1,0 +1,61 @@
+--- 
+:arrays: 
+  GSM253185: 
+    generation: Yeast aging 18-20
+  GSM253186: 
+    generation: Yeast aging 18-20
+  GSM253175: 
+    generation: Yeast aging 12
+  GSM253187: 
+    generation: Yeast aging 18-20
+  GSM253176: 
+    generation: Yeast aging 12
+  GSM253188: 
+    generation: Yeast aging 8
+  GSM253177: 
+    generation: Yeast aging 12
+  GSM253190: 
+    generation: Yeast aging 8
+  GSM253189: 
+    generation: Yeast aging 8
+  GSM253178: 
+    generation: Yeast aging 12
+  GSM253167: 
+    generation: Yeast aging 1
+  GSM260329: 
+    generation: Yeast aging 12
+  GSM253191: 
+    generation: Yeast aging 8
+  GSM253180: 
+    generation: Yeast aging 12
+  GSM253179: 
+    generation: Yeast aging 12
+  GSM253168: 
+    generation: Yeast aging 1
+  GSM252981: 
+    generation: Yeast aging 1
+  GSM253192: 
+    generation: Yeast aging 8
+  GSM253181: 
+    generation: Yeast aging 18-20
+  GSM253170: 
+    generation: Yeast aging 1
+  GSM253169: 
+    generation: Yeast aging 1
+  GSM253182: 
+    generation: Yeast aging 18-20
+  GSM253171: 
+    generation: Yeast aging 1
+  GSM260354: 
+    generation: Yeast aging 8
+  GSM253183: 
+    generation: Yeast aging 18-20
+  GSM253172: 
+    generation: Yeast aging 1
+  GSM253184: 
+    generation: Yeast aging 18-20
+:description: |-
+  Yeast replicative aging is a process resembling replicative aging in mammalian cells.  During aging, wild type haploid yeast cells enlarge, become sterile, and undergo nucleolar enlargement and fragmentation; we sought gene expression changes during the time of these phenotypic changes.   Gene expression studied via microarrays and qPCR has shown reproducible, statistically significant changes in mRNA of genes at 12 and 18-20 generations.  Our findings support previously described changes towards aerobic metabolism, decreased ribosome gene expression, and a partial Environmental Stress Response.  Our novel findings include a pseudo-stationary phase, down-regulation of methylation-related metabolism, increased Nucleotide Excision Repair related mRNA, and a strong up-regulation of many of the regulatory subunits of protein phosphatase I (Glc7).  These findings are correlated with aging changes in higher organisms as well as with the known involvement of protein phosphorylation states during yeast aging.  J Gerontol, Jan, 2008, vol 63A, no. 1.
+  Keywords: aging time course
+:title: Pathways change in expression during replicative aging in Saccharomyces cerevisiae
+:platform: GPL5947

@@ -1,0 +1,31 @@
+--- 
+:arrays: 
+  GSM34369: 
+    condition: aft1d 2h
+  GSM34370: 
+    condition: aft1d aft2d 2h
+  GSM34359: 
+    condition: aft1d aft2d 2h
+  GSM34360: 
+    condition: aft1d 2h
+  GSM34361: 
+    condition: aft1d aft2d 2h
+  GSM34362: 
+    condition: aft1d aft2d 2h
+  GSM34363: 
+    condition: aft1d aft2d 2h
+  GSM34364: 
+    condition: aft1d 2h
+  GSM34365: 
+    condition: aft1d aft2d 2h
+  GSM34366: 
+    condition: aft1d aft2d 2h
+  GSM34367: 
+    condition: aft1d aft2d 2h
+  GSM34368: 
+    condition: aft1d 2h
+:title: CEA_SGF:E00015#aft_HU_response
+:description: |-
+  Analysis of the response to hydroxyurea in a yeast aft1aft2 mutant strain (Y18aft2d) compared to wild-type strain (CM3260). Cells were grown in YPD rich medium containing 200 mM hydroxyurea (HU) for 2 hours. Gene expression changes due to the aft1 mutation were also analysed in absence of HU (BY4741 background).
+  Keywords: repeat sample
+:platform: GPL1531

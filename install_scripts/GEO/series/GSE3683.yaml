@@ -1,0 +1,83 @@
+--- 
+:title: Oxidative Stress 30-min interval
+:description: |-
+  Determine if yeast cell in stationary-phase cultures respond to oxidative stress
+  Keywords: time-course
+:arrays: 
+  GSM84452: 
+    time: YS8
+  GSM84441: 
+    time: YS2.5
+  GSM84430: 
+    time: YS5
+  GSM84419: 
+    time: YS0
+  GSM84442: 
+    time: YS3
+  GSM84431: 
+    time: YS5.5
+  GSM84420: 
+    time: YS0
+  GSM84443: 
+    time: YS3.5
+  GSM84432: 
+    time: YS6
+  GSM84421: 
+    time: YS0.5
+  GSM84444: 
+    time: YS4
+  GSM84433: 
+    time: YS6.5
+  GSM84422: 
+    time: YS1
+  GSM84445: 
+    time: YS4.5
+  GSM84434: 
+    time: YS7
+  GSM84423: 
+    time: YS1.5
+  GSM84446: 
+    time: YS5
+  GSM84435: 
+    time: YS7.5
+  GSM84424: 
+    time: YS2
+  GSM84447: 
+    time: YS5.5
+  GSM84436: 
+    time: YS8
+  GSM84425: 
+    time: YS2.5
+  GSM84448: 
+    time: YS6
+  GSM84437: 
+    time: YS0.5
+  GSM84426: 
+    time: YS3
+  GSM84415: 
+    time: YS0
+  GSM84449: 
+    time: YS6.5
+  GSM84438: 
+    time: YS1
+  GSM84427: 
+    time: YS3.5
+  GSM84416: 
+    time: YS0
+  GSM84450: 
+    time: YS7
+  GSM84439: 
+    time: YS1.5
+  GSM84428: 
+    time: YS4
+  GSM84417: 
+    time: YS0
+  GSM84451: 
+    time: YS7.5
+  GSM84440: 
+    time: YS2
+  GSM84429: 
+    time: YS4.5
+  GSM84418: 
+    time: YS0
+:platform: GPL3153

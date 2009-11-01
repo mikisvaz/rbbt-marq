@@ -1,0 +1,51 @@
+--- 
+:arrays: 
+  GSM146328: 
+    mutant: H39h
+  GSM146317: 
+    mutant: wt0h
+  GSM146306: 
+    mutant: H3
+  GSM146329: 
+    mutant: H39h
+  GSM146318: 
+    mutant: H30h
+  GSM146320: 
+    mutant: wt6h
+  GSM146319: 
+    mutant: H30h
+  GSM146321: 
+    mutant: wt6h
+  GSM146322: 
+    mutant: wt6h
+  GSM146323: 
+    mutant: H36h
+  GSM146301: 
+    mutant: wt
+  GSM146324: 
+    mutant: H36h
+  GSM146302: 
+    mutant: wt
+  GSM146325: 
+    mutant: H36h
+  GSM146303: 
+    mutant: wt
+  GSM146326: 
+    mutant: wt9h
+  GSM146304: 
+    mutant: H3
+  GSM146327: 
+    mutant: wt9h
+  GSM146316: 
+    mutant: wt0h
+  GSM146305: 
+    mutant: H3
+:description: |-
+  This SuperSeries is composed of the following subset Series:
+  GSE6319: Histone H3 K4,79R
+  GSE6326: Histone H3 K4,36,79R 0 hr
+  GSE6327: Histone H3 K4,36,79R 6 hr
+  GSE6328: Histone H3 K4,36,79R 9 hr
+  Keywords: SuperSeries
+:title: Histone H3,K4,79R and H3,K4,36,79R (at 0, 6, and 9 hours) Mutations
+:platform: GPL90

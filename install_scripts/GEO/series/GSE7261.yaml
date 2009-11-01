@@ -1,0 +1,16 @@
+--- 
+:description: "Time course after the addition of the transcriptional inhibitor thiolutin at 3\xC2\xB5g/mL to an exponential growing culture of S. cerevisiae in YPD.\n\
+  Keywords: time course, mRNA stability analysis"
+:arrays: 
+  GSM175046: 
+    condition: thiolutin 0min
+  GSM175047: 
+    condition: thiolutin 10min
+  GSM175048: 
+    condition: thiolutin 20min
+  GSM175050: 
+    condition: thiolutin 45min
+  GSM175049: 
+    condition: thiolutin 30min
+:title: "Yeast mRNA decay analysis after addition of 3 \xC2\xB5/mL thiolutin"
+:platform: GPL3763

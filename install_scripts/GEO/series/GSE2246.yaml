@@ -1,0 +1,157 @@
+--- 
+:arrays: 
+  GSM41267: 
+    condition: WT_Gal_N2_0.25
+  GSM41288: 
+    condition: WT_Gal_N2_5.0
+  GSM41303: 
+    condition: WT_Gal_Air_6.1
+  GSM41289: 
+    condition: WT_Gal_N2_5.0
+  GSM41304: 
+    condition: WT_Gal_Air_6.1
+  GSM41268: 
+    condition: WT_Gal_N2_0.25
+  GSM41290: 
+    condition: WT_Gal_N2_5.0
+  GSM41305: 
+    condition: WT_Gal_Air_6.1
+  GSM41270: 
+    condition: WT_Gal_N2_0.38
+  GSM41269: 
+    condition: WT_Gal_N2_0.25
+  GSM41291: 
+    condition: WT_Gal_N2_6.0
+  GSM41306: 
+    condition: WT_Gal_Air_6.13
+  GSM41271: 
+    condition: WT_Gal_N2_0.38
+  GSM41292: 
+    condition: WT_Gal_N2_6.0
+  GSM41307: 
+    condition: WT_Gal_Air_6.13
+  GSM41272: 
+    condition: WT_Gal_N2_0.38
+  GSM41293: 
+    condition: WT_Gal_N2_6.0
+  GSM41308: 
+    condition: WT_Gal_Air_6.13
+  GSM41252: 
+    condition: WT_Gal_N2_0
+  GSM41273: 
+    condition: WT_Gal_N2_0.5
+  GSM41294: 
+    condition: WT_Gal_Air_6.0
+  GSM41310: 
+    condition: WT_Gal_Air_6.2
+  GSM41309: 
+    condition: WT_Gal_Air_6.2
+  GSM41253: 
+    condition: WT_Gal_N2_0
+  GSM41274: 
+    condition: WT_Gal_N2_0.5
+  GSM41295: 
+    condition: WT_Gal_Air_6.0
+  GSM41311: 
+    condition: WT_Gal_Air_6.2
+  GSM41254: 
+    condition: WT_Gal_N2_0
+  GSM41275: 
+    condition: WT_Gal_N2_0.5
+  GSM41296: 
+    condition: WT_Gal_Air_6.0
+  GSM41255: 
+    condition: WT_Gal_N2_0.04
+  GSM41276: 
+    condition: WT_Gal_N2_1.0
+  GSM41297: 
+    condition: WT_Gal_Air_6.03
+  GSM41312: 
+    condition: WT_Gal_Air_6.3
+  GSM41256: 
+    condition: WT_Gal_N2_0.04
+  GSM41277: 
+    condition: WT_Gal_N2_1.0
+  GSM41298: 
+    condition: WT_Gal_Air_6.03
+  GSM41313: 
+    condition: WT_Gal_Air_6.3
+  GSM41278: 
+    condition: WT_Gal_N2_1.0
+  GSM41299: 
+    condition: WT_Gal_Air_6.03
+  GSM41314: 
+    condition: WT_Gal_Air_6.3
+  GSM41257: 
+    condition: WT_Gal_N2_0.04
+  GSM41315: 
+    condition: WT_Gal_Air_6.4
+  GSM41258: 
+    condition: WT_Gal_N2_0.08
+  GSM41280: 
+    condition: WT_Gal_N2_2.0
+  GSM41279: 
+    condition: WT_Gal_N2_2.0
+  GSM41316: 
+    condition: WT_Gal_Air_6.4
+  GSM41260: 
+    condition: WT_Gal_N2_0.08
+  GSM41259: 
+    condition: WT_Gal_N2_0.08
+  GSM41281: 
+    condition: WT_Gal_N2_2.0
+  GSM41317: 
+    condition: WT_Gal_Air_6.4
+  GSM41261: 
+    condition: WT_Gal_N2_0.13
+  GSM41282: 
+    condition: WT_Gal_N2_3.0
+  GSM41340: 
+    condition: WT_Gal_Air_7.6
+  GSM41339: 
+    condition: WT_Gal_Air_7.6
+  GSM41318: 
+    condition: WT_Gal_Air_6.6
+  GSM41262: 
+    condition: WT_Gal_N2_0.13
+  GSM41283: 
+    condition: WT_Gal_N2_3.0
+  GSM41341: 
+    condition: WT_Gal_Air_7.6
+  GSM41320: 
+    condition: WT_Gal_Air_6.6
+  GSM41319: 
+    condition: WT_Gal_Air_6.6
+  GSM41263: 
+    condition: WT_Gal_N2_0.13
+  GSM41284: 
+    condition: WT_Gal_N2_3.0
+  GSM41321: 
+    condition: WT_Gal_Air_6.8
+  GSM41300: 
+    condition: WT_Gal_Air_6.06_Generations
+  GSM41264: 
+    condition: WT_Gal_N2_0.19
+  GSM41285: 
+    condition: WT_Gal_N2_4.0
+  GSM41322: 
+    condition: WT_Gal_Air_6.8
+  GSM41265: 
+    condition: WT_Gal_N2_0.19
+  GSM41286: 
+    condition: WT_Gal_N2_4.0
+  GSM41301: 
+    condition: WT_Gal_Air_6.06_Generations
+  GSM41323: 
+    condition: WT_Gal_Air_6.8
+  GSM41266: 
+    condition: WT_Gal_N2_0.19
+  GSM41287: 
+    condition: WT_Gal_N2_4.0
+  GSM41302: 
+    condition: WT_Gal_Air_6.06_Generations
+:title: JM43_Galactose_Air_N2_Air_Shift
+:description: |-
+  The yeast cells were grown aerobically on galactose medium. At time zero (generation 0) the saprge gas was switched from air to O2-free N2 and samples were harvested after 0 (aerobic control), 0.04, 0.08, 0.13, 0.19, 0.25, 0.38, 0.5, 1, 2, 3, 4, 5 and 6 generations of anaerobic growth. After six generations, the saprge gas was switched back to air and samples were harvested at 6 (anaerobic control), 6.03, 6.06, 6.1, 6.13, 6.2, 6.3, 6.4, 6.6, 6.8, and 7.6 generations.
+  Keywords: time-course
+:platform: GPL1535

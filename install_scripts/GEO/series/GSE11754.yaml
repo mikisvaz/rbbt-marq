@@ -1,0 +1,29 @@
+--- 
+:description: Metabolite concentrations can regulate gene expression, which can in turn regulate metabolic activity. The extent to which functionally related transcripts and metabolites show similar patterns of concentration changes, however, remains unestablished.  We have therefore measured and analyzed the metabolomic (previously published in Brauer et al., PMID 17159141) and transcriptional responses (presented here) of Saccharomyces cerevisiae to carbon and nitrogen starvation.
+:arrays: 
+  GSM290982: 
+    condition: C-8
+  GSM290983: 
+    condition: N-0.16
+  GSM290984: 
+    condition: N-0.5
+  GSM290985: 
+    condition: N-1
+  GSM290986: 
+    condition: N-2
+  GSM290987: 
+    condition: N-4
+  GSM290988: 
+    condition: N-8
+  GSM290977: 
+    condition: C-0.16
+  GSM290978: 
+    condition: C-0.5
+  GSM290979: 
+    condition: C-1
+  GSM290980: 
+    condition: C-2
+  GSM290981: 
+    condition: C-4
+:title: Transcriptional responses of Saccharomyces cerevisiae to carbon and nitrogen deprivation
+:platform: GPL2883

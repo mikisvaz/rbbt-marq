@@ -1,0 +1,11 @@
+--- 
+:description: We employed CapitalBio Corporation to investigate the global transcriptional profiling of Saccharomyces cerevisiae  treated with allicin.
+:arrays: 
+  GSM299444: 
+    treatment: AllicinvsDMSO
+  GSM299445: 
+    treatment: AllicinvsDMSO
+  GSM299446: 
+    treatment: AllicinvsDMSO
+:title: Global transcriptional profiling of Saccharomyces cerevisiae treated with allicin
+:platform: GPL6010

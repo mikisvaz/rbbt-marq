@@ -1,0 +1,47 @@
+--- 
+:title: hog1, slt2, rlm1, and msn2/4 mutants exposed to zymolyase
+:description: |-
+  This SuperSeries is composed of the following subset Series:
+  GSE9930: Wild type 3 hour exposure to zymolyase
+  GSE9931: hog1 mutant 3 hour exposure to zymolyase
+  GSE9932: slt2 mutant 3 hour exposure to zymolyase
+  GSE9933: rlm1 mutant 3 hour exposure to zymolyase
+  GSE9934: msn2/4 mutant 3 hour exposure to zymolyase
+:arrays: 
+  GSM249126: 
+    treatment: rlm1 3h zym
+  GSM249104: 
+    treatment: slt2 3h zym
+  GSM248994: 
+    treatment: wt 3h zym
+  GSM249127: 
+    treatment: msn2/4 3h zym
+  GSM249105: 
+    treatment: rlm1 3h zym
+  GSM248995: 
+    treatment: wt 3h zym
+  GSM249128: 
+    treatment: msn2/4 3h zym
+  GSM249106: 
+    treatment: rlm1 3h zym
+  GSM249086: 
+    treatment: hog1 3h zym
+  GSM249020: 
+    treatment: wt 3h zym
+  GSM249098: 
+    treatment: hog1 3h zym
+  GSM249099: 
+    treatment: slt2 3h zym
+  GSM249088: 
+    treatment: hog1 3h zym
+  GSM249101: 
+    treatment: slt2 3h zym
+  GSM249091: 
+    treatment: hog1 3h zym
+  GSM249125: 
+    treatment: rlm1 3h zym
+  GSM249103: 
+    treatment: slt2 3h zym
+  GSM248993: 
+    treatment: wt 3h zym
+:platform: GPL7054

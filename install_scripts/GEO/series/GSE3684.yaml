@@ -1,0 +1,19 @@
+--- 
+:title: Hot phenol
+:description: |-
+  Determine differences between RNA isolation methods.
+  Keywords: Comparison of RNA isolation techniques
+:arrays: 
+  GSM84507: 
+    condition: YSProtKRNAIso0min
+  GSM84508: 
+    condition: YSProtKRNAIso0min
+  GSM84503: 
+    condition: YSOusRNAIso0min
+  GSM84504: 
+    condition: YSOusRNAIso0min
+  GSM84505: 
+    condition: YSHotPhenolRNAIso0min
+  GSM84506: 
+    condition: YSHotPhenolRNAIso0min
+:platform: GPL1859

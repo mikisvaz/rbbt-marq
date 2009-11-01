@@ -1,0 +1,19 @@
+--- 
+:arrays: 
+  GSM154627: 
+    condition: wt
+  GSM154628: 
+    condition: cbc2
+  GSM154629: 
+    condition: cbc2
+  GSM154157: 
+    condition: wt
+  GSM154631: 
+    condition: cbc2
+  GSM154623: 
+    condition: wt
+:description: |-
+  The goal of this experiment is to identify transcripts regulated by Cbc2, the small subunit of nuclear cap binding complex (CBC) in Saccharomyces cerevisiae.
+  Keywords: Genetic modification
+:title: Whole genome expression profile for cbc2-delta cells
+:platform: GPL90

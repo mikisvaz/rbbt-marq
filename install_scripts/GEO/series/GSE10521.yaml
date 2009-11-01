@@ -1,0 +1,56 @@
+--- 
+:arrays: 
+  GSM265836: 
+    condition: caf130_glu
+  GSM265825: 
+    condition: ccr4
+  GSM265837: 
+    condition: caf130_glu
+  GSM265826: 
+    condition: ccr4
+  GSM265838: 
+    condition: ccr4_glu
+  GSM265827: 
+    condition: not2
+  GSM265839: 
+    condition: ccr4_glu
+  GSM265828: 
+    condition: not2
+  GSM265840: 
+    condition: not2_glu
+  GSM265829: 
+    condition: not3
+  GSM265841: 
+    condition: not2_glu
+  GSM265830: 
+    condition: not3
+  GSM265842: 
+    condition: not4_glu
+  GSM265831: 
+    condition: not4
+  GSM265843: 
+    condition: not4_glu
+  GSM265832: 
+    condition: not5
+  GSM265821: 
+    condition: caf1
+  GSM265844: 
+    condition: wt_glu
+  GSM265833: 
+    condition: wt
+  GSM265822: 
+    condition: caf1
+  GSM265845: 
+    condition: wt_glu
+  GSM265834: 
+    condition: wt
+  GSM265823: 
+    condition: caf130
+  GSM265835: 
+    condition: caf1_glu
+  GSM265824: 
+    condition: caf130
+:description: "These Affymetrix data were used to determine the role of each non-essential subunit of the conserved Ccr4-Not complex in the control of gene expression in the yeast S. cerevisiae. The study was performed with cells growing exponentially in high glucose and with cells grown to glucose depletion. Specific patterns of gene de-regulation were observed upon deletion of any given subunit, revealing the specificity of each subunit\xE2\x80\x99s function. Consistently, the purification of the Ccr4-Not complex through Caf40p by tandem affinity purification from wild-type cells or cells lacking individual subunits of the Ccr4-Not complex revealed that each subunit had a particular impact on complex integrity. Furthermore, the micro-arrays revealed that the role of each subunit was specific to the growth conditions. From the study of only two different growth conditions, revealing an impact of the Ccr4-Not complex on more than 85% of all studied genes, we can infer that the Ccr4-Not complex is important for expression of most of the yeast genome.\n\
+  Keywords: genetic modification, stress response"
+:title: Specific Roles for the Ccr4-Not Complex Subunits in Expression of the Genome
+:platform: GPL90

@@ -1,0 +1,31 @@
+--- 
+:arrays: 
+  GSM254436: 
+    treatment: C-lim anaerobic 500 mM lactic acid (pH 3)
+  GSM137498: 
+    treatment: C-lim Anaerobic reference (pH 5)
+  GSM254438: 
+    treatment: C-lim anaerobic 500 mM lactic acid (pH 3)
+  GSM137675: 
+    treatment: C-lim Anaerobic reference (pH 5)
+  GSM254443: 
+    treatment: C-lim anaerobic 500 mM lactic acid (pH 3)
+  GSM254444: 
+    treatment: C-lim anaerobic 900 mM lactic acid (pH 5)
+  GSM254433: 
+    treatment: C-lim Anaerobic reference (pH 3)
+  GSM254445: 
+    treatment: C-lim anaerobic 900 mM lactic acid (pH 5)
+  GSM254434: 
+    treatment: C-lim Anaerobic reference (pH 3)
+  GSM254446: 
+    treatment: C-lim anaerobic 900 mM lactic acid (pH 5)
+  GSM254435: 
+    treatment: C-lim Anaerobic reference (pH 3)
+  GSM137497: 
+    treatment: C-lim Anaerobic reference (pH 5)
+:description: |-
+  Raw expression values (CHP data) for transcriptional profiling of the response of Saccharomyces cerevisiae to challenges with lactic acid at pH 3 and pH 5.
+  Keywords: response to lactic acid
+:title: Transcriptional responses to lactic acid in anaerobic chemostat cultures of Saccharomyces cerevisiae
+:platform: GPL90

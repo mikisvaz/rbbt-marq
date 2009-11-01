@@ -1,0 +1,13 @@
+--- 
+:description: |-
+  This experiment was done to detect the transcriptomic defects in the gcr1 null mutant, relative to an isogenic wild type, in the immediate response to glucose.
+  Keywords: time course
+:title: Response of gcr1 null mutant to glucose
+:arrays: 
+  GSM129828: 
+    condition: Yeast_null mutant 60min
+  GSM129826: 
+    condition: Yeast_null mutant 0min
+  GSM129827: 
+    condition: Yeast_null mutant 20min
+:platform: GPL884

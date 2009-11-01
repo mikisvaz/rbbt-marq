@@ -1,0 +1,32 @@
+--- 
+:title: Lager beer fermentation time course
+:description: |-
+  The dynamics of the Saccharomyces carlsbergensis brewing yeast transcriptome during a production scale lager beer fermentation.
+  The transcriptome of a lager brewing yeast (Saccharomyces carlsbergensis, syn. of S. pastorianus), was analysed at 12 different time points spanning a production-scale lager beer fermentation. Generally, the average expression rapidly increased and had a maximum value on day 2, then decreased as the sugar got consumed. Especially genes involved in protein and lipid biosynthesis or glycolysis were highly expressed during the beginning of the fermentation. Similarities as well as significant differences in expression profiles could be observed when comparing to a previous transcriptome analysis of a laboratory yeast grown in YPD. The regional distribution of various expression levels on the chromosomes appeared to be random or near-random and no reduction in expression near telomeres was observed.
+  Keywords: time-course
+:arrays: 
+  GSM2375: 
+    condition: ferm96h
+  GSM2376: 
+    condition: ferm120h
+  GSM2377: 
+    condition: ferm144h
+  GSM2378: 
+    condition: ferm168h
+  GSM2380: 
+    condition: ferm240h
+  GSM2379: 
+    condition: ferm182h
+  GSM2381: 
+    condition: ferm264h
+  GSM2370: 
+    condition: ferm0h
+  GSM2371: 
+    condition: ferm1h
+  GSM2372: 
+    condition: ferm24h
+  GSM2373: 
+    condition: ferm48h
+  GSM2374: 
+    condition: ferm72h
+:platform: GPL205

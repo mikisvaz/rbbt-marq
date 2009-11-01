@@ -1,0 +1,21 @@
+--- 
+:arrays: 
+  GSM277461: 
+    time: meiosis Spo11Y135F mutant 1h
+  GSM277462: 
+    time: meiosis Spo11Y135F mutant 2h
+  GSM277463: 
+    time: meiosis Spo11Y135F mutant 3h
+  GSM277464: 
+    time: meiosis Spo11Y135F mutant 4h
+  GSM277465: 
+    time: meiosis Spo11Y135F mutant 5h
+  GSM277467: 
+    time: meiosis Spo11Y135F mutant 6h
+  GSM277468: 
+    time: meiosis Spo11Y135F mutant 8h
+:description: |-
+  We studied the meiotic regulation of transcription in the mutant Spo11Y135F (deficient for the formation of meiotic double-strand breaks), by comparing the mRNA level at time t=1h to t=8h after meiosis induction, to the mRNA level at time t=0h.
+  Keywords: yeast meiotic time course, transcriptome
+:title: Transcriptomic regulation during meiosis (Spo11Y135F mutant)
+:platform: GPL6649

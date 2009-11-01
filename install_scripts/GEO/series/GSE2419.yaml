@@ -1,0 +1,27 @@
+--- 
+:arrays: 
+  GSM45543: 
+    condition: 2h25umAFB
+  GSM45532: 
+    condition: 2h10umAFB
+  GSM45544: 
+    condition: 2h50umAFB
+  GSM45533: 
+    condition: 2h25umAFB
+  GSM45545: 
+    condition: 2h100umAFB
+  GSM45534: 
+    condition: 2h50umAFB
+  GSM45546: 
+    condition: 2h50umAFB
+  GSM45535: 
+    condition: 2h100umAFB
+  GSM45547: 
+    condition: 2h100umAFB
+  GSM45542: 
+    condition: 2h10umAFB
+:title: 2h dose response_AFB treatment
+:description: |-
+  RNA isolated from the 0, 10, 25, 50 and 100 micromolar AFB1 cultures at 120 min treatment was used for cDNA microarray experiments.  For each array hybridization experiment, RNAs from the treated sample and its corresponding time-matched control were co-hybridized to arrays and respectively quantified in different channels.  A dye swap strategy was used to eliminate the dye bias.
+  Keywords: dose response
+:platform: GPL1895

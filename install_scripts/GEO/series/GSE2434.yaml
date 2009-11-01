@@ -1,0 +1,37 @@
+--- 
+:arrays: 
+  GSM42630: 
+    condition: wt2
+  GSM42631: 
+    condition: wt2
+  GSM42632: 
+    condition: wt2
+  GSM42621: 
+    condition: wt1
+  GSM42633: 
+    condition: hat1hat2
+  GSM42622: 
+    condition: wt1
+  GSM42634: 
+    condition: hat1hat2
+  GSM42623: 
+    condition: wt1
+  GSM42635: 
+    condition: hat1hat2
+  GSM42624: 
+    condition: hat1
+  GSM42625: 
+    condition: hat1
+  GSM42626: 
+    condition: hat1
+  GSM42627: 
+    condition: hat2
+  GSM42628: 
+    condition: hat2
+  GSM42629: 
+    condition: hat2
+:title: Hat mutants
+:description: |-
+  Transcriptomes from the hat1, hat2 and hat1 hat2 mutants in S288C yeast background.
+  Keywords: parallel sample
+:platform: GPL772

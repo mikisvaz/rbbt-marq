@@ -1,0 +1,32 @@
+--- 
+:title: Expression data from yeast with Anc1p or without under basal or MMS exposed conditions
+:description: |-
+  We are investigating the transcriptional response of Anc1 deficient yeast under basal and MMS exposed conditions
+  We used microarrays to detail the global programme of gene expression underlying the MMS response in WT and Anc1 deficient yeast
+  Keywords: dose
+:arrays: 
+  GSM306027: 
+    treatment: anc1.treat
+  GSM306028: 
+    treatment: anc1.untreat
+  GSM306029: 
+    treatment: anc1.treat
+  GSM306018: 
+    treatment: wt.untreat
+  GSM306020: 
+    treatment: wt.untreat
+  GSM306019: 
+    treatment: wt.treat
+  GSM306021: 
+    treatment: wt.treat
+  GSM306022: 
+    treatment: wt.untreat
+  GSM306023: 
+    treatment: wt.treat
+  GSM306024: 
+    treatment: anc1.untreat
+  GSM306025: 
+    treatment: anc1.treat
+  GSM306026: 
+    treatment: anc1.untreat
+:platform: GPL90

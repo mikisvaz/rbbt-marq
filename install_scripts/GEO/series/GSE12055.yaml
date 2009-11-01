@@ -1,0 +1,109 @@
+--- 
+:description: |-
+  We examined the gene expression
+  changes resulting from the evolution of resistance in
+  experimental populations of the yeast Saccharomyces
+  cerevisiae subjected to two antifungal drugs, fluconazole
+  (FLC) and amphotericin B (AmB). Fluconazole resistance may involve increased efflux or changes in sterol metabolism, while AmB resistance
+  generally involves changes in sterol metabolism; for all of
+  these types of resistance, the gene expression changes are
+  extensive. The goal of these experiments was to test
+  whether failure of gene expression changes all downstream
+  of the original mutation for drug resistance would affect
+  the ability of a mutant cell to evolve and/or to support a
+  drug-resistant phenotype.
+:arrays: 
+  GSM304456: 
+    condition: Sce15vsSce2469
+  GSM97179: 
+    condition: Sce14vsSce27
+  GSM97168: 
+    condition: Sce13vsSce26
+  GSM97157: 
+    condition: Sce1113vsSce100
+  GSM97180: 
+    condition: Sce15vsSce28
+  GSM97158: 
+    condition: Sce13vsSce17
+  GSM304468: 
+    condition: Sce15vsSce2542
+  GSM304457: 
+    condition: Sce16vsSce2470
+  GSM304435: 
+    condition: Sce14vsSce2468
+  GSM304424: 
+    condition: Sce14vsSce2468
+  GSM97181: 
+    condition: Sce15vsSce28
+  GSM97159: 
+    condition: Sce13vsSce17
+  GSM304470: 
+    condition: Sce15vsSce2542
+  GSM304458: 
+    condition: Sce16vsSce2470
+  GSM97182: 
+    condition: Sce509vsSce100
+  GSM97160: 
+    condition: Sce13vsSce17
+  GSM304471: 
+    condition: Sce15vsSce2542
+  GSM304460: 
+    condition: Sce14vsSce2539
+  GSM304459: 
+    condition: Sce16vsSce2470
+  GSM97183: 
+    condition: Sce509vsSce100
+  GSM97161: 
+    condition: Sce13vsSce17
+  GSM304461: 
+    condition: Sce14vsSce2539
+  GSM97162: 
+    condition: Sce14bs Sce18
+  GSM304473: 
+    condition: Sce15vsSce14
+  GSM304462: 
+    condition: Sce14vsSce2539
+  GSM304439: 
+    condition: Sce14vsSce2468
+  GSM97163: 
+    condition: Sce14bs Sce18
+  GSM97152: 
+    condition: Sce13vsSce1060
+  GSM97175: 
+    condition: Sce13vsSce26
+  GSM97164: 
+    condition: Sce15vsSce19
+  GSM97153: 
+    condition: Sce13vsSce1060
+  GSM304475: 
+    condition: Sce16vsSce14
+  GSM304464: 
+    condition: Sce14vsSce2539
+  GSM304442: 
+    condition: Sce14vsSce2468
+  GSM97176: 
+    condition: Sce14vsSce27
+  GSM97165: 
+    condition: Sce15vsSce19
+  GSM97154: 
+    condition: Sce13vsSce1089
+  GSM304454: 
+    condition: Sce15vsSce2469
+  GSM97177: 
+    condition: Sce14vsSce27
+  GSM97166: 
+    condition: Sce13vsSce26
+  GSM97155: 
+    condition: Sce13vsSce1089
+  GSM304477: 
+    condition: Sce15vsSce16
+  GSM304455: 
+    condition: Sce15vsSce2469
+  GSM97178: 
+    condition: Sce14vsSce27
+  GSM97167: 
+    condition: Sce13vsSce26
+  GSM97156: 
+    condition: Sce1113vsSce100
+:title: Gene Expression and evolution of antifungal drug resistance
+:platform: GPL3458

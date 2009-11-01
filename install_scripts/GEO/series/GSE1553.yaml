@@ -1,0 +1,23 @@
+--- 
+:title: Steady state +/- Gly
+:arrays: 
+  GSM26650: 
+    condition: BY4741-Gly
+  GSM26651: 
+    condition: BY4741-Gly
+  GSM26652: 
+    condition: Y02669-Gly
+  GSM26653: 
+    condition: Y00249-Gly
+  GSM26654: 
+    condition: Y03803-Gly
+  GSM26655: 
+    condition: BY4741-Gly
+  GSM26656: 
+    condition: Y06015-Gly
+  GSM26657: 
+    condition: Y06015-Gly
+:description: |-
+  Cells were grown to early log phase (OD600 ~ 0.2) at 30oC in 1 liter of minimal B medium (Cherest, H., and Surdin-Kerjan, Y. (1992) Genetics 130, 51-58) with or without supplementation with 10 mM glycine and harvested. All cells were harvested by rapid centrifugation at room temperature then flash frozen in liquid nitrogen. Arrays compared expression of Gly- cells to the Gly+ controls. Strain BY4741 was the wild type and several deletion strains were also used.
+  Keywords: parallel sample
+:platform: GPL1336

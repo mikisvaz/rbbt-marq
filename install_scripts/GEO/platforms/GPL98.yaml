@@ -1,0 +1,7 @@
+--- 
+:title: Affymetrix GeneChip Human 35K SubA Array Hu35k-A
+:BioMart_ID: 
+:other_ID_field: 
+- 10
+- ENTREZ_GENE_ID
+:organism: human

@@ -1,0 +1,19 @@
+--- 
+:arrays: 
+  GSM43869: 
+    condition: H4 WT
+  GSM43897: 
+    condition: H4 K91A
+  GSM43865: 
+    condition: H4 K91A
+  GSM43866: 
+    condition: H4 K91A
+  GSM43867: 
+    condition: H4 WT
+  GSM43868: 
+    condition: H4 WT
+:title: Yeast Histone H4 K91A versus wild type
+:description: |-
+  Yeast strain containing either a histone H4 wild type or K91A allele was grown in YPD to mid-log phase and harvested.  Three replicates of each allele were performed
+  Keywords: repeat sample
+:platform: GPL90

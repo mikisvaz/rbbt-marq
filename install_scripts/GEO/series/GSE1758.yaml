@@ -1,0 +1,15 @@
+--- 
+:title: CDC102 synthetic lethality
+:description: |-
+  Assessment of synthetic lethality between a temperature-sensitive allele of CDC102 and Yeast Deletion mutations
+  Keywords: repeat sample
+:arrays: 
+  GSM30574: 
+    condition: CDC102 wild-type 28C
+  GSM30575: 
+    condition: CDC102 wild-type 30C
+  GSM30572: 
+    condition: cdc102-1 28C
+  GSM30573: 
+    condition: cdc102-1 30C
+:platform: GPL1444

@@ -1,0 +1,33 @@
+--- 
+:description: We have enginereed S. cerevisiae to produce high titers of Artemisinic acid, an anti-malarial drug precursor. Here we compare the gene expression profiles of the producer strain (EPY330) and a strain in which the last enzyme of the pathway (CYP71AV1, AMO) was inactivated by a point mutation (EPY338).
+:arrays: 
+  GSM294795: 
+    condition: EPY338/EPY330_72h
+  GSM294796: 
+    condition: EPY338/EPY330_72h
+  GSM294797: 
+    condition: EPY338/EPY330_72h
+  GSM294786: 
+    condition: EPY338/EPY330_24h
+  GSM294798: 
+    condition: EPY338/EPY330_72h
+  GSM294787: 
+    condition: EPY338/EPY330_24h
+  GSM294799: 
+    condition: EPY338/EPY330_72h
+  GSM294788: 
+    condition: EPY338/EPY330_24h
+  GSM294789: 
+    condition: EPY338/EPY330_24h
+  GSM294790: 
+    condition: EPY338/EPY330_48h
+  GSM294791: 
+    condition: EPY338/EPY330_48h
+  GSM294792: 
+    condition: EPY338/EPY330_48h
+  GSM294793: 
+    condition: EPY338/EPY330_48h
+  GSM294794: 
+    condition: EPY338/EPY330_48h
+:title: Artemisinic Acid Production Stress in Yeast
+:platform: GPL6907

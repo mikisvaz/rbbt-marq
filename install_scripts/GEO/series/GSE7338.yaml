@@ -1,0 +1,19 @@
+--- 
+:description: |-
+  Total RNA from three replicate cultures of wild-type and mutant strains was isolated and the expression profiles were determined using Affymetrix arrays. Comparisons between the sample groups allow the identification of genes regulated by the histone H2A K4,7G mutant.
+  Keywords: histone H2A mutant, repeat
+:arrays: 
+  GSM176901: 
+    condition: H2A mut
+  GSM176902: 
+    condition: H2A mut
+  GSM176869: 
+    condition: wt
+  GSM176903: 
+    condition: H2A mut
+  GSM176894: 
+    condition: wt
+  GSM176895: 
+    condition: wt
+:title: Histone H2A K4,7G
+:platform: GPL90

@@ -1,0 +1,19 @@
+--- 
+:description: |-
+  To determine the transcriptional changes that occur when yeast is shifted from anaerobic growth to an aerobic environment over a period of 120 minutes.
+  Keywords: time course, stress response, environmental response, aerobic, anaerobic
+:arrays: 
+  GSM172057: 
+    condition: aerobic vs anaerobic 20min
+  GSM172058: 
+    condition: aerobic vs anaerobic 60min
+  GSM172059: 
+    condition: aerobic vs anaerobic 120min
+  GSM172052: 
+    condition: aerobic vs anaerobic 0min
+  GSM172053: 
+    condition: aerobic vs anaerobic 5min
+  GSM172055: 
+    condition: aerobic vs anaerobic 10min
+:title: Transcriptional response of S.cerevisiae to aeration after anaerobic growth
+:platform: GPL4873
