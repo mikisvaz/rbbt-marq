@@ -1,4 +1,5 @@
 require 'MARQ'
+require 'MARQ/main'
 require 'MARQ/GEO'
 require 'MARQ/ID'
 require 'yaml'
@@ -43,7 +44,10 @@ def process_platform(platform, update_db = false)
     $changes = false
     GEO.process_platform(platform)
     GEO.process_platform_datasets(platform, $force && !update_db)
-    MADB::GEO.saveGPL(platform) if update_db && ($changes || $force)
+    if update_db && ($changes || $force)
+      puts "Saving #{platform}"       
+      MADB::GEO.saveGPL(platform) if update_db && ($changes || $force)
+    end
   rescue
     puts $!.message
   end
@@ -58,7 +62,10 @@ def process_serie(serie, update_db = false)
     GEO.process_platform(info[:platform]) if !File.exist? info[:platform]
 
     GEO.process_GSE(serie, info)
-    MADB::GEO.saveGPL(info[:platform]) if info[:platform] && update_db
+    if info[:platform] && update_db
+      puts "Saving #{info[:platform]}"
+      MADB::GEO.saveGPL(info[:platform]) if info[:platform] && update_db
+    end
     info[:platform]
   rescue
     puts $!.message
@@ -140,6 +147,7 @@ task 'data' do
       platform2save << platform if $update_db && ($changes || $force)
     }
 
+    Progress.monitor("Saving #{platform2save.uniq.length} platforms: "
     platform2save.uniq.each{|platform| MADB::GEO.saveGPL(platform) }
 
     # Platforms
@@ -156,6 +164,7 @@ end
 
 task 'annotate_Words' do
   require 'MARQ/annotations'
+  require 'rbbt/util/misc'
   annotations('Words'){|dataset|
     terms = {}
     description = Open.read(GEO.dataset_path(dataset) + '.description')
@@ -171,6 +180,7 @@ end
 
 task 'annotate_UMLS' do
   require 'MARQ/annotations'
+  require 'rbbt/util/misc'
   annotations('UMLS'){|dataset|
     terms = {}
     description = Open.read(GEO.dataset_path(dataset) + '.description')
@@ -186,6 +196,7 @@ end
 
 task 'annotate_Polysearch' do
   require 'MARQ/annotations'
+  require 'rbbt/util/misc'
   require 'rbbt/sources/polysearch'
   annotations('Polysearch'){|dataset|
     terms = {}
