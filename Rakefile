@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "rbbt-marq"
     gem.summary = %Q{MicroArray Rank Query}
-    gem.description = %Q{Find microarray experiments with similar or opposite signature to a given query. This gem contains the library, SOAP web server and web portal for the system.}
+    gem.description = %Q{Find microarray experiments with similar or opposite signature to a given query. A SOAP interface and a merb portal can be found in rbbt-marq-www.}
     gem.email = "miguel.vazquez@fdi.ucm.es"
     gem.homepage = "http://github.com/mikisvaz/rbbt-marq"
     gem.authors = ["Miguel Vazquez"]
