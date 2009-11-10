@@ -164,7 +164,7 @@ end
 
 task 'annotate_Words' do
   require 'MARQ/annotations'
-  require 'rbbt/util/misc'
+  require 'rbbt/bow/bow'
   annotations('Words'){|dataset|
     terms = {}
     description = Open.read(GEO.dataset_path(dataset) + '.description')
