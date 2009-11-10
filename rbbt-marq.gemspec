@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rbbt-marq}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Miguel Vazquez"]
-  s.date = %q{2009-11-02}
+  s.date = %q{2009-11-10}
   s.default_executable = %q{marq_config}
   s.description = %q{Find microarray experiments with similar or opposite signature to a given query. This gem contains the library, SOAP web server and web portal for the system.}
   s.email = %q{miguel.vazquez@fdi.ucm.es}
