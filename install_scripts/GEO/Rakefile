@@ -147,7 +147,7 @@ task 'data' do
       platform2save << platform if $update_db && ($changes || $force)
     }
 
-    Progress.monitor("Saving #{platform2save.uniq.length} platforms: "
+    Progress.monitor("Saving #{platform2save.uniq.length} platforms: ")
     platform2save.uniq.each{|platform| MADB::GEO.saveGPL(platform) }
 
     # Platforms
