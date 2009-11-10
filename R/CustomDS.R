@@ -4,23 +4,27 @@ CustomDS.process <- function(prefix, cross_platform, conditions, description, tw
     # Read data
     genes = scan(file=paste(prefix,'codes',sep = "/"), what=character(),sep="\n",quiet=T);
     m = matrix(scan(file=paste(prefix,'values',sep = "/"), sep="\t",quiet=T),length(genes),byrow=T);
-    rownames(m) <- genes
+    rownames(m) <- genes;
 
+   
     # Read conditions
     conditions.list = vector();
     names = vector();
-    for (file in conditions){
-      values = scan(paste(prefix,file,sep="/"),what=character(),sep="\n",quiet=T)
-      names = c(names, file)
-      conditions.list = cbind(conditions.list, values)
+    for (file in conditions) {
+      filename = paste(prefix,file,sep="/");
+      values = scan(file=filename, what=character(), sep = "\n");
+      names = c(names, file);
+      conditions.list = cbind(conditions.list, values);
     }
+
+    colnames(conditions.list) <- names;
 
 
 
 
     # Do log2 if needed
     if (is.null(do.log2)){
-      do.log2 = MA.guess.do.log2(m, two.channel)
+      do.log2 = MA.guess.do.log2(m, two.channel);
     }
     if (do.log2){
         m <- log2(m);
@@ -37,9 +41,8 @@ CustomDS.process <- function(prefix, cross_platform, conditions, description, tw
 
     # Once the data is read, change the prefix for cross_platform ids
     if (cross_platform){
-      prefix = paste(prefix,'cross_platform', sep="_")
+      prefix = paste(prefix,'cross_platform', sep="_");
     }
-    colnames(conditions.list) <- names;
 
     values <- MA.process(m, conditions.list, two.channel);
 
