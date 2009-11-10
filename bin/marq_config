@@ -187,7 +187,6 @@ class View < SimpleConsole::View
   end
 
   def update
-    install
 
     require 'rake'
     @actions = [@actions] if @actions === String
