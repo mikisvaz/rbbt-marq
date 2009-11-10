@@ -1,6 +1,7 @@
 require 'rbbt/util/open'
 require 'MARQ'
 require 'MARQ/ID'
+
 module CustomDS
   @@r = nil
 
@@ -9,6 +10,7 @@ module CustomDS
   end
 
   def self.r
+    require 'rsruby'
     if @@r.nil?
       RSRuby.instance.source(MARQ.rootdir + '/R/MA.R')
       RSRuby.instance.source(MARQ.rootdir + '/R/CustomDS.R')
@@ -62,10 +64,7 @@ module CustomDS
     Dir.glob(File.join(customdir, org) + '/*.orders').collect{|f| clean(File.basename(f.sub(/.orders/,'')))}.uniq
   end
 
-  def self.process(name)
-    puts "Processing #{ name }"
-    org = organism(name)
-    prefix = File.join(customdir, org, name)
+  def self.process_matrix(prefix, org)
     conditions = Dir.glob(prefix + '/*').collect{|f| File.basename(f)} - %w(values codes info description cross_platform)
     description = Open.read(File.join(prefix, 'description'))
 
@@ -82,6 +81,14 @@ module CustomDS
     end
   end
 
+  def self.process(name)
+    puts "Processing #{ name }"
+    org = organism(name)
+    prefix = File.join(customdir, org, name)
+
+    CustomDS::process_matrix(prefix, org)
+  end
+
 end
 
 
@@ -89,6 +96,7 @@ if __FILE__ == $0
   p CustomDS::datasets('sgd')
   p CustomDS::path('HaploidData')
   p CustomDS::path('HaploidData_cross_platform')
+
   exit
 
   org = 'sgd'
