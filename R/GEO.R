@@ -35,6 +35,10 @@ GEO.values <- function(data){
 
 
 GEO.get <- function(name, cachedir = NULL){
+    if (is.null(cachedir) && exists('MARQ.config')){
+       cachedir = paste(MARQ.config$cachedir, 'GEO', sep="/");
+    }
+
     if (is.null(cachedir)){
         object  <- getGEO(name);
     }else{
