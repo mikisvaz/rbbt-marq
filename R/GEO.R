@@ -1,6 +1,37 @@
 library(Biobase);
 library(GEOquery);
 
+
+GEO.path <- function(dataset, datadir = NULL){
+    if (is.null(datadir) && exists('MARQ.config')){
+       datadir= paste(MARQ.config$datadir, 'GEO', sep="/");
+    }
+
+    if (is.null(datadir)){
+        print("No datadir specified and no default found (MARQ.config$datadir");
+        exit(-1);
+    }
+    
+
+    files = Sys.glob(paste(datadir,'*', '*', paste(dataset, 'orders', sep="."), sep="/"));
+    
+    if (length(files) == 0){
+        return(NULL);
+    }
+    else{
+        return(files[1]);
+    }
+}
+
+GEO.platform <- function(dataset, datadir = NULL){
+
+    path = GEO.path(dataset, datadir);
+
+    if (is.null(path)){ return(NULL);}
+
+    return(sub(".*(GPL\\d+).*","\\1", path, perl = TRUE));
+}
+
 GEO.values <- function(data){
     values <- MA.process(data$m, data$conditions, data$two.channel)
 
