@@ -81,6 +81,8 @@ $USAGE =<<EOT
     * init:
       * webservice: Start the SOAP Web Service
       * www: Start the merb server
+
+    * Rdir: List the directory containing the R scripts
                 
                    
 EOT
@@ -106,6 +108,9 @@ class Controller < SimpleConsole::Controller
   def config
   end
 
+  def Rdir
+    puts File.expand_path(File.join(File.dirname(File.dirname(__FILE__)), 'R'))
+  end
 
 
   def default
