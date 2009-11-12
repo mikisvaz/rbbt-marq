@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rbbt-marq}
-  s.version = "1.0.3"
+  s.version = "1.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Miguel Vazquez"]
-  s.date = %q{2009-11-10}
+  s.date = %q{2009-11-12}
   s.default_executable = %q{marq_config}
   s.description = %q{Find microarray experiments with similar or opposite signature to a given query. A SOAP interface and a merb portal can be found in rbbt-marq-www.}
   s.email = %q{miguel.vazquez@fdi.ucm.es}
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
     "R/CustomDS.R",
      "R/GEO.R",
      "R/MA.R",
+     "R/MARQ.R",
      "bin/marq_config",
      "install_scripts/CustomDS/Rakefile",
      "install_scripts/GEO/Rakefile",
