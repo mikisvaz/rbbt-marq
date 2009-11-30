@@ -2,7 +2,7 @@ library(Biobase);
 library(GEOquery);
 
 
-GEO.path <- function(dataset, datadir = NULL){
+GEO.path <- function(dataset, cross_platform = FALSE, datadir = NULL){
     if (is.null(datadir) && exists('MARQ.config')){
        datadir= paste(MARQ.config$datadir, 'GEO', sep="/");
     }
@@ -10,6 +10,11 @@ GEO.path <- function(dataset, datadir = NULL){
     if (is.null(datadir)){
         print("No datadir specified and no default found (MARQ.config$datadir");
         exit(-1);
+    }
+
+    if ( length(grep('_cross_platform', dataset)) == 0 && cross_platform){
+        dataset = paste(dataset, '_cross_platform', sep = "");
+    
     }
     
 
@@ -19,17 +24,49 @@ GEO.path <- function(dataset, datadir = NULL){
         return(NULL);
     }
     else{
-        return(files[1]);
+        return(sub('.orders','', files[1]));
     }
 }
 
 GEO.platform <- function(dataset, datadir = NULL){
 
-    path = GEO.path(dataset, datadir);
+    path = GEO.path(dataset, datadir = datadir);
 
     if (is.null(path)){ return(NULL);}
 
     return(sub(".*(GPL\\d+).*","\\1", path, perl = TRUE));
+}
+
+GEO.platform.path <- function(platform, datadir = NULL){
+    if (is.null(datadir) && exists('MARQ.config')){
+       datadir= paste(MARQ.config$datadir, 'GEO', sep="/");
+    }
+
+    if (is.null(datadir)){
+        print("No datadir specified and no default found (MARQ.config$datadir");
+        exit(-1);
+    }
+
+    return(paste(datadir, platform, sep="/"));
+}
+
+GEO.platform.datasets <- function(platform, cross_platform = TRUE, series = TRUE, datadir = NULL){
+    if (cross_platform){
+        cp.suffix = '_cross_platform'
+    }
+    else{
+        cp.suffix = ''
+    }
+
+    if (series){
+        pattern = '*'
+    }
+    else{
+        pattern = 'GDS'
+    }
+    files = Sys.glob(paste(GEO.platform.path(platform, datadir), pattern, paste('*',cp.suffix,'.orders',sep=""),sep="/"))
+
+    return(sapply(files, function(path){ sub(".*((?:GDS|GSE)\\d+).*", '\\1', path, perl=TRUE)}, USE.NAMES = FALSE));
 }
 
 GEO.values <- function(data){
