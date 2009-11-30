@@ -350,9 +350,12 @@ module GEO
     end
   end
 
-  # Rearange the lines of a file with the given order
+  # Rearange the lines of a file with the given order. The order specifies, for
+  # each position in the original file, where it should en in the final file
   def self.rearange(order, file, missing = "NA")
-    orig_lines = File.open(file).collect
+    orig_lines = []
+    File.open(file).each_line{|l| orig_lines << l}
+
     return if orig_lines.empty?
     columns = orig_lines.first.split(/\t/).length
     
@@ -366,7 +369,7 @@ module GEO
     lines = lines.collect{|l| l || [missing]*columns*"\t"}
 
     fout = File.open(file, 'w')
-    fout.write(lines.join("\n"))
+    fout.puts(lines.join("\n"))
     fout.close
   end
 
@@ -384,7 +387,7 @@ module GEO
     platform_positions = platform_order.values_at(*series_codes)
 
     # Fill with nil for missing positions
-    platform_positions[platform_codes.length] ||= nil
+    platform_positions[platform_codes.length - 1 - 1] ||= nil
 
     %w(codes t logratios orders pvalues).each{|ext|
       rearange(platform_positions, prefix + '.' + ext)
