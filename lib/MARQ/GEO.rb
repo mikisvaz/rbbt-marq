@@ -362,7 +362,7 @@ module GEO
     lines = Array.new(order.length)
 
     orig_lines.each_with_index{|l,i|
-      next if l.nil? || order[i].nil?
+      next if order[i].nil?
       lines[order[i]] = l.chomp
     }
 
@@ -387,9 +387,9 @@ module GEO
     platform_positions = platform_order.values_at(*series_codes)
 
     # Fill with nil for missing positions
-    platform_positions[platform_codes.length - 1 - 1] ||= nil
+    platform_positions[platform_codes.length - 1] ||= nil
 
-    %w(codes t logratios orders pvalues).each{|ext|
+    %w(t logratios orders pvalues).each{|ext|
       rearange(platform_positions, prefix + '.' + ext)
     }
 
@@ -438,6 +438,8 @@ module GEO
       # Are the codes of the series equivalent to the ones in the platform?
       if  File.open(File.join(platform_path(platform),'codes')).collect{|l| l.chomp} != File.open(prefix + '.codes').collect{|l| l.chomp}
         fix_GSE_ids(File.join(platform_path(platform), 'codes'),prefix);
+        FileUtils.cp(File.join(platform_path(platform), 'codes'),prefix + '.codes')
+
       end
     end
 
@@ -456,6 +458,7 @@ module GEO
       puts "-- Translated to cross_platform format"
       GEO.get_GSE(gsms, conditions, do_log, prefix + '_cross_platform', prefix + '.translations',fields, info[:title], info[:description])
       fix_GSE_ids(File.join(platform_path(platform), 'cross_platform'),prefix + '_cross_platform');
+      FileUtils.cp(File.join(platform_path(platform), 'cross_platform'),prefix + '_cross_platform.codes')
       FileUtils.rm(prefix + '.translations') if File.exist?(prefix + '.translations')
     end
      FileUtils.rm(prefix + '.swap') if File.exist?(prefix + '.swap')
