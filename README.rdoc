@@ -15,10 +15,10 @@ MARQ. To install MARQ follow this recipie:
 * Install Rbbt
 
     rbbt_config configure
-    rbbt_config install identifiers
+    rbbt_config prepare identifiers
     rbbt_config organisms
     # Choose the organisms you are interested in, and take the keyword. Like sgd for yeast
-    rbbt_config update organisms -o sgd
+    rbbt_config install organisms -o sgd
 
 * Install R
   * Install bioconductor and GEOquery
@@ -34,8 +34,9 @@ MARQ. To install MARQ follow this recipie:
 
 * Install MARQ
     marq_config config
-    marq_config install identifiers
-    marq_config update GEO
+    marq_config prepare identifiers
+    marq_config prepare GEO
+    marq_config install GEO
 
 * MARQ depends on many gems. Some may be problematic to install, in particular
   rsruby. You may need to get the source and build it yourself instead 

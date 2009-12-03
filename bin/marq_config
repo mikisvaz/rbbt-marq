@@ -69,12 +69,12 @@ $USAGE =<<EOT
   actions:
     * config:   Set paths for data, cache, and tmp directories
 
-    * install:
+    * prepare:
       * GEO: Install management files to process GEO datasets and series
       * CustomDS: Install management files to process data from other sources
       * identifiers: Load the identifier equivalences in the database
 
-    * update:
+    * install:
       * GEO: Process datasets and series from GEO
       * CustomDS: Process datasets from other sources
 
@@ -91,12 +91,12 @@ class Controller < SimpleConsole::Controller
   params :string => {:p => :platform, :s => :series,  :o => :organism}, :boolean => {:d => :update_db, :f => :force}, :integer => {:p => :port}
 
 
-  def install
+  def prepare
     $organism  = params[:organism] unless params[:organism].nil?
     @actions = params[:id] || %w(GEO)
   end
 
-  def update
+  def install
     $platform  = params[:platform] unless params[:platform].nil?
     $series    = params[:series]   unless params[:series].nil?
     $organism  = params[:organism] unless params[:organism].nil?
@@ -166,7 +166,7 @@ class View < SimpleConsole::View
     configure
   end
 
-  def install
+  def prepare
     require 'rbbt/sources/organism'
     require 'MARQ/ID'
     case
@@ -191,7 +191,7 @@ class View < SimpleConsole::View
     end
   end
 
-  def update
+  def install
 
     require 'rake'
     @actions = [@actions] if @actions === String
