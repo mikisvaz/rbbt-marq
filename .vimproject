@@ -5,9 +5,10 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
   install.rake
  }
  R=R{
-  GEO.R
   CustomDS.R
+  GEO.R
   MA.R
+  MARQ.R
  }
  bin=bin{
   marq_config
