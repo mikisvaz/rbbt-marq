@@ -21,6 +21,7 @@ begin
     gem.add_dependency('simpleconsole')
     gem.add_dependency('DBcache')
     gem.add_dependency('DRbServe')
+    gem.add_dependency('png')
 
 
     # FIXME: This wont work with ruby 1.9
