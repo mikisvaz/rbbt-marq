@@ -1,6 +1,8 @@
 library(Biobase);
 library(GEOquery);
 
+####################################################
+# Platforms, datasets, and Path helper functions
 
 GEO.path <- function(dataset, cross_platform = FALSE, datadir = NULL){
     if (is.null(datadir) && exists('MARQ.config')){
@@ -69,38 +71,8 @@ GEO.platform.datasets <- function(platform, cross_platform = TRUE, series = TRUE
     return(sapply(files, function(path){ sub(".*((?:GDS|GSE)\\d+).*", '\\1', path, perl=TRUE)}, USE.NAMES = FALSE));
 }
 
-GEO.values <- function(data){
-    values <- MA.process(data$m, data$conditions, data$two.channel)
-
-    if (length(values$ratios) == 0){
-        return(NULL);
-    }else{
-        ratios   = as.data.frame(values$ratios);
-        t        = as.data.frame(values$t);
-        p.values = as.data.frame(values$p.values);
-
-
-        # Calculate orders from best information
-        best = vector();
-        names = vector();
-        for (name in colnames(ratios)){
-            if (sum(colnames(t) == name) > 0){
-                best = cbind(best, t[,name]);
-                names = c(names, name);
-            }else{
-                best = cbind(best, ratios[,name]);
-                names = c(names, paste(name,'[ratio]', sep=" "));
-            }
-        }
-        rownames(best) <- rownames(ratios)
-        orders   = as.data.frame(MA.get_order(best));
-        colnames(orders) <- names
-
-        return(list(ratios = ratios, t = t, p.values = p.values, orders = orders));
-    }
-}
-
-
+####################################################
+# Data retrieval functions
 
 GEO.get <- function(name, cachedir = NULL){
     if (is.null(cachedir) && exists('MARQ.config')){
@@ -162,6 +134,9 @@ GEO.GDS.data <- function(name, id.field = NULL, translation.file = NULL, cachedi
         trans = featureData(eSet)[[id.field]];
     }
     if (!is.null(translation.file)){
+        if (translation.file == TRUE){
+           translation.file = paste(GEO.platform.path(gpl_name), 'translations', sep="/");
+        }
         trans = scan(file=translation.file,what=character(),sep="\n",quiet=T);
     }
 
@@ -173,29 +148,6 @@ GEO.GDS.data <- function(name, id.field = NULL, translation.file = NULL, cachedi
 
     return (list(conditions = conditions, m = m, two.channel = two.channel, description = description))
 }
-
-
-GEO.GDS.process <- function(name, prefix, id.field = NULL, translation.file = NULL,cachedir=NULL){
-    tryCatch(
-    {
-        gds.data = GEO.GDS.data(name, id.field, translation.file, cachedir)
-        values = GEO.values(gds.data)
-        if (is.null(values)){
-            write(file=paste(prefix,'skip',sep="."), "No suitable samples for analysis" );
-        }else{
-            MA.save(prefix, values$orders, values$ratios, values$t, values$p.values, colnames(values$orders), gds.data$description);
-        }
-    }
-    ,
-        error=function(x){ 
-             print("Exception caught");
-             print(x);
-             write(file=paste(prefix,'skip',sep="."), paste("An exception was caught during the analysis.",x,sep="\n") );
-        }
-    )
-}
-
-
 
 
 GEO.GSE.data <- function(gsms, conditions, do.log2 = NULL, translation.file = NULL, use.fields = NULL, cachedir = NULL){
@@ -264,6 +216,9 @@ GEO.GSE.data <- function(gsms, conditions, do.log2 = NULL, translation.file = NU
 
     trans = NULL
     if (!is.null(translation.file)){
+        if (translation.file == TRUE){
+           translation.file = paste(GEO.platform.path(gpl_name), 'translations', sep="/");
+        }
         trans = read.table(file=translation.file, sep="\t",header=F)[,1];
     }
     if (!is.null(trans)){
@@ -282,6 +237,63 @@ GEO.GSE.data <- function(gsms, conditions, do.log2 = NULL, translation.file = NU
     m[is.infinite(m)] = NA
 
     return (list(conditions = conditions, m = m, two.channel = two.channel))
+}
+
+
+####################################################
+# Processing Functions
+
+GEO.values <- function(data){
+    values <- MA.process(data$m, data$conditions, data$two.channel)
+
+    if (length(values$ratios) == 0){
+        return(NULL);
+    }else{
+        ratios   = as.data.frame(values$ratios);
+        t        = as.data.frame(values$t);
+        p.values = as.data.frame(values$p.values);
+
+
+        # Calculate orders from best information
+        best = vector();
+        names = vector();
+        for (name in colnames(ratios)){
+            if (sum(colnames(t) == name) > 0){
+                best = cbind(best, t[,name]);
+                names = c(names, name);
+            }else{
+                best = cbind(best, ratios[,name]);
+                names = c(names, paste(name,'[ratio]', sep=" "));
+            }
+        }
+        rownames(best) <- rownames(ratios)
+        orders   = as.data.frame(MA.get_order(best));
+        colnames(orders) <- names
+
+        return(list(ratios = ratios, t = t, p.values = p.values, orders = orders));
+    }
+}
+
+
+
+GEO.GDS.process <- function(name, prefix, id.field = NULL, translation.file = NULL,cachedir=NULL){
+    tryCatch(
+    {
+        gds.data = GEO.GDS.data(name, id.field, translation.file, cachedir)
+        values = GEO.values(gds.data)
+        if (is.null(values)){
+            write(file=paste(prefix,'skip',sep="."), "No suitable samples for analysis" );
+        }else{
+            MA.save(prefix, values$orders, values$ratios, values$t, values$p.values, colnames(values$orders), gds.data$description);
+        }
+    }
+    ,
+        error=function(x){ 
+             print("Exception caught");
+             print(x);
+             write(file=paste(prefix,'skip',sep="."), paste("An exception was caught during the analysis.",x,sep="\n") );
+        }
+    )
 }
 
 GEO.GSE.process <- function(gsms, conditions, prefix, do.log2 = NULL, translation.file = NULL, use.field = NULL, title = NULL,  description = NULL,cachedir=NULL){
