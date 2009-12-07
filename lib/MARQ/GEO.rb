@@ -30,10 +30,19 @@ module GEO
         scan(/<Id>(\d+?)<\/Id>/).collect{|id| id.first}.collect{|id| "GPL#{id.sub(/^100*/,'')}"}
     end
 
+    def self.dataset_platform(dataset)
+      if dataset =~ /GSE/
+        Open.read("http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=#{dataset}").scan(/GPL\d+/).uniq.sort.join("_")
+      else
+        Open.read("http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=#{dataset}").scan(/GPL\d+/).uniq.sort.join("_")
+      end
+    end
+
     def self.GPL_datasets(platform)
       Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=#{platform}[Accession]&retmax=2000").
       scan(/<Id>(\d+?)<\/Id>/).collect{|id| id.first}.select{|id| !id.match(/^(1|2)000/) }.collect{|id| "GDS#{id}"}
     end
+
 
     def self.GSE_dataset?(gse)
       Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=geo&term=#{gse}[Accession]&retmax=2000").
@@ -562,6 +571,12 @@ end
 
 if __FILE__ == $0
 
+  puts GEO::Eutils.dataset_platform('GSE121')
+  puts GEO::Eutils.dataset_platform('GDS1375')
+  puts GEO::Eutils.dataset_platform('GSE8982')
+
+
+  exit
   p GEO.GPL_info('GPL920_GPL927')
   p GEO.GPL_id_fields('GPL920')
   puts GEO.GSE_info('GSE962')

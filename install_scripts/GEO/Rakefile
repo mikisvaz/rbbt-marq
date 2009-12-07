@@ -8,16 +8,18 @@ require 'MARQ/MADB'
 
 $platform       ||= ENV['platform']
 $org            ||= [$organism, ENV['organism'], nil].reject{|e| e.nil?}.first 
-$series         ||= ENV['series']
+$dataset        ||= ENV['dataset']
+
 
 $expr_threshold ||= (ENV['threshold'] || 0.05).to_f
 $folds          ||= (ENV['folds'] || 2.5).to_f
 $nth_genes      ||= (ENV['nth_genes'] || 100).to_i
 
-$force       = [$force, ENV['force'], false].         reject{|e| e.nil?}.first 
-$update_db   = [$update_db, ENV['update_db'], true].  reject{|e| e.nil?}.first 
-$fdr         = [$fdr, ENV['fdr'], true].              reject{|e| e.nil?}.first 
-$do_folds    = [$do_folds, ENV['do_folds'], true].    reject{|e| e.nil?}.first 
+$force       = [$force, ENV['force'], false].reject{|e| e.nil?}.first 
+$tranlations = [$tranlations, ENV['translations'], false].reject{|e| e.nil?}.first 
+$update_db   = [$update_db, ENV['update_db'], true].reject{|e| e.nil?}.first 
+$fdr         = [$fdr, ENV['fdr'], true].reject{|e| e.nil?}.first 
+$do_folds    = [$do_folds, ENV['do_folds'], true].reject{|e| e.nil?}.first 
 
 
 # Record changes in order to update DB
@@ -39,37 +41,89 @@ module GEO
 end
 
 
-def process_platform(platform, update_db = false)
-  begin
-    $changes = false
-    GEO.process_platform(platform)
-    GEO.process_platform_datasets(platform, $force && !update_db)
-    if update_db && ($changes || $force)
-      puts "Saving #{platform}"       
-      MADB::GEO.saveGPL(platform) if update_db && ($changes || $force)
-    end
-  rescue
-    puts $!.message
+def process_list
+  return {GEO::Eutils::dataset_platform($dataset) => [$dataset]} if $dataset
+  return {$platform => GEO::Eutils::GPL_datasets($platform)} if $platform
+  
+  if $organism
+    organisms = [$organism]
+  else
+    organisms = Organism.all(true)
   end
+
+  list = {}
+  organisms.each{|organism|
+    GEO::Eutils::organism_platforms(organism).each{|platform|
+      datasets = GEO::Eutils::GPL_datasets(platform)
+
+      # Platforms with no datasets are skiped, although if they have series
+      # they may be considered later
+      next if datasets.empty?
+
+      if $tranlations
+        list[platform] = []
+      else
+        list[platform] = datasets
+      end
+    }
+  }
+
+  if $series && ! $translations
+    series = Dir.glob('series/*.yaml').collect{|f| File.basename(f).sub(/.yaml/,'')}               
+    series.each{|serie|
+      platform = GEO::Eutils::dataset_platform(serie)
+      if organisms.include? GEO::GSE_info(serie)[:organism].to_s
+        list[platform] ||= []
+        list[platform] << serie
+      end
+    }
+  end
+
+  return list
 end
 
-def process_serie(serie, update_db = false)
-  begin
-    $changes = false
-    info = YAML::load(File.open("series/#{ serie }.yaml"))
+desc "Analyze datasets"
+task 'data' do 
 
-    FileUtils.rm("platforms/#{ info[:platform] }.skip") if File.exist?  "platforms/#{ info[:platform] }.skip"
-    GEO.process_platform(info[:platform]) if !File.exist? info[:platform]
+  updated_platforms = []
 
-    GEO.process_GSE(serie, info)
-    if info[:platform] && update_db
-      puts "Saving #{info[:platform]}"
-      MADB::GEO.saveGPL(info[:platform]) if info[:platform] && update_db
+  process_list.each{|platform, datasets|
+    begin
+
+      # Prepare the platform
+      GEO.process_platform(platform)
+      
+      # Process all datasets
+      datasets.each{|dataset|
+        $changes = false
+        if dataset =~ /GDS/
+          GEO.process_GDS(dataset, platform)
+        else
+          info = YAML::load(File.open("series/#{ serie }.yaml"))
+          FileUtils.rm("platforms/#{ info[:platform] }.skip") if File.exist?  "platforms/#{ info[:platform] }.skip"
+          GEO.process_GSE(dataset, platform)
+        end
+
+        # Mark the platform for saving in DB
+        updated_platforms << platform if $changes || ($force && $update_db)
+      }
+    rescue
+      puts "Error processing dataset #{ dataset }:"
+      puts $!.message
+      puts $!.backtrace.join("\n")
     end
-    info[:platform]
-  rescue
-    puts $!.message
-  end
+
+  }
+
+  updated_platforms.each{|platform|
+    begin
+      MADB::GEO.saveGPL(platform) 
+    rescue
+      puts "Error saving platform #{ platform }"
+      puts $!.message
+      puts $!.backtrace.join("\n")
+    end
+  }
 end
 
 def annotations(name, cross_platform = false, &block)
@@ -125,42 +179,6 @@ def goterms(org, list, slim, threshold)
 end
 
 
-task 'data' do
-  if $platform
-    process_platform($platform, $update_db)
-  elsif $series
-    process_serie($series, $update_db)
-  elsif $org
-    org = $org
-    platforms = GEO::Eutils.organism_platforms(org).select{|platform|  GEO::Eutils.GPL_datasets(platform).any?}
-    Progress.monitor("Platforms for #{Organism.name(org)}")
-    platforms.each{|platform|
-      puts "Platform #{ platform }"
-      process_platform(platform,$update_db)
-    }
-  else
-    # Series
-    series = Dir.glob('series/*.yaml').collect{|f| File.basename(f).sub(/.yaml/,'')}
-    platform2save = []
-    series.each{|serie|
-      platform  = process_serie(serie, false)
-      platform2save << platform if $update_db && ($changes || $force)
-    }
-
-    Progress.monitor("Saving #{platform2save.uniq.length} platforms: ")
-    platform2save.uniq.each{|platform| MADB::GEO.saveGPL(platform) }
-
-    # Platforms
-    for org in Organism.all
-      platforms = GEO::Eutils.organism_platforms(org).select{|platform|  GEO::Eutils.GPL_datasets(platform).any?}
-      Progress.monitor("Platforms for #{Organism.name(org)}")
-      platforms.each{|platform|
-        puts "Platform #{ platform }"
-        process_platform(platform,$update_db)
-      }
-    end
-  end
-end
 
 task 'annotate_Words' do
   require 'MARQ/annotations'

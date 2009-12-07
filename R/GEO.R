@@ -2,76 +2,6 @@ library(Biobase);
 library(GEOquery);
 
 ####################################################
-# Platforms, datasets, and Path helper functions
-
-GEO.path <- function(dataset, cross_platform = FALSE, datadir = NULL){
-    if (is.null(datadir) && exists('MARQ.config')){
-       datadir= paste(MARQ.config$datadir, 'GEO', sep="/");
-    }
-
-    if (is.null(datadir)){
-        print("No datadir specified and no default found (MARQ.config$datadir");
-        exit(-1);
-    }
-
-    if ( length(grep('_cross_platform', dataset)) == 0 && cross_platform){
-        dataset = paste(dataset, '_cross_platform', sep = "");
-    
-    }
-    
-
-    files = Sys.glob(paste(datadir,'*', '*', paste(dataset, 'orders', sep="."), sep="/"));
-    
-    if (length(files) == 0){
-        return(NULL);
-    }
-    else{
-        return(sub('.orders','', files[1]));
-    }
-}
-
-GEO.platform <- function(dataset, datadir = NULL){
-
-    path = GEO.path(dataset, datadir = datadir);
-
-    if (is.null(path)){ return(NULL);}
-
-    return(sub(".*(GPL\\d+).*","\\1", path, perl = TRUE));
-}
-
-GEO.platform.path <- function(platform, datadir = NULL){
-    if (is.null(datadir) && exists('MARQ.config')){
-       datadir= paste(MARQ.config$datadir, 'GEO', sep="/");
-    }
-
-    if (is.null(datadir)){
-        print("No datadir specified and no default found (MARQ.config$datadir");
-        exit(-1);
-    }
-
-    return(paste(datadir, platform, sep="/"));
-}
-
-GEO.platform.datasets <- function(platform, cross_platform = TRUE, series = TRUE, datadir = NULL){
-    if (cross_platform){
-        cp.suffix = '_cross_platform'
-    }
-    else{
-        cp.suffix = ''
-    }
-
-    if (series){
-        pattern = '*'
-    }
-    else{
-        pattern = 'GDS'
-    }
-    files = Sys.glob(paste(GEO.platform.path(platform, datadir), pattern, paste('*',cp.suffix,'.orders',sep=""),sep="/"))
-
-    return(sapply(files, function(path){ sub(".*((?:GDS|GSE)\\d+).*", '\\1', path, perl=TRUE)}, USE.NAMES = FALSE));
-}
-
-####################################################
 # Data retrieval functions
 
 GEO.get <- function(name, cachedir = NULL){
@@ -133,9 +63,9 @@ GEO.GDS.data <- function(name, id.field = NULL, translation.file = NULL, cachedi
     if (!is.null(id.field)){
         trans = featureData(eSet)[[id.field]];
     }
-    if (!is.null(translation.file)){
-        if (translation.file == TRUE){
-           translation.file = paste(GEO.platform.path(gpl_name), 'translations', sep="/");
+    if (!is.null(translation.file) && translation.file != FALSE){
+        if (translation.file == TRUE && exists(MARQ.platform.path)){
+           translation.file = paste(MARQ.platform.path(gpl_name), 'translations', sep="/");
         }
         trans = scan(file=translation.file,what=character(),sep="\n",quiet=T);
     }
@@ -215,9 +145,9 @@ GEO.GSE.data <- function(gsms, conditions, do.log2 = NULL, translation.file = NU
     }
 
     trans = NULL
-    if (!is.null(translation.file)){
-        if (translation.file == TRUE){
-           translation.file = paste(GEO.platform.path(gpl_name), 'translations', sep="/");
+    if (!is.null(translation.file) && translation.file != FALSE){
+        if (translation.file == TRUE && exists(MARQ.platform.path)){
+           translation.file = paste(MARQ.platform.path(gpl_name), 'translations', sep="/");
         }
         trans = read.table(file=translation.file, sep="\t",header=F)[,1];
     }
