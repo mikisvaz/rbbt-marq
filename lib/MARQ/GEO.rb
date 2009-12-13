@@ -49,6 +49,7 @@ module GEO
         File.open(cache_file).read
       else
         content = Open.read(GEO_SOFT + item, :nocache => true)
+        raise "SOFT file error" if content !~ /!/
         fout = File.open(cache_file,'w')
         fout.write content
         fout.close
@@ -60,13 +61,12 @@ module GEO
 
     def self.GSE(series)
       soft = get_soft(series)
-      raise "SOFT file error" if soft !~ /!/
 
-        if match = soft.scan(/!Series_platform_id\s*=?\s*(.*)/)
-          platform = match.flatten.collect{|p| p.strip}
-        else
-          raise "No Platform information" 
-        end
+      if match = soft.scan(/!Series_platform_id\s*=?\s*(.*)/)
+        platform = match.flatten.collect{|p| p.strip}
+      else
+        raise "No Platform information" 
+      end
 
       if soft.match(/!Series_title \s*=?\s*(.*)/)
         title = $1
