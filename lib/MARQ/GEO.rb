@@ -6,11 +6,15 @@ module GEO
   # Get information from Entrez
   module Remote
 
-
     def self.organism_platforms(org)
       name = Organism.name(org)
       Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=\"#{name}\"[Organism:exp]+AND+%22gpl%22[Filter]&retmax=10000").
         scan(/<Id>(\d+?)<\/Id>/).collect{|id| id.first}.collect{|id| "GPL#{id.sub(/^100*/,'')}"}
+    end
+
+    def self.platform_datasets(platform)
+      Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=#{platform}[Accession]&retmax=2000").
+      scan(/<Id>(\d+?)<\/Id>/).collect{|id| id.first}.select{|id| !id.match(/^(1|2)000/) }.collect{|id| "GDS#{id}"}
     end
 
     def self.dataset_platform(dataset)
@@ -21,17 +25,10 @@ module GEO
       end
     end
 
-    def self.GPL_datasets(platform)
-      Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=#{platform}[Accession]&retmax=2000").
-      scan(/<Id>(\d+?)<\/Id>/).collect{|id| id.first}.select{|id| !id.match(/^(1|2)000/) }.collect{|id| "GDS#{id}"}
-    end
-
-
-    def self.GSE_dataset?(gse)
+    def self.series_dataset?(gse)
       Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=geo&term=#{gse}[Accession]&retmax=2000").
       match(/<Id>(\d+?)<\/Id>/) != nil
     end
-
 
   end
 
@@ -342,9 +339,10 @@ module GEO
     # different one only for translation
     def self.GDS(dataset, platform, field = nil)
       puts "Processing GDS #{ dataset }. Platform #{ platform }"
+      platform_path = GEO.platform_path(platform)
 
       puts "-- Original"
-      prefix = File.join(platform_path(platform), 'GDS', dataset.to_s)
+      prefix = File.join(platform_path, 'GDS', dataset.to_s)
       R.GDS(dataset, prefix, field, nil)
 
       # Was there an error?
@@ -355,7 +353,7 @@ module GEO
 
       if File.exist?(File.join(platform,'cross_platform'))
         puts "-- Translated to cross_platform format"
-        R.GDS(dataset, prefix + '_cross_platform', field, File.join(platform_path(platform), 'translations')) 
+        R.GDS(dataset, prefix + '_cross_platform', field, File.join(platform_path, 'translations')) 
       end
     end
 
@@ -363,6 +361,7 @@ module GEO
     # :platform, :log2 and :fields keys
     def self.GSE(series, info)
       return if Dir.glob(File.join(info[:platform], 'GSE', series) + '.*').any?
+
 
       gsms = []
       conditions = {}
@@ -380,7 +379,8 @@ module GEO
 
       puts "Processing GSE #{ series }. Platform #{ platform }"
 
-      prefix = File.join(platform_path(platform), 'GSE', series.to_s)
+      platform_path = GEO::platform_path(platform)
+      prefix = File.join(platform_path, 'GSE', series.to_s)
       puts "-- Original"
       R.GSE(gsms, conditions, do_log, prefix, nil, fields, info[:title], info[:description])
 
@@ -391,17 +391,17 @@ module GEO
       end
 
       if platform =~ /_/
-        FileUtils.cp(prefix + '.codes', File.join(platform_path(platform),'codes'))
-        codes  = Open.read(File.join(platform_path(platform), 'codes')).collect{|l| l.chomp}
+        FileUtils.cp(prefix + '.codes', File.join(platform_path,'codes'))
+        codes  = Open.read(File.join(platform_path, 'codes')).collect{|l| l.chomp}
         organism = SOFT::GPL(platform.match(/(.*?)_/)[1])[:organism]
         translations = ID.translate(organism, codes) 
-        Open.write(File.join(platform_path(platform), 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
-        Open.write(File.join(platform_path(platform), 'cross_platform'), translations.compact.sort.uniq.join("\n"))
+        Open.write(File.join(platform_path, 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
+        Open.write(File.join(platform_path, 'cross_platform'), translations.compact.sort.uniq.join("\n"))
       else
         # Are the codes of the series equivalent to the ones in the platform?
-        if  File.open(File.join(platform_path(platform),'codes')).collect{|l| l.chomp} != File.open(prefix + '.codes').collect{|l| l.chomp}
-          fix_GSE_ids(File.join(platform_path(platform), 'codes'),prefix);
-          FileUtils.cp(File.join(platform_path(platform), 'codes'),prefix + '.codes')
+        if  File.open(File.join(platform_path,'codes')).collect{|l| l.chomp} != File.open(prefix + '.codes').collect{|l| l.chomp}
+          fix_GSE_ids(File.join(platform_path, 'codes'),prefix);
+          FileUtils.cp(File.join(platform_path, 'codes'),prefix + '.codes')
         end
       end
 
@@ -419,8 +419,8 @@ module GEO
         end
         puts "-- Translated to cross_platform format"
         R.GSE(gsms, conditions, do_log, prefix + '_cross_platform', prefix + '.translations',fields, info[:title], info[:description])
-        fix_GSE_ids(File.join(platform_path(platform), 'cross_platform'),prefix + '_cross_platform');
-        FileUtils.cp(File.join(platform_path(platform), 'cross_platform'),prefix + '_cross_platform.codes')
+        fix_GSE_ids(File.join(platform_path, 'cross_platform'),prefix + '_cross_platform');
+        FileUtils.cp(File.join(platform_path, 'cross_platform'),prefix + '_cross_platform.codes')
         FileUtils.rm(prefix + '.translations') if File.exist?(prefix + '.translations')
       end
       FileUtils.rm(prefix + '.swap') if File.exist?(prefix + '.swap')
@@ -429,7 +429,7 @@ module GEO
     # Load GPL data. Translates IDS of the platform probes using AILUN and our
     # system (called biomart for clarity)
     def self.GPL(platform)
-      path = platform_path(platform)
+      path = GEO::platform_path(platform)
       return if File.exist? path
 
       if platform =~ /_/
@@ -451,34 +451,34 @@ module GEO
 
       puts "Processing Platform #{ platform }"
       [platform,
-        File.join(platform_path(platform), 'GDS'),
-        File.join(platform_path(platform), 'GSE'),
+        File.join(path, 'GDS'),
+        File.join(path, 'GSE'),
       ].each{|d|
         FileUtils.mkdir d unless File.exist? d
       }
 
-      R.GPL(platform, platform_path(platform), nil)
-      FileUtils.mv platform_path(platform) + '.codes', File.join(platform_path(platform), 'codes')
+      R.GPL(platform, path, nil)
+      FileUtils.mv path + '.codes', File.join(path, 'codes')
 
 
       # AILUN translations
-      codes  = Open.read(File.join(platform_path(platform), 'codes')).collect{|l| l.chomp}
+      codes  = Open.read(File.join(path, 'codes')).collect{|l| l.chomp}
       ailun = ID.AILUN_translate(platform, codes)
-      Open.write(File.join(platform_path(platform), 'ailun'), ailun.collect{|v| v || "NO MATCH"}.join("\n")) if ailun.compact.length > codes.length.to_f / 10
+      Open.write(File.join(path, 'ailun'), ailun.collect{|v| v || "NO MATCH"}.join("\n")) if ailun.compact.length > codes.length.to_f / 10
 
       # BioMart translations
       biomart = []
       if id || field
         if id
-          codes  = Open.read(File.join(platform_path(platform), 'codes')).collect{|l| l.chomp}
+          codes  = Open.read(File.join(path, 'codes')).collect{|l| l.chomp}
         else
           if field
-            R.GPL(platform, platform_path(platform), field[0])
-            FileUtils.mv platform_path(platform) + '.codes', File.join(platform_path(platform), 'other')
+            R.GPL(platform, path, field[0])
+            FileUtils.mv path + '.codes', File.join(path, 'other')
           end
 
           fix = ID_FIX[(organism + "_" + field[1].downcase).to_sym]
-          codes  = Open.read(File.join(platform_path(platform), 'other')).collect{|l| 
+          codes  = Open.read(File.join(path, 'other')).collect{|l| 
             code = l.chomp
             code = fix.call(code) if fix
             code
@@ -486,7 +486,7 @@ module GEO
         end
 
         biomart = ID.translate(organism, codes) 
-        Open.write(File.join(platform_path(platform), 'biomart'), biomart.collect{|v| v || "NO MATCH"}.join("\n")) if biomart.compact.length > codes.length.to_f / 10
+        Open.write(File.join(path, 'biomart'), biomart.collect{|v| v || "NO MATCH"}.join("\n")) if biomart.compact.length > codes.length.to_f / 10
       end
 
       # Select Best and save
@@ -503,8 +503,8 @@ module GEO
       end
 
       if translations.compact.length > codes.length.to_f / 10        
-        Open.write(File.join(platform_path(platform), 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
-        Open.write(File.join(platform_path(platform), 'cross_platform'), translations.compact.sort.uniq.join("\n"))
+        Open.write(File.join(path, 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
+        Open.write(File.join(path, 'cross_platform'), translations.compact.sort.uniq.join("\n"))
       end
 
     end
@@ -519,6 +519,12 @@ module GEO
     name.sub(/_cross_platform/,'') if name
   end
 
+
+  def self.platform_path(platform)
+    File.join(MARQ.datadir, "GEO/#{clean(platform)}")
+  end
+
+
   def self.is_cross_platform?(dataset)
     dataset =~ /_cross_platform/
   end
@@ -532,11 +538,6 @@ module GEO
     else
       Dir.glob(File.join(platform_path(platform), '*', '*_cross_platform.orders')).any?
     end
-  end
-
-
-  def self.platform_path(platform)
-    File.join(MARQ.datadir, "GEO/#{clean(platform)}")
   end
 
   def self.dataset_path(dataset, platform = nil)

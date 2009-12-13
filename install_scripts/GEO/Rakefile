@@ -10,7 +10,6 @@ $platform       ||= ENV['platform']
 $org            ||= [$organism, ENV['organism'], nil].compact.first 
 $dataset        ||= ENV['dataset']
 
-
 $expr_threshold ||= (ENV['threshold'] || 0.05).to_f
 $folds          ||= (ENV['folds'] || 2.5).to_f
 $nth_genes      ||= (ENV['nth_genes'] || 100).to_i
@@ -26,26 +25,26 @@ $do_folds    = [$do_folds, ENV['do_folds'], true].compact.first
 
 # Record changes in order to update DB
 $changes = false
-module GEO
+module GEO::Process::R
   class << self
-    alias_method :get_GDS_old, :get_GDS
-    def get_GDS(*args)
+    alias_method :GDS_old, :GDS
+    def GDS(*args)
       $changes = true
-      get_GDS_old(*args)
+      GDS_old(*args)
     end
   
-    alias_method :get_GSE_old, :get_GSE
-    def get_GSE(*args)
+    alias_method :GSE_old, :GSE
+    def GSE(*args)
       $changes = true
-      get_GSE_old(*args)
+      GSE_old(*args)
     end
   end
 end
 
 
 def process_list
-  return {GEO::Eutils::dataset_platform($dataset) => [$dataset]} if $dataset
-  return {$platform => GEO::Eutils::GPL_datasets($platform)} if $platform
+  return {GEO::Remote::dataset_platform($dataset) => [$dataset]} if $dataset
+  return {$platform => GEO::Remote::platform_datasets($platform)} if $platform
   
   if $organism
     organisms = [$organism]
@@ -55,8 +54,8 @@ def process_list
 
   list = {}
   organisms.each{|organism|
-    GEO::Eutils::organism_platforms(organism).each{|platform|
-      datasets = GEO::Eutils::GPL_datasets(platform)
+    GEO::Remote::organism_platforms(organism).each{|platform|
+      datasets = GEO::Remote::platform_datasets(platform)
 
       # Platforms with no datasets are skiped, although if they have series
       # they may be considered later
@@ -76,8 +75,8 @@ def process_list
   if $series && ! $translations 
     series = Dir.glob('series/*.yaml').collect{|f| File.basename(f).sub(/.yaml/,'')}               
     series.each{|serie|
-      platform = GEO::Eutils::dataset_platform(serie)
-      if organisms.include? GEO::GSE_info(serie)[:organism].to_s
+      platform = GEO::Remote::dataset_platform(serie)
+      if organisms.include? GEO::SOFT::GPL(platform)[:organism].to_s
         list[platform] ||= []
         list[platform] << serie
       end
@@ -93,31 +92,30 @@ task 'data' do
   updated_platforms = []
 
   process_list.each{|platform, datasets|
-    begin
 
-      # Prepare the platform
-      GEO.process_platform(platform)
-      
-      # Process all datasets
-      datasets.each{|dataset|
+    # Prepare the platform
+    GEO::Process.GPL(platform)
+
+    # Process all datasets
+    datasets.each{|dataset|
+      begin
         $changes = false
         if dataset =~ /GDS/
-          GEO.process_GDS(dataset, platform)
+          GEO::Process.GDS(dataset, platform)
         else
           info = YAML::load(File.open("series/#{ serie }.yaml"))
           FileUtils.rm("platforms/#{ info[:platform] }.skip") if File.exist?  "platforms/#{ info[:platform] }.skip"
-          GEO.process_GSE(dataset, platform)
+          GEO::Process.GSE(dataset, platform)
         end
 
         # Mark the platform for saving in DB
-        platforms_to_save << platform if ($changes || $update_db) && ! $skip_db
-      }
-    rescue
-      puts "Error processing dataset #{ dataset }:"
-      puts $!.message
-      puts $!.backtrace.join("\n")
-    end
-
+        updated_platforms << platform if $changes || ($force && $update_db)
+      rescue
+        puts "Error processing dataset #{ dataset }:"
+        puts $!.message
+        puts $!.backtrace.join("\n")
+      end
+    }
   }
 
   platforms_to_save.each{|platform|
@@ -157,7 +155,7 @@ def annotations(name, cross_platform = false, &block)
     end
   }
   return if $platform
-  
+
   Progress.monitor("Annotating with #{ name }, series")
   series = Dir.glob('series/*.yaml').collect{|f| File.basename(f).sub(/.yaml/,'')}
   series.each{|serie|
