@@ -7,7 +7,7 @@ require 'progress-monitor'
 require 'MARQ/MADB'
 
 $platform       ||= ENV['platform']
-$org            ||= [$organism, ENV['organism'], nil].reject{|e| e.nil?}.first 
+$org            ||= [$organism, ENV['organism'], nil].compact.first 
 $dataset        ||= ENV['dataset']
 
 
@@ -15,11 +15,13 @@ $expr_threshold ||= (ENV['threshold'] || 0.05).to_f
 $folds          ||= (ENV['folds'] || 2.5).to_f
 $nth_genes      ||= (ENV['nth_genes'] || 100).to_i
 
-$force       = [$force, ENV['force'], false].reject{|e| e.nil?}.first 
-$tranlations = [$tranlations, ENV['translations'], false].reject{|e| e.nil?}.first 
-$update_db   = [$update_db, ENV['update_db'], true].reject{|e| e.nil?}.first 
-$fdr         = [$fdr, ENV['fdr'], true].reject{|e| e.nil?}.first 
-$do_folds    = [$do_folds, ENV['do_folds'], true].reject{|e| e.nil?}.first 
+$force       = [$force, ENV['force'], false].compact.first 
+$tranlations = [$tranlations, ENV['translations'], false].compact.first 
+$series      = [$series, ENV['series'], true].compact.first 
+$update_db   = [$update_db, ENV['update_db'], false].compact.first 
+$skip_db     = [$skip_db, ENV['skip_db'], false].compact.first 
+$fdr         = [$fdr, ENV['fdr'], true].compact.first 
+$do_folds    = [$do_folds, ENV['do_folds'], true].compact.first 
 
 
 # Record changes in order to update DB
@@ -60,15 +62,18 @@ def process_list
       # they may be considered later
       next if datasets.empty?
 
-      if $tranlations
+      if $tranlations || $update_db
         list[platform] = []
       else
+        if ! $force
+          datasets.reject!{|dataset| Dir.glob(File.join(GEO.dataset_path(dataset, platform), '.*')).any? }
+        end
         list[platform] = datasets
       end
     }
   }
 
-  if $series && ! $translations
+  if $series && ! $translations 
     series = Dir.glob('series/*.yaml').collect{|f| File.basename(f).sub(/.yaml/,'')}               
     series.each{|serie|
       platform = GEO::Eutils::dataset_platform(serie)
@@ -105,7 +110,7 @@ task 'data' do
         end
 
         # Mark the platform for saving in DB
-        updated_platforms << platform if $changes || ($force && $update_db)
+        platforms_to_save << platform if ($changes || $update_db) && ! $skip_db
       }
     rescue
       puts "Error processing dataset #{ dataset }:"
@@ -115,7 +120,7 @@ task 'data' do
 
   }
 
-  updated_platforms.each{|platform|
+  platforms_to_save.each{|platform|
     begin
       MADB::GEO.saveGPL(platform) 
     rescue

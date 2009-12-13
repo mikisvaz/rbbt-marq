@@ -293,15 +293,12 @@ module GEO
 
   def self.dataset_path(dataset, platform = nil)
     if platform
-      return Dir.glob(File.join(platform_path(clean(platform)),"/*/#{ dataset }")).first.match(/(.*)\./)[1]
+      files = Dir.glob(File.join(platform_path(clean(platform)),"/*/#{ dataset }"))
     else
       files = Dir.glob(File.join(MARQ.datadir, "GEO/GPL*/*/#{ dataset }.*"))
-      if files.any?
-        return files.first.match(/(.*)\./)[1]
-      else
-        return ""
-      end
     end
+    return nil if files.empty?
+    return files.first.match(/(.*)\./)[1]
   end
 
   def self.is_cross_platform?(dataset)
@@ -552,19 +549,6 @@ module GEO
       Open.write(File.join(platform_path(platform), 'cross_platform'), translations.compact.sort.uniq.join("\n"))
     end
 
-  end
-
-
-  def self.process_platform_datasets(platform, force = false)
-    raise "Platform #{ platform } not ready" unless File.exist? platform_path(platform)
-
-    info = YAML::load(File.open(File.join(MARQ.datadir, "GEO/platforms/#{platform}.yaml")))
-
-    datasets = GEO::Eutils::GPL_datasets(platform)
-    datasets.each{|dataset|
-      next if Dir.glob(File.join(platform_path(platform), 'GDS', dataset) + '.*').any? && ! force
-      process_GDS(dataset, platform, nil) 
-    }
   end
 
 end
