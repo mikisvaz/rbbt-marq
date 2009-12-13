@@ -5,6 +5,7 @@ require 'MARQ/ID'
 require 'yaml'
 require 'progress-monitor'
 require 'MARQ/MADB'
+require 'rbbt/sources/organism'
 
 $platform       ||= ENV['platform']
 $org            ||= [$organism, ENV['organism'], nil].compact.first 
