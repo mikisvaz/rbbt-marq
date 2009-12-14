@@ -22,9 +22,9 @@ module MARQ
   def self.platform_organism(platform)
     if platform_type(platform) == :GEO
       if platform.match(/^GPL/)
-        GEO::GPL_info(platform)[:organism]
+        GEO::SOFT::GPL(platform)[:organism]
       else
-        GEO::GPL_info(GEO::dataset_platform(platform))[:organism]
+        GEO::SOFT::GPL(GEO::dataset_platform(platform))[:organism]
       end
     else
       CustomDS::organism(platform)
