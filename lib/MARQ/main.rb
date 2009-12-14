@@ -50,6 +50,7 @@ module MARQ
       CustomDS::is_cross_platform?(platform)
     end
   end
+
   def self.complete_positions(positions, matched, genes)
 
     pos = Hash[*matched.zip(positions).flatten]
@@ -62,6 +63,60 @@ module MARQ
       end
     }
 
+  end
+
+  module Dataset
+
+    def self.exists?(dataset)
+      MARQ::dataset_path(dataset) != nil
+    end
+
+    def self.read_file(dataset, ext)
+      Open.read(MARQ::dataset_path(dataset) + '.' + ext)
+    end
+
+    def self.read_values(dataset, file)
+      result = {}
+
+      experiments = experiments(dataset)
+      experiments.each{|experiment| result[experiment] = [] }
+      read_file(dataset, file).split(/\n/).each do |line|
+        values = line.chomp.split(/\t/)
+        values.each_with_index{|value, i| result[experiments[i]] << value.to_f }
+      end
+
+      result
+    end
+
+    def self.platform_codes(platform)
+      if MARQ::is_cross_platform? platform
+        file = 'cross_platform'
+      else
+        file = 'codes'
+      end
+
+      Open.read(File.join(MARQ::platform_path(platform), file))
+    end
+
+    def self.experiments(dataset)
+      read_file(dataset, 'experiments').split(/\n/)
+    end
+
+    def self.codes(dataset)
+      read_file(dataset, 'codes').split(/\n/)
+    end
+
+    def self.orders(dataset)
+      read_values(dataset, 'orders')
+    end
+
+    def self.logratios(dataset)
+      read_values(dataset, 'logratios')
+    end
+    
+    def self.pvalues(dataset)
+      read_values(dataset, 'pvalues')
+    end
   end
 
   def self.platform_scores_up_down(platform, up, down)
@@ -189,6 +244,8 @@ module MARQ
 end
 
 if __FILE__ == $0
+  p MARQ::Dataset.orders('GDS2419')
+  exit
   #puts MARQ::organism_platforms('human')
   #puts MARQ.platform_organism("HaploidData")
   #puts MARQ::platform_scores_up_down("HaploidData",%w( YMR261c YDL140c YIL122w YPL093w YHR211w YDL142c YHR106w YOR103c YDR233c YLR181c),%w()).keys
