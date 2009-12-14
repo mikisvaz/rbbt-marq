@@ -1,4 +1,5 @@
 require 'MARQ'
+require 'rbbt/sources/organism'
 
 # Work with GEO datasets
 module GEO
@@ -55,6 +56,47 @@ module GEO
         fout.close
         content
       end
+    end
+
+    #{{{ Guess the format of the IDS
+
+    @@formats = {}
+
+    ID_FIX = {
+      :mgi_unigene => proc{|gene| if gene then gene.match(/^Mm./) ? gene : "Mm." + gene end},
+      :human_unigene => proc{|gene| if gene then gene.match(/^Hs./) ? gene : "Hs." + gene end},
+    }
+
+    # Id list is in sequence
+    def self.consecutive?(ids)
+      ids.collect{|id| id.to_i}.sort[0..19] == (1..20).to_a
+    end
+
+    # Id list is numerical
+    def self.numerical?(ids)
+      ids.compact.select{|id| ! id.match(/^\d+$/)}.uniq.length < ids.length.to_f / 10
+    end
+
+    # ID are DNA bases
+    def self.dna_sequence?(ids)
+      ids.compact.select{|id| ! id.strip.match(/^[ATCG]+$/i)}.empty?
+    end
+
+    # Guess the format of the id in the list. The name parameter can be used to
+    # identify some exceptions
+    def self.guessIds(genes,org, name = nil)
+      @@formats[org] ||= Organism.id_formats(org)
+      if consecutive?(genes) || dna_sequence?(genes) || (numerical?(genes) && (name.nil? || !name.match(/entrez/i)))
+        id = nil
+      else
+        fix = ID_FIX[(org + "_" + name.downcase).to_sym] if name
+        if fix
+          genes = genes.collect{|gene| fix.call(gene)}
+        end
+        id = Organism.guessIdFormat(@@formats[org], genes)
+      end
+
+      id 
     end
 
 
@@ -154,7 +196,7 @@ module GEO
           end
 
           org = Organism.name2org(org_name)
-          raise "Organism not identified" if org.nil?
+          raise "Organism not identified: #{org_name}" if org.nil?
 
           if soft.match(/!platform_table_begin/)
             data = soft.split(/!platform_table_begin/s)[1].collect{|l| l.chomp.split(/\t/)}
@@ -242,47 +284,6 @@ module GEO
       def self.GSE(gsms, conditions, do_log, prefix, id_file = nil, fields= nil, title = nil, description = nil)
         r.GEO_GSE_process(gsms, conditions, prefix, do_log, id_file, fields, title, description, CACHE_DIR)
       end
-    end
-
-    #{{{ Guess the format of the IDS
-
-    @@formats = {}
-
-    ID_FIX = {
-      :mgi_unigene => proc{|gene| if gene then gene.match(/^Mm./) ? gene : "Mm." + gene end},
-      :human_unigene => proc{|gene| if gene then gene.match(/^Hs./) ? gene : "Hs." + gene end},
-    }
-
-    # Id list is in sequence
-    def self.consecutive?(ids)
-      ids.collect{|id| id.to_i}.sort[0..19] == (1..20).to_a
-    end
-
-    # Id list is numerical
-    def self.numerical?(ids)
-      ids.compact.select{|id| ! id.match(/^\d+$/)}.uniq.length < ids.length.to_f / 10
-    end
-
-    # ID are DNA bases
-    def self.dna_sequence?(ids)
-      ids.compact.select{|id| ! id.strip.match(/^[ATCG]+$/i)}.empty?
-    end
-
-    # Guess the format of the id in the list. The name parameter can be used to
-    # identify some exceptions
-    def self.guessIds(genes,org, name = nil)
-      @@formats[org] ||= Organism.id_formats(org)
-      if consecutive?(genes) || dna_sequence?(genes) || (numerical?(genes) && (name.nil? || !name.match(/entrez/i)))
-        id = nil
-      else
-        fix = ID_FIX[(org + "_" + name.downcase).to_sym] if name
-        if fix
-          genes = genes.collect{|gene| fix.call(gene)}
-        end
-        id = Organism.guessIdFormat(@@formats[org], genes)
-      end
-
-      id 
     end
 
     # Rearange the lines of a file with the given order. The order specifies, for
@@ -477,7 +478,7 @@ module GEO
             FileUtils.mv path + '.codes', File.join(path, 'other')
           end
 
-          fix = ID_FIX[(organism + "_" + field[1].downcase).to_sym]
+          fix = GEO::SOFT::ID_FIX[(organism + "_" + field[1].downcase).to_sym]
           codes  = Open.read(File.join(path, 'other')).collect{|l| 
             code = l.chomp
             code = fix.call(code) if fix
@@ -580,7 +581,6 @@ module GEO
     end
 
   end
-
 
 
 end
