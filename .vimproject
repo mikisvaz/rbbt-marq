@@ -5,6 +5,7 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
   install.rake
  }
  R=R{
+  GEOquery_patch.R
   CustomDS.R
   GEO.R
   MA.R

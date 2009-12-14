@@ -265,6 +265,7 @@ module GEO
 
           RSRuby.instance.source(MARQ.rootdir + '/R/MA.R')
           RSRuby.instance.source(MARQ.rootdir + '/R/GEO.R')
+          RSRuby.instance.source(MARQ.rootdir + '/R/GEOquery_patch.R')
           @@r = RSRuby.instance
         end
         @@r
