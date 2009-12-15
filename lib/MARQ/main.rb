@@ -82,11 +82,27 @@ module MARQ
       experiments.each{|experiment| result[experiment] = [] }
       read_file(dataset, file).split(/\n/).each do |line|
         values = line.chomp.split(/\t/)
-        values.each_with_index{|value, i| result[experiments[i]] << value.to_f }
+        values.each_with_index{|value, i| result[experiments[i]] << (value == 'NA' ? nil : value.to_f) }
       end
 
       result
     end
+
+    def self.read_values_t(dataset, file)
+      result = {}
+
+      experiments = experiments(dataset).select{|experiment| experiment !~ /\[ratio\]$/ }
+      return {} if experiments.empty?
+      experiments.each{|experiment| result[experiment] = [] }
+
+      read_file(dataset, file).split(/\n/).each do |line|
+        values = line.chomp.split(/\t/)
+        values.each_with_index{|value, i| result[experiments[i]] << (value == 'NA' ? nil : value.to_f) }
+      end
+
+      result
+    end
+
 
     def self.platform_codes(platform)
       if MARQ::is_cross_platform? platform
@@ -115,8 +131,15 @@ module MARQ
     end
     
     def self.pvalues(dataset)
-      read_values(dataset, 'pvalues')
+      read_values_t(dataset, 'pvalues')
     end
+
+    def self.t(dataset)
+      read_values_t(dataset, 't')
+    end
+
+
+
   end
 
   def self.platform_scores_up_down(platform, up, down)
