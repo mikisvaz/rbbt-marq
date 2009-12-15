@@ -8,7 +8,7 @@ require 'MARQ/MADB'
 require 'rbbt/sources/organism'
 
 $platform       ||= ENV['platform']
-$org            ||= [$organism, ENV['organism'], nil].compact.first 
+$organism       ||= [$organism, ENV['organism'], nil].compact.first 
 $dataset        ||= ENV['dataset']
 
 $expr_threshold ||= (ENV['threshold'] || 0.05).to_f
@@ -80,7 +80,7 @@ def process_list
       begin
         if organisms.include? GEO::SOFT::GPL(platform)[:organism].to_s
           list[platform] ||= []
-          list[platform] << serie
+          list[platform] << serie unless $tranlations || $update_db    
         end
       rescue
         puts "Error process series #{serie} platform #{platform}"
