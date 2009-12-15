@@ -110,10 +110,10 @@ task 'data' do
       next
     end
 
+    $changes = false
     # Process all datasets
     datasets.each{|dataset|
       begin
-        $changes = false
         if dataset =~ /GDS/
           GEO::Process.GDS(dataset, platform)
         else
@@ -123,17 +123,19 @@ task 'data' do
         end
 
         # Mark the platform for saving in DB
-        platforms_to_save << platform if $changes || ($force && $update_db)
       rescue
         puts "Error processing dataset #{ dataset }"
         puts $!.message
         puts $!.backtrace.join("\n")
       end
     }
+
+    platforms_to_save << platform if $changes || $update_db
   }
 
   platforms_to_save.each{|platform|
     begin
+      puts "Saving #{platform}"
       MADB::GEO.saveGPL(platform) 
     rescue
       puts "Error saving platform #{ platform }"
