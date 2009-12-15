@@ -1,4 +1,4 @@
-require 'test/unit'
+require File.dirname(__FILE__) + '/../helper'
 require 'rbbt/util/tmpfile'
 require 'rbbt/util/open'
 require 'lib/MARQ/GEO.rb'
@@ -16,7 +16,7 @@ line4
     Open.write(filename, text_orig)
 
     order = [0,2,4,3,1]
-    GEO.rearange(order,filename)
+    GEO::Process.rearange(order,filename)
 
     text_new = <<-EOF
 line0

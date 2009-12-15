@@ -36,3 +36,12 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
    Rakefile
   }
  }
+ test=test{
+  helper.rb
+  test_rbbt-marq.rb
+  MARQ=MARQ{
+   test_GEO.rb
+   test_ID.rb
+  }
+ }
+}
