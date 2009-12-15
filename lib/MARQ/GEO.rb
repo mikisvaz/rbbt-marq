@@ -287,6 +287,15 @@ module GEO
       end
     end
 
+    def self.translate(org, list)
+      begin
+        ID.translate_DB(org, list)
+      rescue
+        puts "DB translation failed, resorting to index"
+        ID.translate_index(org, list)
+      end
+    end
+
     # Rearange the lines of a file with the given order. The order specifies, for
     # each position in the original file, where it should en in the final file
     def self.rearange(order, file, missing = "NA")
@@ -396,7 +405,7 @@ module GEO
         FileUtils.cp(prefix + '.codes', File.join(platform_path,'codes'))
         codes  = Open.read(File.join(platform_path, 'codes')).collect{|l| l.chomp}
         organism = SOFT::GPL(platform.match(/(.*?)_/)[1])[:organism]
-        translations = ID.translate(organism, codes) 
+        translations = translate(organism, codes) 
         Open.write(File.join(platform_path, 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
         Open.write(File.join(platform_path, 'cross_platform'), translations.compact.sort.uniq.join("\n"))
       else
@@ -487,7 +496,7 @@ module GEO
           }
         end
 
-        biomart = ID.translate(organism, codes) 
+        biomart = translate(organism, codes) 
         Open.write(File.join(path, 'biomart'), biomart.collect{|v| v || "NO MATCH"}.join("\n")) if biomart.compact.length > codes.length.to_f / 10
       end
 
@@ -496,7 +505,7 @@ module GEO
       if ailun.compact.uniq.length > biomart.compact.uniq.length
         id_type = ID::DEFAULT_FORMATS[organism] || ID::DEFAULT_FORMAT_ALL || id || field || "Entrez Gene Id"
         if id_type.to_s !~ /Entrez/i
-          translations = ID.translate(org,ailun.collect{|gene| gene || "NO MATCH"}) 
+          translations = translate(org,ailun.collect{|gene| gene || "NO MATCH"}) 
         else
           translations = ailun 
         end

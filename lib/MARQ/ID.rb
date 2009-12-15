@@ -1,4 +1,5 @@
 require 'MARQ'
+require 'rbbt/sources/organism'
 require 'DBcache'
 
 module ID
