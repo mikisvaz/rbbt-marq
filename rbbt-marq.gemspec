@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rbbt-marq}
-  s.version = "1.0.8"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Miguel Vazquez"]
-  s.date = %q{2009-11-13}
+  s.date = %q{2009-12-16}
   s.default_executable = %q{marq_config}
   s.description = %q{Find microarray experiments with similar or opposite signature to a given query. A SOAP interface and a merb portal can be found in rbbt-marq-www.}
   s.email = %q{miguel.vazquez@fdi.ucm.es}
@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.files = [
     "R/CustomDS.R",
      "R/GEO.R",
+     "R/GEOquery_patch.R",
      "R/MA.R",
      "R/MARQ.R",
      "bin/marq_config",
@@ -519,12 +520,14 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<simpleconsole>, [">= 0"])
       s.add_runtime_dependency(%q<DBcache>, [">= 0"])
       s.add_runtime_dependency(%q<DRbServe>, [">= 0"])
+      s.add_runtime_dependency(%q<png>, [">= 0"])
     else
       s.add_dependency(%q<rbbt>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<simpleconsole>, [">= 0"])
       s.add_dependency(%q<DBcache>, [">= 0"])
       s.add_dependency(%q<DRbServe>, [">= 0"])
+      s.add_dependency(%q<png>, [">= 0"])
     end
   else
     s.add_dependency(%q<rbbt>, [">= 0"])
@@ -532,6 +535,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<simpleconsole>, [">= 0"])
     s.add_dependency(%q<DBcache>, [">= 0"])
     s.add_dependency(%q<DRbServe>, [">= 0"])
+    s.add_dependency(%q<png>, [">= 0"])
   end
 end
 
