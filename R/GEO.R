@@ -9,16 +9,18 @@ GEO.get <- function(name, cachedir = NULL){
        cachedir = paste(MARQ.config$cachedir, 'GEO', sep="/");
     }
 
-    if (is.null(cachedir)){
+    if (is.null(cachedir) || cachedir == FALSE){
         object  <- getGEO(name);
     }else{
-        filename = dir(cachedir,pattern= paste(name, 'soft', sep='.'))[1]
-        if (is.na(filename)){
+        filename = dir(cachedir,pattern= paste(name, 'soft', sep='.'))[1];
+        complete_path = paste(cachedir,filename,sep="/");
+        if (is.na(filename) || file.info(complete_path)$size == 0){
             object  <- getGEO(name, destdir=cachedir);
         }else{
-            object  <- getGEO(name, filename = paste(cachedir,filename,sep="/"));
+            object  <- getGEO(name, filename = complete_path);
         }
     }
+
 
     object
 }

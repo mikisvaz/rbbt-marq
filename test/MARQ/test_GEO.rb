@@ -29,5 +29,9 @@ line2
     assert_equal(text_new, Open.read(filename))
 
   end
+
+  def test_platform_organism
+    assert_equal "Homo sapiens", GEO::Remote.platform_organism('GPL570')
+  end
 end
 

@@ -7,28 +7,34 @@ module GEO
   # Get information from Entrez
   module Remote
 
+    @@nice = 1
     def self.organism_platforms(org)
       name = Organism.name(org)
-      Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=\"#{name}\"[Organism:exp]+AND+%22gpl%22[Filter]&retmax=10000").
+      Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=\"#{name}\"[Organism:exp]+AND+%22gpl%22[Filter]&retmax=10000", :nice => @@nice).
         scan(/<Id>(\d+?)<\/Id>/).collect{|id| id.first}.collect{|id| "GPL#{id.sub(/^100*/,'')}"}
     end
 
     def self.platform_datasets(platform)
-      Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=#{platform}[Accession]&retmax=2000").
+      Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=#{platform}[Accession]&retmax=2000", :nice => @@nice).
       scan(/<Id>(\d+?)<\/Id>/).collect{|id| id.first}.select{|id| !id.match(/^(1|2)000/) }.collect{|id| "GDS#{id}"}
     end
 
     def self.dataset_platform(dataset)
       if dataset =~ /GSE/
-        Open.read("http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=#{dataset}").scan(/GPL\d+/).uniq.sort.join("_")
+        Open.read("http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=#{dataset}", :nice => @@nice).scan(/GPL\d+/).uniq.sort.join("_")
       else
-        Open.read("http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=#{dataset}").scan(/GPL\d+/).uniq.sort.join("_")
+        Open.read("http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=#{dataset}", :nice => @@nice).scan(/GPL\d+/).uniq.sort.join("_")
       end
     end
 
     def self.series_dataset?(gse)
-      Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=geo&term=#{gse}[Accession]&retmax=2000").
+      Open.read("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=geo&term=#{gse}[Accession]&retmax=2000", :nice => @@nice).
       match(/<Id>(\d+?)<\/Id>/) != nil
+    end
+
+    def self.platform_organism(platform)
+      Open.read("http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=#{platform}", :nice => @@nice).
+      match(%r#<td><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi\?mode=Info&amp;id=\d+" onmouseout="onLinkOut\('HelpMessage' , geo_empty_help\)" onmouseover="onLinkOver\('HelpMessage' , geoaxema_organismus\)">(.*)</a></td>#)[1]
     end
 
   end
@@ -40,6 +46,7 @@ module GEO
   # Parse information in .soft files
   module SOFT
 
+    @@nice = 1
     GEO_SOFT="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?targ=self&view=full&form=text&acc="
 
     # Download a soft file. Uses cache
@@ -49,7 +56,7 @@ module GEO
       if File.exist?( cache_file )
         File.open(cache_file).read
       else
-        content = Open.read(GEO_SOFT + item, :nocache => true)
+        content = Open.read(GEO_SOFT + item, :nocache => true, :nice => @@nice)
         raise "SOFT file error" if content !~ /!/
         fout = File.open(cache_file,'w')
         fout.write content
@@ -365,6 +372,8 @@ module GEO
       if File.exist?(File.join(platform,'cross_platform'))
         puts "-- Translated to cross_platform format"
         R.GDS(dataset, prefix + '_cross_platform', field, File.join(platform_path, 'translations')) 
+      else
+        puts "No cross_platform probe ids for platform"
       end
     end
 
@@ -433,6 +442,8 @@ module GEO
         fix_GSE_ids(File.join(platform_path, 'cross_platform'),prefix + '_cross_platform');
         FileUtils.cp(File.join(platform_path, 'cross_platform'),prefix + '_cross_platform.codes')
         FileUtils.rm(prefix + '.translations') if File.exist?(prefix + '.translations')
+      else
+        puts "No cross_platform probe ids for platform"
       end
       FileUtils.rm(prefix + '.swap') if File.exist?(prefix + '.swap')
     end
@@ -597,6 +608,9 @@ end
 
 
 if __FILE__ == $0
+  10.times{|i|
+    GEO::Remote.organism_platforms('sgd')
+  }
 
 end
 
