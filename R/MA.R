@@ -307,6 +307,7 @@ MA.process <- function(m, conditions_list, two.channel = FALSE){
 
 MA.save <- function(prefix, orders, ratios, t , p.values, experiments, description = NULL) {
     if (is.null(orders)){
+        cat("No suitable samples for analysis\n")
         write(file=paste(prefix,'skip',sep="."), "No suitable samples for analysis" );
     } else {
         write.table(file=paste(prefix,'orders',sep="."), orders, sep="\t",  row.names=F, col.names=F, quote=F);
