@@ -38,7 +38,7 @@ task 'data' do
 
     begin
       # Prepare the platform
-      MARQ.process_platform(platform)
+      MARQ::Platform.process(platform)
     rescue
       puts "Error processing platform #{platform}"
       puts $!.message
@@ -52,8 +52,8 @@ task 'data' do
     # Process all datasets
     datasets.each{|dataset|
       begin
-        next if Dir.glob(File.join(platform,'*',dataset + '*')).any? && ! $force
-        MARQ.process_dataset(dataset, platform)
+        next unless $force || MARQ::Dataset.path(dataset).nil?
+        MARQ::Dataset.process(dataset, platform)
       rescue
         puts "Error processing dataset #{ dataset }"
         puts $!.message
@@ -68,7 +68,7 @@ task 'data' do
   platforms_to_save.each{|platform|
     begin
       puts "Saving #{platform}"
-      MARQ.save(platform) 
+      MADB.save_platform(platform) 
     rescue
       puts "Error saving platform #{ platform }"
       puts $!.message
@@ -84,11 +84,11 @@ def annotations(name, cross_platform = false, &block)
     datasets.each do |dataset|
       begin
         next if File.exist?(File.join("annotations", name, dataset)) && ! $force
-        next if MARQ.dataset_path(dataset).nil?
-        next if File.exist?(MARQ.dataset_path(dataset) + '.skip') 
+        next if MARQ::Dataset.path(dataset).nil?
 
+        FileUtils.mkdir_p File.join("annotations", name)
         filename = File.join("annotations", name, dataset)
-        dataset += '_cross_platform' if cross_platform && MARQ.has_cross_platform?(nil, platform)
+        dataset += '_cross_platform' if cross_platform && MARQ::Platform::has_cross_platform?(platform)
         terms = block.call(dataset)
         Open.write(filename, terms.to_yaml)
       rescue
@@ -106,9 +106,9 @@ task 'annotate_Words' do
   require 'rbbt/bow/bow'
   annotations('Words') do |dataset|
     terms = {}
-    description = Open.read(MARQ.dataset_path(dataset) + '.description')
+    description = Open.read(MARQ::Dataset.path(dataset) + '.description')
     terms[:dataset] = [dataset] +  description.words.uniq
-    Open.read(MARQ.dataset_path(dataset) + '.experiments').collect{|name|
+    Open.read(MARQ::Dataset.path(dataset) + '.experiments').collect{|name|
       name = name.strip
       terms[name] = name.sub(/.*?: /,'').sub(/\[ratio\]/,'').words.uniq
     }
@@ -122,9 +122,9 @@ task 'annotate_UMLS' do
   require 'rbbt/util/misc'
   annotations('UMLS') do |dataset|
     terms = {}
-    description = Open.read(MARQ.dataset_path(dataset) + '.description')
+    description = Open.read(MARQ::Dataset.path(dataset) + '.description')
     terms[:dataset] = Annotations::UMLS::OBA(description).uniq
-    Open.read(MARQ.dataset_path(dataset) + '.experiments').collect{|name|
+    Open.read(MARQ::Dataset.path(dataset) + '.experiments').collect{|name|
       name = name.strip
       terms[name] = Annotations::UMLS::OBA(name.sub(/.*?: /,'').sub(/\[ratio\]/,'')).uniq
     }
@@ -139,9 +139,9 @@ task 'annotate_Polysearch' do
   require 'rbbt/sources/polysearch'
   annotations('Polysearch') do |dataset|
     terms = {}
-    description = Open.read(MARQ.dataset_path(dataset) + '.description')
+    description = Open.read(MARQ::Dataset.path(dataset) + '.description')
     terms[:dataset] = Polysearch::match(description).values.flatten.sort.collect{|n| n.gsub(/\s+/,' ').downcase}.uniq
-    Open.read(MARQ.dataset_path(dataset) + '.experiments').collect{|name|
+    Open.read(MARQ::Dataset.path(dataset) + '.experiments').collect{|name|
       name = name.strip
       terms[name] = Polysearch::match(name.sub(/.*?: /,'').sub(/\[ratio\]/,'')).values.flatten.sort.collect{|n| n.gsub(/\s+/,' ').downcase}.uniq
     }
@@ -153,6 +153,7 @@ end
 def goterms(org, list, slim, threshold)
   return [] if list.empty?
   results = Annotations::GO::Genecodis::Local.analysis(org, list, slim)
+  return [] if results.nil?
   results.
     select{|info| info[:s].to_i  > 2 }.
     select{|info| info[:hyp_c].to_f < threshold }.
@@ -164,7 +165,7 @@ task 'annotate_GO' do
   require 'rbbt/sources/go'
   options = { :cut_off => $expr_threshold, :fdr => $fdr, :folds => $folds, :do_folds => $do_folds, :nth_genes => $nth_genes}
   annotations('GO_up', true) do |dataset|
-    org = MARQ.platform_organism(dataset)
+    org = MARQ::Dataset.organism(dataset)
     genes = Annotations::GO.get_genes(dataset, options)
 
     up = {}
@@ -176,7 +177,7 @@ task 'annotate_GO' do
   end
 
   annotations('GO_down', true) do |dataset|
-    org = MARQ.platform_organism(dataset)
+    org = MARQ::Dataset.organism(dataset)
     genes = Annotations::GO.get_genes(dataset, options)
 
     down = {}
@@ -188,7 +189,7 @@ task 'annotate_GO' do
   end 
 
   annotations('GOSlim_up', true) do |dataset|
-    org = MARQ.platform_organism(dataset)
+    org = MARQ::Dataset.organism(dataset)
     genes = Annotations::GO.get_genes(dataset, options)
 
     up = {}
@@ -200,7 +201,7 @@ task 'annotate_GO' do
   end
 
   annotations('GOSlim_down', true) do |dataset|
-    org = MARQ.platform_organism(dataset)
+    org = MARQ::Dataset.organism(dataset)
     genes = Annotations::GO.get_genes(dataset, options)
 
     down = {}

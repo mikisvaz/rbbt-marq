@@ -23,9 +23,9 @@ def process_list
     list[$platform] = [$platform]
   else
     organisms.each do |organism|
-      datasets = Dir.glob(File.join(CustomDS::customdir, organism) + '/*').select{|f| File.directory? f}.collect{|f| File.basename(f)}
-      datasets.each do |dataset|
-        list[dataset] = dataset 
+      platforms = CustomDS.organism_platforms(organism)
+      platforms.each do |platform|
+        list[platform] = platform
       end
     end
   end

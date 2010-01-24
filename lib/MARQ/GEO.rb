@@ -1,8 +1,14 @@
 require 'MARQ'
+require 'MARQ/main'
 require 'rbbt/sources/organism'
 
 # Work with GEO datasets
 module GEO
+
+  CACHE_DIR = File.join(MARQ.cachedir,'GEO')
+  FileUtils.mkdir_p CACHE_DIR unless File.exists? CACHE_DIR
+
+  DATA_DIR = File.join(MARQ.datadir, 'GEO')
 
   # Get information from Entrez
   module Remote
@@ -39,8 +45,6 @@ module GEO
 
   end
 
-  CACHE_DIR = File.join(MARQ.cachedir,'GEO')
-  FileUtils.mkdir_p CACHE_DIR unless File.exists? CACHE_DIR
 
 
   # Parse information in .soft files
@@ -112,7 +116,7 @@ module GEO
       soft = get_soft(series)
 
       if match = soft.scan(/!Series_platform_id\s*=?\s*(.*)/)
-        platform = match.flatten.collect{|p| p.strip}
+        platform = match.flatten.collect{|p| p.strip}.join("_")
       else
         raise "No Platform information" 
       end
@@ -138,7 +142,7 @@ module GEO
       end
 
       {
-        :platform => platform.join("_"),
+        :platform => platform,
         :description =>description.strip,
         :title => title.strip,
         :samples => samples,
@@ -169,8 +173,8 @@ module GEO
     end
 
     def self.GPL(platform)
-      if !File.exist?(File.join(MARQ.datadir, 'GEO', 'platforms',"#{platform}.yaml"))  &&
-        !File.exist?(File.join(MARQ.datadir, 'GEO', 'platforms',"#{platform}.skip")) 
+      if !File.exist?(File.join(DATA_DIR, 'platforms',"#{platform}.yaml"))  &&
+         !File.exist?(File.join(DATA_DIR, 'platforms',"#{platform}.skip")) 
         begin
           if platform =~ /_/
             organism =  GPL(platform.match(/(.*?)_/)[1])[:organism]
@@ -237,17 +241,17 @@ module GEO
           info[:other_ID_field] = [other_pos + 1, other_name] if other_pos > 0
 
 
-          Open.write(File.join(MARQ.datadir, 'GEO', 'platforms',"#{platform}.yaml"), info.to_yaml)
+          Open.write(File.join(DATA_DIR, 'platforms',"#{platform}.yaml"), info.to_yaml)
         rescue Exception
           puts $!.message
           puts $!.backtrace
-          Open.write(File.join(MARQ.datadir, 'GEO', 'platforms',"#{platform}.skip"), $!.message)
+          Open.write(File.join(DATA_DIR, 'platforms',"#{platform}.skip"), $!.message)
         end
       end
 
       raise "Platform info for #{ platform } is not available and could not be automatically produced." if File.exist?(File.join(MARQ.datadir, 'GEO', 'platforms',"#{platform}.skip"))
 
-      YAML::load(File.open(File.join(MARQ.datadir, 'GEO', 'platforms',"#{platform}.yaml")))
+      YAML::load(File.open(File.join(DATA_DIR, 'platforms',"#{platform}.yaml")))
     end
 
 
@@ -397,10 +401,11 @@ module GEO
       do_log = !info[:log2] if info[:log2]
       fields = info[:fields]
 
-      puts "Processing GSE #{ series }. Platform #{ platform }"
-
       platform_path = GEO::platform_path(platform)
+      return if platform_path.nil?
       prefix = File.join(platform_path, 'GSE', series.to_s)
+
+      puts "Processing GSE #{ series }. Platform #{ platform }"
       puts "-- Original"
       R.GSE(gsms, conditions, do_log, prefix, nil, fields, info[:title], info[:description])
 
@@ -452,7 +457,7 @@ module GEO
     # system (called biomart for clarity)
     def self.GPL(platform)
       path = GEO::platform_path(platform)
-      return if File.exist? path
+      return if path.nil? || File.exist?(path)
 
       if platform =~ /_/
         FileUtils.mkdir(path)
@@ -533,76 +538,94 @@ module GEO
 
   end
 
-
-
-  #{{{ Local data store info
-
-  def self.clean(name)
-    name.sub(/_cross_platform/,'') if name
+  def self.platforms
+    Dir.glob(File.join(DATA_DIR, "GPL*")).collect {|path| File.basename(path) }
   end
 
+
+  def self.dataset_type(dataset)
+    case
+    when dataset =~ /^GDS/
+      :GDS
+    when dataset =~ /^GSE/
+      :GSE
+    end
+  end
 
   def self.platform_path(platform)
-    File.join(MARQ.datadir, "GEO/#{clean(platform)}")
-  end
-
-
-  def self.is_cross_platform?(dataset)
-    dataset =~ /_cross_platform/
-  end
-
-  def self.has_cross_platform?(dataset = nil, platform = nil)
-    platform = clean(platform)
-    raise "Dataset #{ dataset } not found" if dataset && dataset_path(dataset, platform).nil? 
-    raise "Platform #{ platform } not found" if platform && platform_path(platform).nil? 
-    if dataset
-      File.exists?(dataset_path(dataset, platform) + "_cross_platform.orders")
-    else
-      Dir.glob(File.join(platform_path(platform), '*', '*_cross_platform.orders')).any?
-    end
+    path = File.join(DATA_DIR, platform)
+    path = nil unless File.exists? path
+    path
   end
 
   def self.dataset_path(dataset, platform = nil)
     if platform
-      files = Dir.glob(File.join(platform_path(clean(platform)),"/*/#{ dataset }"))
+      platforms = [platform]
     else
-      files = Dir.glob(File.join(MARQ.datadir, "GEO/GPL*/*/#{ dataset }.*"))
+      platforms = self.platforms
     end
-    return nil if files.empty?
-    return files.first.match(/(.*)\./)[1]
+
+    platforms.each do |platform|
+      platform_path = platform_path(platform)
+      next if platform_path.nil?
+
+      case
+      when File.exists?(File.join(platform_path, dataset_type(dataset).to_s, dataset + '.orders'))
+        return File.join(platform_path, dataset_type(dataset).to_s, dataset)
+      when File.exists?(File.join(platform_path, dataset_type(dataset).to_s, dataset + '.skip'))
+        return nil
+      end
+    end
+
+    return nil
   end
-
-  def self.organism_platforms(organism)
-    Dir.glob(File.join(MARQ.datadir, "GEO/GPL*")).collect{|f| 
-      File.basename(f)
-    }.select{|platform| 
-      SOFT.GPL(platform)[:organism] == organism &&
-        platform_datasets(platform).any?
-    }
-  end
-
-
 
   def self.platform_datasets(platform)
-    Dir.glob(File.join(platform_path(platform),"*/*.orders")).collect{|f| File.basename(f).sub(/.orders$/,'')}.select{|d| !is_cross_platform?(d)}
+    cross_platform = MARQ::Platform.is_cross_platform? platform
+    
+    path = platform_path(MARQ::Platform.clean(platform))
+    return [] if path.nil?
+
+    datasets = Dir.glob(File.join(path, '*', '*.orders')).
+      collect {|path| File.basename(path).sub(/\.orders$/,'')}
+
+    if cross_platform
+      datasets.select  {|dataset| MARQ::Dataset.is_cross_platform? dataset }.
+               collect {|dataset| MARQ::Dataset.clean(dataset) }
+    else
+      datasets.select  {|dataset| ! MARQ::Dataset.is_cross_platform? dataset }
+    end
   end
 
   def self.dataset_platform(dataset)
-    dataset_path(dataset).match(/(GPL\d+)/)
-    $1
+    path = dataset_path(dataset)
+    return nil if path.nil?
+    path.match(/(GPL\d+)/)
+    return $1
   end
 
-  def self.GDS_info(name)
-    begin
-      title, description = Open.read(dataset_path(name) + '.description').split(/\n--\n/).values_at(0,1)
-      {:title => title.strip, :description => description.strip}
-    rescue Exception
-      puts $!.message
-      {:title => "" , :description => "" }
+  def self.platform_organism(platform)
+    GEO::SOFT.GPL(platform)[:organism]
+  end
+
+  def self.dataset_organism(dataset)
+    platform_organism(dataset_platform(dataset))
+  end
+
+  def self.process_platform(platform)
+    GEO::Process.GPL(platform)
+  end
+
+  def self.process_dataset(dataset, platform)
+    case dataset_type(dataset)
+    when :GDS
+      GEO::Process.GDS(dataset, platform)
+    when :GSE
+      info = YAML::load(File.open("series/#{ dataset }.yaml"))
+      FileUtils.rm("platforms/#{ info[:platform] }.skip") if File.exist?  "platforms/#{ info[:platform] }.skip"
+      GEO::Process.GSE(dataset, info)
     end
-
   end
-
 
 end
 

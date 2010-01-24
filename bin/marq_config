@@ -88,7 +88,7 @@ $USAGE =<<EOT
 EOT
 
 class Controller < SimpleConsole::Controller
-  params :string => {:p => :platform, :s => :series,  :o => :organism}, :boolean => {:d => :update_db, :f => :force}, :integer => {:p => :port}
+  params :string => {:t => :target, :p => :platform, :s => :series,  :o => :organism}, :boolean => {:d => :update_db, :f => :force}, :integer => {:p => :port}
 
 
   def prepare
@@ -103,6 +103,7 @@ class Controller < SimpleConsole::Controller
     $update_db = params[:update_db] && params[:update_db] =~ /true|yes|y/i
     $force     = params[:force]     && params[:force]     =~ /true|yes|y/i
     @actions   = params[:id] || %w(GEO)
+    @rake_action  = params[:target] || 'default' 
   end
 
   def config
@@ -198,10 +199,10 @@ class View < SimpleConsole::View
 
     @actions.each{|action|
       Thread.new{
-        puts "Updating #{action}"
+        puts "Updating #{action}. Target: #{@rake_action}"
         FileUtils.cd File.join(MARQ.datadir, action)
         load File.join(MARQ.datadir, action, 'Rakefile')
-        Rake::Task['default'].invoke
+        Rake::Task[@rake_action].invoke
       }.join
     }
   end
