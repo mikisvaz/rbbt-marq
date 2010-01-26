@@ -4,6 +4,9 @@ require 'uri'
 require 'MARQ'
 require 'rbbt/bow/dictionary'
 require 'MARQ/fdr'
+require 'digest/md5'
+require 'base64'
+require 'rbbt/util/open'
 
 module Annotations
   class << self
@@ -351,7 +354,7 @@ double hypergeometric(double total, double support, double list, double found)
     [merged_annotations, terms]
   end
 
-  module GO
+  module Genes
     module Genecodis
       ORGS = {
         'sgd' => 'Sc' ,
@@ -432,6 +435,73 @@ double hypergeometric(double total, double support, double list, double found)
           puts $!.message
           puts $!.backtrace
         end
+      end
+    end
+
+    module SENT
+
+      class SENTError < StandardError; end
+
+
+      WSDL="http://sent.dacya.ucm.es/wsdl/SentWS.wsdl"
+      def self.driver
+        require 'soap/wsdlDriver'
+        driver = SOAP::WSDLDriverFactory.new(WSDL).create_rpc_driver
+        driver
+      end
+
+      def self.process_results(job)
+        result_ids = driver.results(job)
+
+        summary = YAML::load(driver.result(result_ids[0]))
+        ccc     = driver.result(result_ids[1]).to_f
+        associations = Open.to_hash(StringIO.new(driver.associations(job)), :flatten => true)
+
+        summary.each do |group|
+          group[:articles] = group[:genes].inject(0) {|acc, gene| acc += associations[gene].length}
+        end
+
+        [summary, ccc]
+      end
+
+      def self.analysis(organism, genes, factors)
+        hash = Digest::MD5.hexdigest([organism, genes.sort].inspect)
+
+        if @@jobs[hash]
+          orig_job = @@jobs[hash]
+          job = driver.refactor(orig_job, factors, 'MARQ')
+        else
+          job = driver.analyze(organism, genes, factors, 'MARQ')
+        end
+
+        while ! driver.done(job)
+          sleep 5
+        end
+
+        raise SENTError "Job failed with error #{driver.messages(job).last}" if driver.error(job)
+        @@jobs[hash] = job
+
+        summary, ccc = process_results(job)
+      end
+
+      def self.terms(organism, genes, num = 20)
+        factor_list = [2,3,4,5,7,10]
+        terms = {}
+        ccc   = {}
+        factor_list.each do |factors|
+          summary, ccc = analyze(organism, genes, factors)
+          articles = summary.inject(0) {|acc, group| acc += group[:articles] }
+          terms_per_article = num.to_f / articles
+          summary.each{|group|
+            num_terms = terms_per_article * group[:articles]
+            terms[factors] ||= []
+            terms[factors] += group[:words][num_terms]
+          }
+          ccc[factors] = ccc
+        end
+        best_k = ccc.sort_by{|p| p[1]}.first[1]
+
+        terms[k]
       end
     end
 
