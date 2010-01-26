@@ -2,11 +2,12 @@ require 'inline'
 require 'net/http'
 require 'uri'
 require 'MARQ'
-require 'rbbt/bow/dictionary'
 require 'MARQ/fdr'
 require 'digest/md5'
 require 'base64'
 require 'rbbt/util/open'
+require 'MARQ/main'
+require 'rbbt/bow/dictionary'
 
 module Annotations
   class << self
@@ -294,6 +295,26 @@ double hypergeometric(double total, double support, double list, double found)
   end
 
 
+  @@terms_cache = {}
+  def self.dataset_annotations(dataset, type, side = nil)
+    annotation_dir = File.join(MARQ.datadir, (MARQ::Dataset.is_GEO?(dataset) ? 'GEO' : 'CustomDS'), 'annotations')
+    case
+    when side.nil?
+      term_file = File.join(annotation_dir, type, dataset)
+    when side == :direct && info[:score] > 0 || side == :inverse && info[:score] < 0
+      term_file = File.join(annotation_dir, type + '_up', dataset)
+    else
+      term_file = File.join(annotation_dir, type + '_down', dataset)
+    end
+
+    if File.exist? term_file
+      @@terms_cache[term_file] ||= YAML::load(File.open(term_file))
+      terms = @@terms_cache[term_file] 
+      {:dataset => (terms[:dataset] || []), :signature => (terms[name] || [])}
+    else
+      {:dataset =>  [], :signature => []}
+    end
+  end
 
   def self.annotations(scores, type, pvalue = 0.05, algorithm = :rank) 
     annot = {}
@@ -316,26 +337,10 @@ double hypergeometric(double total, double support, double list, double found)
     end
 
 
-    terms_cache = {}
     scores.each{|experiment, info|
       dataset = experiment.match(/^(.*?): /)[1]
       name = $'.strip 
-      case
-      when side.nil?
-        term_file = File.join(MARQ.datadir, MARQ.platform_type(dataset).to_s , 'annotations',type, dataset)
-      when side == :direct && info[:score] > 0 || side == :inverse && info[:score] < 0
-        term_file = File.join(MARQ.datadir, MARQ.platform_type(dataset).to_s , 'annotations',type + '_up', dataset)
-      else
-        term_file = File.join(MARQ.datadir, MARQ.platform_type(dataset).to_s , 'annotations',type + '_down', dataset)
-      end
-
-      if File.exist? term_file
-        terms_cache[term_file] ||= YAML::load(File.open(term_file))
-        terms = terms_cache[term_file] 
-        annot[experiment] = {:dataset => (terms[:dataset] || []), :signature => (terms[name] || [])}
-      else
-        annot[experiment] = {:dataset =>  [], :signature => []}
-      end
+      annot[experiment] = dataset_annotations(dataset, type, side)
 
       relevant << experiment if info[:pvalue] <= pvalue
     }
@@ -506,7 +511,7 @@ double hypergeometric(double total, double support, double list, double found)
     end
 
     def self.get_genes_nth(dataset, num_genes)
-      path = MARQ.dataset_path(dataset)
+      path = MARQ::Dataset.path(dataset)
 
       experiments = File.open(path + '.experiments').collect{|l| l.chomp.strip}
       genes       = File.open(path + '.codes').collect{|l| l.chomp.strip}
@@ -542,7 +547,7 @@ double hypergeometric(double total, double support, double list, double found)
       if nth_genes > 0
         return get_genes_nth(dataset, nth_genes)
       end
-      
+
 
       path = MARQ.dataset_path(dataset)
 
@@ -579,7 +584,7 @@ double hypergeometric(double total, double support, double list, double found)
           values_down[name]   << (p.last < 0 ? - value : 0)
         }
       }
-     
+
       genes_up = {}
       genes_down = {}
 
@@ -615,7 +620,7 @@ double hypergeometric(double total, double support, double list, double found)
 
     def self.get_genes_old(dataset, cut_off = 0.1, fdr = false)
 
-      path = MARQ.dataset_path(dataset)
+      path = MARQ::Dataset.path(dataset)
 
       experiments = File.open(path + '.experiments').collect{|l| l.chomp.strip}.select{|name| !name.match(/\[ratio\]/)}
       genes = File.open(path + '.codes').collect{|l| l.chomp.strip}
@@ -668,7 +673,7 @@ double hypergeometric(double total, double support, double list, double found)
     def self.OBA(text)
 
       res = Net::HTTP.post_form(URI.parse('http://rest.bioontology.org/obs_hibernate/annotator'),
-        {
+                                {
           'longestOnly'=> true, 
           'wholeWordOnly'=> true,
           'withDefaultStopWords' => true,
@@ -696,11 +701,11 @@ end
 if __FILE__ == $0
   require 'pp'
 
-  
-  
+
+
   exit
   #Annotations::GO::Genecodis::Local.init
- 
+
   #genes = Annotations::GO::get_genes('GDS1916')
   #genes[:up].each{|exp, genes|
   #  puts exp
@@ -717,15 +722,15 @@ if __FILE__ == $0
   and 24 hours following treatment with 4 mg/kg body weight GH. Results provide
   insight into the insulin-like growth factor-I dependent and independent
   pathways that mediate the action of GH in bone.
-  
+
   EOT
   texts << <<-EOT
-  
+
   Comparison of total transcription profiles for temperature-sensitive TOR2
   mutant strain SH121 to its isogenic wild type counterpart SH100. Results
   indicate that TOR2 inactivation leads to enhanced transcription of
   Gcn4-controlled target genes.
-  
+
 
   EOT
   texts << <<-EOT
@@ -734,8 +739,8 @@ if __FILE__ == $0
   melanoma in situ, vertical growth phase (VGP) melanoma, and metastatic growth
   phase (MGP) melanoma. Results identify expression signatures that distinguish
   benign and atypical nevi and melanomas in situ from VGPs and MGPs.
-  
-  
+
+
   EOT
   texts << <<-EOT
 
@@ -748,7 +753,7 @@ if __FILE__ == $0
   EOT
   texts << <<-EOT
 
-  
+
   Analysis of anaerobic chemostat cultures of Saccharomyces cerevisae exposed
   to one of several weak organic acids. Weak organic acids are used as
   preservatives in food and beverages. Yeasts are able to proliferate at the
@@ -791,7 +796,7 @@ if __FILE__ == $0
   key component of host defense. Results suggest most of the host response to
   endotoxin or live bacteria is actually regulated independently of MyD88.
 
-  
+
   EOT
   texts.reverse.each{|text|
     puts "\n\n--------------\n"
@@ -802,7 +807,7 @@ if __FILE__ == $0
     puts Annotations::UMLS::OBA(text).join(", ")
   }
 
-#
+  #
 
   #puts  Annotations.hypergeometric(2000,100,100,2)
   #p Annotations::GO::annotate(MARQ.platform_organism('GDS1365'),genes[:up].collect.first.last[1..100])

@@ -5,9 +5,8 @@ require 'MARQ/ID'
 module CustomDS
   @@r = nil
 
-  def self.customdir
-    File.join(MARQ.datadir,'CustomDS')
-  end
+  DATA_DIR = File.join(MARQ.datadir,'CustomDS')
+
 
   def self.r
     require 'rsruby'
@@ -35,33 +34,12 @@ module CustomDS
     end
   end
 
-  def self.path(dataset)
-    files = Dir.glob(customdir + "/*/#{ dataset }.orders")
-    if files.length == 1
-      files.first.sub(/.orders/,'')
-    else
-      Dir.glob(customdir + "/*/#{ dataset }").first
-    end
-  end
-
   def self.organism(dataset)
-    path(dataset).match(/#{ customdir }\/(.*?)\//)[1]
-  end
-
-  def self.is_cross_platform?(dataset)
-    dataset.match(/_cross_platform/)
-  end
-
-  def self.clean(dataset)
-    dataset.sub(/_cross_platform/,'')
-  end
-  
-  def self.has_cross_platform?(dataset)
-    Dir.glob(path(clean(dataset)) + '_cross_platform.orders').any?
+    path(dataset).match(/#{ DATA_DIR }\/(.*?)\//)[1]
   end
 
   def self.datasets(org)
-    Dir.glob(File.join(customdir, org) + '/*.orders').collect{|f| clean(File.basename(f.sub(/.orders/,'')))}.uniq
+    Dir.glob(File.join(DATA_DIR, org) + '/*.orders').collect{|f| clean(File.basename(f.sub(/.orders/,'')))}.uniq
   end
 
   def self.process_matrix(prefix, org)
@@ -82,9 +60,58 @@ module CustomDS
   end
 
   def self.process(name)
-    puts "Processing #{ name }"
-    org = organism(name)
-    prefix = File.join(customdir, org, name)
+   end
+
+  def self.organisms
+    Dir.glob(File.join(DATA_DIR, '*')).
+      select {|path| File.directory? path}.
+      collect {|path| File.basename path}
+  end
+
+  def self.dataset_path(dataset)
+    organisms.each do |organism|
+      case
+      when File.exists?(File.join(DATA_DIR, organism, dataset + '.orders'))
+        return File.join(DATA_DIR, organism, dataset)
+      when File.exists?(File.join(DATA_DIR, organism, dataset + '.skip'))
+        return nil
+      end
+    end
+    return nil
+  end
+
+  def self.platform_path(platform)
+    dataset_path(platform)
+  end
+
+  def self.platform_datasets(platform)
+    MARQ::Dataset.clean(platform)
+  end
+
+  def self.platform_organism(platform)
+    path = platform_path(platform)
+    return nil if path.nil?
+    path.match(/#{DATA_DIR}\/(.*)\/#{ platform }$/)
+    return $1
+  end
+
+  def self.dataset_organism(dataset)
+    platform_organism(dataset)
+  end
+
+  def self.organism_platforms(organism)
+    Dir.glob(File.join(DATA_DIR,organism,'*.orders')).
+      collect {|path| File.basename(path).sub(/\.orders$/,'').sub(/_cross_platform/,'')}.
+      uniq
+  end
+
+  def self.process_platform(platform)
+  end
+
+  def self.process_dataset(dataset, platform = nil)
+    puts "Processing #{ dataset }"
+    org = dataset_organism(dataset)
+    prefix = File.join(DATA_DIR, org, dataset)
 
     CustomDS::process_matrix(prefix, org)
   end
@@ -94,13 +121,13 @@ end
 
 if __FILE__ == $0
   p CustomDS::datasets('sgd')
-  p CustomDS::path('HaploidData')
-  p CustomDS::path('HaploidData_cross_platform')
+  p CustomDS::dataset_path('HaploidData')
+  p CustomDS::dataset_path('HaploidData_cross_platform')
 
   exit
 
   org = 'sgd'
-  process = Dir.glob(File.join(CustomDS::customdir, org) + '/*').select{|f| File.directory? f}.collect{|f| File.basename(f)} - CustomDS.datasets('sgd')
+  process = Dir.glob(File.join(CustomDS::DATA_DIR, org) + '/*').select{|f| File.directory? f}.collect{|f| File.basename(f)} - CustomDS.datasets('sgd')
   p process
   process.each{|d| CustomDS::process(d)}
 

@@ -33,5 +33,11 @@ line2
   def test_platform_organism
     assert_equal "Homo sapiens", GEO::Remote.platform_organism('GPL570')
   end
+
+  def test_misc
+    assert GEO::platform_datasets('GPL54').include?('GDS113')
+    assert GEO::platform_datasets('GPL54_cross_platform').include?('GDS113')
+  end
+
 end
 

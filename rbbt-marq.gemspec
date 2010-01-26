@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Miguel Vazquez"]
-  s.date = %q{2009-12-16}
+  s.date = %q{2010-01-25}
   s.default_executable = %q{marq_config}
   s.description = %q{Find microarray experiments with similar or opposite signature to a given query. A SOAP interface and a merb portal can be found in rbbt-marq-www.}
   s.email = %q{miguel.vazquez@fdi.ucm.es}
@@ -492,6 +492,7 @@ Gem::Specification.new do |s|
      "install_scripts/GEO/series/GSE965.yaml",
      "install_scripts/GEO/series/GSE966.yaml",
      "install_scripts/GEO/series/GSE993.yaml",
+     "install_scripts/rake_includes.rb",
      "lib/MARQ.rb",
      "lib/MARQ/CustomDS.rb",
      "lib/MARQ/GEO.rb",

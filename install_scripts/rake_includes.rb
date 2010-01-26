@@ -226,6 +226,8 @@ taks 'annotate_SENT' do
 
 end
 
+=======
+>>>>>>> Rakefile:install_scripts/rake_includes.rb
 task 'default' do
   Rake::Task['data'].invoke
   Rake::Task['annotate_Words'].invoke

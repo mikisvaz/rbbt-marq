@@ -4,15 +4,15 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
  tasks=tasks{
   install.rake
  }
+ bin=bin{
+  marq_config
+ }
  R=R{
   GEOquery_patch.R
   CustomDS.R
   GEO.R
   MA.R
   MARQ.R
- }
- bin=bin{
-  marq_config
  }
  lib=lib{
   MARQ.rb
@@ -29,6 +29,7 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
   }
  }
  install_scripts=install_scripts{
+  rake_includes.rb
   CustomDS=CustomDS{
    Rakefile
   }
@@ -42,6 +43,9 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
   MARQ=MARQ{
    test_GEO.rb
    test_ID.rb
+   test_MADB.rb
+   test_annotations.rb
+   test_main.rb
   }
  }
 }

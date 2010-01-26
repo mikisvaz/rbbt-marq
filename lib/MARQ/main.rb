@@ -3,76 +3,138 @@ require 'MARQ/MADB'
 require 'MARQ/score'
 
 module MARQ
-  def self.platform_type(platform)
-    if platform.match(/GPL\d+|GDS\d+|GSE\d+/)
-      return :GEO
-    else
-      return :CustomDS
+  module Platform
+    def self.is_GEO?(platform)
+      ! platform.match(/^GPL/).nil?
     end
-  end
 
-  def self.dataset_path(dataset)
-    if platform_type(dataset) == :GEO
-      GEO::dataset_path(dataset)
-    else
-      CustomDS::path(dataset)
+    def self.is_cross_platform?(platform)
+      ! platform.match(/_cross_platform$/).nil?
     end
-  end
 
-  def self.platform_organism(platform)
-    if platform_type(platform) == :GEO
-      if platform.match(/^GPL/)
-        GEO::SOFT::GPL(platform)[:organism]
+    def self.clean(name)
+      name.sub(/_cross_platform/,'') if name
+    end
+
+    def self.path(platform)
+      platform = clean(platform)
+      if is_GEO? platform
+        GEO.platform_path(platform)
       else
-        GEO::SOFT::GPL(GEO::dataset_platform(platform))[:organism]
+        CustomDS.platform_path(platform)
       end
-    else
-      CustomDS::organism(platform)
     end
-  end
 
-  def self.organism_platforms(org)
-    GEO::organism_platforms(org) + CustomDS::datasets(org)
-  end
-
-  def self.has_cross_platform?(dataset, platform=nil)
-    if platform_type(platform) == :GEO
-      GEO::has_cross_platform?(dataset, platform)
-    else
-      CustomDS::has_cross_platform?(platform)
+    def self.has_cross_platform?(platform)
+      File.exists? File.join(path(platform), 'cross_platform')
     end
-  end
 
-  def self.is_cross_platform?(dataset, platform=nil)
-    if platform_type(platform) == :GEO
-      GEO::is_cross_platform?(dataset, platform)
-    else
-      CustomDS::is_cross_platform?(platform)
-    end
-  end
-
-  def self.complete_positions(positions, matched, genes)
-
-    pos = Hash[*matched.zip(positions).flatten]
-    complete = genes.collect{|gene|
-      gene = gene.downcase.strip
-      if matched.include? gene
-        pos[gene] || "MISSING"
+    def self.datasets(platform)
+      if is_GEO? platform
+        GEO.platform_datasets(platform)
       else
-          "NOT IN PLATFORM"
+        CustomDS.platform_datasets(platform)
       end
-    }
+    end
 
+    def self.codes(platform)
+      platform = clean(platform)
+      Open.read(File.join(path(platform), 'codes')).scan(/[^\s]+/)
+    end
+
+    def self.cross_platform(platform)
+      platform = clean(platform)
+      Open.read(File.join(path(platform), 'cross_platform')).scan(/[^\s]+/)
+    end
+
+    def self.organism(platform)
+      platform = clean(platform)
+      if is_GEO? platform
+        GEO.platform_organism platform
+      else
+        CustomDS.platform_organism platform
+      end
+    end
+
+    def self.process(platform)
+      platform = clean(platform)
+      if is_GEO? platform
+        GEO.process_platform(platform)
+      else
+        CustomDS.process_platform(platform)
+      end
+    end
+
+    def self.organism_platforms(organism)
+      GEO.platforms.select {|platform|
+        GEO::SOFT.GPL(platform)[:organism] == organism && MARQ::Platform.datasets(platform).any?
+      } +
+      CustomDS.organism_platforms(organism)
+    end
   end
+
 
   module Dataset
+    def self.is_GEO?(dataset)
+      ! dataset.match(/^(?:GDS|GSE)/).nil?
+    end
+
+    def self.clean(name)
+      name.sub(/_cross_platform/,'') if name
+    end
+
+    def self.path(platform)
+      if is_GEO? platform
+        GEO.dataset_path(platform)
+      else
+        CustomDS.dataset_path(platform)
+      end
+    end
+
+    def self.is_cross_platform?(dataset)
+      ! dataset.match(/_cross_platform$/).nil?
+    end
+
+    def self.has_cross_platform?(dataset)
+      File.exists?(path(dataset) + '_cross_platform.orders')
+    end
 
     def self.exists?(dataset)
-      MARQ::dataset_path(dataset) != nil
+      path(dataset) != nil
+    end
+
+    def self.info(name)
+      begin
+        title, description = Open.read(path(name) + '.description').split(/\n--\n/).values_at(0,1)
+        {:title => title.strip, :description => description.strip}
+      rescue Exception
+        puts $!.message
+        {:title => "" , :description => "" }
+      end
+    end
+
+    def self.platform(dataset)
+      if is_GEO? dataset
+        GEO.dataset_platform(dataset)
+      else
+        CustomDS.dataset_platform(dataset)
+      end
+    end
+
+    def self.organism(dataset)
+      MARQ::Platform.organism(platform(dataset))
+    end
+
+    def self.process(dataset, platform = nil)
+      if is_GEO? dataset
+        GEO.process_dataset(dataset, platform)
+      else
+        CustomDS.process_dataset(dataset, platform)
+      end
     end
 
     def self.read_file(dataset, ext)
-      Open.read(MARQ::dataset_path(dataset) + '.' + ext)
+      Open.read(path(dataset) + '.' + ext)
     end
 
     def self.read_values(dataset, file)
@@ -104,16 +166,6 @@ module MARQ
     end
 
 
-    def self.platform_codes(platform)
-      if MARQ::is_cross_platform? platform
-        file = 'cross_platform'
-      else
-        file = 'codes'
-      end
-
-      Open.read(File.join(MARQ::platform_path(platform), file))
-    end
-
     def self.experiments(dataset)
       read_file(dataset, 'experiments').split(/\n/)
     end
@@ -129,7 +181,7 @@ module MARQ
     def self.logratios(dataset)
       read_values(dataset, 'logratios')
     end
-    
+
     def self.pvalues(dataset)
       read_values_t(dataset, 'pvalues')
     end
@@ -138,136 +190,69 @@ module MARQ
       read_values_t(dataset, 't')
     end
 
-
-
   end
 
-  def self.platform_scores_up_down(platform, up, down)
-    if platform_type(platform) == :GEO
-      GEORQ.platform_scores_up_down(platform, up, down)
-    else
-      CustomDSRQ.scores_up_down(platform, up, down)
+  module RankQuery
+    def self.complete_positions(positions, matched, genes)
+      pos = Hash[*matched.zip(positions).flatten]
+      complete = genes.collect{|gene|
+        gene = gene.downcase.strip
+        if matched.include? gene
+          pos[gene] || "MISSING"
+        else
+          "NOT IN PLATFORM"
+        end
+      }
     end
-  end
-
-  module CustomDSRQ
-
-    def self.scores_up_down(platform, up, down)
-      matched_up = DBcache.matches(platform + '_codes', up).length
-      positions_up, matched_up = *MADB::CustomDS.positions(platform, up)
-      missing_up = up.length - matched_up.length
 
 
-
-      matched_down = DBcache.matches(platform + '_codes', down).length
-      positions_down, matched_down = *MADB::CustomDS.positions(platform, down)
-      missing_down = down.length - matched_down.length
-
-      experiments = positions_up.keys
-      platform_entries = MADB::CustomDS.platform_entries(platform)
-
-      scores = experiments.collect{|experiment|
+    def self.position_scores(up, down, positions_up, positions_down, platform_entries, matched_up, matched_down, missing_up, missing_down)
+      scores = []
+      positions_up.keys.each do |experiment|
         score = Score.score_up_down(positions_up[experiment], positions_down[experiment], platform_entries, missing_up, missing_down)
         score[:total_entries]    = platform_entries
-        score[:positions_up]     = MARQ.complete_positions(positions_up[experiment], matched_up, up) if positions_up.any?
-        score[:positions_down]   = MARQ.complete_positions(positions_down[experiment], matched_down, down) if positions_down.any?
-        score
-      }
+        score[:positions_up]     = complete_positions(positions_up[experiment], matched_up, up) if up.any?
+        score[:positions_down]   = complete_positions(positions_down[experiment], matched_down, down) if down.any?
+        scores << score
+      end
 
       pvalues = Score.pvalues(scores.collect{|s| s[:score]}, up.length, down.length, platform_entries)
 
       results = {}
-      experiments.each_with_index{|experiment,i|
+      positions_up.keys.each_with_index{|experiment,i|
         results[experiment] = scores[i].merge(:pvalue => pvalues[i])
       }
 
-
       results
     end
-  end
 
-  module GEORQ
+    def self.dataset_scores(dataset, up, down)
+      positions_up, matched_up, platform_entries     = MADB.dataset_positions(dataset, up)
+      missing_up = positions_up.length - matched_up.length
 
-    def self.platform_scores_up_down(platform, up, down)
-      platform_entries = MADB::GEO.platform_entries(platform)
+      positions_down, matched_down                   = MADB.dataset_positions(dataset, down)
+      missing_down = positions_down.length - matched_down.length
 
-      positions_up, matched_up = *MADB::GEO.positions(platform, up)
+      position_scores(up, down, positions_up, positions_down, platform_entries, matched_up, matched_down, missing_up, missing_down)
+    end
+
+    def self.platform_scores(platform, up, down)
+      positions_up, matched_up, platform_entries     = MADB.platform_positions(platform, up)
       missing_up = up.length - matched_up.length
 
-      positions_down, matched_down = *MADB::GEO.positions(platform, down)
+      positions_down, matched_down                   = MADB.platform_positions(platform, down)
       missing_down = down.length - matched_down.length
 
-      return {} if positions_up.keys.empty? && positions_down.keys.empty?
-      if positions_up.keys.any?
-        experiments = positions_up.keys
-      else 
-        experiments = positions_down.keys
-      end
-
-      scores = experiments.collect{|experiment|
-        score = Score.score_up_down(positions_up[experiment], positions_down[experiment], platform_entries, missing_up, missing_down)
-        score[:total_entries]    = platform_entries
-        score[:positions_up]     = MARQ.complete_positions(positions_up[experiment], matched_up, up) if positions_up.any?
-        score[:positions_down]   = MARQ.complete_positions(positions_down[experiment], matched_down, down) if positions_down.any?
-        score
-      }
-
-      pvalues = Score.pvalues(scores.collect{|s| s[:score]}, up.length, down.length, platform_entries)
-
-      results = {}
-      experiments.each_with_index{|experiment,i|
-        results[experiment] = scores[i]
-        results[experiment][:pvalue] = pvalues[i]
-      }
-
-
-      results
-    end
-
-
-    def self.draw_hits(platform, genes, directory)
-      positions, matched = MADB::GEO.positions(platform, genes).values_at(0,1)
-
-      platform_entries = MADB::GEO.platform_entries(platform)
-
-      positions.each{|experiment, positions|
-        Score.draw_hits(positions.compact, platform_entries, File.join(directory, experiment.hash_code + '.png'), {:size => 1000, :bg_color => :green})
-      }
-    end
-
-
-    def self.dataset_positions(dataset, genes)
-      if dataset =~ /_cross_platform/
-        dataset.sub!(/_cross_platform/,'')
-        platform = GEO.dataset_platform(dataset) + '_cross_platform'
-      else
-        platform = GEO.dataset_platform(dataset)
-      end
-
-
-      positions = {}
-      MADB::GEO.positions(platform, genes).first.select{|k,v| k =~ /^#{ dataset }/}.each{|p|
-        positions[p[0].sub(/^#{ dataset }: /,'')] = p[1]
-      }
-      positions
-    end
-
-    def self.dataset_scores(dataset, genes)
-      total = DBcache::num_rows(platform)
-      positions = dataset_positions(dataset, genes)
-
-      scores = {}
-      positions.each{|experiment, positions|
-        scores[experiment] = Score.score(positions, total, genes.length - positions.length)
-      }
-      scores
+      position_scores(up, down, positions_up, positions_down, platform_entries, matched_up, matched_down, missing_up, missing_down)
     end
 
   end
 end
 
 if __FILE__ == $0
-  p MARQ::Dataset.orders('GDS2419')
+  p MARQ::Platform.organism 'GPL90'
+  p MARQ::Dataset.organism 'GDS113'
+  p MARQ::RankQuery::dataset_scores('GDS113_cross_platform', %w(), %w())
   exit
   #puts MARQ::organism_platforms('human')
   #puts MARQ.platform_organism("HaploidData")
