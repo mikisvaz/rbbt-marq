@@ -1,43 +1,29 @@
 require 'MARQ'
+require 'MARQ/main'
 module RankProduct
-
   def self.ranks(dataset, experiment , from_FC = false, invert = false)
-    path = MARQ.dataset_path(dataset)
-    codes = Open.read(path + '.codes').collect{|line| line.strip}
-
-    experiments = Open.read(path + '.experiments').collect{|line| line.strip}
-    field = experiments.index experiment.strip
-
-    if from_FC
-      ratios = Open.read(path + '.logratios').collect{|line| 
-        value = line.strip.split("\t")[field]
-        case
-        when value == "NA"
-          nil
-
-        # To sort decreasingly we change sign by default
-        when invert
-          value.to_f
-        else
-          - value.to_f
-        end
-      }
-      Hash[*codes.zip(ratios).sort{|a,b| b[1] <=> a[1]}.collect{|p| p[0]}.zip((1..codes.length).to_a).flatten]
+    codes = MARQ::Dataset.codes(dataset)
+    
+    if from_FC 
+      ratios    = MARQ::Dataset.logratios(dataset)[experiment.strip]
+      sorted_genes = codes.zip(ratios).
+        reject  {|p| p[1].nil? }.
+        sort_by {|p| p[1] }.
+        collect {|p| p[0] }
+      sorted_genes.reverse! unless invert
+      ranks  = Hash[*sorted_genes.zip((1..sorted_genes.length).to_a).flatten]
+      (codes - sorted_genes).each {|gene| ranks[gene] = nil}
     else
-      orders = Open.read(path + '.orders').collect{|line| 
-        value = line.strip.split("\t")[field]
-        case
-        when value == "NA"
-          nil
-        when invert
-          codes.length - line.strip.split("\t")[field].to_i + 1
-        else
-          line.strip.split("\t")[field].to_i
-        end
+      orders = MARQ::Dataset.orders(dataset)[experiment.strip]
 
-      }
-      Hash[*codes.zip(orders).flatten]
+      if invert
+        num_genes = orders.length
+        orders.collect! {|pos| pos.nil? ? nil : num_genes - pos }
+      end
+
+      ranks = Hash[*codes.zip(orders).flatten]
     end
+    ranks
   end
 
   def self.score(gene_ranks, signature_sizes)
