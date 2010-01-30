@@ -99,6 +99,10 @@ module CustomDS
     platform_organism(dataset)
   end
 
+  def self.dataset_platform(dataset)
+    dataset
+  end
+
   def self.organism_platforms(organism)
     Dir.glob(File.join(DATA_DIR,organism,'*.orders')).
       collect {|path| File.basename(path).sub(/\.orders$/,'').sub(/_cross_platform/,'')}.
