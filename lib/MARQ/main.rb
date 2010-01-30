@@ -13,7 +13,7 @@ module MARQ
     end
 
     def self.clean(name)
-      name.sub(/_cross_platform/,'') if name
+      name.sub(/_cross_platform/,'') unless name.nil?
     end
 
     def self.path(platform)
@@ -91,6 +91,10 @@ module MARQ
       end
     end
 
+    def self.exists?(dataset)
+      ! path(dataset).nil?
+    end
+
     def self.is_cross_platform?(dataset)
       ! dataset.match(/_cross_platform$/).nil?
     end
@@ -137,14 +141,18 @@ module MARQ
       Open.read(path(dataset) + '.' + ext)
     end
 
-    def self.read_values(dataset, file)
+    def self.read_values(dataset, file, integer = false)
       result = {}
 
       experiments = experiments(dataset)
       experiments.each{|experiment| result[experiment] = [] }
       read_file(dataset, file).split(/\n/).each do |line|
         values = line.chomp.split(/\t/)
-        values.each_with_index{|value, i| result[experiments[i]] << (value == 'NA' ? nil : value.to_f) }
+        if integer
+          values.each_with_index{|value, i| result[experiments[i]] << (value == 'NA' ? nil : value.to_i)}
+        else
+          values.each_with_index{|value, i| result[experiments[i]] << (value == 'NA' ? nil : value.to_f)}
+        end
       end
 
       result
@@ -175,7 +183,7 @@ module MARQ
     end
 
     def self.orders(dataset)
-      read_values(dataset, 'orders')
+      read_values(dataset, 'orders', true)
     end
 
     def self.logratios(dataset)
@@ -250,9 +258,8 @@ module MARQ
 end
 
 if __FILE__ == $0
-  p MARQ::Platform.organism 'GPL90'
-  p MARQ::Dataset.organism 'GDS113'
-  p MARQ::RankQuery::dataset_scores('GDS113_cross_platform', %w(), %w())
+  p MARQ::Dataset.platform 'GDS2791_cross_platform'
+  p MARQ::Platform.organism 'GPL96'
   exit
   #puts MARQ::organism_platforms('human')
   #puts MARQ.platform_organism("HaploidData")
