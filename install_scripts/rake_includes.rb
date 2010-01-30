@@ -89,6 +89,7 @@ def annotations(name, cross_platform = false, &block)
         FileUtils.mkdir_p File.join("annotations", name)
         filename = File.join("annotations", name, dataset)
         dataset += '_cross_platform' if cross_platform && MARQ::Platform::has_cross_platform?(platform)
+        next if ! MARQ::Dataset.exists?(dataset)
         terms = block.call(dataset)
         Open.write(filename, terms.to_yaml)
       rescue
@@ -213,7 +214,7 @@ task 'annotate_GO' do
   end
 end
 
-taks 'annotate_SENT' do
+task 'annotate_SENT' do
   require 'MARQ/annotations'
   options = { :cut_off => $expr_threshold, :fdr => $fdr, :folds => $folds, :do_folds => $do_folds, :nth_genes => $nth_genes}
   annotations('SENT') do |dataset|
@@ -226,8 +227,6 @@ taks 'annotate_SENT' do
 
 end
 
-=======
->>>>>>> Rakefile:install_scripts/rake_includes.rb
 task 'default' do
   Rake::Task['data'].invoke
   Rake::Task['annotate_Words'].invoke
