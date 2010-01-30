@@ -296,21 +296,15 @@ double hypergeometric(double total, double support, double list, double found)
 
 
   @@terms_cache = {}
-  def self.dataset_annotations(dataset, type, side = nil)
+  def self.dataset_annotations(dataset, type, experiment)
     annotation_dir = File.join(MARQ.datadir, (MARQ::Dataset.is_GEO?(dataset) ? 'GEO' : 'CustomDS'), 'annotations')
-    case
-    when side.nil?
-      term_file = File.join(annotation_dir, type, dataset)
-    when side == :direct && info[:score] > 0 || side == :inverse && info[:score] < 0
-      term_file = File.join(annotation_dir, type + '_up', dataset)
-    else
-      term_file = File.join(annotation_dir, type + '_down', dataset)
-    end
 
+    term_file =  File.join(annotation_dir, type, MARQ::Dataset.clean(dataset))
+   
     if File.exist? term_file
       @@terms_cache[term_file] ||= YAML::load(File.open(term_file))
       terms = @@terms_cache[term_file] 
-      {:dataset => (terms[:dataset] || []), :signature => (terms[name] || [])}
+      {:dataset => (terms[:dataset] || []), :signature => (terms[experiment] || [])}
     else
       {:dataset =>  [], :signature => []}
     end
@@ -319,13 +313,6 @@ double hypergeometric(double total, double support, double list, double found)
   def self.annotations(scores, type, pvalue = 0.05, algorithm = :rank) 
     annot = {}
     relevant = []
-
-    dict_options = {}
-    if type == "Words"
-      dict_options = {:low => 0, :hi => 0.05, :limit => 100000}
-    else
-      dict_options = {:low => 0, :hi => 0.5, :limit => 100000}
-    end
 
     case
     when type =~ /^(.*)_direct$/
@@ -336,14 +323,30 @@ double hypergeometric(double total, double support, double list, double found)
       type = $1
     end
 
-
     scores.each{|experiment, info|
       dataset = experiment.match(/^(.*?): /)[1]
       name = $'.strip 
-      annot[experiment] = dataset_annotations(dataset, type, side)
+      
+      case
+      when side.nil?
+        experiment_type = type
+      when side == :direct && info[:score] >= 0 || side == :inverse && info[:score] < 0
+        experiment_type += '_up'
+      else
+        experiment_type += '_down'
+      end
+
+      annot[experiment] = dataset_annotations(dataset, experiment_type, name)
 
       relevant << experiment if info[:pvalue] <= pvalue
     }
+
+    dict_options = {}
+    if type == "Words"
+      dict_options = {:low => 0, :hi => 0.05, :limit => 100000}
+    else
+      dict_options = {:low => 0, :hi => 0.5, :limit => 100000}
+    end
 
     if algorithm == :rank
       ranks = scores.sort{|a,b| compare(a[1],b[1]) }.collect{|p| p[0]}
@@ -356,6 +359,7 @@ double hypergeometric(double total, double support, double list, double found)
     annot.each{|key, info|
       merged_annotations[key] = info[:dataset] + info[:signature]
     }
+
     [merged_annotations, terms]
   end
 
@@ -458,8 +462,8 @@ double hypergeometric(double total, double support, double list, double found)
       def self.process_results(job)
         result_ids = driver.results(job)
 
-        summary = YAML::load(driver.result(result_ids[0]))
-        ccc     = driver.result(result_ids[1]).to_f
+        summary = YAML::load(Base64.decode64(driver.result(result_ids[0])))
+        ccc     = Base64.decode64(driver.result(result_ids[1])).to_f
         associations = Open.to_hash(StringIO.new(driver.associations(job)), :flatten => true)
 
         summary.each do |group|
@@ -469,7 +473,8 @@ double hypergeometric(double total, double support, double list, double found)
         [summary, ccc]
       end
 
-      def self.analysis(organism, genes, factors)
+      @@jobs = {}
+      def self.analyze(organism, genes, factors)
         hash = Digest::MD5.hexdigest([organism, genes.sort].inspect)
 
         if @@jobs[hash]
@@ -477,34 +482,40 @@ double hypergeometric(double total, double support, double list, double found)
           job = driver.refactor(orig_job, factors, 'MARQ')
         else
           job = driver.analyze(organism, genes, factors, 'MARQ')
+          orig_job = job
         end
+
+        puts "#{ job }: #{ factors }"
 
         while ! driver.done(job)
           sleep 5
         end
 
-        raise SENTError "Job failed with error #{driver.messages(job).last}" if driver.error(job)
+        raise SENT::SENTError, "Job failed with error #{driver.messages(job).last}" if driver.error(job)
         @@jobs[hash] = job
 
-        summary, ccc = process_results(job)
+        summary, ccc = process_results(orig_job)
       end
 
       def self.terms(organism, genes, num = 20)
-        factor_list = [2,3,4,5,7,10]
+        factor_list = [2,4,8,10]
+        
         terms = {}
-        ccc   = {}
+        cccs   = {}
         factor_list.each do |factors|
           summary, ccc = analyze(organism, genes, factors)
           articles = summary.inject(0) {|acc, group| acc += group[:articles] }
           terms_per_article = num.to_f / articles
           summary.each{|group|
-            num_terms = terms_per_article * group[:articles]
+            num_terms = [terms_per_article * group[:articles], group[:words].length].min
             terms[factors] ||= []
-            terms[factors] += group[:words][num_terms]
+            terms[factors] += group[:words][0..(num_terms - 1)]
+            p terms
           }
-          ccc[factors] = ccc
+          cccs[factors] = ccc
         end
-        best_k = ccc.sort_by{|p| p[1]}.first[1]
+
+        best_k = cccs.sort_by{|p| p[1]}.first[1]
 
         terms[k]
       end
