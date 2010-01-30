@@ -569,10 +569,11 @@ module GEO
       platform_path = platform_path(platform)
       next if platform_path.nil?
 
+      prefix = File.join(platform_path, dataset_type(dataset).to_s, dataset)
       case
-      when File.exists?(File.join(platform_path, dataset_type(dataset).to_s, dataset + '.orders'))
+      when File.exists?(prefix + '.orders')
         return File.join(platform_path, dataset_type(dataset).to_s, dataset)
-      when File.exists?(File.join(platform_path, dataset_type(dataset).to_s, dataset + '.skip'))
+      when File.exists?(prefix + '.skip')
         return nil
       end
     end
@@ -631,9 +632,7 @@ end
 
 
 if __FILE__ == $0
-  10.times{|i|
-    GEO::Remote.organism_platforms('sgd')
-  }
+  p GEO.dataset_path 'GDS2791_cross_platform', 'GPL96'
 
 end
 
