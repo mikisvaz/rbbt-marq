@@ -92,7 +92,24 @@ module MARQ
     end
 
     def self.exists?(dataset)
-      ! path(dataset).nil?
+      path = path(dataset)
+      if path.nil?
+        return false
+      else
+        return File.exists?(path + '.orders')
+      end
+    end
+
+    def self.broken?(dataset)
+      path = path(dataset)
+
+      return false if path.nil?
+      
+      if File.exists?(path + '.skip')
+        return true
+      else
+        return false
+      end
     end
 
     def self.is_cross_platform?(dataset)
@@ -101,10 +118,6 @@ module MARQ
 
     def self.has_cross_platform?(dataset)
       File.exists?(path(dataset) + '_cross_platform.orders')
-    end
-
-    def self.exists?(dataset)
-      path(dataset) != nil
     end
 
     def self.info(name)
