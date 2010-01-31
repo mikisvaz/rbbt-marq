@@ -17,7 +17,7 @@ module RankProduct
       orders = MARQ::Dataset.orders(dataset)[experiment.strip]
 
       if invert
-        num_genes = orders.length
+        num_genes = codes.length + 1
         orders.collect! {|pos| pos.nil? ? nil : num_genes - pos }
       end
 
@@ -31,7 +31,7 @@ module RankProduct
     log_sizes = signature_sizes.collect{|size| Math::log(size)}
     gene_ranks.each{|gene, positions|
       scores[gene] = positions.zip(log_sizes).
-        collect{|p| Math::log(p[0]) - p[1]}.
+        collect{|p| Math::log(p[0]) - p[1]}.    # Take log and substract from size (normalize)
         inject(0){|acc, v| acc += v  }
     }
     scores
@@ -70,6 +70,7 @@ module RankProduct
       :cross_platform => false,
     }.merge(options).values_at(:invert, :from_FC, :cross_platform)
 
+    # Gather gene ranks from signatures
     ranks = {}
     signatures.each{|signature|
       dataset, experiment = signature.match(/^([^\:]*): (.*)/).values_at(1,2)
@@ -77,6 +78,7 @@ module RankProduct
       ranks[signature] = self.ranks(dataset, experiment, from_FC, invert.include?(signature))
     }
 
+    # Invert the hash, from signature keys to gene keys
     gene_ranks = {}
     sizes = []
     ranks.each{|signature, orders|
@@ -88,32 +90,36 @@ module RankProduct
       }
     }
 
+    # Remove incomplete genes
     gene_ranks.delete_if{|code, positions| positions.length != signatures.uniq.length}
     
+    # Compute scores
     scores = score(gene_ranks, sizes)
+
+    # Compute permutations
     num_permutations = 50000
-
     permutation_scores = permutations(sizes.length, num_permutations)
-
     permutation_scores = permutation_scores.sort
 
 
+    # Compute p-values from permutations
     results = {}
-    scores.each{|gene, score|
+    scores.each {|gene, score|
       pos = permutation_scores.count_smaller(score)
       results[gene] = [score, pos.to_f / num_permutations]
     }
 
-
+    # Complete the information with pfp
     num_genes = results.length
-    results.sort{|a,b|
+    results.sort {|a,b|
       a[1][0] <=> b[1][0]
     }.each_with_index{|p,i|
-      gene = p[0]
       info = p[1]
       pvalue = info[1]
+
       pfp  = pvalue * num_genes / (i + 1)
       info << pfp
+
     }
        
     results
