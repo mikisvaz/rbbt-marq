@@ -331,9 +331,9 @@ double hypergeometric(double total, double support, double list, double found)
       when side.nil?
         experiment_type = type
       when side == :direct && info[:score] >= 0 || side == :inverse && info[:score] < 0
-        experiment_type += '_up'
+        experiment_type = type + '_up'
       else
-        experiment_type += '_down'
+        experiment_type = type + '_down'
       end
 
       annot[experiment] = dataset_annotations(dataset, experiment_type, name)
