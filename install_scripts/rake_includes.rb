@@ -4,7 +4,6 @@ $nth_genes      ||= (ENV['nth_genes'] || 100).to_i
 
 $force       = [$force, ENV['force'], false].compact.first.to_s == 'true'  
 $tranlations = [$tranlations, ENV['translations'], false].compact.first.to_s == 'true'  
-$series      = [$series, ENV['series'], true].compact.first.to_s == 'true' 
 $update_db   = [$update_db, ENV['update_db'], false].compact.first.to_s == 'true'  
 $skip_db     = [$skip_db, ENV['skip_db'], false].compact.first.to_s == 'true'  
 $fdr         = [$fdr, ENV['fdr'], true].compact.first.to_s == 'true'  
@@ -30,7 +29,6 @@ end
 
 desc "Analyze datasets"
 task 'data' do 
-
   platforms_to_save = []
 
   platforms = process_list
@@ -52,7 +50,10 @@ task 'data' do
     # Process all datasets
     datasets.each{|dataset|
       begin
-        next unless $force || MARQ::Dataset.path(dataset).nil?
+        next unless dataset =~ /GSE/
+        already_processed = MARQ::Dataset.exists?(dataset) || MARQ::Dataset.broken?(dataset)
+        next if already_processed && ! $force
+
         MARQ::Dataset.process(dataset, platform)
       rescue
         puts "Error processing dataset #{ dataset }"
