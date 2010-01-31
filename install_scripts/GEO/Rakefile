@@ -12,6 +12,7 @@ require File.join(File.dirname(File.dirname(__FILE__)), 'rake_includes')
 $platform       ||= ENV['platform']
 $organism       ||= [$organism, ENV['organism'], nil].compact.first 
 $dataset        ||= ENV['dataset']
+$series          = [$series, ENV['series'], true].compact.first.to_s == 'true' 
 
 # More global variables in rake_includes file
 
@@ -51,7 +52,7 @@ def process_list
         else
           organism =  GEO::Remote::platform_organism(platform)
         end
-        if organism.split(',').select{|org| organisms.include? Organism.name2org(org.strip)}.any?
+        if organism.split(',').select{|org| organisms.include?(Organism.name2org(org.strip)) || organisms.include?(org) }.any?
           list[platform] ||= []
           list[platform] << serie 
         end
