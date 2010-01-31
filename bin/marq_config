@@ -65,7 +65,7 @@ end
 
 
 $USAGE =<<EOT
-#{__FILE__} <action> [<subaction>] [--force (true|false)] [--update_db (true|false)] [--platform <gpl>] [--series <gse>] [--organism <org>] [--port <number>] [--host <name>]
+#{__FILE__} <action> [<subaction>] [--force (true|false)] [--update_db (true|false)] [--platform <gpl>] [--dataset <gds>] [--series (true|false)] [--organism <org>] [--port <number>] [--host <name>]
   actions:
     * config:   Set paths for data, cache, and tmp directories
 
@@ -88,7 +88,7 @@ $USAGE =<<EOT
 EOT
 
 class Controller < SimpleConsole::Controller
-  params :string => {:t => :target, :p => :platform, :s => :series,  :o => :organism}, :boolean => {:d => :update_db, :f => :force}, :integer => {:p => :port}
+  params :string => {:d => :dataset, :t => :target, :p => :platform, :s => :series,  :o => :organism}, :boolean => {:d => :update_db, :f => :force}, :integer => {:p => :port}
 
 
   def prepare
@@ -99,6 +99,7 @@ class Controller < SimpleConsole::Controller
   def install
     $platform  = params[:platform] unless params[:platform].nil?
     $series    = params[:series]   unless params[:series].nil?
+    $dataset    = params[:dataset]   unless params[:dataset].nil?
     $organism  = params[:organism] unless params[:organism].nil?
     $update_db = params[:update_db] && params[:update_db] =~ /true|yes|y/i
     $force     = params[:force]     && params[:force]     =~ /true|yes|y/i
@@ -186,25 +187,28 @@ class View < SimpleConsole::View
 
       @actions = [@actions] if @actions === String
       @actions.each{|action|
-        puts "Installing #{ action }"
+        puts "Prepare #{ action }"
         Rake::Task[action].invoke
       }
     end
   end
 
   def install
-
     require 'rake'
+
     @actions = [@actions] if @actions === String
 
-    @actions.each{|action|
+    @actions.each do |action|
+
       Thread.new{
-        puts "Updating #{action}. Target: #{@rake_action}"
-        FileUtils.cd File.join(MARQ.datadir, action)
+        puts "Install #{action}. Target: #{@rake_action}"
         load File.join(MARQ.datadir, action, 'Rakefile')
+
+        FileUtils.cd File.join(MARQ.datadir, action)
         Rake::Task[@rake_action].invoke
       }.join
-    }
+
+    end
   end
 
 
