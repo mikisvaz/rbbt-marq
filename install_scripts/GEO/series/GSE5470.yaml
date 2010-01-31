@@ -1,0 +1,19 @@
+--- 
+:arrays: 
+  GSM125326: 
+    condition: BY
+  GSM125327: 
+    condition: BY
+  GSM125328: 
+    condition: BY
+  GSM125330: 
+    condition: dbr1
+  GSM125329: 
+    condition: dbr1
+  GSM125331: 
+    condition: dbr1
+:description: |-
+  Introns in pre-mRNAs must be spliced out prior to their translation.  During splicing, introns are removed in the form of a lariat, in which the 5' end is linked to the 2' hydroxyl of an internal adenosine.  Lariat degradation is initiated by an 2'-5' phosphodiester-specific RNA endonuclease which debranches these lariat RNAs to linear form.  Deletion of the debranching enzyme is yeast results in the accumulation of lariat introns.  We used this accumulation to identify spliced lariat introns on a genome-wide scale in S. cerevisiae using tiling microarrays.
+  Keywords: two sample comparison, 3 biological replicates
+:title: Expression data from BY4743 and dbr1 yeast
+:platform: GPL4065
