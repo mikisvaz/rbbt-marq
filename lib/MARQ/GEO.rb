@@ -40,7 +40,7 @@ module GEO
 
     def self.platform_organism(platform)
       Open.read("http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=#{platform}", :nice => @@nice).
-      match(%r#<td><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi\?mode=Info&amp;id=\d+" onmouseout="onLinkOut\('HelpMessage' , geo_empty_help\)" onmouseover="onLinkOver\('HelpMessage' , geoaxema_organismus\)">(.*)</a></td>#)[1]
+        scan(%r#<a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi\?mode=Info&amp;id=\d+" onmouseout="onLinkOut\('HelpMessage' , geo_empty_help\)" onmouseover="onLinkOver\('HelpMessage' , geoaxema_organismus\)">(.*?)</a>#).collect{|p| p.first}.join(', ')
     end
 
   end
@@ -567,15 +567,15 @@ module GEO
 
     platforms.each do |platform|
       platform_path = platform_path(platform)
+
       next if platform_path.nil?
 
       prefix = File.join(platform_path, dataset_type(dataset).to_s, dataset)
-      case
-      when File.exists?(prefix + '.orders')
+      
+      if File.exists?(prefix + '.orders') || File.exists?(prefix + '.skip')
         return File.join(platform_path, dataset_type(dataset).to_s, dataset)
-      when File.exists?(prefix + '.skip')
-        return nil
       end
+
     end
 
     return nil

@@ -70,12 +70,11 @@ module CustomDS
 
   def self.dataset_path(dataset)
     organisms.each do |organism|
-      case
-      when File.exists?(File.join(DATA_DIR, organism, dataset + '.orders'))
+      
+      if File.exists?(File.join(DATA_DIR, organism, dataset + '.orders')) || File.exists?(File.join(DATA_DIR, organism, dataset + '.skip'))
         return File.join(DATA_DIR, organism, dataset)
-      when File.exists?(File.join(DATA_DIR, organism, dataset + '.skip'))
-        return nil
       end
+
     end
     return nil
   end

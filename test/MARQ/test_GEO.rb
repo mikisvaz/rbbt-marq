@@ -32,6 +32,7 @@ line2
 
   def test_platform_organism
     assert_equal "Homo sapiens", GEO::Remote.platform_organism('GPL570')
+    assert_equal "Schizosaccharomyces pombe, Saccharomyces cerevisiae", GEO::Remote.platform_organism('GPL2529')
   end
 
   def test_misc
