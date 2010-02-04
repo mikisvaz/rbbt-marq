@@ -84,7 +84,7 @@ module CustomDS
   end
 
   def self.platform_datasets(platform)
-    MARQ::Dataset.clean(platform)
+    MARQ::Name.clean(platform)
   end
 
   def self.platform_organism(platform)

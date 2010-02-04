@@ -89,7 +89,7 @@ def annotations(name, cross_platform = false, &block)
 
         FileUtils.mkdir_p File.join("annotations", name)
         filename = File.join("annotations", name, dataset)
-        dataset += '_cross_platform' if cross_platform && MARQ::Platform::has_cross_platform?(platform)
+        dataset += MARQ::Name.cross_platform(dataset) if cross_platform && MARQ::Platform::has_cross_platform?(platform)
         next if ! MARQ::Dataset.exists?(dataset)
         terms = block.call(dataset)
         Open.write(filename, terms.to_yaml)

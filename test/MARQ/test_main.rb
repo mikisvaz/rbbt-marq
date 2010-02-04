@@ -5,7 +5,7 @@ class TestMARQ < Test::Unit::TestCase
   
   def test_basic
     assert ! MARQ::Dataset.exists?('FAKE')
-    assert MARQ::Dataset.broken?('FAKE')
+    assert ! MARQ::Dataset.broken?('FAKE')
     
     assert MARQ::Dataset.exists?('GDS113')
     assert ! MARQ::Dataset.broken?('GDS113')
@@ -13,8 +13,7 @@ class TestMARQ < Test::Unit::TestCase
     assert MARQ::Dataset.exists?('GDS113_cross_platform')
     assert ! MARQ::Dataset.broken?('GDS113_cross_platform')
     
-    assert ! MARQ::Dataset.exists?('GSE12004')
-    assert MARQ::Dataset.broken?('GSE12004')
+    assert MARQ::Platform.has_cross_platform?(MARQ::Dataset.platform('GDS113_cross_platform'))
   end
   
   def test_misc

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Miguel Vazquez"]
-  s.date = %q{2010-01-30}
+  s.date = %q{2010-02-04}
   s.default_executable = %q{marq_config}
   s.description = %q{Find microarray experiments with similar or opposite signature to a given query. A SOAP interface and a merb portal can be found in rbbt-marq-www.}
   s.email = %q{miguel.vazquez@fdi.ucm.es}
@@ -338,6 +338,7 @@ Gem::Specification.new do |s|
      "install_scripts/GEO/series/GSE1759.yaml",
      "install_scripts/GEO/series/GSE1760.yaml",
      "install_scripts/GEO/series/GSE1763.yaml",
+     "install_scripts/GEO/series/GSE1814.yaml",
      "install_scripts/GEO/series/GSE1915.yaml",
      "install_scripts/GEO/series/GSE1927.yaml",
      "install_scripts/GEO/series/GSE1941.yaml",
@@ -345,6 +346,7 @@ Gem::Specification.new do |s|
      "install_scripts/GEO/series/GSE1944.yaml",
      "install_scripts/GEO/series/GSE1975.yaml",
      "install_scripts/GEO/series/GSE20.yaml",
+     "install_scripts/GEO/series/GSE21.yaml",
      "install_scripts/GEO/series/GSE2107.yaml",
      "install_scripts/GEO/series/GSE2159.yaml",
      "install_scripts/GEO/series/GSE2246.yaml",
@@ -360,6 +362,7 @@ Gem::Specification.new do |s|
      "install_scripts/GEO/series/GSE2434.yaml",
      "install_scripts/GEO/series/GSE2526.yaml",
      "install_scripts/GEO/series/GSE2579.yaml",
+     "install_scripts/GEO/series/GSE27.yaml",
      "install_scripts/GEO/series/GSE2806.yaml",
      "install_scripts/GEO/series/GSE2831.yaml",
      "install_scripts/GEO/series/GSE2832.yaml",
@@ -418,6 +421,7 @@ Gem::Specification.new do |s|
      "install_scripts/GEO/series/GSE5281.yaml",
      "install_scripts/GEO/series/GSE5290.yaml",
      "install_scripts/GEO/series/GSE5376.yaml",
+     "install_scripts/GEO/series/GSE5470.yaml",
      "install_scripts/GEO/series/GSE5575.yaml",
      "install_scripts/GEO/series/GSE5835.yaml",
      "install_scripts/GEO/series/GSE5836.yaml",

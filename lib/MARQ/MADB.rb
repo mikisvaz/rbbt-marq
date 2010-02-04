@@ -8,50 +8,57 @@ module MADB
   # {{{ Saving Positions
   
   # Save the actual data, cross_platform or not
-  def self.save_dataset_instance(dataset, cross_platform)
-    dataset += '_cross_platform' if cross_platform
-    prefix = MARQ::Dataset.path(dataset)
+  def self.save_dataset_instance(dataset)
 
-    # Save codes
-    codes = File.open(prefix  + '.codes').collect{|l| l.chomp.downcase}
-    experiments = File.open(prefix + '.experiments').collect{|l| l.chomp}
-    orders = File.open(prefix + '.orders').collect{|l| values = l.chomp.split(/\t/).collect{|v| v == "NA" ? nil : v.to_i };}
+    # Get info
+    codes        = MARQ::Dataset.codes(dataset);
+    experiments  = MARQ::Dataset.experiments(dataset);
+    orders       = MARQ::Dataset.orders(dataset).values.transpose;
 
     # Save codes and experiments
     DBcache.save(dataset + '_codes', codes)
     DBcache.save(dataset + '_experiments', experiments)
 
-    # Save orders
+    # Asign orders to codes
     data = {}
     codes.each_with_index{|code,i|
-      data[code.to_sym] = orders[i]
+      data[code] = orders[i]
     }
+
+    # Save orders
     case 
     when codes.length < 65535
       type = "SMALLINT UNSIGNED"
     when codes.length < 16777215
-      type = "MEDIUMIN UNSIGNED"
+      type = "MEDIUMINT UNSIGNED"
     else
       type = "INT UNSIGNED"
     end
-
     DBcache.save(dataset, data, [type] * orders.first.length)
+
   end
 
   # Save dataset, all instances, cross_platform if available.
   def self.save_dataset(dataset)
-    save_dataset_instance(dataset, false)
-    save_dataset_instance(dataset, true) if MARQ::Dataset.has_cross_platform?(dataset)
+    save_dataset_instance(dataset)
+    save_dataset_instance(MARQ::Name.cross_platform(dataset)) if MARQ::Dataset.has_cross_platform?(dataset)
     nil
+  end
+
+  def self.save_platform_instance(platform)
+    DBcache.save(platform + '_codes', 
+                 MARQ::Platform.is_cross_platform?(platform) ? 
+                   MARQ::Platform.cross_platform(platform) : 
+                   MARQ::Platform.codes(platform))
   end
   
   def self.save_platform(platform)
     datasets = MARQ::Platform.datasets(platform).sort
     return if datasets.empty?
 
-    DBcache.save(platform + '_codes', MARQ::Platform.codes(platform))
-    DBcache.save(platform + '_codes', MARQ::Platform.cross_platform(platform)) if MARQ::Platform.has_cross_platform? platform
-
+    save_platform_instance(platform)
+    save_platform_instance(MARQ::Name.cross_platform(platform)) if MARQ::Platform.has_cross_platform?(platform)
+    
     datasets.sort.each do |dataset|
       save_dataset(dataset)
     end
@@ -60,7 +67,7 @@ module MADB
   # {{{ Loading Positions
 
   def self.platform_entries(platform)
-    DBcache.num_rows(platform).to_i
+    DBcache.num_rows(platform + '_codes')
   end
 
 
@@ -73,7 +80,7 @@ module MADB
     experiments = DBcache.load(dataset + '_experiments').sort{|a,b| 
       a[0].to_i <=> b[0].to_i
     }.collect{|p| 
-      MARQ::Dataset.clean(dataset) + ": " + p[1].first
+      MARQ::Name.clean(dataset) + ": " + p[1].first
     }
 
     # Get scale factors (to account for genes missing in the dataset)
@@ -101,7 +108,7 @@ module MADB
     return [{},[],0] if genes.empty?
 
     genes = genes.collect{|gene| gene.downcase.strip}
-    platform_entries = platform_entries(dataset + '_codes').to_f
+    platform_entries = platform_entries(dataset)
 
     load_positions(dataset, genes, platform_entries)
   end
@@ -111,7 +118,7 @@ module MADB
     return [{},[],0] if genes.empty?
 
     genes = genes.collect {|gene| gene.downcase.strip }
-    platform_entries = platform_entries(platform).to_f
+    platform_entries = platform_entries(platform)
 
     cross_platform = MARQ::Platform.is_cross_platform? platform
     datasets = MARQ::Platform.datasets(platform).sort
@@ -120,7 +127,7 @@ module MADB
     total_matched = []
 
     datasets.each do |dataset|
-      dataset << '_cross_platform' if cross_platform
+      dataset = MARQ::Name.cross_platform dataset if cross_platform
       data, matched = load_positions(dataset, genes, platform_entries)
       total_data = total_data.merge(data)
       total_matched +=  matched

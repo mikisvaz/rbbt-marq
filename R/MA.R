@@ -162,6 +162,13 @@ MA.limma.contrast <- function(m, conditions, main, contrast){
 #########################################################################
 # Process conditions
 
+MA.strip_blanks <- function(text){
+  text = sub(' *$', '' ,text);
+  text = sub('^ *', '' ,text);
+
+  return(text);
+}
+
 MA.process_conditions.contrasts <- function(m, conditions, two.channel){
   max_levels             = 10;
   max_levels_control     = 1;
@@ -220,10 +227,12 @@ MA.process_conditions.contrasts <- function(m, conditions, two.channel){
 
  
   if (length(ratio_names) != 0){
+    ratio_names = as.vector(sapply(ratio_names, MA.strip_blanks));
     colnames(ratios) <- ratio_names
   }
 
   if (length(t_names) != 0){
+    t_names = as.vector(sapply(t_names, MA.strip_blanks));
     colnames(t) <- t_names
     colnames(p.values) <- t_names
   }
@@ -264,10 +273,12 @@ MA.process_conditions.two_channel <- function(m, conditions){
   }
 
   if (length(ratio_names) != 0){
+    ratio_names = as.vector(sapply(ratio_names, MA.strip_blanks));
     colnames(ratios) <- ratio_names
   }
 
   if (length(t_names) != 0){
+    t_names = as.vector(sapply(t_names, MA.strip_blanks));
     colnames(t) <- t_names
     colnames(p.values) <- t_names
   }

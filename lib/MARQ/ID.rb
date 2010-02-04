@@ -36,12 +36,11 @@ module ID
 
         other  = codes[field]
         next if other.nil? || other == ""
-        
 
         #codes.collect{|c| c.split("|")}.flatten.compact.select{|c| c != ""}.uniq.each{|code|
         other.split("|").each{|code|
           begin
-            DBcache.fast_add(tablename, code.downcase, [native])
+            DBcache.fast_add(tablename, code.strip.downcase, [native])
           rescue
             puts $!.message
           end

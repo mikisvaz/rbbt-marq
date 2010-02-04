@@ -299,7 +299,7 @@ double hypergeometric(double total, double support, double list, double found)
   def self.dataset_annotations(dataset, type, experiment)
     annotation_dir = File.join(MARQ.datadir, (MARQ::Dataset.is_GEO?(dataset) ? 'GEO' : 'CustomDS'), 'annotations')
 
-    term_file =  File.join(annotation_dir, type, MARQ::Dataset.clean(dataset))
+    term_file =  File.join(annotation_dir, type, MARQ::Name.clean(dataset))
    
     if File.exist? term_file
       @@terms_cache[term_file] ||= YAML::load(File.open(term_file))

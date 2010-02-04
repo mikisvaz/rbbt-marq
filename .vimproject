@@ -47,5 +47,15 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
    test_annotations.rb
    test_main.rb
   }
+  integration=integration{
+   data=data{
+    sgd.yaml
+    human.yaml
+    mgi.yaml
+    rgd.yaml
+    tair.yaml
+   }
+   test_integration.rb
+  }
  }
 }

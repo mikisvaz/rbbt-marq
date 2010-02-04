@@ -88,7 +88,7 @@ $USAGE =<<EOT
 EOT
 
 class Controller < SimpleConsole::Controller
-  params :string => {:d => :dataset, :t => :target, :p => :platform, :s => :series,  :o => :organism}, :boolean => {:d => :update_db, :f => :force}, :integer => {:p => :port}
+  params :string => {:d => :dataset, :t => :target, :p => :platform, :s => :series,  :o => :organism, :d => :update_db, :f => :force}, :integer => {:p => :port}
 
 
   def prepare
@@ -101,8 +101,8 @@ class Controller < SimpleConsole::Controller
     $series    = params[:series]   unless params[:series].nil?
     $dataset    = params[:dataset]   unless params[:dataset].nil?
     $organism  = params[:organism] unless params[:organism].nil?
-    $update_db = params[:update_db] && params[:update_db] =~ /true|yes|y/i
-    $force     = params[:force]     && params[:force]     =~ /true|yes|y/i
+    $update_db = params[:update_db].match(/true|yes|y/i) != nil unless params[:update_db].nil?
+    $force     = params[:force].match(/true|yes|y/i) != nil unless params[:force].nil?
     @actions   = params[:id] || %w(GEO)
     @rake_action  = params[:target] || 'default' 
   end

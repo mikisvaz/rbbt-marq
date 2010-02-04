@@ -3,21 +3,35 @@ require 'MARQ/MADB'
 require 'MARQ/score'
 
 module MARQ
+  module Name
+    def self.clean(name)
+      name.sub(/_cross_platform/,'') unless name.nil?
+    end
+
+    def self.cross_platform(name)
+      if name =~ /_cross_platform/
+        name
+      else
+        name + "_cross_platform"
+      end
+    end
+
+    def self.is_cross_platform?(name)
+      ! name.match(/_cross_platform$/).nil?
+    end
+  end
+
   module Platform
     def self.is_GEO?(platform)
       ! platform.match(/^GPL/).nil?
     end
 
     def self.is_cross_platform?(platform)
-      ! platform.match(/_cross_platform$/).nil?
-    end
-
-    def self.clean(name)
-      name.sub(/_cross_platform/,'') unless name.nil?
+      MARQ::Name.is_cross_platform? platform
     end
 
     def self.path(platform)
-      platform = clean(platform)
+      platform = MARQ::Name.clean(platform)
       if is_GEO? platform
         GEO.platform_path(platform)
       else
@@ -38,17 +52,17 @@ module MARQ
     end
 
     def self.codes(platform)
-      platform = clean(platform)
+      platform = MARQ::Name.clean(platform)
       Open.read(File.join(path(platform), 'codes')).scan(/[^\s]+/)
     end
 
     def self.cross_platform(platform)
-      platform = clean(platform)
+      platform = MARQ::Name.clean(platform)
       Open.read(File.join(path(platform), 'cross_platform')).scan(/[^\s]+/)
     end
 
     def self.organism(platform)
-      platform = clean(platform)
+      platform = MARQ::Name.clean(platform)
       if is_GEO? platform
         GEO.platform_organism platform
       else
@@ -57,7 +71,7 @@ module MARQ
     end
 
     def self.process(platform)
-      platform = clean(platform)
+      platform = MARQ::Name.clean(platform)
       if is_GEO? platform
         GEO.process_platform(platform)
       else
@@ -77,10 +91,6 @@ module MARQ
   module Dataset
     def self.is_GEO?(dataset)
       ! dataset.match(/^(?:GDS|GSE)/).nil?
-    end
-
-    def self.clean(name)
-      name.sub(/_cross_platform/,'') if name
     end
 
     def self.path(platform)
@@ -113,7 +123,7 @@ module MARQ
     end
 
     def self.is_cross_platform?(dataset)
-      ! dataset.match(/_cross_platform$/).nil?
+      MARQ::Name.is_cross_platform? dataset
     end
 
     def self.has_cross_platform?(dataset)
@@ -188,7 +198,7 @@ module MARQ
 
 
     def self.experiments(dataset)
-      read_file(dataset, 'experiments').split(/\n/)
+      read_file(dataset, 'experiments').split(/\n/).collect{|exp| exp.strip }
     end
 
     def self.codes(dataset)
@@ -215,15 +225,19 @@ module MARQ
 
   module RankQuery
     def self.complete_positions(positions, matched, genes)
+      matched = matched.collect{|gene| gene.strip.downcase}
+      genes   = genes.collect{|gene| gene.strip.downcase}
+
       pos = Hash[*matched.zip(positions).flatten]
+
       complete = genes.collect{|gene|
-        gene = gene.downcase.strip
         if matched.include? gene
           pos[gene] || "MISSING"
         else
           "NOT IN PLATFORM"
         end
       }
+      complete
     end
 
 
@@ -261,10 +275,25 @@ module MARQ
       positions_up, matched_up, platform_entries     = MADB.platform_positions(platform, up)
       missing_up = up.length - matched_up.length
 
+
       positions_down, matched_down                   = MADB.platform_positions(platform, down)
       missing_down = down.length - matched_down.length
 
       position_scores(up, down, positions_up, positions_down, platform_entries, matched_up, matched_down, missing_up, missing_down)
+    end
+
+    def self.organism_scores(organism, up, down)
+      platforms = MARQ::Platform.organism_platforms(organism).
+        select  {|p| MARQ::Platform.has_cross_platform? p }
+        collect {|p| MARQ::name.cross_platform p }
+
+      total_scores = {}
+      platforms.each do |platform|
+        scores = platform_scores(platform, up, down)
+        total_scores.merge!(scores) 
+      end
+
+      total_scores
     end
 
   end

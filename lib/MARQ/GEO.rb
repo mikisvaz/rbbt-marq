@@ -373,7 +373,7 @@ module GEO
         return
       end
 
-      if File.exist?(File.join(platform,'cross_platform'))
+      if MARQ::Platform.has_cross_platform? platform
         puts "-- Translated to cross_platform format"
         R.GDS(dataset, prefix + '_cross_platform', field, File.join(platform_path, 'translations')) 
       else
@@ -584,7 +584,7 @@ module GEO
   def self.platform_datasets(platform)
     cross_platform = MARQ::Platform.is_cross_platform? platform
     
-    path = platform_path(MARQ::Platform.clean(platform))
+    path = platform_path(MARQ::Name.clean(platform))
     return [] if path.nil?
 
     datasets = Dir.glob(File.join(path, '*', '*.orders')).
@@ -592,7 +592,7 @@ module GEO
 
     if cross_platform
       datasets.select  {|dataset| MARQ::Dataset.is_cross_platform? dataset }.
-               collect {|dataset| MARQ::Dataset.clean(dataset) }
+               collect {|dataset| MARQ::Name.clean(dataset) }
     else
       datasets.select  {|dataset| ! MARQ::Dataset.is_cross_platform? dataset }
     end
