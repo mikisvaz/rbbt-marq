@@ -25,7 +25,7 @@ def process_list
     organisms.each do |organism|
       platforms = CustomDS.organism_platforms(organism)
       platforms.each do |platform|
-        list[platform] = platform
+        list[platform] = [platform]
       end
     end
   end

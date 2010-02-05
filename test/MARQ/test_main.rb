@@ -14,6 +14,8 @@ class TestMARQ < Test::Unit::TestCase
     assert ! MARQ::Dataset.broken?('GDS113_cross_platform')
     
     assert MARQ::Platform.has_cross_platform?(MARQ::Dataset.platform('GDS113_cross_platform'))
+
+    assert MARQ::Name.is_ratio? 'GDS750: genotype/variation: ADH1proHAC1 [ratio]'
   end
   
   def test_misc
@@ -24,6 +26,13 @@ class TestMARQ < Test::Unit::TestCase
   def test_score
     assert MARQ::RankQuery.dataset_scores('GDS113_cross_platform',%w(),%w()).empty?
     assert MARQ::RankQuery.platform_scores('GPL54',%w(),%w()).empty?
+  end
+
+  def test_codes_for
+    dataset = 'GDS750_cross_platform'
+    experiment = 'agent: tunicamycin [ratio]'
+    MARQ::Dataser.process(dataset) unless MARQ::Dataset.exists? dataset
+    assert_equal 64.165, MARQ::Dataset.codes_for(dataset, 'logratios', experiment)['S000001922']
   end
 end
 

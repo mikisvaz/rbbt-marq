@@ -1,3 +1,5 @@
+require 'progress-monitor'
+
 $expr_threshold ||= (ENV['threshold'] || 0.05).to_f
 $folds          ||= (ENV['folds'] || 2.5).to_f
 $nth_genes      ||= (ENV['nth_genes'] || 100).to_i
@@ -27,11 +29,23 @@ module GEO::Process::R
   end
 end
 
+module CustomDS
+  class << self
+    alias_method :process_dataset_old, :process_dataset
+    def process_dataset(*args)
+      $changes = true
+      process_dataset_old(*args)
+    end
+  end
+end
+
 desc "Analyze datasets"
 task 'data' do 
   platforms_to_save = []
 
   platforms = process_list
+
+  Progress.monitor("Processing #{platforms.keys.length} platforms") if platforms.keys.length > 1
   platforms.each{|platform, datasets|
 
     begin
@@ -48,13 +62,15 @@ task 'data' do
 
     $changes = false
     # Process all datasets
+    
+    Progress.monitor("Processing #{datasets.length} datasets") if datasets.length > 1
     datasets.each{|dataset|
       begin
-        next unless dataset =~ /GSE/
         already_processed = MARQ::Dataset.exists?(dataset) || MARQ::Dataset.broken?(dataset)
         next if already_processed && ! $force
 
         MARQ::Dataset.process(dataset, platform)
+        MARQ::Dataset.process(MARQ::Name.cross_platform(dataset), platform) if MARQ::Platform.has_cross_platform?(platform)
       rescue
         puts "Error processing dataset #{ dataset }"
         puts $!.message
@@ -66,9 +82,9 @@ task 'data' do
     platforms_to_save << platform if $changes || $update_db
   }
 
+  Progress.monitor("Saving #{platforms_to_save.length} platforms in DB") if platforms_to_save.length > 1
   platforms_to_save.each{|platform|
     begin
-      puts "Saving #{platform}"
       MADB.save_platform(platform) 
     rescue
       puts "Error saving platform #{ platform }"

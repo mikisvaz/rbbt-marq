@@ -12,7 +12,7 @@ CustomDS.process <- function(prefix, cross_platform, conditions, description, tw
     names = vector();
     for (file in conditions) {
       filename = paste(prefix,file,sep="/");
-      values = scan(file=filename, what=character(), sep = "\n");
+      values = scan(file=filename, what=character(), sep = "\n", quiet=T);
       names = c(names, file);
       conditions.list = cbind(conditions.list, values);
     }
@@ -46,31 +46,14 @@ CustomDS.process <- function(prefix, cross_platform, conditions, description, tw
 
     values <- MA.process(m, conditions.list, two.channel);
 
-    ratios   = as.data.frame(values$ratios);
-    t        = as.data.frame(values$t);
-    p.values = as.data.frame(values$p.values);
-
-
-    # Calculate orders from best information
-    best = vector();
-    names = vector();
-    for (name in colnames(ratios)){
-        if (sum(colnames(t) == name) > 0){
-            best = cbind(best, t[,name]);
-            names = c(names, name);
-        }else{
-            best = cbind(best, ratios[,name]);
-            names = c(names, paste(name,'[ratio]', sep=" "));
-        }
-    }
-    rownames(best) <- rownames(ratios);
-    orders   = as.data.frame(MA.get_order(best));
-    colnames(orders) <- names;
-
-
-    if (is.null(values)){
+    if (length(values$ratios) == 0){
         write(file=paste(prefix,'skip',sep="."), "no suitable samples for analysis" );
     }else{
+        ratios   = as.data.frame(values$ratios);
+        t        = as.data.frame(values$t);
+        p.values = as.data.frame(values$p.values);
+        orders   = as.data.frame(values$orders);
+
         MA.save(prefix, orders, ratios, t, p.values, colnames(orders), description);
     }
   },

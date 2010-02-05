@@ -42,25 +42,23 @@ module CustomDS
     Dir.glob(File.join(DATA_DIR, org) + '/*.orders').collect{|f| clean(File.basename(f.sub(/.orders/,'')))}.uniq
   end
 
-  def self.process_matrix(prefix, org)
-    conditions = Dir.glob(prefix + '/*').collect{|f| File.basename(f)} - %w(values codes info description cross_platform)
-    description = Open.read(File.join(prefix, 'description'))
+  def self.process_dataset(dataset, platform)
+    org    = platform_organism(platform)
+    platform_path = platform_path(platform)
+    prefix = File.join(DATA_DIR, org, MARQ::Name.clean(dataset))
+    
+    conditions  = Dir.glob(File.join(platform_path, '*')).collect{|f| File.basename(f)} - %w(values codes info description cross_platform)
+    description = Open.read(File.join(platform_path, 'description'))
+    info        = YAML.load(File.open(File.join(platform_path, 'info')))
 
-    info = YAML.load(File.open(File.join(prefix, 'info')))
-    r.CustomDS_process(prefix, false, conditions, description, info["two_channel"], !info["log2"])
-
-
-    codes = Open.read(File.join(prefix,'codes')).collect{|l| l.chomp}
-    cross_platform = ID.translate(org, codes) 
-
-    if cross_platform.length > codes.length / 4
-      Open.write(File.join(prefix,'cross_platform'),cross_platform.collect{|c| c || "NO MATCH"}.join("\n"))
+    if MARQ::Dataset.is_cross_platform?(dataset)
       r.CustomDS_process(prefix, true, conditions, description, info["two_channel"], !info["log2"])
+    else
+      r.CustomDS_process(prefix, false, conditions, description, info["two_channel"], !info["log2"])
     end
-  end
 
-  def self.process(name)
-   end
+ 
+  end
 
   def self.organisms
     Dir.glob(File.join(DATA_DIR, '*')).
@@ -69,18 +67,18 @@ module CustomDS
   end
 
   def self.dataset_path(dataset)
+
     organisms.each do |organism|
-      
       if File.exists?(File.join(DATA_DIR, organism, dataset + '.orders')) || File.exists?(File.join(DATA_DIR, organism, dataset + '.skip'))
         return File.join(DATA_DIR, organism, dataset)
       end
-
     end
+
     return nil
   end
 
   def self.platform_path(platform)
-    dataset_path(platform)
+    Dir.glob(File.join(DATA_DIR, '*', platform)).first
   end
 
   def self.platform_datasets(platform)
@@ -103,22 +101,21 @@ module CustomDS
   end
 
   def self.organism_platforms(organism)
-    Dir.glob(File.join(DATA_DIR,organism,'*.orders')).
-      collect {|path| File.basename(path).sub(/\.orders$/,'').sub(/_cross_platform/,'')}.
-      uniq
+    Dir.glob(File.join(DATA_DIR, organism, '*', 'codes')).
+      collect {|path| File.basename(File.dirname(path))}.uniq
   end
 
   def self.process_platform(platform)
+    prefix = platform_path(platform)
+    org    = platform_organism(platform)
+
+    codes = Open.read(File.join(prefix,'codes')).collect{|l| l.chomp}
+    cross_platform = ID.translate(org, codes) 
+
+    if cross_platform.length > codes.length / 4
+      Open.write(File.join(prefix,'cross_platform'),cross_platform.collect{|c| c || "NO MATCH"}.join("\n"))
+    end
   end
-
-  def self.process_dataset(dataset, platform = nil)
-    puts "Processing #{ dataset }"
-    org = dataset_organism(dataset)
-    prefix = File.join(DATA_DIR, org, dataset)
-
-    CustomDS::process_matrix(prefix, org)
-  end
-
 end
 
 

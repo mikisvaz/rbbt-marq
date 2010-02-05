@@ -334,6 +334,7 @@
   - PHO12
   - LAP4
 :positive:
+  - "GSE966: condition: wt2hZYM"
   - "GDS113: time: 240 minute [ratio]"
 :negative:
   - "GSE6801: condition: ptc5 vs wt <=> ptc1 vs wt"

@@ -19,6 +19,10 @@ module MARQ
     def self.is_cross_platform?(name)
       ! name.match(/_cross_platform$/).nil?
     end
+
+    def self.is_ratio?(name)
+      ! name.match(/\[ratio\]$/).nil?
+    end
   end
 
   module Platform
@@ -37,6 +41,10 @@ module MARQ
       else
         CustomDS.platform_path(platform)
       end
+    end
+
+    def self.exists?(platform)
+      path(platform) != nil
     end
 
     def self.has_cross_platform?(platform)
@@ -182,10 +190,12 @@ module MARQ
     end
 
     def self.read_values_t(dataset, file)
+      experiments = experiments(dataset).reject{|experiment| MARQ::Name.is_ratio? experiment }
+     
+      return {} if experiments.empty?
+
       result = {}
 
-      experiments = experiments(dataset).select{|experiment| experiment !~ /\[ratio\]$/ }
-      return {} if experiments.empty?
       experiments.each{|experiment| result[experiment] = [] }
 
       read_file(dataset, file).split(/\n/).each do |line|
@@ -221,6 +231,12 @@ module MARQ
       read_values_t(dataset, 't')
     end
 
+    def self.codes_for(dataset, type, experiment)
+      codes  = codes(dataset)
+      values = send(type, dataset)[experiment]
+      Hash[*codes.zip(values).reject{|p| p.last.nil? }.flatten]
+    end
+
   end
 
   module RankQuery
@@ -243,11 +259,12 @@ module MARQ
 
     def self.position_scores(up, down, positions_up, positions_down, platform_entries, matched_up, matched_down, missing_up, missing_down)
       scores = []
+
       positions_up.keys.each do |experiment|
         score = Score.score_up_down(positions_up[experiment], positions_down[experiment], platform_entries, missing_up, missing_down)
         score[:total_entries]    = platform_entries
-        score[:positions_up]     = complete_positions(positions_up[experiment], matched_up, up) if up.any?
-        score[:positions_down]   = complete_positions(positions_down[experiment], matched_down, down) if down.any?
+        score[:positions_up]     = complete_positions(positions_up[experiment] || [], matched_up, up) if up.any?
+        score[:positions_down]   = complete_positions(positions_down[experiment] || [], matched_down, down) if down.any?
         scores << score
       end
 
@@ -284,8 +301,8 @@ module MARQ
 
     def self.organism_scores(organism, up, down)
       platforms = MARQ::Platform.organism_platforms(organism).
-        select  {|p| MARQ::Platform.has_cross_platform? p }
-        collect {|p| MARQ::name.cross_platform p }
+        select  {|p| MARQ::Platform.has_cross_platform? p }.
+        collect {|p| MARQ::Name.cross_platform p }
 
       total_scores = {}
       platforms.each do |platform|

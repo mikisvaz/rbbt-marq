@@ -302,6 +302,6 @@
   - 100622_at 
   - 161361_s_at 
 :positive:
-  - 
-
+  - "GDS2274: genotype/variation: Aire knockout <=> wild type"
 :negative:
+  - "GDS1056: time: 3 d <=> 2 d"

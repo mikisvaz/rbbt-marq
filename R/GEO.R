@@ -20,8 +20,6 @@ GEO.get <- function(name, cachedir = NULL){
             object  <- getGEO(name, filename = complete_path);
         }
     }
-
-
     object
 }
 
@@ -184,29 +182,11 @@ GEO.values <- function(data){
         ratios   = as.data.frame(values$ratios);
         t        = as.data.frame(values$t);
         p.values = as.data.frame(values$p.values);
-
-
-        # Calculate orders from best information
-        best = vector();
-        names = vector();
-        for (name in colnames(ratios)){
-            if (sum(colnames(t) == name) > 0){
-                best = cbind(best, t[,name]);
-                names = c(names, name);
-            }else{
-                best = cbind(best, ratios[,name]);
-                names = c(names, paste(name,'[ratio]', sep=" "));
-            }
-        }
-        rownames(best) <- rownames(ratios)
-        orders   = as.data.frame(MA.get_order(best));
-        colnames(orders) <- names
+        orders   = as.data.frame(values$orders);
 
         return(list(ratios = ratios, t = t, p.values = p.values, orders = orders));
     }
 }
-
-
 
 GEO.GDS.process <- function(name, prefix, id.field = NULL, translation.file = NULL,cachedir=NULL){
     tryCatch(

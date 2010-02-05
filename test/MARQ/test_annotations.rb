@@ -6,7 +6,6 @@ class TestMARQ < Test::Unit::TestCase
     dataset = 'GDS113_cross_platform'
     experiment = "time: 15 minute [ratio]"
 
-    p Annotations.dataset_annotations(dataset, 'Words', experiment)[:dataset]
     assert Annotations.dataset_annotations(dataset, 'Words', experiment)[:dataset].any?
     assert Annotations.dataset_annotations(dataset, 'GO_up', experiment)[:signature].any?
     assert Annotations.dataset_annotations(dataset, 'GO_up', experiment)[:dataset].empty?
@@ -16,7 +15,7 @@ class TestMARQ < Test::Unit::TestCase
   def test_annotations
   end
 
-  def _test_GO_local
+  def test_GO_local
     assert Annotations::Genes::Genecodis::Local.analysis('sgd', %w(YHL004W YBR251W YGL123W YNL178W YLR441C YML063W YHR203C)).any?
   end
 
@@ -35,7 +34,6 @@ class TestMARQ < Test::Unit::TestCase
       collect  {|p| p[0]}
 
     terms  = Annotations::Genes::SENT.terms(MARQ::Dataset.organism(dataset), genes)
-    p terms
   end
 end
 

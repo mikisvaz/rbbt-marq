@@ -4,22 +4,16 @@ require 'MARQ/main'
 require 'MARQ/ID'
 
 class TestMARQ < Test::Unit::TestCase
-  DATADIR = File.join(File.dirname(__FILE__), 'data')
-  def load_data(org)
-    info = YAML::load(File.open(File.join(DATADIR, org + '.yaml')))
-  end
-
   def check_results(scores, positive, negative)
-    positive.each do |signature|
-      p signature
-      assert scores[signature][:pvalue] < 0.01
-      assert scores[signature][:score]  > 0
-    end
     negative.each do |signature|
-      p signature
       assert scores[signature][:pvalue] < 0.01
       assert scores[signature][:score]  < 0
     end
+    positive.each do |signature|
+      assert scores[signature][:pvalue] < 0.01
+      assert scores[signature][:score]  > 0
+    end
+
   end
 
   def check_organism(organism)
@@ -29,14 +23,14 @@ class TestMARQ < Test::Unit::TestCase
 
     require 'progress-monitor'
 
-    Progress.monitor("Querying #{ organism }", :stack_depth => 1, :announcement => Proc.new{|p| "Platform #{ p }"} )
+    Progress.monitor("Querying #{ organism }", :stack_depth => 1, :skip => 1, :announcement => Proc.new{|p| "Platform #{ p }"} )
     scores = MARQ::RankQuery.organism_scores(organism, up, down)
 
     check_results(scores, info[:positive], info[:negative])
   end
 
   def test_organisms
-    %w(tair sgd  rgd human mgi).each do |organism|
+    %w(mgi sgd tair rgd human).each do |organism|
       puts "Testing #{ organism }"
       check_organism(organism)
     end

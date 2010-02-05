@@ -88,7 +88,7 @@ $USAGE =<<EOT
 EOT
 
 class Controller < SimpleConsole::Controller
-  params :string => {:d => :dataset, :t => :target, :p => :platform, :s => :series,  :o => :organism, :d => :update_db, :f => :force}, :integer => {:p => :port}
+  params :string => {:d => :dataset, :t => :target, :p => :platform, :s => :series,  :o => :organism, :db => :update_db, :f => :force}, :integer => {:p => :port}
 
 
   def prepare

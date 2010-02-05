@@ -45,8 +45,6 @@ module GEO
 
   end
 
-
-
   # Parse information in .soft files
   module SOFT
 
@@ -111,22 +109,26 @@ module GEO
     end
 
 
+    #{{{ Parse soft files for several GEO entities
 
     def self.GSE(series)
       soft = get_soft(series)
 
+      # Find platform
       if match = soft.scan(/!Series_platform_id\s*=?\s*(.*)/)
         platform = match.flatten.collect{|p| p.strip}.join("_")
       else
         raise "No Platform information" 
       end
 
+      # Find title
       if soft.match(/!Series_title \s*=?\s*(.*)/)
         title = $1
       else
         raise "No Title information" 
       end
 
+      # Find summary
       if soft.match(/!Series_summary \s*=?\s*(.*)/)
         matches = soft.scan(/!Series_summary \s*=?\s*(.*)/).to_a
         description = matches.collect{|m| m.to_s.strip.sub(/!Series_summary \s*=?\s*/,'')}.join("\n")
@@ -134,6 +136,7 @@ module GEO
         raise "No Summary information" 
       end
 
+      # Find samples
       if soft.match(/!Series_sample_id \s*=?\s*(.*)/)
         matches = soft.scan(/!Series_sample_id \s*=?\s*(.*)/).to_a
         samples = matches.collect{|m| m.to_s.strip.sub(/!Series_sample_id \s*=?\s*/,'')}
@@ -152,6 +155,7 @@ module GEO
     def self.GSM(array)
       soft = get_soft(array)
 
+      # Find title
       if soft.match(/!Sample_title\s*=?\s*(.*)/)
         title = $1
       else
@@ -159,6 +163,7 @@ module GEO
       end
 
 
+      # Find description
       if soft.match(/!Sample_description \s*=?\s*(.*)/)
         description = $1
       else
@@ -173,6 +178,7 @@ module GEO
     end
 
     def self.GPL(platform)
+
       if !File.exist?(File.join(DATA_DIR, 'platforms',"#{platform}.yaml"))  &&
          !File.exist?(File.join(DATA_DIR, 'platforms',"#{platform}.skip")) 
         begin
@@ -263,6 +269,9 @@ module GEO
   # Use R to load and process the datasets 
   module Process
 
+    class PlatformNotProcessedError < StandardError; end
+    class AdhocPlatformCollisionError < StandardError; end
+
     # R library wrapper
     module R
       @@r = nil
@@ -350,9 +359,63 @@ module GEO
         rearange(platform_positions, prefix + '.' + ext)
       }
 
+      FileUtils.cp(platform_codes_file, prefix + '.codes')
       Open.write(prefix + '.swap', platform_positions.join("\n"))
+
     end
 
+    def self.GSE(series, info)
+      platform = info[:platform]
+      do_log   = info[:log2].nil? ? nil : !info[:log2]
+      fields   = info[:fields]
+ 
+      # Determine samples and sample conditions
+      gsms = []
+      conditions = {}
+      info[:arrays].each{|gsm, cond|
+        gsms << gsm
+        cond.each{|type, value|
+          conditions[type] ||= []
+          conditions[type] << value
+        }
+      }
+     
+      # Adhoc platforms are for series with samples from different platforms.
+      # They are created when the series is processed
+      adhoc_platform = platform.match(/_/) != nil
+
+      raise PlatformNotProcessedError if ! adhoc_platform && ! MARQ::Platform.exists?(platform)
+      raise AdhocPlatformCollisionError if adhoc_platform && MARQ::Platform.exists?(platform)
+
+      cross_platform = MARQ::Name.is_cross_platform?(series)
+
+      platform_path = GEO.platform_path(platform)
+
+      prefix = File.join(platform_path, 'GSE', series)
+
+      FileUtils.rm(prefix + '.skip') if File.exist?(prefix + '.skip')
+
+      if ! cross_platform
+        R.GSE(gsms, conditions, do_log, prefix, nil, fields, info[:title], info[:description])
+
+        # Set up codes and cross_platform for adhoc platforms
+        if adhoc_platform 
+          codes        = Open.read(prefix + '.codes').collect{|l| l.chomp}
+          organism     = GEO.platform_organism(platform.split(/_/)[0])
+          translations = translate(organism, codes) 
+          FileUtils.cp(prefix + '.codes', File.join(platform_path,'codes'))
+          Open.write(File.join(platform_path, 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
+          Open.write(File.join(platform_path, 'cross_platform'), translations.compact.sort.uniq.join("\n"))
+        else
+          fix_GSE_ids(File.join(platform_path, 'codes'),prefix);
+        end
+
+      else
+        R.GSE(gsms, conditions, do_log, prefix, File.join(platform_path, 'translations'), fields, info[:title], info[:description])
+        fix_GSE_ids(File.join(platform_path, 'cross_platform'),prefix);
+      end
+
+    end
 
     # Process a dataset. Need to specify the platform. The field parameter can
     # be used to use a different column for the field. 
@@ -360,98 +423,22 @@ module GEO
     # Deprecated in favor of using the original firt column and using a
     # different one only for translation
     def self.GDS(dataset, platform, field = nil)
-      puts "Processing GDS #{ dataset }. Platform #{ platform }"
+      raise PlatformNotProcessedError if ! MARQ::Platform.exists? platform
+
+      cross_platform = MARQ::Name.is_cross_platform? dataset
+
       platform_path = GEO.platform_path(platform)
+      prefix = File.join(platform_path, 'GDS', dataset)
 
-      puts "-- Original"
-      prefix = File.join(platform_path, 'GDS', dataset.to_s)
-      R.GDS(dataset, prefix, field, nil)
+      FileUtils.rm(prefix + '.skip') if File.exist?(prefix + '.skip')
 
-      # Was there an error?
-      if File.exist?(prefix + '.skip')
-        FileUtils.cp(prefix + '.skip', prefix + '_cross_platform.skip')
-        return
-      end
-
-      if MARQ::Platform.has_cross_platform? platform
-        puts "-- Translated to cross_platform format"
-        R.GDS(dataset, prefix + '_cross_platform', field, File.join(platform_path, 'translations')) 
+      if cross_platform
+        R.GDS(MARQ::Name.clean(dataset), prefix, field, File.join(platform_path, 'translations'))
       else
-        puts "No cross_platform probe ids for platform"
+        R.GDS(dataset, prefix, field, nil) 
       end
     end
 
-    # Process a series. The info parameters is a hash with the :array,
-    # :platform, :log2 and :fields keys
-    def self.GSE(series, info)
-      return if Dir.glob(File.join(info[:platform], 'GSE', series) + '.*').any?
-
-
-      gsms = []
-      conditions = {}
-      info[:arrays].each{|gsm, cond|
-        gsms << gsm
-        cond.each{|condition, value|
-          conditions[condition] ||= []
-          conditions[condition] << value
-        }
-      }
-      platform = info[:platform]
-      do_log = nil
-      do_log = !info[:log2] if info[:log2]
-      fields = info[:fields]
-
-      platform_path = GEO::platform_path(platform)
-      return if platform_path.nil?
-      prefix = File.join(platform_path, 'GSE', series.to_s)
-
-      puts "Processing GSE #{ series }. Platform #{ platform }"
-      puts "-- Original"
-      R.GSE(gsms, conditions, do_log, prefix, nil, fields, info[:title], info[:description])
-
-      # Was there an error?
-      if File.exist?(prefix + '.skip')
-        FileUtils.cp(prefix + '.skip', prefix + '_cross_platform.skip')
-        return
-      end
-
-      if platform =~ /_/
-        FileUtils.cp(prefix + '.codes', File.join(platform_path,'codes'))
-        codes  = Open.read(File.join(platform_path, 'codes')).collect{|l| l.chomp}
-        organism = SOFT::GPL(platform.match(/(.*?)_/)[1])[:organism]
-        translations = translate(organism, codes) 
-        Open.write(File.join(platform_path, 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
-        Open.write(File.join(platform_path, 'cross_platform'), translations.compact.sort.uniq.join("\n"))
-      else
-        # Are the codes of the series equivalent to the ones in the platform?
-        if  File.open(File.join(platform_path,'codes')).collect{|l| l.chomp} != File.open(prefix + '.codes').collect{|l| l.chomp}
-          fix_GSE_ids(File.join(platform_path, 'codes'),prefix);
-          FileUtils.cp(File.join(platform_path, 'codes'),prefix + '.codes')
-        end
-      end
-
-
-      if File.exist?(File.join(platform,'translations'))
-        FileUtils.cp(File.join(platform,'translations'), prefix + '.translations')
-        if File.exist?(prefix + '.swap')
-          orders = Open.read(prefix + '.swap').collect{|l| l.chomp}
-          inverse_orders = Array.new(orders.length)
-          orders.each_with_index{|pos,i|
-            next if pos !~ /\d/
-              inverse_orders[pos.to_i] = i
-          }
-          rearange(inverse_orders, prefix + '.translations', "NO MATCH")
-        end
-        puts "-- Translated to cross_platform format"
-        R.GSE(gsms, conditions, do_log, prefix + '_cross_platform', prefix + '.translations',fields, info[:title], info[:description])
-        fix_GSE_ids(File.join(platform_path, 'cross_platform'),prefix + '_cross_platform');
-        FileUtils.cp(File.join(platform_path, 'cross_platform'),prefix + '_cross_platform.codes')
-        FileUtils.rm(prefix + '.translations') if File.exist?(prefix + '.translations')
-      else
-        puts "No cross_platform probe ids for platform"
-      end
-      FileUtils.rm(prefix + '.swap') if File.exist?(prefix + '.swap')
-    end
 
     # Load GPL data. Translates IDS of the platform probes using AILUN and our
     # system (called biomart for clarity)
@@ -535,7 +522,6 @@ module GEO
       end
 
     end
-
   end
 
   def self.platforms
@@ -554,7 +540,7 @@ module GEO
 
   def self.platform_path(platform)
     path = File.join(DATA_DIR, platform)
-    path = nil unless File.exists? path
+    path = nil unless File.exists? File.join(path, 'codes')
     path
   end
 
@@ -614,7 +600,7 @@ module GEO
   end
 
   def self.process_platform(platform)
-    GEO::Process.GPL(platform)
+    GEO::Process.GPL(platform) unless platform =~ /_/
   end
 
   def self.process_dataset(dataset, platform)

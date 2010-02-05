@@ -40,21 +40,23 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
  test=test{
   helper.rb
   test_rbbt-marq.rb
+  data=data{
+   sgd.yaml
+   human.yaml
+   mgi.yaml
+   rgd.yaml
+   tair.yaml
+  }
   MARQ=MARQ{
    test_GEO.rb
    test_ID.rb
    test_MADB.rb
    test_annotations.rb
    test_main.rb
+   test_rankproduct.rb
+   test_score.rb
   }
   integration=integration{
-   data=data{
-    sgd.yaml
-    human.yaml
-    mgi.yaml
-    rgd.yaml
-    tair.yaml
-   }
    test_integration.rb
   }
  }

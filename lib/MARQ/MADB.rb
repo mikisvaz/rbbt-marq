@@ -13,7 +13,7 @@ module MADB
     # Get info
     codes        = MARQ::Dataset.codes(dataset);
     experiments  = MARQ::Dataset.experiments(dataset);
-    orders       = MARQ::Dataset.orders(dataset).values.transpose;
+    orders       = MARQ::Dataset.orders(dataset).values_at(*experiments).transpose;
 
     # Save codes and experiments
     DBcache.save(dataset + '_codes', codes)
@@ -70,7 +70,6 @@ module MADB
     DBcache.num_rows(platform + '_codes')
   end
 
-
   def self.load_positions(dataset, genes, platform_entries)
     gene_positions = DBcache.load(dataset, genes)
     data = {}
@@ -87,14 +86,14 @@ module MADB
     scale = (0..experiments.length - 1).collect{|i| 
       rows = DBcache.num_rows(dataset, "C#{i}"); 
       if rows > 0 
-        platform_entries / rows 
+        platform_entries.to_f / rows 
       else 
         nil 
       end 
     }
 
     # Get experiment positions and scale them
-    experiment_x_gene = gene_positions.values.transpose
+    experiment_x_gene = gene_positions.values_at(*matched).transpose
     experiments.each_with_index{|experiment, i|
       next if scale[i].nil? || experiment_x_gene[i].nil?
       values = experiment_x_gene[i].collect{|v| v.nil? ? nil : (v.to_f * scale[i]).to_i}
@@ -107,7 +106,7 @@ module MADB
   def self.dataset_positions(dataset, genes)
     return [{},[],0] if genes.empty?
 
-    genes = genes.collect{|gene| gene.downcase.strip}
+    genes = genes.collect{|gene| gene.to_s.downcase.strip}
     platform_entries = platform_entries(dataset)
 
     load_positions(dataset, genes, platform_entries)
