@@ -47,14 +47,14 @@ task 'data' do
 
   Progress.monitor("Processing #{platforms.keys.length} platforms") if platforms.keys.length > 1
   platforms.each{|platform, datasets|
-
     begin
       # Prepare the platform
       MARQ::Platform.process(platform)
     rescue
       puts "Error processing platform #{platform}"
       puts $!.message
-      puts $!.backtrace.join("\n")
+      puts "\n" * 3
+      #puts $!.backtrace.join("\n")
       next
     end
     
@@ -63,7 +63,7 @@ task 'data' do
     $changes = false
     # Process all datasets
     
-    Progress.monitor("Processing #{datasets.length} datasets") if datasets.length > 1
+    Progress.monitor("Processing #{datasets.length} datasets", :announcement => Proc.new{|d| "Dataset #{ d }" }) if datasets.length > 1
     datasets.each{|dataset|
       begin
         already_processed = MARQ::Dataset.exists?(dataset) || MARQ::Dataset.broken?(dataset)
@@ -74,10 +74,11 @@ task 'data' do
       rescue
         puts "Error processing dataset #{ dataset }"
         puts $!.message
-        puts $!.backtrace.join("\n")
+        puts "\n" * 3
+        #puts $!.backtrace.join("\n")
       end
     }
-
+    
     # Mark the platform for saving in DB
     platforms_to_save << platform if $changes || $update_db
   }
@@ -89,7 +90,8 @@ task 'data' do
     rescue
       puts "Error saving platform #{ platform }"
       puts $!.message
-      puts $!.backtrace.join("\n")
+      puts "\n" * 3
+      #puts $!.backtrace.join("\n")
     end
   }
 end
@@ -97,7 +99,10 @@ end
 def annotations(name, cross_platform = false, &block)
   platforms = process_list
 
+  Progress.monitor("Processing #{platforms.keys.length} platforms for #{ name } annotations")
   platforms.each do |platform, datasets|
+    next if ! MARQ::Platform.exists? platform
+    Progress.monitor("Processing #{datasets.length} datasets", :announcement => Proc.new{|d| "Dataset #{ d }" }) if datasets.length > 1
     datasets.each do |dataset|
       begin
         next if File.exist?(File.join("annotations", name, dataset)) && ! $force
@@ -247,7 +252,7 @@ end
 task 'default' do
   Rake::Task['data'].invoke
   Rake::Task['annotate_Words'].invoke
-  Rake::Task['annotate_UMLS'].invoke
-  Rake::Task['annotate_Polysearch'].invoke
+  #Rake::Task['annotate_UMLS'].invoke
+  #Rake::Task['annotate_Polysearch'].invoke
   Rake::Task['annotate_GO'].invoke
 end

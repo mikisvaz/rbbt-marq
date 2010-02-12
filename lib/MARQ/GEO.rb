@@ -10,6 +10,8 @@ module GEO
 
   DATA_DIR = File.join(MARQ.datadir, 'GEO')
 
+  PLATFORM_BLACKLIST = %w(GPL4065)
+
   # Get information from Entrez
   module Remote
 
@@ -178,10 +180,11 @@ module GEO
     end
 
     def self.GPL(platform)
-
       if !File.exist?(File.join(DATA_DIR, 'platforms',"#{platform}.yaml"))  &&
          !File.exist?(File.join(DATA_DIR, 'platforms',"#{platform}.skip")) 
         begin
+          raise "Platform Blacklisted" if PLATFORM_BLACKLIST.include? platform
+
           if platform =~ /_/
             organism =  GPL(platform.match(/(.*?)_/)[1])[:organism]
 
@@ -443,8 +446,8 @@ module GEO
     # Load GPL data. Translates IDS of the platform probes using AILUN and our
     # system (called biomart for clarity)
     def self.GPL(platform)
-      path = GEO::platform_path(platform)
-      return if path.nil? || File.exist?(path)
+      path = File.join(DATA_DIR, platform)
+      return if File.exist?(path)
 
       if platform =~ /_/
         FileUtils.mkdir(path)
