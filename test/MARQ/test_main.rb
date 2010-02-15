@@ -31,7 +31,7 @@ class TestMARQ < Test::Unit::TestCase
   def test_codes_for
     dataset = 'GDS750_cross_platform'
     experiment = 'agent: tunicamycin [ratio]'
-    MARQ::Dataser.process(dataset) unless MARQ::Dataset.exists? dataset
+    MARQ::Dataset.process(dataset) unless MARQ::Dataset.exists? dataset
     assert_equal 64.165, MARQ::Dataset.codes_for(dataset, 'logratios', experiment)['S000001922']
   end
 end
