@@ -66,18 +66,24 @@ module MADB
 
   # {{{ Loading Positions
 
+  # Number of probes in the platform
   def self.platform_entries(platform)
     DBcache.num_rows(platform + '_codes')
   end
 
-  def self.load_positions(dataset, genes, platform_entries)
-    gene_positions = DBcache.load(dataset, genes)
-    data = {}
-    matched = gene_positions.keys 
+  # Return the positions of the genes in the signatures derived from the
+  # dataset. Returns a 3 value array: hash of arrays of positions (keys are
+  # signatures), array of the gene ids in the same order as the positions,
+  # and total number of probes in the platform.
+  #
+  def self.load_positions(dataset, genes, platform_entries) 
+    gene_positions = DBcache.load(dataset, genes) 
 
-    # Get experiments
+    matched = gene_positions.keys.sort 
+
+    # Get signature names
     experiments = DBcache.load(dataset + '_experiments').sort{|a,b| 
-      a[0].to_i <=> b[0].to_i
+a[0].to_i <=> b[0].to_i
     }.collect{|p| 
       MARQ::Name.clean(dataset) + ": " + p[1].first
     }
@@ -92,6 +98,7 @@ module MADB
       end 
     }
 
+    data = {} 
     # Get experiment positions and scale them
     experiment_x_gene = gene_positions.values_at(*matched).transpose
     experiments.each_with_index{|experiment, i|
@@ -103,6 +110,8 @@ module MADB
     [data, matched, platform_entries]
   end
  
+  # Load positions of genes in signatures from the given datasets. Returns a
+  # tree value array just like load_positions
   def self.dataset_positions(dataset, genes)
     return [{},[],0] if genes.empty?
 
@@ -113,6 +122,11 @@ module MADB
   end
 
 
+  # Loads the data from all signatures for datasets of the platform. The return
+  # value is the same as in dataset_positions and load_positins, except that
+  # the matched gene names need not be in the same order as the actual positions
+  # of the signatures, it just the super set of all genes matched on the
+  # signatures
   def self.platform_positions(platform, genes)
     return [{},[],0] if genes.empty?
 

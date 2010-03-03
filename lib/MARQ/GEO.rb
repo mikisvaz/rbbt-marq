@@ -364,7 +364,6 @@ module GEO
 
       FileUtils.cp(platform_codes_file, prefix + '.codes')
       Open.write(prefix + '.swap', platform_positions.join("\n"))
-
     end
 
     def self.GSE(series, info)
@@ -388,17 +387,17 @@ module GEO
       adhoc_platform = platform.match(/_/) != nil
 
       raise PlatformNotProcessedError if ! adhoc_platform && ! MARQ::Platform.exists?(platform)
-      raise AdhocPlatformCollisionError if adhoc_platform && MARQ::Platform.exists?(platform)
+      raise AdhocPlatformCollisionError if adhoc_platform && MARQ::Platform.exists?(platform) && ! MARQ::Name.is_cross_platform?(series)
 
-      cross_platform = MARQ::Name.is_cross_platform?(series)
-
-      platform_path = GEO.platform_path(platform)
+      platform_path = GEO.platform_path(platform) || File.join(MARQ.datadir, 'GEO', platform)
 
       prefix = File.join(platform_path, 'GSE', series)
+      
+      FileUtils.mkdir_p File.join(platform_path, 'GSE') unless File.exists? File.join(platform_path, 'GSE')
 
       FileUtils.rm(prefix + '.skip') if File.exist?(prefix + '.skip')
 
-      if ! cross_platform
+      if ! MARQ::Name.is_cross_platform?(series)
         R.GSE(gsms, conditions, do_log, prefix, nil, fields, info[:title], info[:description])
 
         # Set up codes and cross_platform for adhoc platforms
@@ -410,12 +409,28 @@ module GEO
           Open.write(File.join(platform_path, 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
           Open.write(File.join(platform_path, 'cross_platform'), translations.compact.sort.uniq.join("\n"))
         else
-          fix_GSE_ids(File.join(platform_path, 'codes'),prefix);
+          fix_GSE_ids(File.join(platform_path, 'codes'), prefix);
         end
 
       else
-        R.GSE(gsms, conditions, do_log, prefix, File.join(platform_path, 'translations'), fields, info[:title], info[:description])
+        FileUtils.cp(File.join(platform,'translations'), prefix + '.translations')
+
+        swap_file = File.join(MARQ::Dataset.path(MARQ::Name.clean series) + '.swap')
+        if File.exist?(swap_file)
+          orders = Open.read(swap_file).collect{|l| l.chomp}
+          inverse_orders = Array.new(orders.length)
+          orders.each_with_index{|pos,i|
+            next if pos !~ /\d/
+              inverse_orders[pos.to_i] = i
+          }
+          rearange(inverse_orders, prefix + '.translations', "NO MATCH")
+        end
+
+        R.GSE(gsms, conditions, do_log, prefix, prefix +  '.translations', fields, info[:title], info[:description])
+
         fix_GSE_ids(File.join(platform_path, 'cross_platform'),prefix);
+
+        FileUtils.rm(prefix + '.translations') if File.exist?(prefix + '.translations')
       end
 
     end
@@ -611,7 +626,7 @@ module GEO
     when :GDS
       GEO::Process.GDS(dataset, platform)
     when :GSE
-      info = YAML::load(File.open("series/#{ dataset }.yaml"))
+      info = YAML::load(File.open("series/#{ MARQ::Name.clean dataset }.yaml"))
       FileUtils.rm("platforms/#{ info[:platform] }.skip") if File.exist?  "platforms/#{ info[:platform] }.skip"
       GEO::Process.GSE(dataset, info)
     end

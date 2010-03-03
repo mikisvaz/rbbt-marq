@@ -1,4 +1,5 @@
 require 'progress-monitor'
+require 'genecodis/main'
 
 $expr_threshold ||= (ENV['threshold'] || 0.05).to_f
 $folds          ||= (ENV['folds'] || 2.5).to_f
@@ -39,11 +40,21 @@ module CustomDS
   end
 end
 
+def try3times
+  tries = 0
+  begin
+    yield
+  rescue
+    tries += 1
+    retry if tries <= 3
+  end
+end
+
 desc "Analyze datasets"
 task 'data' do 
   platforms_to_save = []
 
-  platforms = process_list
+  platforms = try3times { process_list }
 
   Progress.monitor("Processing #{platforms.keys.length} platforms") if platforms.keys.length > 1
   platforms.each{|platform, datasets|
@@ -72,10 +83,10 @@ task 'data' do
         MARQ::Dataset.process(dataset, platform)
         MARQ::Dataset.process(MARQ::Name.cross_platform(dataset), platform) if MARQ::Platform.has_cross_platform?(platform)
       rescue
-        puts "Error processing dataset #{ dataset }"
+        puts "Error processing dataset #{ dataset } [#{ platform }]"
         puts $!.message
         puts "\n" * 3
-        #puts $!.backtrace.join("\n")
+        puts $!.backtrace.join("\n")
       end
     }
     
@@ -97,7 +108,7 @@ task 'data' do
 end
 
 def annotations(name, cross_platform = false, &block)
-  platforms = process_list
+  platforms = try3times { process_list }
 
   Progress.monitor("Processing #{platforms.keys.length} platforms for #{ name } annotations")
   platforms.each do |platform, datasets|
@@ -105,13 +116,11 @@ def annotations(name, cross_platform = false, &block)
     Progress.monitor("Processing #{datasets.length} datasets", :announcement => Proc.new{|d| "Dataset #{ d }" }) if datasets.length > 1
     datasets.each do |dataset|
       begin
+        next if ! MARQ::Dataset.exists?(dataset)
         next if File.exist?(File.join("annotations", name, dataset)) && ! $force
-        next if MARQ::Dataset.path(dataset).nil?
 
         FileUtils.mkdir_p File.join("annotations", name)
         filename = File.join("annotations", name, dataset)
-        dataset += MARQ::Name.cross_platform(dataset) if cross_platform && MARQ::Platform::has_cross_platform?(platform)
-        next if ! MARQ::Dataset.exists?(dataset)
         terms = block.call(dataset)
         Open.write(filename, terms.to_yaml)
       rescue
@@ -175,12 +184,12 @@ end
 
 def goterms(org, list, slim, threshold)
   return [] if list.empty?
-  results = Annotations::Genes::Genecodis::Local.analysis(org, list, slim)
+  results = Genecodis.analysis(org, 'biological_process', list, :algorithm => Genecodis::Algorithm::SINGLE)
   return [] if results.nil?
   results.
-    select{|info| info[:s].to_i  > 2 }.
-    select{|info| info[:hyp_c].to_f < threshold }.
-    collect{|info| info[:items]}.collect{|id| GO::id2name(id)}
+    select{|info| info["S"].to_i  > 2 }.
+    select{|info| info["Hyp_c"].to_f < threshold }.
+    collect{|info| info["Items"]}.collect{|id| GO::id2name(id)}
 end
 
 task 'annotate_GO' do
@@ -189,7 +198,7 @@ task 'annotate_GO' do
   options = { :cut_off => $expr_threshold, :fdr => $fdr, :folds => $folds, :do_folds => $do_folds, :nth_genes => $nth_genes}
   annotations('GO_up', true) do |dataset|
     org = MARQ::Dataset.organism(dataset)
-    genes = Annotations::Genes.get_genes(dataset, options)
+    genes = Annotations::Genes.get_genes(MARQ::Name.cross_platform(dataset), options)
 
     up = {}
     genes[:up] ||= []
@@ -201,7 +210,7 @@ task 'annotate_GO' do
 
   annotations('GO_down', true) do |dataset|
     org = MARQ::Dataset.organism(dataset)
-    genes = Annotations::Genes.get_genes(dataset, options)
+    genes = Annotations::Genes.get_genes(MARQ::Name.cross_platform(dataset), options)
 
     down = {}
     genes[:down] ||= []
@@ -213,7 +222,7 @@ task 'annotate_GO' do
 
   annotations('GOSlim_up', true) do |dataset|
     org = MARQ::Dataset.organism(dataset)
-    genes = Annotations::Genes.get_genes(dataset, options)
+    genes = Annotations::Genes.get_genes(MARQ::Name.cross_platform(dataset), options)
 
     up = {}
     genes[:up] ||= []
@@ -225,7 +234,7 @@ task 'annotate_GO' do
 
   annotations('GOSlim_down', true) do |dataset|
     org = MARQ::Dataset.organism(dataset)
-    genes = Annotations::Genes.get_genes(dataset, options)
+    genes = Annotations::Genes.get_genes(MARQ::Name.cross_platform(dataset), options)
 
     down = {}
     genes[:down] ||= []
