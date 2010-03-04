@@ -8,6 +8,9 @@ interface to the system with several additional features.
 
 == Installation
 
+Quick install
+ rbbt_config prepare all; rbbt_config install organisms; rbbt_genecodis prepare all; rbbt_genecodis install data; marq_config prepare identifiers; marq_config prepare GEO; marq_config install GEO; marq_config prepare CustomDS; marq_config install CustomDS
+
 Install the gem and all the dependencies. This gem depends on several others,
 including Rbbt. Rbbt offers an API with the gene identifier translation used in
 MARQ. To install MARQ follow this recipie:
