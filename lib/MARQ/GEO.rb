@@ -406,8 +406,10 @@ module GEO
           organism     = GEO.platform_organism(platform.split(/_/)[0])
           translations = translate(organism, codes) 
           FileUtils.cp(prefix + '.codes', File.join(platform_path,'codes'))
-          Open.write(File.join(platform_path, 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
-          Open.write(File.join(platform_path, 'cross_platform'), translations.compact.sort.uniq.join("\n"))
+          if translations.compact.length > codes.length.to_f / 10
+            Open.write(File.join(platform_path, 'translations'), translations.collect{|v| v || "NO MATCH"}.join("\n"))
+            Open.write(File.join(platform_path, 'cross_platform'), translations.compact.sort.uniq.join("\n"))
+          end
         else
           fix_GSE_ids(File.join(platform_path, 'codes'), prefix);
         end
