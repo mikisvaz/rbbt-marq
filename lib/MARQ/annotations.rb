@@ -165,16 +165,13 @@ double hypergeometric(double total, double support, double list, double found)
         positions[term] <<  rank
       }
     }
- 
-    scores = []
-
 
     sizes = {}
     RANK_SIZE_BINS.each{|size| sizes[size.to_i] = []}
 
-
     # For each term compute the rank score. Also, place it in the closest size
     # bin for the permutations.
+    scores = []
     best.each_with_index{|term, pos|
       if positions[term]
         list = positions[term]
@@ -190,40 +187,32 @@ double hypergeometric(double total, double support, double list, double found)
         }
         sizes[sizes.keys.sort.last] << pos if !found
         
-        scores << Score::score(list, ranks.length, 0)[:score]
+        scores << Score.score(list, ranks.length, 0)
       else # it has no score
         scores << nil
       end
     }
 
     info = {}
-
-    # Go through all the size bins, run the permutations and assign the pvalues
-    # to all terms in the bin.
-    sizes.keys.each{|size|
+    sizes.each do |size, pos_list|
       next if size == 1
-      next if sizes[size].empty?
+      next if pos_list.empty?
 
-      # This are the actual scores for the terms in the bin
-      sub_list_scores = sizes[size].collect{|pos| scores[pos] || 0}
-
-      # Compute the pvalues for all the terms in the bin. The size of the
-      # permutation list is that of the bin
-      pvalues = Score::pvalues(sub_list_scores, size, 0, ranks.length)
-
-      # Save the information from the terms, score, hits, and pvalues.
-      sizes[size].zip(pvalues).each{|p|
-        pos = p[0]
-        pvalue = p[1]
+      size_info = {}
+      pos_list.each do |pos|
         score = scores[pos]
-        next if score < 0
+        term  = best[pos]
+        hits  = positions[term].nil? ? 0 : positions[term].length
 
-        term = best[pos]
-        hits = positions[term].nil? ? 0 : positions[term].length 
+        size_info[term] = {:score => score, :hits => hits}
+      end
 
-        info[term] = {:score => score, :hits => hits, :pvalue => pvalue}
-      }
-    }
+      null_scores     = Score.null_scores(size, 0)
+      size_info       = Score.add_pvalues(size_info, null_scores)
+
+      info.merge! size_info
+    end
+
 
     info
   end
@@ -349,7 +338,7 @@ double hypergeometric(double total, double support, double list, double found)
     end
 
     if algorithm == :rank
-      ranks = scores.sort{|a,b| compare(a[1],b[1]) }.collect{|p| p[0]}
+      ranks = scores.sort {|a,b| compare(a[1],b[1]) }.collect {|p| p[0]}
       terms = enrichment_rank(annot, ranks, dict_options)
     else
       terms = enrichment_hypergeometric(annot, relevant, dict_options)

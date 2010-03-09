@@ -65,91 +65,42 @@ module MADB
   end
 
   # {{{ Loading Positions
+  
+  def self.num_values(dataset)
+    experiments = 
+      DBcache.load(dataset + '_experiments').
+        sort_by {|p| p[0].to_i }.
+        collect {|p| MARQ::Name.clean(dataset) + ": " + p[1].first }
 
-  # Number of probes in the platform
-  def self.platform_entries(platform)
-    DBcache.num_rows(platform + '_codes')
+    values = {}
+    experiments.each_with_index do |exp, i| values[exp] = DBcache.num_rows(dataset, "C#{i}") end
+
+    values
   end
 
-  # Return the positions of the genes in the signatures derived from the
-  # dataset. Returns a 3 value array: hash of arrays of positions (keys are
-  # signatures), array of the gene ids in the same order as the positions,
-  # and total number of probes in the platform.
-  #
-  def self.load_positions(dataset, genes, platform_entries) 
-    gene_positions = DBcache.load(dataset, genes) 
-
-    matched = gene_positions.keys.sort 
-
-    # Get signature names
-    experiments = DBcache.load(dataset + '_experiments').sort{|a,b| 
-a[0].to_i <=> b[0].to_i
-    }.collect{|p| 
-      MARQ::Name.clean(dataset) + ": " + p[1].first
-    }
-
-    # Get scale factors (to account for genes missing in the dataset)
-    scale = (0..experiments.length - 1).collect{|i| 
-      rows = DBcache.num_rows(dataset, "C#{i}"); 
-      if rows > 0 
-        platform_entries.to_f / rows 
-      else 
-        nil 
-      end 
-    }
-
-    data = {} 
-    # Get experiment positions and scale them
-    experiment_x_gene = gene_positions.values_at(*matched).transpose
-    experiments.each_with_index{|experiment, i|
-      next if scale[i].nil? || experiment_x_gene[i].nil?
-      values = experiment_x_gene[i].collect{|v| v.nil? ? nil : (v.to_f * scale[i]).to_i}
-      data[experiment] = values
-    }
-
-    [data, matched, platform_entries]
-  end
- 
-  # Load positions of genes in signatures from the given datasets. Returns a
-  # tree value array just like load_positions
-  def self.dataset_positions(dataset, genes)
-    return [{},[],0] if genes.empty?
-
-    genes = genes.collect{|gene| gene.to_s.downcase.strip}
-    platform_entries = platform_entries(dataset)
-
-    load_positions(dataset, genes, platform_entries)
+  def self.num_codes(dataset)
+    DBcache.num_rows(dataset + '_codes')
   end
 
+  def self.load_positions(dataset, genes)
+    positions   = DBcache.load(dataset, genes)
+    experiments = 
+      DBcache.load(dataset + '_experiments').
+        sort_by {|p| p[0].to_i }.
+        collect {|p| MARQ::Name.clean(dataset) + ": " + p[1].first }
 
-  # Loads the data from all signatures for datasets of the platform. The return
-  # value is the same as in dataset_positions and load_positins, except that
-  # the matched gene names need not be in the same order as the actual positions
-  # of the signatures, it just the super set of all genes matched on the
-  # signatures
-  def self.platform_positions(platform, genes)
-    return [{},[],0] if genes.empty?
 
-    genes = genes.collect {|gene| gene.downcase.strip }
-    platform_entries = platform_entries(platform)
-
-    cross_platform = MARQ::Platform.is_cross_platform? platform
-    datasets = MARQ::Platform.datasets(platform).sort
-
-    total_data = {}
-    total_matched = []
-
-    datasets.each do |dataset|
-      dataset = MARQ::Name.cross_platform dataset if cross_platform
-      data, matched = load_positions(dataset, genes, platform_entries)
-      total_data = total_data.merge(data)
-      total_matched +=  matched
+    
+    result = {}; experiments.each {|exp| result[exp] = [] }
+    positions.values_at(*genes).each do |values|
+      experiments.zip(values || []).each do |p|
+        experiment, value = p
+        result[experiment] << (value.nil? ? nil : value.to_i)
+      end
     end
-    total_matched.uniq!
 
-    [total_data, total_matched, platform_entries]
+    result
   end
-
 end
 
 if __FILE__ == $0

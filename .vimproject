@@ -41,11 +41,11 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
   helper.rb
   test_rbbt-marq.rb
   data=data{
-   sgd.yaml
-   human.yaml
-   mgi.yaml
-   rgd.yaml
-   tair.yaml
+   Ath.yaml
+   Hsa.yaml
+   Mmu.yaml
+   Rno.yaml
+   Sce.yaml
   }
   MARQ=MARQ{
    test_GEO.rb

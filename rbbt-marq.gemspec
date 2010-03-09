@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Miguel Vazquez"]
-  s.date = %q{2010-03-04}
+  s.date = %q{2010-03-09}
   s.default_executable = %q{marq_config}
   s.description = %q{Find microarray experiments with similar or opposite signature to a given query. A SOAP interface and a merb portal can be found in rbbt-marq-www.}
   s.email = %q{miguel.vazquez@fdi.ucm.es}

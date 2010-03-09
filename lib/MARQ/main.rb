@@ -240,119 +240,35 @@ module MARQ
   end
 
   module RankQuery
-    def self.complete_positions(positions, matched, genes)
-      matched = matched.collect{|gene| gene.strip.downcase}
-      genes   = genes.collect{|gene| gene.strip.downcase}
-
-      pos = Hash[*matched.zip(positions).flatten]
-
-      complete = genes.collect{|gene|
-        if matched.include? gene
-          pos[gene] || "MISSING"
-        else
-          "NOT IN PLATFORM"
-        end
-      }
-      complete
-    end
-
-
-    def self.position_scores(up, down, positions_up, positions_down, platform_entries, matched_up, matched_down, missing_up, missing_down)
-      scores = []
-
-      positions_up.keys.each do |experiment|
-        score = Score.score_up_down(positions_up[experiment], positions_down[experiment], platform_entries, missing_up, missing_down)
-        score[:total_entries]    = platform_entries
-        score[:positions_up]     = complete_positions(positions_up[experiment] || [], matched_up, up) if up.any?
-        score[:positions_down]   = complete_positions(positions_down[experiment] || [], matched_down, down) if down.any?
-        scores << score
-      end
-
-      pvalues = Score.pvalues(scores.collect{|s| s[:score]}, up.length, down.length, platform_entries)
-
-      results = {}
-      positions_up.keys.each_with_index{|experiment,i|
-        results[experiment] = scores[i].merge(:pvalue => pvalues[i])
-      }
-
-      results
-    end
+    NULL_SIZE = 10000
 
     def self.dataset_scores(dataset, up, down)
-      positions_up, matched_up, platform_entries     = MADB.dataset_positions(dataset, up)
-      missing_up = positions_up.length - matched_up.length
-
-      positions_down, matched_down                   = MADB.dataset_positions(dataset, down)
-      missing_down = positions_down.length - matched_down.length
-
-      position_scores(up, down, positions_up, positions_down, platform_entries, matched_up, matched_down, missing_up, missing_down)
+      Score.scores_up_down(dataset, up, down)
     end
 
     def self.platform_scores(platform, up, down)
-      positions_up, matched_up, platform_entries     = MADB.platform_positions(platform, up)
-      missing_up = up.length - matched_up.length
+      scores = {}
+      MARQ::Platform.datasets(platform).each do |dataset|
+        dataset = MARQ::Name.cross_platform dataset if MARQ::Name.is_cross_platform?(platform)
+        scores.merge!(dataset_scores(dataset, up, down))
+      end
 
-
-      positions_down, matched_down                   = MADB.platform_positions(platform, down)
-      missing_down = down.length - matched_down.length
-
-      position_scores(up, down, positions_up, positions_down, platform_entries, matched_up, matched_down, missing_up, missing_down)
+      scores
     end
 
     def self.organism_scores(organism, up, down)
-      platforms = MARQ::Platform.organism_platforms(organism).
-        select  {|p| MARQ::Platform.has_cross_platform? p }.
-        collect {|p| MARQ::Name.cross_platform p }
-
-      total_scores = {}
-      platforms.each do |platform|
-        scores = platform_scores(platform, up, down)
-        total_scores.merge!(scores) 
+      scores = {}
+      MARQ::Platform.organism_platforms(organism).each do |platform|
+        scores.merge!(platform_scores(MARQ::Name.cross_platform(platform), up, down))
       end
 
-      total_scores
+      scores
+    end
+
+    def self.add_pvalues(scores, up_size, down_size)
+      null_scores = Score.null_scores(up_size, down_size, NULL_SIZE)
+      Score.add_pvalues(scores, null_scores)
     end
 
   end
 end
-
-if __FILE__ == $0
-  p MARQ::Dataset.platform 'GDS2791_cross_platform'
-  p MARQ::Platform.organism 'GPL96'
-  exit
-  #puts MARQ::organism_platforms('human')
-  #puts MARQ.platform_organism("HaploidData")
-  #puts MARQ::platform_scores_up_down("HaploidData",%w( YMR261c YDL140c YIL122w YPL093w YHR211w YDL142c YHR106w YOR103c YDR233c YLR181c),%w()).keys
-
-  up = %w(
-
-  51228_at    215046_at   205009_at   204915_s_at 202707_at  
-  208265_at   210618_at   201185_at   206650_at   200719_at  
-  215661_at   202071_at   214408_s_at 215092_s_at 206168_at  
-  212686_at   214162_at   221008_s_at 217709_at   210957_s_at
-
-  )
-
-
-  require 'MARQ/ID'
-  require 'pp'
-  genes = ID.translate('human',up).compact
-
-  #pp up.zip(genes)
-  #genes = Open.read("/home/miki/git/MARQ/test/GDS1375_malignant_vs_normal_down.genes").collect{|l| l.chomp.strip}
-  positions =  MARQ::GEORQ.dataset_positions('GDS1231_cross_platform',genes)
-  pp positions
-
-
-  #MARQ::GEORQ.platform_scores_up_down('GPL96_cross_platform',genes,[]).each{|ex, r|
-  #  puts ex
-  #  puts r[:pvalue]
-  #}
-
-  #Score.draw_hits(positions["disease.state: malignant melanoma <=> normal"], MADB::GEORQ.experiment_entries('GPL96','GDS1375: disease.state: malignant melanoma <=> normal') , '/tmp/foo.png',:size => 1000)
-
-
-
-end
-
-
