@@ -1,4 +1,5 @@
 require 'png'
+require 'MARQ/util'
 require 'inline'
 
 module Score

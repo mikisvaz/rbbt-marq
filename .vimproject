@@ -26,6 +26,7 @@ rbbt-marq=/$PWD/ CD=/$PWD/ filter="*.rb Rakefile *.haml *.txt *.R *.yaml *.rake 
    score.rb
    rankproduct.rb
    main.rb
+   util.rb
   }
  }
  install_scripts=install_scripts{

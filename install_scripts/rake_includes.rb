@@ -189,7 +189,7 @@ def goterms(org, list, slim, threshold)
   results.
     select{|info| info["S"].to_i  > 2 }.
     select{|info| info["Hyp_c"].to_f < threshold }.
-    collect{|info| info["Items"]}.collect{|id| GO::id2name(id)}
+    collect{|info| info["Items"].first }.collect{|id| GO::id2name(id)}
 end
 
 task 'annotate_GO' do

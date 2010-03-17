@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../helper'
-require 'MARQ/main.rb'
 require 'MARQ/rankproduct.rb'
 
 class TestRbbtMarq < Test::Unit::TestCase

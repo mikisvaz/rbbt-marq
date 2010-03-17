@@ -1,4 +1,4 @@
-require 'MARQ'
+require 'MARQ/util'
 require 'MARQ/main'
 module RankProduct
   def self.ranks(dataset, experiment , from_FC = false, invert = false)
